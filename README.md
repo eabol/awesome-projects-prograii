@@ -10,9 +10,9 @@ Cada uno va a desarrollar su parte en la rama con su nombre
 
 Siempre debemos estar al dia con la rama Develop
 
-Despues terminar su tarea de la semana se realiza un push a la rama Develop
+Despues terminar su tarea de la semana se realiza un Push a la rama Develop
 
-Finalmente cada semana (Lunes) se va a realizar el Push Request desde Develop a Master en el siguiente orden:
+Finalmente cada semana (Lunes) se va a realizar el Pull Request desde Develop a Master en el siguiente orden:
 1. Jorge
 2. David
 3. Veronika
