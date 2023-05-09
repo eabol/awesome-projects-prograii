@@ -1,6 +1,9 @@
 package main;
 
 import java.util.Random;
+import main.warrior;
+import main.potions;
+import main.shield;
 
 public class vampireAttack extends Weapons {
     public vampireAttack(int damage, double accuracy) {
@@ -9,6 +12,7 @@ public class vampireAttack extends Weapons {
     warrior enemy = new warrior("enemy", 100, 10, 10);
     potions berserk = new potions("Berserk", 1);
 
+    shield shield = new shield("Shield", 1);
     public void vampireAttacks() {
         String[] attacks = {"Claw", "Bite", "Soul Syphon"};
         Random rand = new Random();
@@ -22,14 +26,18 @@ public class vampireAttack extends Weapons {
                     System.out.println("The vampire missed!");
                     break;
                 } else {
+
                     if(berserk.berserkActive == true && randomNum < 89) {
                     double damage = this.getDamage()/2;
                     enemy.setHealth(enemy.getHealth() - damage);
                     } else if (berserk.rockActive==true) {
                         double damage = this.getDamage() / 4;
                         enemy.setHealth(enemy.getHealth() - damage);
+                    } else if (shield.activateShield() == true) {
+                        double damage = this.getDamage() / 4;
+                        enemy.setHealth(enemy.getHealth() - damage);
                     }
-            }
+                }
             }
             case "Bite" -> {
                 setDamage(15);
@@ -42,6 +50,9 @@ public class vampireAttack extends Weapons {
                         double damage = this.getDamage()/2;
                         enemy.setHealth(enemy.getHealth() - damage);
                     } else if (berserk.rockActive==true) {
+                        double damage = this.getDamage() / 4;
+                        enemy.setHealth(enemy.getHealth() - damage);
+                    }else if (shield.activateShield() == true) {
                         double damage = this.getDamage() / 4;
                         enemy.setHealth(enemy.getHealth() - damage);
                     }
@@ -58,6 +69,9 @@ public class vampireAttack extends Weapons {
                         double damage = this.getDamage()/2;
                         enemy.setHealth(enemy.getHealth() - damage);
                     } else if (berserk.rockActive==true) {
+                        double damage = this.getDamage() / 4;
+                        enemy.setHealth(enemy.getHealth() - damage);
+                    }else if (shield.activateShield() == true) {
                         double damage = this.getDamage() / 4;
                         enemy.setHealth(enemy.getHealth() - damage);
                     }

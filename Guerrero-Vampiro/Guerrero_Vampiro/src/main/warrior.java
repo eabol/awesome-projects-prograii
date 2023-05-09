@@ -1,10 +1,12 @@
 package main;
+import main.shield;
 
 
 public class warrior extends Characters {
-    public warrior(String name, double health, double attack, double defense , double accuracy) {
-        super(name, health, attack, defense, accuracy);
+    public warrior(String name, double health, double attack, double accuracy) {
+        super(name, health, attack, accuracy);
     }
+    shield shield = new shield("shield", 1);
     public void setName(String name) {
         this.name = name;
     }
@@ -14,17 +16,11 @@ public class warrior extends Characters {
     public void setAttack(double attack) {
         this.attack = attack;
     }
-    public void setDefense(double defense) {
-        this.defense = defense;
-    }
     public double getHealth() {
         return this.health;
     }
     public double getAttack() {
         return this.attack;
-    }
-    public double getDefense() {
-        return this.defense;
     }
     public String getName() {
         return this.name;
@@ -34,12 +30,20 @@ public class warrior extends Characters {
     }
     public double getAccuracy() {
         return this.accuracy;
-    }   
-    public void attack(Characters enemy) {
-        double damage = this.attack - enemy.defense;
-        enemy.health -= damage;
-        System.out.println(this.name + " attacked " + enemy.name + " for " + damage + " damage!");
     }
 
+
+    public void setShieldActive(boolean b) {
+        shield.activateShield();
+    }
+    public void setShieldInactive(boolean b) {
+        shield.deactivateShield();
+    }
+    public boolean getShieldActive() {
+        return shield.activateShield();
+    }
+    public boolean getShieldInactive() {
+        return shield.deactivateShield();
+    }
 }
 
