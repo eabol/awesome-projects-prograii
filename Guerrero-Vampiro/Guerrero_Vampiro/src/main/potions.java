@@ -1,8 +1,13 @@
 package main;
-
+import main.warrior;
 public class potions extends Equipment {
+    warrior character = new warrior("Warrior", 100, 100, 100);
 
-    public boolean potionActive = false;
+    public boolean berserkActive = false;
+    public boolean healthActive = false;
+    public boolean rockActive = false;
+    public boolean eyeActive = false;
+    public boolean twitterActive = false;
     public potions(String name, int cuantity) {
         super(name, cuantity);
     }
@@ -14,16 +19,35 @@ public class potions extends Equipment {
     public void setCuantity(int cuantity) {
         this.cuantity = cuantity;
     }
-
-    public boolean activatePotion() {
-        return this.potionActive = true;
+    public boolean activateberserkPotion() {
+        return this.berserkActive = true;
     }
-    public boolean deactivatePotion() {
-        return this.potionActive = false;
+    public boolean deactivateberserkPotion() {
+        return this.berserkActive = false;
     }
-
-    public boolean isPotionActive() {
-        return potionActive;
+    public boolean activatehealthPotion() {
+        return this.healthActive = true;
+    }
+    public boolean deactivatehealthPotion() {
+        return this.healthActive = false;
+    }
+    public boolean activaterockPotion() {
+        return this.rockActive = true;
+    }
+    public boolean deactivaterockPotion() {
+        return this.rockActive = false;
+    }
+    public boolean activateeyePotion() {
+        return this.eyeActive = true;
+    }
+    public boolean deactivateeyePotion() {
+        return this.eyeActive = false;
+    }
+    public boolean activatetwitterPotion() {
+        return this.twitterActive = true;
+    }
+    public boolean deactivatetwitterPotion() {
+        return this.twitterActive = false;
     }
 
     public String getName() {
@@ -35,32 +59,26 @@ public class potions extends Equipment {
     }
 
     //cambiar precision
-    public void berserkPotion(warrior character) {
-        activatePotion();
+    public void berserkPotion( warrior character) {
+        activateberserkPotion();
+        boolean berserkActive = true;
         double health = character.getHealth()*1.5;
         character.setHealth(health);
-        double defensebase = character.getDefense();
-        double defense = character.getDefense()*1.5;
-        character.setDefense(defense);
-        double accuracy = character.getAccuracy()*1.5;
-        character.setAccuracy(accuracy);
         double berserkPotion = this.cuantity-1;
-        double counter = 0;
-        System.out.println("You have used a Berserk Potion, your stats are: "+ "Health: "+ character.getHealth()+ " Defense: "+ character.getDefense()+ " Accuracy: "+ character.getAccuracy());
-        while (counter <=3){
-            counter++;
+        double counter1 = 0;
+        System.out.println("You have used a Berserk Potion, your stats are: "+ "Health: "+ character.getHealth());
+        while (counter1 <=3){
+            counter1++;
             System.out.println("You feel the effects of the potion fading away...");
         }
-        if (counter ==3){
-            deactivatePotion();
+        if (counter1 ==3){
+            deactivateberserkPotion();
             character.setHealth(health-20);
-            character.setDefense(defensebase);
-            character.setAccuracy(accuracy-10);
-            System.out.println("The effects of the potion have faded away, your stats are now: "+ "Health: "+ character.getHealth()+ " Defense: "+ character.getDefense()+ " Accuracy: "+ character.getAccuracy());
+            System.out.println("The effects of the potion have faded away, your stats are now: "+ "Health: "+ character.getHealth());
         }
     }
     public void healthPotion(warrior character) {
-        activatePotion();
+        activatehealthPotion();
         double health = character.getHealth()+10;
         character.setHealth(health);
         double healthPotion = this.cuantity-1;
@@ -72,7 +90,7 @@ public class potions extends Equipment {
         }
         if (counter ==3){
             if (health !=0){
-                deactivatePotion();
+                deactivatehealthPotion();
                 character.setHealth(health+20);
                 System.out.println("The effects of the potion have faded away, your health is now: "+ character.getHealth());
             }else {
@@ -82,7 +100,7 @@ public class potions extends Equipment {
 
     }
     public void rockSolid(warrior character) {
-        activatePotion();
+        activaterockPotion();
         double counter = 0;
         double health = character.getHealth();
         while (counter <=3){
@@ -91,8 +109,7 @@ public class potions extends Equipment {
         }
         if(counter ==3){
             if (health !=0){
-                deactivatePotion();
-                character.setDefense(character.getDefense()*2);
+                deactivaterockPotion();;
                 System.out.println("The effects of the potion have faded away, your health is now: "+ character.getHealth());
             }else {
                 System.out.println("You are dead, the effects of the potion won't work on you.");
@@ -100,10 +117,8 @@ public class potions extends Equipment {
         }
 
     }
-    public void seagullEye(warrior character) {
-        activatePotion();
-        double accuracy = (double) (character.getAccuracy()+(character.getAccuracy()*0.25));
-        character.setAccuracy(accuracy);
+        public void seagullEye(warrior character) {
+        activateeyePotion();
         double accuracyPotion = this.cuantity-1;
         double counter = 0;
         double health = character.getHealth()+10;
@@ -114,8 +129,7 @@ public class potions extends Equipment {
         }
         if (counter ==3){
             if (health !=0){
-                deactivatePotion();
-                character.setAccuracy((double) (accuracy-(character.getAccuracy()*0.25)));
+                deactivateeyePotion();
                 System.out.println("The effects of the potion have faded away, your accuracy is now: "+ character.getAccuracy());
             }else {
                 System.out.println("You are dead, the effects of the potion won't work on you.");
@@ -124,9 +138,7 @@ public class potions extends Equipment {
 
     }
     public void twitterEssence(warrior character){
-        activatePotion();
-        double attack = character.getAttack()+8;
-        character.setAttack(attack);
+        activatetwitterPotion();
         double attackPotion = this.cuantity-1;
         double counter = 0;
         double health = character.getHealth();
@@ -137,8 +149,7 @@ public class potions extends Equipment {
         }
         if (counter ==2){
             if (health !=0){
-                deactivatePotion();
-                character.setAttack(attack-8);
+                deactivatetwitterPotion();
                 System.out.println("The effects of the potion have faded away, your attack is now: "+ character.getAttack());
             }else {
                 System.out.println("You are dead, the effects of the potion won't work on you.");
