@@ -1,9 +1,9 @@
-public class Weapons {
+package main;
     public class Weapons {
         private int damage;
-        private int accuracy;
+        private double accuracy;
 
-        public Weapons(int damage, int accuracy) {
+        public Weapons(int damage, double accuracy) {
             this.damage = damage;
             this.accuracy = accuracy;
         }
@@ -16,21 +16,21 @@ public class Weapons {
             this.damage = damage;
         }
 
-        public int getAccuracy() {
+        public double getAccuracy() {
             return accuracy;
         }
 
-        public void setAccuracy(int accuracy) {
+        public void setAccuracy(double accuracy) {
             this.accuracy = accuracy;
         }
 
-}
-Weapons sword = new Weapons(7, 50);
-Weapons handaxe = new Weapons(15, 25);
-Weapons flail = new Weapons(30, 12);
-Weapons bite = new Weapons(5, 90);
-Weapons scratch = new Weapons(10, 60);
-Weapons soulsiphon = new Weapons(20, 40);
-Weapons shield = new Weapons(0, 80);
+
+//Weapons sword = new Weapons(7, 50);
+//Weapons handaxe = new Weapons(15, 25);
+//Weapons flail = new Weapons(30, 12);
+//Weapons bite = new Weapons(5, 90);
+//Weapons scratch = new Weapons(10, 60);
+//Weapons soulsiphon = new Weapons(20, 40);
+//Weapons shield = new Weapons(0, 80);
 
 }
