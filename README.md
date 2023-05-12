@@ -16,7 +16,6 @@ Finalmente cada semana (Lunes) se va a realizar el Pull Request desde Develop a 
 1. Jorge
 2. David
 3. Veronika
-4. 
 ## Generalidades
 El proyecto debe cumplir con algunos requisitos mínimos basándonos en el checklist que se muestra abajo.
 
