@@ -1,20 +1,26 @@
+package src;
+import src.entity.Player;
 import javax.swing.*;
 import java.awt.*;
 
 public class Game extends JPanel implements Runnable{
-        final int originalSize = 48;
-        final int maxScreenRow = 12;
-        final int maxScreenCol = 18;
+        public final int originalSize = 68;
+        final int maxScreenRow = 7;
+        final int maxScreenCol = 12;
         final int screenWidth = maxScreenCol * originalSize;
         final int screenHeight = maxScreenRow * originalSize;
 
 int FPS = 60;
+public long drawCount = 0;
+
+
         KeyHandler keyHandler = new KeyHandler();
         Thread gameThread;
+        Player player = new Player(this, keyHandler);
 
         int playerX = 100;
         int playerY = 100;
-        int playerSpeed = 4;
+        int playerSpeed = 2;
         public Game() {
                 this.setPreferredSize(new Dimension(screenWidth, screenHeight));
                 this.setBackground(Color.black);
@@ -29,12 +35,11 @@ int FPS = 60;
         }
         @Override
         public void run() {
-                double drawInterval = 1000000000 / FPS;
                 double delta = 0;
                 long lastDrawTime = System.nanoTime();
                 long currentTime;
+                double drawInterval = 1000000000 / FPS;
                 long timer = 0;
-                long drawCount = 0;
                 //double nextDrawTime = System.nanoTime() + drawInterval;
 
                 while(gameThread != null) {
@@ -75,24 +80,12 @@ int FPS = 60;
         }
 
         public void update() {
-                if(keyHandler.upPressed) {
-                        playerY -= playerSpeed;
-                }
-                else if (keyHandler.downPressed) {
-                        playerY += playerSpeed;
-                }
-                else if (keyHandler.leftPressed) {
-                        playerX -= playerSpeed;
-                }
-                else if (keyHandler.rightPressed) {
-                        playerX += playerSpeed;
-                }
+                player.update();
         }
         public void paintComponent(Graphics g){
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
-                g2d.setColor(Color.white);
-                g2d.fillRect(playerX, playerY, originalSize, originalSize);
+                player.draw(g2d);
                 g2d.dispose();
                 //g2d.setColor(Color.black);
                 //g2d.fillRect(0, 0, screenWidth, screenHeight);
