@@ -1,8 +1,10 @@
+package src;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class Game extends JPanel implements Runnable {
-        final int originalSize = 100;
+        public final int originalSize = 48;
         final int maxScreenRow = 12;
         final int maxScreenCol = 18;
         final int screenWidth = maxScreenCol * originalSize;
