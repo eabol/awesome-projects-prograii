@@ -1,0 +1,32 @@
+@startuml Diagram-Class-VendingMachine
+
+class Machine {
+}
+
+class Bill {
+}
+
+class Coin {
+}
+
+class Product {
+}
+
+class Money {
+}
+
+class Maintenance {
+}
+
+class Purchase {
+}
+
+Machine *--r Maintenance
+Machine o--- Product
+Machine o--- Bill
+Machine o--- Coin
+
+Money <|--- Bill
+Money <|--- Coin
+
+@enduml
