@@ -1,0 +1,46 @@
+@startuml
+
+abstract class Cashier {
+
+}
+
+class FastCashier {
+
+}
+
+class NormalCashier {
+
+}
+
+abstract class Order {
+}
+
+class NormalOrder {
+}
+
+class DeliveryOrder {
+}
+
+interface Status {
+    +isOpen(): boolean
+}
+interface Delivery{
+    +isDelivery(): boolean
+}
+
+
+class Supermarket {
+    -cashier: Cashier[]
+    +getCashier(): Cashier[]
+}
+
+Cashier <|-- FastCashier
+Cashier <|-- NormalCashier
+Order <|-- NormalOrder
+Order <|-- DeliveryOrder
+Status <|.. FastCashier
+Status <|.. NormalCashier
+Delivery <|.. DeliveryOrder
+Cashier --o Supermarket : contains
+
+@enduml
