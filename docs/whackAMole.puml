@@ -1,0 +1,41 @@
+@startuml
+class Mole {
+ - String name
+ - String avatar
+ - boolean beaten
+ + Mole()
+ + Mole(String name)
+ + getName() : String
+ + setName(String name) : void
+ + getAvatar() : String
+ + setAvatar(String appereance) : void
+ + isBeaten() : boolean
+ + setBeaten(boolean isBeaten) : void
+}
+
+class Board {
+  - List<List<Hole>> holes
+  + Board()
+  + Board(int holes)
+  + showBoard() : void
+  + beatenHole() 
+}
+class Hole{
+  - String aspect
+  - Mole mole
+  + Hole()
+  + Hole(Mole mole)
+  + getAspect() : String
+  + setAspect(String aspect) : void
+  + getMole() : Mole
+  - showMoleInHole() : String
+  - isMoleInHole() : boolean
+}
+class Game
+class Main
+
+Hole o-- Mole
+Board *-- Hole
+Game *-- Board
+Main o-- Game
+@enduml
