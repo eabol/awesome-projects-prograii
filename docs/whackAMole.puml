@@ -18,7 +18,7 @@ class Board {
   + Board()
   + Board(int holes)
   + showBoard() : void
-  + beatenHole() 
+  + beatenHole() : Hole
 }
 class Hole{
   - String aspect
@@ -28,11 +28,22 @@ class Hole{
   + getAspect() : String
   + setAspect(String aspect) : void
   + getMole() : Mole
-  - showMoleInHole() : String
-  - isMoleInHole() : boolean
+  + setMole(Mole mole) : void
+  - showMoleInside() : String
+  - isMoleInside() : boolean
 }
-class Game
-class Main
+class Game{
+  - Board board
+  + Game()
+  + Game(Board board)
+  + showMenu() : void
+  + startToPlay() : void
+  - endPlaying() : void
+}
+
+class Main{
+  + main()
+}
 
 Hole o-- Mole
 Board *-- Hole
