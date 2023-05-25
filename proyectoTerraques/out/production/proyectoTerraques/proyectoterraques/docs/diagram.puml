@@ -1,0 +1,118 @@
+@startuml
+
+
+class proyectoterraques.source.Bank {
+- List<Client> clients
+- List<Account> accounts
++ <<Create>> Bank()
++ List<Client> getClients()
++ List<Account> getAccounts()
++ newStandardClient(String,String,String,String,String)
++ newShareHolderClient(String,String,String,String,String)
++ newAccount()
+
+}
+
+abstract class proyectoterraques.source.Client {
+# String dni
+# String name
+# String surname
+# String address
+# String phoneNumber
++ <<Create>> Client(String,String,String,String,String)
++ {abstract}String getDni()
++ {abstract}String getFullname()
++ {abstract}String getFullData()
+}
+
+class proyectoterraques.source.ShareholderClient {
++ <<Create>> ShareholderClient(String,String,String,String,String)
++ String getDni()
++ String getFullname()
++ String getFullData()
++ List<DebitAccount> debitAccounts
++ CreditAccount credit_account
+}
+
+class proyectoterraques.source.StandardClient {
++ <<Create>> StandardClient(String,String,String,String,String)
++ String getDni()
++ String getFullname()
++ String getFullData()
++ DebitAccount debit_account
+}
+
+abstract class proyectoterraques.source.Account {
+#  String accountNumber
+#  double amount
++ <<Create>> Account()
++ {abstract} String getAccountNumber()
++ {abstract} double getAmount()
++ {abstract} void setAmount(double)
+}
+
+interface proyectoterraques.source.AccountMethods {
++ void deposit(double)
++ void withdraw(double)
+
+
+}
+
+interface proyectoterraques.source.ClientMethods {
++void addAccount(Account)
++void removeAccount(String)
++void listAccounts()
+
+}
+
+class proyectoterraques.source.DebitAccount {
++ <<Create>> DebitAccount()
++ String getAccountNumber()
++ double getAmount()
+
+}
+
+class proyectoterraques.source.CreditAccount {
+# double interest
+# double debt
++ <<Create>> CreditAccount()
++ String getAccountNumber()
++ double getAmount()
++ double getDebt()
++ void changeInterest(double)
+
+}
+
+class proyectoterraques.source.FileHandler {
+- List<String> lines
++ <<Create>> FileHandler()
++ List<String> loadFileContent(String)
+- boolean isPathEmpty(String)
+- List<String> readFileContent(String)
+}
+
+class proyectoterraques.exceptions.Exception{
+
+}
+
+class proyectoterraques.exceptions.InvalidCharacterException{
++ <<Create>> InvalidCharacterException(String)
+
+}
+
+proyectoterraques.source.Bank o-- "O..*" proyectoterraques.source.Account : Has
+proyectoterraques.source.Bank o-- "O..*" proyectoterraques.source.Client : Has
+proyectoterraques.source.Bank o-- "O..*" proyectoterraques.source.AccountMethods : Has
+proyectoterraques.source.Bank o-- "O..*" proyectoterraques.source.ClientMethods : Has
+proyectoterraques.source.Client <|-- proyectoterraques.source.ShareholderClient
+proyectoterraques.source.ClientMethods <|-- proyectoterraques.source.ShareholderClient
+proyectoterraques.source.Account <|-- proyectoterraques.source.DebitAccount
+proyectoterraques.source.AccountMethods <|-- proyectoterraques.source.DebitAccount
+proyectoterraques.source.Client <|-- proyectoterraques.source.StandardClient
+proyectoterraques.source.ClientMethods <|-- proyectoterraques.source.StandardClient
+proyectoterraques.source.Account <|-- proyectoterraques.source.CreditAccount
+proyectoterraques.source.AccountMethods <|-- proyectoterraques.source.CreditAccount
+proyectoterraques.source.Bank --> proyectoterraques.source.FileHandler : Uses
+proyectoterraques.source.Bank --> proyectoterraques.exceptions.InvalidCharacterException : Uses
+proyectoterraques.exceptions.Exception <|-- proyectoterraques.exceptions.InvalidCharacterException
+@enduml
