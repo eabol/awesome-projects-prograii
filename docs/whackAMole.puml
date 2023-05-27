@@ -1,16 +1,39 @@
 @startuml
-class Mole {
- - String name
- - String avatar
- - boolean beaten
+
+interface LuckDirection{
+  + getPositiveLuck() : boolean
+  + getNegativeLuck() : boolean
+}
+
+interface View{
+    + showMenu() : void
+}
+
+abstract class Luck implements LuckDirection{
+    - float certainty
+    + Luck()
+    + Luck(float certainty)
+    + getPositiveLuck() : boolean
+    + getNegativeLuck() : boolean
+}
+
+abstract class SmackableCharacter{
+    - String name
+    - String avatar
+    - boolean beaten
+    + SmackableCharacter();
+    + SmackableCharacter(String name);
+    + getName() : String
+    + setName(String name) : void
+    + getAvatar() : String
+    + setAvatar(String appearance) : void
+    + isBeaten() : boolean
+    + setBeaten(boolean beaten) : void
+}
+
+class Mole extends SmackableCharacter{
  + Mole()
  + Mole(String name)
- + getName() : String
- + setName(String name) : void
- + getAvatar() : String
- + setAvatar(String appereance) : void
- + isBeaten() : boolean
- + setBeaten(boolean isBeaten) : void
 }
 
 class Board {
@@ -20,20 +43,21 @@ class Board {
   + showBoard() : void
   + beatenHole() : Hole
 }
-class Hole{
+class Hole extends Luck{
   - String aspect
-  - Mole mole
+  - SmackableCharacter character
   + Hole()
-  + Hole(Mole mole)
+  + Hole(SmackableCharacter character)
   + getAspect() : String
   + setAspect(String aspect) : void
-  + getMole() : Mole
-  + setMole(Mole mole) : void
+  + getMole() : SmackableCharacter
+  + setMole(SmackableCharacter character) : void
   - showMoleInside() : String
   - isMoleInside() : boolean
 }
-class Game{
+class Game implements View {
   - Board board
+  - Turn turn
   + Game()
   + Game(Board board)
   + showMenu() : void
@@ -41,12 +65,26 @@ class Game{
   - endPlaying() : void
 }
 
+class Turn {
+    - int total
+    - int successes
+    - int failures
+    + Turn()
+    + getTotal() : int
+    + getSuccesses() : int
+    + getFailures() : int
+    + selectPosition(int position, Board board) : Hole
+
+}
+
 class Main{
   + main()
 }
 
-Hole o-- Mole
+Hole o-- SmackableCharacter
 Board *-- Hole
+Turn o-l- Board
 Game *-- Board
+Game *-- Turn
 Main o-- Game
 @enduml
