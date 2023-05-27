@@ -41,7 +41,7 @@ class Board {
   + Board()
   + Board(int holes)
   + showBoard() : void
-  + beatenHole() : Hole
+  + beatenHole(int position) : Hole
 }
 class Hole extends Luck{
   - String aspect
@@ -73,7 +73,7 @@ class Turn {
     + getTotal() : int
     + getSuccesses() : int
     + getFailures() : int
-    + selectPosition(int position, Board board) : Hole
+    + playDone(boolean success) : void
 
 }
 
@@ -83,7 +83,6 @@ class Main{
 
 Hole o-- SmackableCharacter
 Board *-- Hole
-Turn o-l- Board
 Game *-- Board
 Game *-- Turn
 Main o-- Game
