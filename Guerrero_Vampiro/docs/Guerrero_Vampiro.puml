@@ -1,0 +1,111 @@
+@startuml
+class Flail extends weapons
+class Sword extends weapons
+class handaxe extends weapons
+class potions extends Equipment
+class shield extends Equipment
+class vampire extends Characters
+class warrior extends Characters
+class vampireAttack extends weapons
+class main {
+    +main(args: String[]): void
+}
+abstract class Equipment {
+    #name: String
+    #cuantity: int
+    +Equipment(name: String, cuantity: int)
+}
+abstract class Characters {
+    #name: String
+    #heatlh: double
+    #attack: double
+    #accuracy: double
+    +Characters(name: String, health: double, attack: double, accuracy: double)
+    }
+abstract class weapons {
+    -damage: double
+    -accuracy: double
+    +weapons(name: String, damage: double, accuracy: double)
+    +getDamage(): double
+    +getAccuracy(): double
+    +setDamage(damage: double): void
+    +setAccuracy(accuracy: double): void
+  }
+class Flail{
+    +Flail(damage: double, accuracy: double)
+}
+class Sword{
+    +Sword(damage: double, accuracy: double)
+}
+class handaxe{
+    +handaxe(damage: double, accuracy: double)
+}
+class potions{
+    +berserkactive: boolean
+    +heatlhactive: boolean
+    +rockactive: boolean
+    +twitteractive: boolean
+    +eyeActive: boolean
+    +potions(name: String, cuantity: int)
+    +setName(name: String): void
+    +setCuantity(cuantity: int): void
+    +activateBerserkPotion(): boolean
+    +activateHealthPotion(): boolean
+    +activateRockPotion(): boolean
+    +activateTwitterPotion(): boolean
+    +activateeyePotion(): boolean
+    +deactivateeyePotion(): boolean
+    +deactivateBerserkPotion(): boolean
+    +deactivateHealthPotion(): boolean
+    +deactivateRockPotion(): boolean
+    +deactivateTwitterPotion(): boolean
+    +getName(): String
+    +getCuantity(): int
+    +berserkPotion(warrior: Warrior): void
+    +healthPotion(warrior: Warrior): void
+    +rockSolid(warrior: Warrior): void
+    +seagullEye(warrior: Warrior): void
+    +twitterEssence(warrior: Warrior): void
+}
+class shield{
+    +shield(name: String, cuantity: int)
+    +activateShield(): boolean
+    +deactivateShield(): boolean
+    +getName(): String
+    +getCuantity(): int
+    +setName(name: String): void
+    +setCuantity(cuantity: int): void
+    +shieldUp(warrior: Warrior): void
+    +shieldDown(warrior: Warrior): void
+}
+class Vampire{
+    +vampire(name: String, health: double, attack: double, accuracy: double)
+    +setName(name: String): void
+    +setHealth(health: double): void
+    +setAttack(attack: double): void
+    +getHealth(): double
+    +getAttack(): double
+    +getName(): String
+    +setAccuracy(accuracy: double): void
+    +getAccuracy(): double
+}
+class vampireAttack{
+    +vampireAttack(damage: double, accuracy: double)
+    +vampireAttacks(): void
+}
+class warrior{
+    +Warrior(name: String, health: double, attack: double, accuracy: double)
+    +setName(name: String): void
+    +setHealth(health: double): void
+    +setAttack(attack: double): void
+    +getHealth(): double
+    +getAttack(): double
+    +getName(): String
+    +setAccuracy(accuracy: double): void
+    +getAccuracy(): double
+    +setShieldActive(shieldActive: boolean): void
+    +getShieldActive(): boolean
+    +setShieldInactive(shieldInactive: boolean): void
+    +getShieldInactive(): boolean
+}
+@enduml
