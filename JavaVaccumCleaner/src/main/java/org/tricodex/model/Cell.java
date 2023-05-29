@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Cell extends Entity {
     private DirtLevel dirtLevel;
-    boolean hasFurniture;
+    private boolean hasFurniture;
 
     public Cell(Point position, DirtLevel dirtLevel, boolean hasFurniture) {
         super(position);
@@ -21,6 +21,10 @@ public class Cell extends Entity {
 
     public void increaseDirtLevel() {
         dirtLevel = dirtLevel.next();
+    }
+
+    public boolean hasFurniture() {
+        return hasFurniture;
     }
 
     public DirtLevel getDirtLevel() {

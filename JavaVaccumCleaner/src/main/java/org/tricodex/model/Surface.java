@@ -7,9 +7,8 @@ import org.tricodex.utils.settings.ScreenSettings;
 public class Surface {
     private final int width;
     private final int height;
-
     private final ScreenSettings screenSettings;
-    Cell[][] cells;
+    private Cell[][] cells;
 
     public Surface(ScreenSettings screenSettings) {
         this.screenSettings = screenSettings;
