@@ -1,0 +1,57 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class World {
+    - well: Well
+    - snail: Snail
+    - rain: Rain
+    - car: Car
+    - day: Day
+    + World()
+}
+
+class Well {
+    - snail: Snail
+    - depth: int
+    + waterDepth: int
+    + Well()
+    + survive(): void
+}
+
+class Snail {
+}
+
+class Rain {
+    - type: String
+    + Rain(type: String)
+    + success(): int
+}
+
+class Car {
+}
+
+class Day {
+    + nextDay(): void
+}
+
+enum Warning {
+    HEAVY_RAIN
+    WEAK_RAIN
+    NO_RAIN
+    CAR_PASS
+}
+
+World "1" -- "1" Well
+World "1" -- "1" Snail
+World "1" -- "1" Rain
+World "1" -- "1" Car
+World "1" -- "1" Day
+
+Well "1" -- "1" Snail
+Well "1" -- "1" Rain
+
+Well "1" -- "0..1" Death
+Well "1" -- "0..*" Warning
+
+
+@enduml
