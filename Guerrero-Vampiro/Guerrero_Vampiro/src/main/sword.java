@@ -1,11 +1,11 @@
 package main;
-
-public class Flail extends Weapons {
-    public Flail(double damage, double accuracy) {
+import main.potions;
+public class sword extends Weapons {
+    public sword(double damage, double accuracy) {
         super(damage, accuracy);
     }
 
-    public void FlailAttack(double damage, double accuracy) {
+    public void swordAttack(double damage, double accuracy) {
         boolean berserkActive = true;
         potions berserk = new potions("Berserk", 1);
         if (berserkActive == berserk.activateberserkPotion()) {
@@ -19,7 +19,5 @@ public class Flail extends Weapons {
             damage = damage + 8;
         }
 
-    }
+    }}
 
-
-}

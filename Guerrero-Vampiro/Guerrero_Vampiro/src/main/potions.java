@@ -1,5 +1,5 @@
 package main;
-import main.warrior;
+
 public class potions extends Equipment {
     warrior character = new warrior("Warrior", 100, 100, 100);
 
@@ -25,10 +25,10 @@ public class potions extends Equipment {
     public boolean deactivateberserkPotion() {
         return this.berserkActive = false;
     }
-    public boolean activatehealthPotion() {
+    public boolean activatelastBreathPotion() {
         return this.healthActive = true;
     }
-    public boolean deactivatehealthPotion() {
+    public boolean deactivatelastBreathPotion() {
         return this.healthActive = false;
     }
     public boolean activaterockPotion() {
@@ -77,8 +77,8 @@ public class potions extends Equipment {
             System.out.println("The effects of the potion have faded away, your stats are now: "+ "Health: "+ character.getHealth());
         }
     }
-    public void healthPotion(warrior character) {
-        activatehealthPotion();
+    public void lastBreath(warrior character) {
+        activatelastBreathPotion();
         double health = character.getHealth()+10;
         character.setHealth(health);
         double healthPotion = this.cuantity-1;
@@ -90,7 +90,7 @@ public class potions extends Equipment {
         }
         if (counter ==3){
             if (health !=0){
-                deactivatehealthPotion();
+                deactivatelastBreathPotion();
                 character.setHealth(health+20);
                 System.out.println("The effects of the potion have faded away, your health is now: "+ character.getHealth());
             }else {
