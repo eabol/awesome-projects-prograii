@@ -1,7 +1,9 @@
 package org.tricodex;
 
+import org.tricodex.view.MainWindow;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        new MainWindow();
     }
 }
