@@ -58,7 +58,7 @@ public class potions extends Equipment {
         return this.cuantity;
     }
 
-    //cambiar precision
+    //cambiar precision, queda pendiente qué hacer con esta poción
     public void berserkPotion( warrior character) {
         activateberserkPotion();
         boolean berserkActive = true;
@@ -103,6 +103,7 @@ public class potions extends Equipment {
         activaterockPotion();
         double counter = 0;
         double health = character.getHealth();
+        // queda pendiente el tema de la defensa//
         while (counter <=3){
             counter++;
             System.out.println("You feel the effects of the potion fading away...");
@@ -121,7 +122,8 @@ public class potions extends Equipment {
         activateeyePotion();
         double accuracyPotion = this.cuantity-1;
         double counter = 0;
-        double health = character.getHealth()+10;
+        double health = character.getHealth();
+        double accuracy = character.getAccuracy()*1.5;
         System.out.println("You have used a Accuracy Potion on " + character.getName()+ "and now his accuracy is: "+ character.getAccuracy());
         while (counter <=3){
             counter++;
@@ -142,6 +144,7 @@ public class potions extends Equipment {
         double attackPotion = this.cuantity-1;
         double counter = 0;
         double health = character.getHealth();
+        double attack = character.getAttack()*1.5;
         System.out.println("You have used a Attack Potion on " + character.getName()+ "and now his attack is: "+ character.getAttack());
         while (counter <=2){
             counter++;
