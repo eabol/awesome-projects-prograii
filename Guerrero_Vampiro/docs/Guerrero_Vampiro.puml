@@ -1,13 +1,23 @@
 @startuml
 class Flail extends weapons
 class Sword extends weapons
-class handaxe extends weapons
-class potions extends Equipment
-class shield extends Equipment
-class vampire extends Characters
-class warrior extends Characters
-class vampireAttack extends weapons
-class main {
+class Handaxe extends weapons
+class Potions extends Equipment
+class Shield extends Equipment
+class Vampire extends Characters
+class Warrior extends Characters
+class VampireAttack extends weapons
+class BerserkPotion extends potions
+class Bite extends vampireAttack
+class Claw extends vampireAttack
+class LastBreathPotion extends potions
+class MalphitePotion extends potions
+class SeagullPotion extends potions
+class TwitterPotion extends potions
+class SoulSyphon extends VampireAttack
+class WarriorActions extends Warrior
+
+class Main {
     +main(args: String[]): void
 }
 abstract class Equipment {
@@ -18,11 +28,9 @@ abstract class Equipment {
 abstract class Characters {
     #name: String
     #heatlh: double
-    #attack: double
-    #accuracy: double
-    +Characters(name: String, health: double, attack: double, accuracy: double)
+    +Characters(name: String, health: double)
     }
-abstract class weapons {
+abstract class Weapons {
     -damage: double
     -accuracy: double
     +weapons(name: String, damage: double, accuracy: double)
@@ -33,48 +41,29 @@ abstract class weapons {
   }
 class Flail{
     +Flail(damage: double, accuracy: double)
+    +FlailAttack(damage: double, accuracy: double): void
+    +hit(): void
 }
 class Sword{
     +Sword(damage: double, accuracy: double)
+    +swordAttack(damage: double, accuracy: double): void
+    +hit(): void
 }
-class handaxe{
+class Handaxe{
     +handaxe(damage: double, accuracy: double)
+    +handaxeAttack(damage: double, accuracy: double): void
+    +hit(): void
 }
-class potions{
-    +berserkactive: boolean
-    +heatlhactive: boolean
-    +rockactive: boolean
-    +twitteractive: boolean
-    +eyeActive: boolean
-    +potions(name: String, cuantity: int)
-    +setName(name: String): void
-    +setCuantity(cuantity: int): void
-    +activateBerserkPotion(): boolean
-    +activateHealthPotion(): boolean
-    +activateRockPotion(): boolean
-    +activateTwitterPotion(): boolean
-    +activateeyePotion(): boolean
-    +deactivateeyePotion(): boolean
-    +deactivateBerserkPotion(): boolean
-    +deactivateHealthPotion(): boolean
-    +deactivateRockPotion(): boolean
-    +deactivateTwitterPotion(): boolean
-    +getName(): String
-    +getCuantity(): int
-    +berserkPotion(warrior: Warrior): void
-    +healthPotion(warrior: Warrior): void
-    +rockSolid(warrior: Warrior): void
-    +seagullEye(warrior: Warrior): void
-    +twitterEssence(warrior: Warrior): void
-}
-class shield{
+
+class Shield{
     +shield(name: String, cuantity: int)
+    +isShieldActive: boolean
     +activateShield(): boolean
     +deactivateShield(): boolean
-    +getName(): String
-    +getCuantity(): int
     +setName(name: String): void
     +setCuantity(cuantity: int): void
+    +getName(): String
+    +getCuantity(): int
     +shieldUp(warrior: Warrior): void
     +shieldDown(warrior: Warrior): void
 }
@@ -82,30 +71,89 @@ class Vampire{
     +vampire(name: String, health: double, attack: double, accuracy: double)
     +setName(name: String): void
     +setHealth(health: double): void
-    +setAttack(attack: double): void
     +getHealth(): double
-    +getAttack(): double
     +getName(): String
-    +setAccuracy(accuracy: double): void
-    +getAccuracy(): double
 }
-class vampireAttack{
+class VampireAttack{
     +vampireAttack(damage: double, accuracy: double)
     +vampireAttacks(): void
 }
-class warrior{
-    +Warrior(name: String, health: double, attack: double, accuracy: double)
+class Warrior{
+    +warrior(name: String, health: double, attack: double, accuracy: double)
     +setName(name: String): void
     +setHealth(health: double): void
-    +setAttack(attack: double): void
     +getHealth(): double
-    +getAttack(): double
     +getName(): String
-    +setAccuracy(accuracy: double): void
-    +getAccuracy(): double
     +setShieldActive(shieldActive: boolean): void
+    +setShieldInactive(shieldActive: boolean): void
     +getShieldActive(): boolean
-    +setShieldInactive(shieldInactive: boolean): void
-    +getShieldInactive(): boolean
+    +getHieldInactive(): boolean
+}
+class BerserkPotion{
+    +berserkPotion(name: String, cuantity: int)
+    +activateBerserkPotion(): boolean
+    +deactivateBerserkPotion(): boolean
+    +berserkPotion(warrior: Warrior): void
+}
+class Bite{
+    +bite(damage: double, accuracy: double)
+    +biteAttack(): void
+}
+class Claw{
+    +claw(damage: double, accuracy: double)
+    +clawAttack(): void
+}
+class GeneralManager{
+    +ShieldCounter: int
+    +iniciate(): void
+    +combat(): void
+}
+class LastBreathPotion{
+    +LastBreathPotion(name: String, cuantity: int)
+    +activateLastBreathPotion(): boolean
+    +deactivateLastBreathPotion(): boolean
+    +LastBreathPotion(warrior: Warrior): void
+}
+class MalphitePotion{
+    +MalphitePotion(name: String, cuantity: int)
+    +activateMalphitePotion(): boolean
+    +deactivateMalphitePotion(): boolean
+    +rockSolid(warrior: Warrior): void
+}
+class Potions {
+    +berserkActive: boolean
+    +healthActive: boolean
+    +rockActive: boolean
+    +eyeActive: boolean
+    +twitterActive: boolean
+    +Potions(name: String, cuantity: int)
+    +setName(name: String): void
+    +setCuantity(cuantity: int): void
+    +getName(): String
+    +getCuantity(): int
+}
+class SeagullPotion{
+    +SeagullPotion(name: String, cuantity: int)
+    +activateeyePotion(): boolean
+    +deactivateeyePotion(): boolean
+    +seagullEye(warrior: Warrior): void
+}
+class SoulSyphon{
+    +SoulSyphon(damage: double, accuracy: double)
+    +soulAttack(): void
+}
+class TwitterPotion{
+    +TwitterPotion(name: String, cuantity: int)
+    +activatetwitterPotion(): boolean
+    +deactivatetwitterPotion(): boolean
+    +twitterEssence(warrior: Warrior): void
+}
+class WarriorActions{
+    +WarriorActions(name: String, health: double)
+    +attackFlail(): void
+    +attackSword(): void
+    +attackHandaxe(): void
+    +checkEquipment(): void
+    +useShield(): void
 }
 @enduml
