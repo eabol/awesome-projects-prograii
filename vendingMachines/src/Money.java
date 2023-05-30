@@ -1,26 +1,26 @@
 import java.util.ArrayList;
 
 public class Money {
-    private ArrayList<Float> valor;
-    private ArrayList<Integer> cantidad;
+    private ArrayList<Float> worth;
+    private ArrayList<Integer> quantity;
 
     public Money() {
-        this.valor = new ArrayList<Float>();
-        this.cantidad = new ArrayList<Integer>();
+        this.worth = new ArrayList<Float>();
+        this.quantity = new ArrayList<Integer>();
     }
 
-    public void add(float valor, int cantidad) {
-        this.valor.add(valor);
-        this.cantidad.add(cantidad);
+    public void add(float worth, int quantity) {
+        this.worth.add(worth);
+        this.quantity.add(quantity);
     }
 
-    public int getCantidad(float valor) {
-        int pos = this.valor.indexOf(valor);
-        return this.cantidad.get(pos);
+    public int getCantidad(float worth) {
+        int pos = this.worth.indexOf(worth);
+        return this.quantity.get(pos);
     }
 
-    public void setCantidad(float valor, int cantidad) {
-        int pos = this.valor.indexOf(valor);
-        this.cantidad.set(pos, getCantidad(valor) + cantidad);
+    public void setCantidad(float worth, int quantity) {
+        int pos = this.worth.indexOf(worth);
+        this.quantity.set(pos, getCantidad(worth) + quantity);
     }
 }
