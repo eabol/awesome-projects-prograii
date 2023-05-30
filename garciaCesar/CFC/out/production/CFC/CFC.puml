@@ -27,18 +27,6 @@ interface Status {
 interface Delivery{
     +isDelivery(): boolean
 }
-class Queue {
-    +Arraylist <Order>
-    +int minutesWithoutQueue
-    -getQueue(): Order[]
-    -setQueue(Order[]): void
-    -getMinutesWithoutQueue(): int
-    -setMinutesWithoutQueue(int): void
-    -addOrder(Order): void
-    -getQueueSize(): int
-    -removePerson(): void
-
-}
 
 
 class Supermarket {
@@ -54,6 +42,5 @@ Status <|.. FastCashier
 Status <|.. NormalCashier
 Delivery <|.. DeliveryOrder
 Cashier --o Supermarket : contains
-Queue <|.. Supermarket
 
 @enduml
