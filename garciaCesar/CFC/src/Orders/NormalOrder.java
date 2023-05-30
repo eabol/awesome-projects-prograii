@@ -15,12 +15,6 @@ public class NormalOrder extends Order{
 		return  numItems;
 	}
 
-	@Override
-	public void processOrder(){
-		if ((peopleInQueue > 0) && NormalCashier.isOpen()){
-			peopleInQueue--;
-		}
-	}
 
 
 }

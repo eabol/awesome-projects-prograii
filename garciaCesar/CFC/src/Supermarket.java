@@ -1,11 +1,9 @@
 import Cashiers.Cashier;
 import Cashiers.FastCashier;
 import Cashiers.NormalCashier;
+import Cashiers.State;
 import Orders.DeliveryOrder;
 import Orders.NormalOrder;
-import Orders.Order;
-
-
 
 import java.util.ArrayList;
 
@@ -27,11 +25,12 @@ public class Supermarket {
 				System.out.println("-----------------------------------------------------------------------------");
 				System.out.println("");
 				getAnyOrder();
-
-
+				nextMinute();
+				
 			}
 		}
 	}
+
 
 	public void getAnyOrder() {
 			int probablity = (int)(Math.random()*100+1);
@@ -41,16 +40,20 @@ public class Supermarket {
 			if (probablity>=90){
 				queue.addOrder(new DeliveryOrder());
 			}
-
-
 	}
-	public void processOrder() {
+	public void nextMinute() {
 		for (Cashier cashier : cashiers) {
-			if (cashier.isOpen()) {
+			if (cashier.getState()== State.OPEN) {
 				if (queue.getQueueSize() > 0) {
-					cashier.processOrder(queue.getQueue().get(0));
+					cashier.insertOrder(queue.getQueue().get(0));
 					queue.removePerson();
 				}
+			}else if (cashier.getState()== State.BUSY){
+				cashier.processOrder();
+				System.out.println("caja "+ cashier.getNumber() + "le quedan por procesar " + cashier.getActualItems() + " productos");
+			}
+			else {
+				System.out.println(cashier.getNumber() + "closed");
 			}
 		}
 	}
@@ -60,10 +63,8 @@ public class Supermarket {
 		System.out.println("Clientes atendidos: " + (NormalCashier.getClientsServed() + FastCashier.getClientsServed()));
 		System.out.println("Productos vendidos: " + (NormalCashier.getNumItemsProcessed() + FastCashier.getNumItemsProcessed()));
 		//System.out.println("Clientes sin atender en la cola: " + (NormalCashier.getPeopleInQueue() + DeliveryOrder.getPeopleInQueue()));
-		System.out.println("Minutos sin cola: " + (NormalCashier.getMimutesWithoutQueue() + FastCashier.getMimutesWithoutQueue()));
+		//System.out.println("Minutos sin cola: " + (NormalCashier.getMimutesWithoutQueue() + FastCashier.getMimutesWithoutQueue()));
 		System.out.println("-----------------------------------------------------------------------------");
 	}
-
-
 
 }

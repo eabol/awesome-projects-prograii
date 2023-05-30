@@ -2,22 +2,21 @@ package Cashiers;
 
 import Orders.Order;
 
-
 public abstract class Cashier {
 	protected static int numItemsProcessed = 0;
 	protected static int clientsServed = 0;
-	protected static int mimutesWithoutQueue = 0;
 	protected int number;
-	protected boolean open;
+	protected State state;
+	protected int actualItems = 0;
 
 	public Cashier(int number) {
 		this.number = number;
 	}
-	public boolean isOpen() {
-		return open;
+	public State getState() {
+		return state;
 	}
 	public void open() {
-		this.open = true;
+		this.state = State.OPEN;
 	}
 
 	public static int getNumItemsProcessed() {
@@ -32,18 +31,31 @@ public abstract class Cashier {
 	public void setClientsServed(int clientsServed) {
 		this.clientsServed = clientsServed;
 	}
-	public static int getMimutesWithoutQueue() {
-		return mimutesWithoutQueue;
+	public int getNumber() {
+		return number;
 	}
-	public void setMimutesWithoutQueue(int mimutesWithoutQueue) {
-		this.mimutesWithoutQueue = mimutesWithoutQueue;
+	public void setNumber(int number) {
+		this.number = number;
 	}
-	public void processOrder(Order order) {
-		clientsServed++;
+	public int getActualItems() {
+		return actualItems;
+	}
+	public void setActualItems(int actualItems) {
+		this.actualItems = actualItems;
+	}
+	public void insertOrder(Order order) {
 		numItemsProcessed += order.getNumItems();
+		clientsServed++;
+		actualItems = order.getNumItems();
+		this.state = State.BUSY;
+	}
+	public void processOrder() {
+		actualItems--;
+		if (actualItems <= 0) {
+			this.state = State.OPEN;
+		}
 
 	}
-
 
 
 }

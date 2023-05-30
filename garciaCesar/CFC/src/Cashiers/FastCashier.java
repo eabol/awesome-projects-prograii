@@ -7,14 +7,14 @@ public class FastCashier extends Cashier implements Status{
 		this.open = false;
 	}
 
-
 	@Override
 	public boolean isOpen() {
 		return false;
 	}
 
 	@Override
-	public static void open() {
+	public void open() {
+
 		this.open = true;
 
 	}

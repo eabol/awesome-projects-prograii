@@ -1,8 +1,3 @@
-import Cashiers.Cashier;
-import Cashiers.FastCashier;
-import Cashiers.NormalCashier;
-import Orders.DeliveryOrder;
-import Orders.NormalOrder;
 
 public class Time {
 	private int minutes;
@@ -37,15 +32,7 @@ public class Time {
 			}
 		}
 	}
-	public void summary() {
-		System.out.println("-----------------------------------------------------------------------------");
-		System.out.println("Resumen cierre de tienda");
-		System.out.println("Clientes atendidos: " + (NormalCashier.getClientsServed() + FastCashier.getClientsServed()));
-		System.out.println("Productos vendidos: " + (NormalCashier.getNumItemsProcessed() + FastCashier.getNumItemsProcessed()));
-		System.out.println("Clientes sin atender en la cola: " + (NormalOrder.getPeopleInQueue() + DeliveryOrder.getPeopleInQueue()));
-		System.out.println("Minutos sin cola: " + (NormalCashier.getMimutesWithoutQueue() + FastCashier.getMimutesWithoutQueue()));
-		System.out.println("-----------------------------------------------------------------------------");
-	}
+
 	public void closedSupermarket() {
 		System.out.println("-----------------------------------------------------------------------------");
 		System.out.println("Supermarket is closed");
