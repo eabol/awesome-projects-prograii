@@ -1,0 +1,81 @@
+@startuml
+
+package pacman {
+  
+  class Game {
+    - maze: Maze
+    - pacman: Pacman
+    - ghosts: List<Ghost>
+    + start(): void
+    + stop(): void
+    + handleKeyPress(keyCode: int): void
+    + update(): void
+  }
+  
+  class Maze {
+    - width: int
+    - height: int
+    - cells: Cell[][]
+    + getWidth(): int
+    + getHeight(): int
+    + getCell(x: int, y: int): Cell
+  }
+  
+  class Cell {
+    - x: int
+    - y: int
+    - isWall: boolean
+    - hasDot: boolean
+    + getX(): int
+    + getY(): int
+    + isWall(): boolean
+    + hasDot(): boolean
+  }
+  
+  abstract class GameCharacter {
+    - x: int
+    - y: int
+    - direction: Direction
+    + getX(): int
+    + getY(): int
+    + getDirection(): Direction
+    + move(): void
+    + draw(): void
+  }
+  
+  class Pacman {
+    + eatDot(): void
+    + eatPowerPellet(): void
+    + die(): void
+  }
+  
+  class Ghost {
+    + chasePacman(): void
+    + scatter(): void
+    + die(): void
+  }
+  
+  enum Direction {
+    UP
+    DOWN
+    LEFT
+    RIGHT
+  }
+  
+  GameCharacter <|-- Pacman
+  GameCharacter <|-- Ghost
+  
+  Game --> Maze
+  Game --> Pacman
+  Game --> Ghost
+  
+}
+
+interface Renderer {
+  + renderGame(game: Game): void
+}
+
+Renderer <|.. SwingRenderer
+Renderer <|.. ConsoleRenderer
+
+@enduml
