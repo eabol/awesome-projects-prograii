@@ -4,11 +4,12 @@ public class shield extends Equipment{
     public shield(String name, int cuantity) {
         super(name, cuantity);
     }
+    boolean isShieldActive = false;
     public boolean activateShield() {
-        return true;
+        return isShieldActive = true;
     }
     public boolean deactivateShield() {
-        return false;
+        return isShieldActive = false;
     }
     public void setName(String name) {
         this.name = name;

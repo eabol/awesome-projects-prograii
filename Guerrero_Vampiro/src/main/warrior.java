@@ -3,8 +3,8 @@ import main.shield;
 
 
 public class warrior extends Characters {
-    public warrior(String name, double health, double attack, double accuracy) {
-        super(name, health, attack, accuracy);
+    public warrior(String name, double health) {
+        super(name, health);
     }
     shield shield = new shield("shield", 1);
     public void setName(String name) {
@@ -13,23 +13,12 @@ public class warrior extends Characters {
     public void setHealth(double health) {
         this.health = health;
     }
-    public void setAttack(double attack) {
-        this.attack = attack;
-    }
     public double getHealth() {
         return this.health;
     }
-    public double getAttack() {
-        return this.attack;
-    }
+
     public String getName() {
         return this.name;
-    }
-    public void setAccuracy(double accuracy) {
-        this.accuracy = accuracy;
-    }
-    public double getAccuracy() {
-        return this.accuracy;
     }
 
 
