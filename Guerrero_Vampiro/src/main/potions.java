@@ -124,6 +124,7 @@ public class potions extends Equipment {
         double counter = 0;
         double health = character.getHealth();
         double accuracy = character.getAccuracy()*1.5;
+        character.setAccuracy(accuracy);
         System.out.println("You have used a Accuracy Potion on " + character.getName()+ "and now his accuracy is: "+ character.getAccuracy());
         while (counter <=3){
             counter++;

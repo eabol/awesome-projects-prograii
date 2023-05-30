@@ -38,13 +38,18 @@ public class Main {
         shield Shield = new shield("Shield", 1);
         vampireAttack vampireAttack1 = new vampireAttack(10, 60);
         vampireAttack vampireAttack2 = new vampireAttack(20, 40);
+
         ArrayList<Equipment> EquipmentArrayList = new ArrayList<>();
         EquipmentArrayList.add(Potions);
         EquipmentArrayList.add(Potions1);
         EquipmentArrayList.add(Potions2);
         EquipmentArrayList.add(Potions3);
         EquipmentArrayList.add(Potions4);
-        System.out.println(EquipmentArrayList);
+
+
+        for (int i = 0; i < EquipmentArrayList.size(); i++) {
+            System.out.println(EquipmentArrayList.get(i));
+        }
 
 
         boolean playerTurn = true;
@@ -53,36 +58,36 @@ public class Main {
 
         while (!gameOver) {
             if (playerTurn) {
-                System.out.println("Es tu turno, elige una accion: ");
+                System.out.println("It's your turn, choose an action: ");
                 int action = scanner.nextInt();
                 switch (action) {
                     case 1:
-                        System.out.println("Atacar");
-                        System.out.println("Elige un arma: ");
+                        System.out.println("You have chosen to attack");
+                        System.out.println("Choose a weapon: ");
                         int weapon = scanner.nextInt();
                         switch (weapon) {
                             case 1:
                                 System.out.println("Sword");
                                 Vampire.setHealth(Vampire.getHealth() - Sword.getDamage());
-                                System.out.println("The vampire has received " + Sword.getDamage() + " damage");
+                                System.out.println("You have attacked the vampire with your sword. The vampire has received " + Sword.getDamage() + " damage");
                                 System.out.println("The vampire's health is now " + Vampire.getHealth());
                                 break;
                             case 2:
                                 System.out.println("Handaxe");
                                 Vampire.setHealth(Vampire.getHealth() - Handaxe.getDamage());
-                                System.out.println("The vampire has received " + Handaxe.getDamage() + " damage");
+                                System.out.println("You have attacked the vampire with your handaxe. The vampire has received " + Handaxe.getDamage() + " damage");
                                 System.out.println("The vampire's health is now " + Vampire.getHealth());
                                 break;
                             case 3:
                                 System.out.println("Flail");
                                 Vampire.setHealth(Vampire.getHealth() - Flail.getDamage());
-                                System.out.println("The vampire has received " + Flail.getDamage() + " damage");
+                                System.out.println("You have attacked the vampire with your flail. The vampire has received " + Flail.getDamage() + " damage");
                                 System.out.println("The vampire's health is now " + Vampire.getHealth());
                                 break;
                         }
                         break;
                     case 2:
-                        System.out.println("You've opened your bag");
+                        System.out.println("You have opened your bag");
                         System.out.println("Choose an item to use: ");
                         int potion = scanner.nextInt();
                         switch (potion) {
@@ -91,7 +96,7 @@ public class Main {
                                 Warrior.setHealth(Warrior.getHealth());
                                 Warrior.setAccuracy(Warrior.getAccuracy());
                                 Warrior.setAttack(Warrior.getAttack());
-                                System.out.println("Has entrado en modo Berserker. Todas tus estadísticas han aumentado!");
+                                System.out.println("You have gone Berserker! All your stats have been increased!");
                                 break;
                             case 2:
                                 System.out.println("Last Breath");
@@ -101,7 +106,7 @@ public class Main {
                             case 3:
                                 System.out.println("Rock Solid");
                                 Warrior.setHealth(Warrior.getHealth());
-                                System.out.println("You have consumed the defense potion. " + Warrior.getHealth());
+                                System.out.println("You have consumed the defense potion. The vampire's attacks will now deal less damage" + Warrior.getHealth());
                                 break;
                             case 4:
                                 System.out.println("Seagull Eye");
@@ -116,7 +121,7 @@ public class Main {
                             case 6:
                                 System.out.println("Shield");
                                 Warrior.setHealth(Warrior.getHealth());
-                                System.out.println("You have used the sield. Your health is now " + Warrior.getHealth());
+                                System.out.println("You have used the shield. The vampire's next attacked will deal less damage." + Warrior.getHealth());
                                 break;
 
 
