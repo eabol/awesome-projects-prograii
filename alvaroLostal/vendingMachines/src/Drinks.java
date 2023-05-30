@@ -16,6 +16,6 @@ public class Drinks extends Product implements Salable {
 
     @Override
     public void replanish(int newQuantity) {
-        set
+
     }
 }

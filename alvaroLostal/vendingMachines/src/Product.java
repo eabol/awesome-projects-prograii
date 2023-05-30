@@ -3,9 +3,10 @@ public class Product {
     protected double price;
     protected int[] cantidad;
 
-    public Product(String name, double price, int id, int cantidad1, int cantidad2, int cantidad3) {
+    public Product(String name, double price, int cantidad1, int cantidad2, int cantidad3) {
         this.name = name;
         this.price = price;
+        this.cantidad = new int[3];
         this.cantidad[0] = cantidad1;
         this.cantidad[1] = cantidad2;
         this.cantidad[2] = cantidad3;
