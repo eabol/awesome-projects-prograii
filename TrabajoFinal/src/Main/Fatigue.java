@@ -1,3 +1,5 @@
+package Main;
+
 public class Fatigue extends Problem {
     public Fatigue(String description) {
         super(description);
