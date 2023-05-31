@@ -6,11 +6,11 @@ public class Management {
 
     public Management() {
         this.products= new ArrayList<Product>();
-        this.products.add(new Product("Galletas", 1.5,  10, 10, 10));
-        this.products.add(new Product("Chocolates", 1.1,  10, 10, 10));
-        this.products.add(new Product("Bebida", 1.05,  10, 10, 10));
-        this.products.add(new Product("Bocadillo", 1.75,  10, 10, 10));
-        this.products.add(new Product("Caramelos", 0.95,  10, 10, 10));
+        this.products.add(new Product("Cookies", 1.5,  10, 10, 10));
+        this.products.add(new Product("Chocolate", 1.1,  10, 10, 10));
+        this.products.add(new Product("Drink", 1.05,  10, 10, 10));
+        this.products.add(new Product("Sandwich", 1.75,  10, 10, 10));
+        this.products.add(new Product("Candies", 0.95,  10, 10, 10));
 
         this.money = new ArrayList<Money>();
         Money m1 = new Money();
@@ -47,23 +47,23 @@ public class Management {
         money.add(m3);
     }
 
-    public void pantalla(int machine) {
+    public void screen(int machine) {
         for (int i = 0; i < products.size(); i++) {
-            if (products.get(i).getCantidad(machine) > 0) {
-                System.out.println(i + ". " + products.get(i).getName() + " " + products.get(i).getPrice() + "€" + " " + products.get(i).getCantidad(machine) + " unidades");
+            if (products.get(i).getQuantity(machine) > 0) {
+                System.out.println(i + ". " + products.get(i).getName() + " " + products.get(i).getPrice() + "€" + " " + products.get(i).getQuantity(machine) + " unidades");
             }
         }
     }
-    public void paymentGestion(int machine, int product, float money) {
+    public void paymentManagement(int machine, int product, float money) {
         if (products.get(product).getPrice() <= money) {
-            if (products.get(product).getCantidad(machine) > 0) {
+            if (products.get(product).getQuantity(machine) > 0) {
                 products.get(product).sell(machine);
-                System.out.println("Gracias por su compra");
+                System.out.println("Thanks for your purchase");
             } else {
-                System.out.println("No hay unidades disponibles");
+                System.out.println("No units available");
             }
         } else {
-            System.out.println("No hay suficiente dinero");
+            System.out.println("Not enough money");
         }
     }
 }
