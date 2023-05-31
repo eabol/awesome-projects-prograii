@@ -14,13 +14,13 @@ public class Money {
         this.quantity.add(quantity);
     }
 
-    public int getCantidad(float worth) {
+    public int getQuantity(float worth) {
         int pos = this.worth.indexOf(worth);
         return this.quantity.get(pos);
     }
 
-    public void setCantidad(float worth, int quantity) {
+    public void setQuantity(float worth, int quantity) {
         int pos = this.worth.indexOf(worth);
-        this.quantity.set(pos, getCantidad(worth) + quantity);
+        this.quantity.set(pos, getQuantity(worth) + quantity);
     }
 }
