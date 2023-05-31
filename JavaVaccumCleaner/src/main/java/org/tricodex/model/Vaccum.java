@@ -68,6 +68,7 @@ public class Vaccum extends MovingEntity implements Cleanable, RandomMoveable {
         batteryLevel--;
     }
 
+
     public int getBagCapacity() {
         return bagCapacity;
     }

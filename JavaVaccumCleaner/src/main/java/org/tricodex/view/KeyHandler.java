@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.EnumSet;
 
-public class KeyHandler implements KeyListener {
+public class   KeyHandler implements KeyListener {
     private EnumSet<MoveDirection> activeDirections = EnumSet.noneOf(MoveDirection.class);
 
     public boolean isUpPressed() {

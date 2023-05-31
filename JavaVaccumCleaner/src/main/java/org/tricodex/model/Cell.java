@@ -4,10 +4,15 @@ import org.tricodex.utils.abstracts.Entity;
 import org.tricodex.utils.enums.DirtLevel;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Cell extends Entity {
     private DirtLevel dirtLevel;
     private boolean hasFurniture;
+    public BufferedImage image;
+    // collision = false;
+
+
 
     public Cell(Point position, DirtLevel dirtLevel, boolean hasFurniture) {
         super(position);

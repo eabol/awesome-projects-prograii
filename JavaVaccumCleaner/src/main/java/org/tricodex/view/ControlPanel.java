@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BooleanSupplier;
 
-public class ControlPanel extends Panel {
+public class  ControlPanel extends Panel {
     UserGuide userGuide;
     private final Map<BooleanSupplier, MoveDirection> keyMapping;
 

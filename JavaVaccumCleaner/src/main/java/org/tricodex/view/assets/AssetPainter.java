@@ -10,4 +10,8 @@ public abstract class AssetPainter {
         g2.setColor(Color.RED);
         g2.fillRect(vaccum.getPosition().x, vaccum.getPosition().y, screenSettings.getTileSize(), screenSettings.getTileSize());
     }
+
+    public static void paintCell(Graphics2D g2) {
+
+    }
 }

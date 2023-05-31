@@ -4,6 +4,7 @@ import org.tricodex.model.DirtSensor;
 import org.tricodex.model.Surface;
 import org.tricodex.model.UserGuide;
 import org.tricodex.model.Vaccum;
+import org.tricodex.model.manager.CellManager;
 import org.tricodex.utils.settings.ScreenSettings;
 import org.tricodex.view.assets.AssetPainter;
 
@@ -11,6 +12,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable {
+
+    private final CellManager cellManager;
     private final KeyHandler keyHandler;
     private final Vaccum vaccum;
     private final Surface surface;
@@ -27,6 +30,7 @@ public class GamePanel extends JPanel implements Runnable {
         vaccum = new Vaccum(new Point(100, 100), surface, dirtSensor);
         userGuide = new UserGuide(surface, vaccum);
         controlPanel = new ControlPanel(userGuide, keyHandler);
+        cellManager = new CellManager();
 
         setupPanel();
     }
