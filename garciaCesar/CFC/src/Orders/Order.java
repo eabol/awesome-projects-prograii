@@ -14,7 +14,6 @@ public abstract class Order {
 	public int getNumItems() {
 		return numItems;
 	}
-
 	public void setNumItems(int numItems) {
 		this.numItems = numItems;
 	}

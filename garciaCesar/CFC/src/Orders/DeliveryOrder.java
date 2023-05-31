@@ -5,8 +5,6 @@ public class DeliveryOrder extends Order implements Delivery{
 	public DeliveryOrder() {
 		isDelivery =true;
 		this.setNumItems(numberOfItems());
-
-
 	}
 
 	@Override

@@ -20,8 +20,9 @@ public class Supermarket {
 	public void begin() {
 		for (int hours = 9; hours < 21; hours++) {
 			for (int minutes = 0; minutes < 60; minutes++){
+
 				System.out.println("-----------------------------------------------------------------------------");
-				System.out.println("Hour: " + hours + ":" + minutes);
+				System.out.println("Hour: " +(hours<10?"0"+hours:hours) + ":" + (minutes<10?"0"+minutes:minutes));
 				System.out.println("-----------------------------------------------------------------------------");
 				System.out.println("");
 				getAnyOrder();
@@ -66,6 +67,5 @@ public class Supermarket {
 		//System.out.println("Minutos sin cola: " + (NormalCashier.getMimutesWithoutQueue() + FastCashier.getMimutesWithoutQueue()));
 		System.out.println("-----------------------------------------------------------------------------");
 	}
-
 
 }

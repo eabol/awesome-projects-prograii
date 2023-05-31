@@ -1,24 +1,63 @@
 @startuml
 
 abstract class Cashier {
+    +numItemsProcessed: int
+    +clientsServed: int
+    +number: int
+    +state: State
+    +actualItems: int
+    -getState(): State
+    -setState(State): void
+    -open(): void
+    -getNumItemsProcessed(): int
+    -setNumItemsProcessed(int): void
+    -getClientsServed(): int
+    -setClientsServed(int): void
+    -getNumber(): int
+    -setNumber(int): void
+    -getActualItems(): int
+    -setActualItems(int): void
+    -insertOrder(Order): void
+    -processOrder(): void
 
 }
 
 class FastCashier {
+    +open : boolean
+    -isOpen(): boolean
+    -open(): void
+    -close(): void
 
 }
 
 class NormalCashier {
+    +open : boolean
+    -isOpen(): boolean
+    -open(): void
+    -close(): void
 
 }
 
 abstract class Order {
+    +int numItems
+    -getNumitems(): int
+    -setNumItems(int): void
+}
+
+enum state {
+    OPEN
+    CLOSED
+    BUSY
 }
 
 class NormalOrder {
+    -numberOfItems: int
 }
 
 class DeliveryOrder {
+    +isDelivery: boolean
+    -isDelivery(): boolean
+    -numberOfItems(): int
 }
 
 interface Status {
@@ -54,6 +93,7 @@ Status <|.. FastCashier
 Status <|.. NormalCashier
 Delivery <|.. DeliveryOrder
 Cashier --o Supermarket : contains
-Queue <|.. Supermarket
+Queue --o Supermarket
+Order --o Supermarket
 
 @enduml
