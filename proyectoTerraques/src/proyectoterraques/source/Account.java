@@ -18,7 +18,8 @@ public abstract class Account {
         return amount;
     }
 
-   public abstract void showAccountData();
+
+
 
 
 }

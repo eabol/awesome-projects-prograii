@@ -11,7 +11,6 @@ public class CreditAccount extends Account implements AccountMethods{
         super(accountNumber);
     }
 
-    //TODO: GETTERS
 
     public double getDebt() {
         return debt;
@@ -31,7 +30,7 @@ public class CreditAccount extends Account implements AccountMethods{
         System.out.println("Account - "+accountNumber);
         System.out.println("Amount - "+amount+"€");
         System.out.println("Debt - "+debt+"€");
-        System.out.println("Interest - "+interest+"\n");
+        System.out.println("Interest - "+interest+"%\n");
 
     }
 

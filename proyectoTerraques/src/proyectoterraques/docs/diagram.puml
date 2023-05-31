@@ -2,11 +2,11 @@
 
 
 class proyectoterraques.source.Bank {
-- int accountNumber;
-- String office;
-- String <u>ENTITY</u>;
-- String country;
-- int digitControl;
+- int accountTenNumbers
+- String office
+- String <u>ENTITY</u>
+- String country
+- int digitControl
 - List<Client> clients
 - List<Account> accounts
 + <<Create>> Bank()
@@ -14,6 +14,10 @@ class proyectoterraques.source.Bank {
 + List<Account> getAccounts()
 + newClient()
 + newAccount()
++ removeClient()
++ removeAccount()
++ showClient(String)
++ showAccount(String)
 
 }
 

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Bank {
 
-    int accountNumber;
+    int accountTenNumbers;
     String office;
     static final String entity = "0049";
     String country;
@@ -24,8 +24,7 @@ public class Bank {
         clients= new ArrayList<>();
         accounts= new ArrayList<>();
         //TODO leer el archivo accounts.dat y clients.dat y rellenar los arrays
-
-        //TODO  generamos un aleatorio entre 10 y 90 y lo metemos en el atributo digit control
+        loadData();
     }
 
    public List<Client> getClients() {
@@ -104,7 +103,11 @@ public class Bank {
 
         //todo leer archivo numberOfAccounts.dat y sacar las cuentas creadas , sumarle 1
         //todo y meterlo en el atributo de clase (accountNumber) y sobreescribimos el archivo con el nuevo valor
-        accountNumber=1234567890;
+        accountTenNumbers=1234567890;
+        //TODO  generamos un aleatorio entre 10 y 90 y lo metemos en el atributo digit control
+        digitControl=(int)(Math.random()*80+10);
+        //TODO  creamos numero de cuenta completo
+        String accountNumber=country+digitControl+entity+office+digitControl+accountTenNumbers;
 
 
         System.out.println("Select an account type: ");
@@ -113,15 +116,13 @@ public class Bank {
         election = scNumber.nextInt();
 
         if (election==1){
-            String numCuentaString= Integer.toString(accountNumber);
-            DebitAccount tempDebAcc = new DebitAccount(numCuentaString);
+            DebitAccount tempDebAcc = new DebitAccount(accountNumber);
             //todo guardamos accountNumber en el archivo numberOfAccounts.dat
             accounts.add(tempDebAcc);
 
 
         } else if (election==2){
-            String numCuentaString= Integer.toString(accountNumber);
-            CreditAccount tempCredAcc = new CreditAccount(numCuentaString);
+            CreditAccount tempCredAcc = new CreditAccount(accountNumber);
             //todo guardamos accountNumber en el archivo numberOfAccounts.dat
             accounts.add(tempCredAcc);
 
@@ -132,6 +133,57 @@ public class Bank {
 
     }
 
+    public void removeClient(String dni){
+
+        for (int i=0; i<clients.size();i++){
+            if (dni.equalsIgnoreCase(clients.get(i).getDni())){
+                clients.remove(i);
+                System.out.println("Client successfully removed");
+            }else {
+                System.out.println("Client not found");
+            }
+        }
+
+    }
+
+    public void removeAccount(String accountNumber){
+
+        for (int i=0; i<accounts.size();i++){
+            if (accountNumber.equalsIgnoreCase(accounts.get(i).getAccountNumber())){
+                accounts.remove(i);
+                System.out.println("Account successfully removed");
+            }else {
+                System.out.println("Account not found");
+            }
+        }
+
+    }
+
+    public void showClient(String dni){
+
+        for (int i=0; i<clients.size();i++){
+            if (dni.equalsIgnoreCase(clients.get(i).getDni())){
+                clients.get(i).getFullData();
+            }else {
+                System.out.println("Client not found");
+            }
+        }
+
+    }
+
+    public void showAccount(String accountNumber){
+
+        for (int i=0; i<accounts.size();i++){
+            if (accountNumber.equalsIgnoreCase(accounts.get(i).getAccountNumber())){
+                System.out.println(accounts.get(i).accountNumber+" - "+accounts.get(i).getAmount()+"€");
+            }else {
+                System.out.println("Account not found");
+            }
+        }
+    }
+
+    public void loadData(){
 
 
+    }
 }

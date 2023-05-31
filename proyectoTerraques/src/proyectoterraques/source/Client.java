@@ -1,6 +1,6 @@
 package proyectoterraques.source;
 
-public abstract class Client {
+public abstract class Client  {
 
     String dni;
     String name;
@@ -28,7 +28,8 @@ public abstract class Client {
 
     public String getFullData(){
         String fullData;
-        fullData = dni+" - "+getFullName()+" - "+address+" - "+phoneNumber;
+        fullData = dni+" - "+getFullName()+" - "+address+" - "+phoneNumber+"\n";
         return fullData;
     }
+
 }

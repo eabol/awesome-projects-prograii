@@ -14,6 +14,9 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author edu
  */
+
+//todo 2 test unitarios por cada clase
+
 public class Test1 {
     
     public Test1() {
