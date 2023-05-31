@@ -4,7 +4,7 @@ public class Drinks extends Product implements Salable {
     private int milliliters;
 
     public Drinks(String name, double price, int id, boolean isAlcoholic, int milliliters) {
-        super(name, price, id);
+        super(name, price, id, 1, 1);
         this.isAlcoholic = isAlcoholic;
         this.milliliters = milliliters;
     }
