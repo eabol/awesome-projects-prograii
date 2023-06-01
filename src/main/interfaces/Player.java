@@ -1,6 +1,6 @@
-package src.entity;
-import src.Game;
-import src.KeyHandler;
+package src.main.interfaces;
+import src.main.interfaces.Game;
+import src.main.interfaces.KeyHandler;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -25,21 +25,21 @@ public class Player extends Entity{
     public void getPlayerImage(){
         try{
             // If error occurs, check if the path is correct or delete require nonnull
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/resources/player/up1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/resources/Player/up2.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/resources/Player/left1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/resources/Player/left2.png")));
-            left3 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/resources/Player/left3.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/resources/Player/right1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/resources/Player/right2.png")));
-            right3 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/resources/Player/right3.png")));
-            upLeft = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/resources/Player/upLeft.png")));
-            upRight = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/resources/Player/upRight.png")));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/main/resources/Player/up1.png")));
+            up2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/main/resources/Player/up2.png")));
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/main/resources/Player/left1.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/main/resources/Player/left2.png")));
+            left3 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/main/resources/Player/left3.png")));
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/main/resources/Player/right1.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/main/resources/Player/right2.png")));
+            right3 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/main/resources/Player/right3.png")));
+            upLeft = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/main/resources/Player/upLeft.png")));
+            upRight = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("src/main/resources/Player/upRight.png")));
 
 
-    }   catch (Exception e){
-        e.printStackTrace();
-            }
+        }   catch (Exception e){
+            e.printStackTrace();
+        }
     }
     public void update(){
         if (keyH.upPressed == true || keyH.downPressed == true || keyH.leftPressed == true || keyH.rightPressed == true){
