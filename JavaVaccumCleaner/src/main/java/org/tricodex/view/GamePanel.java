@@ -6,6 +6,7 @@ import org.tricodex.model.UserGuide;
 import org.tricodex.model.Vaccum;
 import org.tricodex.model.manager.CellManager;
 import org.tricodex.utils.settings.ScreenSettings;
+import org.tricodex.view.assets.AssetLoader;
 import org.tricodex.view.assets.AssetPainter;
 
 import javax.swing.*;
@@ -22,6 +23,8 @@ public class GamePanel extends JPanel implements Runnable {
     private final UserGuide userGuide;
     private final ScreenSettings screenSettings;
 
+    private final SurfacePanel surfacePanel;
+
     public GamePanel() {
         screenSettings = new ScreenSettings(16, 2, 32, 24, 60);
         keyHandler = new KeyHandler();
@@ -30,7 +33,8 @@ public class GamePanel extends JPanel implements Runnable {
         vaccum = new Vaccum(new Point(100, 100), surface, dirtSensor);
         userGuide = new UserGuide(surface, vaccum);
         controlPanel = new ControlPanel(userGuide, keyHandler);
-        cellManager = new CellManager();
+        cellManager = new CellManager(screenSettings);
+        surfacePanel = new SurfacePanel(cellManager, new AssetLoader(screenSettings), screenSettings);
 
         setupPanel();
     }
@@ -70,6 +74,9 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
+
+
+        surfacePanel.drawSurface(g2d);
         AssetPainter.paintVaccumCleaner(g2d, vaccum, screenSettings);
 
         g2d.dispose();

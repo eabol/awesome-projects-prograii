@@ -31,6 +31,9 @@ public class Cell extends Entity {
     public boolean hasFurniture() {
         return hasFurniture;
     }
+    public void setHasFurniture(boolean setBoolean) {
+        hasFurniture = setBoolean;
+    }
 
     public DirtLevel getDirtLevel() {
         return dirtLevel;

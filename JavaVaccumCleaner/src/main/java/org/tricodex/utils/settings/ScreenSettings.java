@@ -8,7 +8,13 @@ public class ScreenSettings {
     private final int screenHeight;
     private final int FPS;
 
+    private final int maxScreenTilesWidth;
+    private final int maxScreenTilesHeight;
+
     public ScreenSettings(int tileSize, int scale, int maxScreenTilesWidth, int maxScreenTilesHeight, int FPS) {
+        this.maxScreenTilesWidth = maxScreenTilesWidth;
+        this.maxScreenTilesHeight = maxScreenTilesHeight;
+
         this.tileSize = tileSize * scale;
         this.screenWidth = this.tileSize * maxScreenTilesWidth;
         this.screenHeight = this.tileSize * maxScreenTilesHeight;
@@ -34,4 +40,14 @@ public class ScreenSettings {
     public int getScreenHeight() {
         return screenHeight;
     }
+
+    public int getMaxScreenTilesWidth() {
+        return maxScreenTilesWidth;
+    }
+
+    public int getMaxScreenTilesHeight() {
+        return maxScreenTilesHeight;
+    }
+
+
 }
