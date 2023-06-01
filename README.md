@@ -16,6 +16,7 @@ Finalmente cada semana (Lunes) se va a realizar el Pull Request desde Develop a 
 1. Jorge
 2. David
 3. Veronika
+
 ## Generalidades
 El proyecto debe cumplir con algunos requisitos mínimos basándonos en el checklist que se muestra abajo.
 
@@ -46,3 +47,4 @@ El documento README.md debe contener la siguiente información:
 **Autores**: Nombre de los autores del proyecto.
 
 > Puedes inspirarte con uno de estos templates: [Templates ejemplos](https://github.com/durgeshsamariya/awesome-github-profile-readme-templates/tree/master/templates)
+
