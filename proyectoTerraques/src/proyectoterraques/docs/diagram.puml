@@ -12,12 +12,14 @@ class proyectoterraques.source.Bank {
 + <<Create>> Bank()
 + List<Client> getClients()
 + List<Account> getAccounts()
-+ newClient()
-+ newAccount()
-+ removeClient()
-+ removeAccount()
-+ showClient(String)
-+ showAccount(String)
++ void newClient()
++ void newAccount()
++ void removeClient()
++ void removeAccount()
++ void showClient()
++ void showAccount()
++ void depositMoney()
++ void withdraw()
 
 }
 
