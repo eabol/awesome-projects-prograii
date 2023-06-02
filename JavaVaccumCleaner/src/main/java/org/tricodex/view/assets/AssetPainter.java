@@ -6,6 +6,7 @@ import org.tricodex.model.manager.CellManager;
 import org.tricodex.utils.settings.ScreenSettings;
 
 import java.awt.*;
+import java.util.Random;
 
 public abstract class AssetPainter {
     public static void paintVaccumCleaner(Graphics2D g2, Vaccum vaccum, ScreenSettings screenSettings) {
@@ -14,25 +15,14 @@ public abstract class AssetPainter {
     }
 
     public static void paintCells(Graphics2D g2, CellManager cellManager, ScreenSettings screenSettings, int mapCellNum[][]) {
-        int col = 0;
-        int row = 0;
+        for (int col = 0; col < mapCellNum.length; col++) {
+            for ( int row = 0; row < mapCellNum[col].length; row++) {
 
-        int x = 0;
-        int y = 0;
+                int cellNum = mapCellNum[col][row];
+                g2.drawImage(cellManager.getCell(cellNum).image, col* screenSettings.getTileSize(), row* screenSettings.getTileSize(), screenSettings.getTileSize(), screenSettings.getTileSize(),null);
 
-        while (col < screenSettings.getMaxScreenTilesWidth() && row < screenSettings.getMaxScreenTilesHeight()) {
-            int cellNum = mapCellNum[col][row];
-
-            g2.drawImage(cellManager.getCell(cellNum).image, x, y, screenSettings.getTileSize(), screenSettings.getTileSize(), null);
-            col++;
-            x += screenSettings.getTileSize();
-
-            if (col == screenSettings.getMaxScreenTilesWidth()) {
-                col = 0;
-                x = 0;
-                row++;
-                y += screenSettings.getTileSize();
             }
+
         }
     }
 }
