@@ -28,12 +28,12 @@ public class GamePanel extends JPanel implements Runnable {
     public GamePanel() {
         screenSettings = new ScreenSettings(16, 2, 32, 24, 60);
         keyHandler = new KeyHandler();
-        surface = new Surface(screenSettings);
+        cellManager = new CellManager(screenSettings);
+        surface = new Surface(screenSettings, cellManager.getMapCellNumber());
         dirtSensor = new DirtSensor(surface);
-        vaccum = new Vaccum(new Point(100, 100), surface, dirtSensor);
+        vaccum = new Vaccum(new Point(0, 0), surface, dirtSensor, 4, cellManager);
         userGuide = new UserGuide(surface, vaccum);
         controlPanel = new ControlPanel(userGuide, keyHandler);
-        cellManager = new CellManager(screenSettings);
         surfacePanel = new SurfacePanel(cellManager, new AssetLoader(screenSettings), screenSettings);
 
         setupPanel();

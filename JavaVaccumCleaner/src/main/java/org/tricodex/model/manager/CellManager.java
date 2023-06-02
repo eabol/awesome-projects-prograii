@@ -10,6 +10,7 @@ import java.awt.*;
 import java.io.IOException;
 
 public class CellManager {
+
     private Cell[] cell;
     private int mapCellNumber[][];
     private ScreenSettings screenSettings;
@@ -28,6 +29,7 @@ public class CellManager {
         try {
             cell[0] = new Cell(new Point(0, 16), DirtLevel.CLEAN, false);
             cell[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/clean.png"));
+            cell[0].hasFurniture();
 
             cell[1] = new Cell(new Point(1, 48), DirtLevel.DIRTY, false);
             cell[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/dirty.png"));
@@ -77,12 +79,7 @@ public class CellManager {
     }
 
     public Cell getCell(int index) {
-        for (int i = 0; i < cell.length; i++) {
-            if (i == index) {
-                return cell[i];
-            }
-        }
-        return null;
+        return cell[index];
     }
 
     public void addFurniture(Cell localCell) {

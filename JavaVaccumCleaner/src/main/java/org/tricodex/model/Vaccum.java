@@ -1,5 +1,6 @@
 package org.tricodex.model;
 
+import org.tricodex.model.manager.CellManager;
 import org.tricodex.utils.abstracts.MovingEntity;
 import org.tricodex.utils.enums.MoveDirection;
 import org.tricodex.utils.interfaces.Cleanable;
@@ -12,12 +13,11 @@ public class Vaccum extends MovingEntity implements Cleanable, RandomMoveable {
     private int bagCapacity;
     private int bagContent;
     private int batteryLevel = 100;
-    private int speed = 4;
     private DirtSensor dirtSensor;
 
 
-    public Vaccum(Point position, Surface surface, DirtSensor dirtSensor) {
-        super(position, surface);
+    public Vaccum(Point position, Surface surface, DirtSensor dirtSensor, int speed, CellManager cellManager) {
+        super(position, surface, speed, cellManager);
         this.dirtSensor = dirtSensor;
     }
 
@@ -64,7 +64,7 @@ public class Vaccum extends MovingEntity implements Cleanable, RandomMoveable {
     }
 
     public void move(MoveDirection direction) {
-        super.move(direction, speed);
+        super.move(direction);
         batteryLevel--;
     }
 
