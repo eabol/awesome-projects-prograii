@@ -18,9 +18,6 @@ public abstract class Cashier {
 	public void setState(State state) {
 		this.state = state;
 	}
-	public void open() {
-		this.state = State.OPEN;
-	}
 
 	public static int getNumItemsProcessed() {
 		return numItemsProcessed;
@@ -59,6 +56,7 @@ public abstract class Cashier {
 		}
 
 	}
+
 
 
 }

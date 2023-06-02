@@ -5,6 +5,7 @@ import Cashiers.State;
 import Orders.DeliveryOrder;
 import Orders.NormalOrder;
 
+
 import java.util.ArrayList;
 
 public class Supermarket {
@@ -22,7 +23,7 @@ public class Supermarket {
 			for (int minutes = 0; minutes < 60; minutes++){
 
 				System.out.println("-----------------------------------------------------------------------------");
-				System.out.println("Hour: " +(hours<10?"0"+hours:hours) + ":" + (minutes<10?"0"+minutes:minutes));
+				System.out.println("Hour: " +(hours<10?"0"+hours:hours) + ":" +(minutes<10?"0"+minutes:minutes));
 				System.out.println("-----------------------------------------------------------------------------");
 				System.out.println("");
 				getAnyOrder();
@@ -33,12 +34,15 @@ public class Supermarket {
 	}
 
 
+
 	public void getAnyOrder() {
 			int probablity = (int)(Math.random()*100+1);
 			if (probablity<=40){
+				System.out.println("llega un cliente normal");
 				queue.addOrder(new NormalOrder());
 			}
 			if (probablity>=90){
+				System.out.println("llega un cliente con pedido a domicilio");
 				queue.addOrder(new DeliveryOrder());
 			}
 	}
@@ -49,11 +53,20 @@ public class Supermarket {
 					cashier.insertOrder(queue.getQueue().get(0));
 					queue.removePerson();
 				}
+
 			}else if (cashier.getState()== State.BUSY){
 				cashier.processOrder();
 				System.out.println("caja "+ cashier.getNumber() + "le quedan por procesar " + cashier.getActualItems() + " productos");
 			}
-			else {
+			else{
+				if (queue.getQueueSize() >= 15 && cashier instanceof FastCashier && cashier.getState()== State.CLOSED) {
+
+					cashier.setState(State.OPEN);
+					cashier.insertOrder(queue.getQueue().get(0));
+					queue.removePerson();
+
+
+				}
 				System.out.println(cashier.getNumber() + "closed");
 			}
 		}
@@ -63,8 +76,8 @@ public class Supermarket {
 		System.out.println("Resumen cierre de tienda");
 		System.out.println("Clientes atendidos: " + (NormalCashier.getClientsServed() + FastCashier.getClientsServed()));
 		System.out.println("Productos vendidos: " + (NormalCashier.getNumItemsProcessed() + FastCashier.getNumItemsProcessed()));
-		//System.out.println("Clientes sin atender en la cola: " + (NormalCashier.getPeopleInQueue() + DeliveryOrder.getPeopleInQueue()));
-		//System.out.println("Minutos sin cola: " + (NormalCashier.getMimutesWithoutQueue() + FastCashier.getMimutesWithoutQueue()));
+		System.out.println("Clientes sin atender en la cola: " + (queue.getQueueSize()));
+		System.out.println("Minutos sin cola: " + (queue.getMinutesWithoutQueue()));
 		System.out.println("-----------------------------------------------------------------------------");
 	}
 

@@ -1,19 +1,13 @@
 package Cashiers;
 
-public class NormalCashier extends Cashier implements Status{
-	public boolean state;
+public class NormalCashier extends Cashier {
+
 	public NormalCashier(int number) {
 		super(number);
-		this.state=true;
+		this.state=State.OPEN;
 	}
 
-	@Override
-	public boolean isOpen() {
-		return false;
-	}
 
-	@Override
-	public void close() {
 
-	}
+
 }

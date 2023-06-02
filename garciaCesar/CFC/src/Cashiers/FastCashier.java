@@ -1,29 +1,17 @@
 package Cashiers;
 
-public class FastCashier extends Cashier implements Status{
-	public boolean open;
+public class FastCashier extends Cashier{
+
 	public FastCashier( int number) {
 		super(number);
-		this.open = false;
+		this.state = State.CLOSED;
 	}
 
 	@Override
-	public boolean isOpen() {
-		return false;
+	public void processOrder() {
+		actualItems-=2;
+		if (actualItems <= 0) {
+			this.state = State.OPEN;
+		}
 	}
-
-	@Override
-	public void open() {
-
-		this.open = true;
-
-	}
-
-	@Override
-	public void close() {
-		this.open = false;
-
-	}
-
-
 }

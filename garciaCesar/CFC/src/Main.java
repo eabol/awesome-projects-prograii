@@ -13,8 +13,6 @@ public class Main {
 		cashiers.add(new FastCashier(3));
 		Supermarket supermarket = new Supermarket();
 		supermarket.begin();
-
-
-
+		supermarket.summary();
 	}
 }
