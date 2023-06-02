@@ -1,0 +1,188 @@
+@startuml
+skinparam packageStyle rect
+
+package org.tricodex.model {
+    abstract class Entity {
+        - position: Point
+        + Entity(position: Point)
+        + getPosition(): Point
+        + setPosition(position: Point): void
+    }
+
+    abstract class MovingEntity extends Entity {
+        - surface: Surface
+        - offset: int
+        + MovingEntity(position: Point, surface: Surface)
+        + move(direction: MoveDirection, speed: int): void
+    }
+
+
+    enum DirtLevel {
+        CLEAN
+        DIRTY
+        VERY_DIRTY
+        FILTHY
+    }
+
+    enum MoveDirection {
+        UP
+        DOWN
+        LEFT
+        RIGHT
+    }
+
+    interface Cleanable {
+        + clean(): void
+    }
+
+    interface RandomMoveable {
+        + moveRandomly(): void
+    }
+
+    class ScreenSettings {
+        - tileSize: int
+        - screenWidth: int
+        - screenHeight: int
+        - FPS: int
+        + ScreenSettings(tileSize: int, scale: int, maxScreenTilesWidth: int, maxScreenTilesHeight: int, FPS: int)
+        + getDimension(): Dimension
+        + getFPS(): int
+        + getTileSize(): int
+        + getScreenWidth(): int
+        + getScreenHeight(): int
+    }
+
+    class Cat extends MovingEntity implements RandomMoveable {
+        - speed: int
+        + Cat(position: Point, surface: Surface)
+        + moveRandomly(): void
+    }
+
+    class Cell extends Entity {
+        - dirtLevel: DirtLevel
+        - hasFurniture: boolean
+        + Cell(position: Point, dirtLevel: DirtLevel, hasFurniture: boolean)
+        + clean(): void
+        + increaseDirtLevel(): void
+        + getDirtLevel(): DirtLevel
+    }
+
+    class DirtSensor {
+        - surface: Surface
+        + DirtSensor(surface: Surface)
+        + getDirtiestCell(): Cell
+    }
+
+    class Surface {
+        - width: int
+        - height: int
+        - screenSettings: ScreenSettings
+        - cells: Cell[][]
+        + Surface(screenSettings: ScreenSettings)
+        + getCell(position: Point): Cell
+        + setCell(position: Point, cell: Cell): void
+        + getWidth(): int
+        + getHeight(): int
+    }
+
+    class UserGuide {
+        - surface: Surface
+        - vacuum: Vacuum
+        + UserGuide(surface: Surface, vacuum: Vacuum)
+        + guideVacuum(position: MoveDirection): void
+    }
+
+    class Vacuum extends MovingEntity implements Cleanable, RandomMoveable {
+        - bagCapacity: int
+        - bagContent: int
+        - batteryLevel: int
+        - speed: int
+        - dirtSensor: DirtSensor
+        + Vacuum(position: Point, surface: Surface, dirtSensor: DirtSensor)
+        + emptyBag(): void
+        + clean(): void
+        + moveRandomly(): void
+        + move(direction: MoveDirection): void
+        + getBagCapacity(): int
+        + setBagCapacity(bagCapacity: int): void
+        + getBagContent(): int
+        + setBagContent(bagContent: int): void
+        + getBatteryLevel(): int
+        + setBatteryLevel(batteryLevel: int): void
+    }
+}
+
+package org.tricodex.view {
+
+    abstract class AssetLoader
+    abstract class AssetPainter {
+        + paintVaccumCleaner(g2: Graphics2D, vaccum: Vaccum, screenSettings: ScreenSettings): void
+    }
+
+    abstract class Panel extends JPanel {
+        + Panel()
+        + paintComponent(g: Graphics): void
+    }
+    class ControlPanel extends Panel {
+        - userGuide: UserGuide
+        - keyMapping: Map<BooleanSupplier, MoveDirection>
+        + ControlPanel(userGuide: UserGuide, keyHandler: KeyHandler)
+        + actionPerformed(): void
+    }
+
+    class GamePanel extends JPanel implements Runnable {
+        - keyHandler: KeyHandler
+        - vaccum: Vaccum
+        - surface: Surface
+        - dirtSensor: DirtSensor
+        - controlPanel: ControlPanel
+        - userGuide: UserGuide
+        - screenSettings: ScreenSettings
+        + GamePanel()
+        + startGameThread(): void
+        + run(): void
+        + paintComponent(g: Graphics): void
+    }
+
+    class KeyHandler implements KeyListener {
+        - activeDirections: EnumSet<MoveDirection>
+        + isUpPressed(): boolean
+        + isDownPressed(): boolean
+        + isLeftPressed(): boolean
+        + isRightPressed(): boolean
+        + keyTyped(e: KeyEvent): void
+        + keyPressed(e: KeyEvent): void
+        + keyReleased(e: KeyEvent): void
+    }
+
+    class MainWindow extends JFrame {
+        - ICON: ImageIcon
+        + MainWindow()
+    }
+
+    class SurfacePanel extends Panel {
+        + SurfacePanel()
+    }
+}
+
+MovingEntity --> Surface: uses
+Cell --> DirtLevel: uses
+DirtSensor --> Surface: uses
+DirtSensor --> Cell: uses
+Surface --> Cell: uses
+Surface --> ScreenSettings: uses
+UserGuide --> Surface: uses
+UserGuide --> MoveDirection: uses
+UserGuide --> Vacuum: uses
+Vacuum --> DirtSensor: uses
+ControlPanel --> UserGuide: uses
+ControlPanel --> KeyHandler: uses
+AssetPainter --> AssetLoader: uses
+GamePanel --> KeyHandler: uses
+GamePanel --> AssetPainter: uses
+GamePanel --> Vacuum: uses
+GamePanel --> Surface: uses
+GamePanel --> ControlPanel: uses
+GamePanel --> ScreenSettings: uses
+MainWindow --> GamePanel: uses
+@enduml
