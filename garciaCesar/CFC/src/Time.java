@@ -33,16 +33,7 @@ public class Time {
 		}
 	}
 
-	public void closedSupermarket() {
-		System.out.println("-----------------------------------------------------------------------------");
-		System.out.println("Supermarket is closed");
-		System.out.println("-----------------------------------------------------------------------------");
-	}
-	public void journey() {
-		// Text Journey:
-		System.out.println("-----------------------------------------------------------------------------");
-		System.out.println("Journey: 09:00 - 21:00");
-		System.out.println("-----------------------------------------------------------------------------");
-	}
+
+
 
 }

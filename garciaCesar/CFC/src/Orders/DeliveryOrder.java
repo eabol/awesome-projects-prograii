@@ -1,5 +1,5 @@
 package Orders;
-import Cashiers.NormalCashier;
+
 public class DeliveryOrder extends Order implements Delivery{
 	public boolean isDelivery;
 	public DeliveryOrder() {

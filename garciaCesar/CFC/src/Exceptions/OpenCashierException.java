@@ -1,5 +1,8 @@
 package Exceptions;
 
-public class OpenCashierException {
+public class OpenCashierException extends Throwable {
+	public OpenCashierException() {
+		System.out.println("No se pueden abrir mas de 7 cajas");
+	}
 
 }
