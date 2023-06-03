@@ -1,4 +1,4 @@
-package CFC.src.Exceptions;
+package Exceptions;
 
 public class OpenCashierException {
 
