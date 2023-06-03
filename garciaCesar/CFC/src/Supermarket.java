@@ -38,12 +38,15 @@ public class Supermarket {
 	public void getAnyOrder() {
 			int probablity = (int)(Math.random()*100+1);
 			if (probablity<=40){
-				System.out.println("llega un cliente normal");
+				System.out.println("Llega un cliente normal");
 				queue.addOrder(new NormalOrder());
 			}
 			if (probablity>=90){
-				System.out.println("llega un cliente con pedido a domicilio");
+				System.out.println("Llega un cliente con pedido a domicilio");
 				queue.addOrder(new DeliveryOrder());
+			}
+			if (probablity>40 && probablity<90){
+				System.out.println("No llega ningun cliente");
 			}
 	}
 	public void nextMinute() {
@@ -56,7 +59,7 @@ public class Supermarket {
 
 			}else if (cashier.getState()== State.BUSY){
 				cashier.processOrder();
-				System.out.println("caja "+ cashier.getNumber() + "le quedan por procesar " + cashier.getActualItems() + " productos");
+				System.out.println("A la caja "+ cashier.getNumber() + " le quedan por procesar " + cashier.getActualItems() + " productos");
 			}
 			else{
 				if (queue.getQueueSize() >= 15 && cashier instanceof FastCashier && cashier.getState()== State.CLOSED) {
@@ -66,8 +69,10 @@ public class Supermarket {
 					queue.removePerson();
 
 
+				} else if (queue.getQueueSize() <=15 && cashier instanceof FastCashier && cashier.getState()== State.OPEN) {
+					cashier.setState(State.CLOSED);
 				}
-				System.out.println(cashier.getNumber() + "closed");
+				System.out.println("Caja: " + cashier.getNumber() + " cerrada");
 			}
 		}
 	}
