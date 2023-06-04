@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.EnumSet;
 
-public class   KeyHandler implements KeyListener {
+public class KeyHandler implements KeyListener {
     private EnumSet<MoveDirection> activeDirections = EnumSet.noneOf(MoveDirection.class);
 
     public boolean isUpPressed() {
@@ -43,6 +43,14 @@ public class   KeyHandler implements KeyListener {
             case KeyEvent.VK_DOWN -> activeDirections.add(MoveDirection.DOWN);
             case KeyEvent.VK_LEFT -> activeDirections.add(MoveDirection.LEFT);
             case KeyEvent.VK_RIGHT -> activeDirections.add(MoveDirection.RIGHT);
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE && GamePanel.gameState == GamePanel.GameState.GAME) {
+            if (GamePanel.paused) {
+                GamePanel.paused = false;
+            } else {
+                GamePanel.paused = true;
+            }
         }
     }
 

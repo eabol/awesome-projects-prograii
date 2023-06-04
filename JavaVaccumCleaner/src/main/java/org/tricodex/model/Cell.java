@@ -21,6 +21,10 @@ public class Cell extends Entity {
         dirtLevel = dirtLevel.previous();
     }
 
+    public void foul() {
+        dirtLevel = dirtLevel.next();
+    }
+
     public void increaseDirtLevel() {
         dirtLevel = dirtLevel.next();
     }

@@ -8,7 +8,7 @@ import org.tricodex.utils.interfaces.RandomMoveable;
 
 import java.awt.*;
 
-public class Vaccum extends MovingEntity implements Cleanable, RandomMoveable {
+public class Vacuum extends MovingEntity implements Cleanable, RandomMoveable {
 
     private int bagCapacity;
     private int bagContent;
@@ -16,7 +16,7 @@ public class Vaccum extends MovingEntity implements Cleanable, RandomMoveable {
     private DirtSensor dirtSensor;
 
 
-    public Vaccum(Point position, Surface surface, DirtSensor dirtSensor, int speed, CellManager cellManager) {
+    public Vacuum(Point position, Surface surface, DirtSensor dirtSensor, int speed, CellManager cellManager) {
         super(position, surface, speed, cellManager);
         this.dirtSensor = dirtSensor;
     }

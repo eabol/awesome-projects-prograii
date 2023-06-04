@@ -4,15 +4,15 @@ import org.tricodex.utils.enums.MoveDirection;
 
 public class UserGuide {
     private Surface surface;
-    private Vaccum vaccum;
+    private Vacuum vacuum;
 
-    public UserGuide(Surface surface, Vaccum vaccum) {
+    public UserGuide(Surface surface, Vacuum vacuum) {
         this.surface = surface;
-        this.vaccum = vaccum;
+        this.vacuum = vacuum;
     }
 
     public void guideVaccume(MoveDirection position) {
-        vaccum.move(position);
+        vacuum.move(position);
     }
 
 

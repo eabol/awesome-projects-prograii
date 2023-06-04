@@ -9,14 +9,14 @@ import org.tricodex.view.assets.AssetPainter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 
 public class GamePanel extends JPanel implements Runnable {
 
     private final CellManager cellManager;
     private final KeyHandler keyHandler;
-    private final Vaccum vaccum;
+    private final MouseHandler mouseHandler;
+    private final Vacuum vacuum;
     private final Cat cat;
     private final PowerUp powerUp;
     private final Surface surface;
@@ -25,31 +25,47 @@ public class GamePanel extends JPanel implements Runnable {
     private final UserGuide userGuide;
     private final ScreenSettings screenSettings;
     private final SurfacePanel surfacePanel;
-    private long startTime;
-    private int frameCount;
-    private long lastTime;
-    private int fps;
     private int catSpawningTime = 0;
     private final int catSpawningTimeLimit = 600;
     private boolean catHasSpawned = false;
     private int catSpawningCooldown = 0;
 
+
+    public static enum GameState {
+        MENU,
+        GAME,
+        LEADERBOARD,
+        PAUSE,
+        GAME_ENDED,
+        GAME_OVER
+    }
+
+
+    public static GameState gameState = GameState.MENU;
+    private MenuWindow menuWindow;
+    private LeaderboardWindow leaderboardWindow;
+    private GameEndedWindow gameEndedWindow;
+    private GameOverWindow gameOverWindow;
+
+    public static boolean paused = false;
+
     public GamePanel() {
+        menuWindow = new MenuWindow();
+        leaderboardWindow = new LeaderboardWindow();
+        gameOverWindow = new GameOverWindow();
+        gameEndedWindow = new GameEndedWindow();
         screenSettings = new ScreenSettings(16, 2, 32, 24, 60);
         keyHandler = new KeyHandler();
+        mouseHandler = new MouseHandler();
         cellManager = new CellManager(screenSettings);
         surface = new Surface(screenSettings, cellManager.getMapCellNumber());
         dirtSensor = new DirtSensor(surface);
-        vaccum = new Vaccum(new Point(0, 0), surface, dirtSensor, 4, cellManager);
-        cat = new Cat(new Point (600, 0), surface, 4, cellManager);
+        vacuum = new Vacuum(new Point(0, 0), surface, dirtSensor, 4, cellManager);
+        cat = new Cat(new Point(600, 0), surface, 4, cellManager);
         powerUp = new PowerUp(new Point(0, 400), surface);
-        userGuide = new UserGuide(surface, vaccum);
+        userGuide = new UserGuide(surface, vacuum);
         controlPanel = new ControlPanel(userGuide, keyHandler);
         surfacePanel = new SurfacePanel(cellManager, new AssetLoader(screenSettings), screenSettings);
-        startTime = System.currentTimeMillis();
-        frameCount = 0;
-        lastTime = System.nanoTime();
-        fps = 0;
         setupPanel();
     }
 
@@ -59,15 +75,20 @@ public class GamePanel extends JPanel implements Runnable {
         setDoubleBuffered(true);
         setFocusable(true);
         addKeyListener(keyHandler);
+        addMouseListener(mouseHandler);
     }
 
     public void startGameThread() {
+
         Thread gameThread = new Thread(this);
         gameThread.start();
+
     }
 
     @Override
     public void run() {
+
+
         while (Thread.currentThread().isAlive()) {
             try {
                 Thread.sleep(1000 / screenSettings.getFPS());
@@ -77,77 +98,96 @@ public class GamePanel extends JPanel implements Runnable {
 
             update();
 
-            updateFps();
-
-            displayFPS();
-
-            displayTime();
-
             repaint();
+
+
         }
     }
 
     private void update() {
+
         controlPanel.actionPerformed();
+
     }
 
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2d = (Graphics2D) g;
+
+        if (gameState == GameState.GAME) {
+
+            if (!paused) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                surfacePanel.drawSurface(g2d);
+
+                AssetPainter.paintPowerUp(g2d, powerUp, screenSettings);
 
 
-        surfacePanel.drawSurface(g2d);
+                if (catSpawningTime < catSpawningTimeLimit) {
 
-        AssetPainter.paintPowerUp(g2d, powerUp, screenSettings);
+                    AssetPainter.paintCat(g2d, cat, screenSettings);
+                    cat.moveRandomly();
+                    catSpawningCooldown = 500;
+                    catHasSpawned = true;
+                    catSpawningTime++;
+                } else if (catSpawningCooldown > 0) {
+                    catSpawningCooldown--;
+                } else if (catHasSpawned) {
+                    catSpawningTime = 0;
+                    catHasSpawned = false;
+                }
 
 
+                AssetPainter.paintVaccumCleaner(g2d, vacuum, screenSettings);
 
+                g2d.dispose();
 
-
-            if (catSpawningTime < catSpawningTimeLimit) {
-
-                AssetPainter.paintCat(g2d, cat, screenSettings);
-                cat.moveRandomly();
-                catSpawningCooldown = 500;
-                catHasSpawned = true;
-                catSpawningTime++;
-            } else if (catSpawningCooldown > 0) {
-                catSpawningCooldown --;
-            } else if (catHasSpawned) {
-                catSpawningTime = 0;
-                catHasSpawned = false;
             }
 
 
-        AssetPainter.paintVaccumCleaner(g2d, vaccum, screenSettings);
 
-        g2d.dispose();
-    }
+        } else if (gameState == GameState.MENU) {
+            g.clearRect(0, 0, getWidth(), getHeight());
+            menuWindow.render(g);
+
+        } else if (gameState == GameState.LEADERBOARD) {
+            g.clearRect(0, 0, getWidth(), getHeight());
+            leaderboardWindow.render(g);
+
+        } else if (paused) {
+
+            g.clearRect(0, 0, getWidth(), getHeight());
+            g.setColor(Color.BLACK);
+            g.fillRect(0, 0, getWidth(), getHeight());
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("Arial", Font.BOLD, 50));
+            g.drawString("PAUSED", 300, 300);
 
 
-    private void updateFps() {
-        long currentTime = System.nanoTime();
-        frameCount++;
+        } else if (gameState == GameState.GAME_ENDED) {
+            g.clearRect(0, 0, getWidth(), getHeight());
+            gameEndedWindow.render(g);
 
-        // Update FPS every second (1 billion nanoseconds)
-        if (currentTime - lastTime >= 1_000_000_000) {
-            fps = frameCount;
-            frameCount = 0;
-            lastTime = currentTime;
+        }else if (gameState == GameState.GAME_OVER) {
+            g.clearRect(0, 0, getWidth(), getHeight());
+            gameOverWindow.render(g);
+
         }
+
+
+    /*public void catCellFoul() {
+
+        if (surface.getCell(cat.getPosition()).getDirtLevel() == DirtLevel.CLEAN) {
+            surface.getCell(cat.getPosition()).foul();
+
+        } else if (surface.getCell(cat.getPosition()).getDirtLevel() == DirtLevel.DIRTY) {
+            surface.getCell(cat.getPosition()).foul();
+        } else if (surface.getCell(cat.getPosition()).getDirtLevel() == DirtLevel.VERY_DIRTY) {
+            surface.getCell(cat.getPosition()).clean();
+        } else if (surface.getCell(cat.getPosition()).getDirtLevel() == DirtLevel.FILTHY) {
+            surface.getCell(cat.getPosition()).clean();
+        }
+    }*/
+
     }
-
-    public void displayTime() {
-        LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        String formattedTime = now.format(formatter);
-        System.out.println("Time: " + formattedTime);
-    }
-
-    public void displayFPS() {
-        System.out.println("FPS: " + fps);
-
-        JInternalFrame frame = new JInternalFrame("FPS: " + fps);
-    }
-
 }
+

@@ -2,16 +2,16 @@ package org.tricodex.view.assets;
 
 import org.tricodex.model.Cat;
 import org.tricodex.model.PowerUp;
-import org.tricodex.model.Vaccum;
+import org.tricodex.model.Vacuum;
 import org.tricodex.model.manager.CellManager;
 import org.tricodex.utils.settings.ScreenSettings;
 
 import java.awt.*;
 
 public abstract class AssetPainter {
-    public static void paintVaccumCleaner(Graphics2D g2, Vaccum vaccum, ScreenSettings screenSettings) {
+    public static void paintVaccumCleaner(Graphics2D g2, Vacuum vacuum, ScreenSettings screenSettings) {
         g2.setColor(Color.RED);
-        g2.fillRect(vaccum.getPosition().x, vaccum.getPosition().y, screenSettings.getTileSize(), screenSettings.getTileSize());
+        g2.fillRect(vacuum.getPosition().x, vacuum.getPosition().y, screenSettings.getTileSize(), screenSettings.getTileSize());
     }
     public static void paintCat(Graphics2D g2, Cat cat, ScreenSettings screenSettings) {
         g2.setColor(Color.BLUE);

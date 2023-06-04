@@ -116,7 +116,7 @@ package org.tricodex.view {
 
     abstract class AssetLoader
     abstract class AssetPainter {
-        + paintVaccumCleaner(g2: Graphics2D, vaccum: Vaccum, screenSettings: ScreenSettings): void
+        + paintVaccumCleaner(g2: Graphics2D, vacuum: Vaccum, screenSettings: ScreenSettings): void
     }
 
     abstract class Panel extends JPanel {
@@ -132,7 +132,7 @@ package org.tricodex.view {
 
     class GamePanel extends JPanel implements Runnable {
         - keyHandler: KeyHandler
-        - vaccum: Vaccum
+        - vacuum: Vaccum
         - surface: Surface
         - dirtSensor: DirtSensor
         - controlPanel: ControlPanel
