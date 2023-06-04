@@ -14,11 +14,10 @@ public class PowerUp extends Entity {
     }
 
     public Point randomPosition() {
-        this.position.x = (int) Math.random() * (surface.getWidth() + 1);
-        this.position.y = (int) Math.random() * (surface.getHeight()  + 1);
+        this.position.x = (int) (Math.random() * (surface.getWidth() + 1));
+        this.position.y = (int) (Math.random() * (surface.getWidth() + 1));
 
-        Point randomPoint = new Point(position.x, position.y);
-        return randomPoint;
+        return new Point(position.x, position.y);
     }
     public void spawn() {
         Point spawningPoint = randomPosition();

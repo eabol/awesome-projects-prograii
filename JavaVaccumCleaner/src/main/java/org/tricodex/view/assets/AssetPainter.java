@@ -1,17 +1,25 @@
 package org.tricodex.view.assets;
 
-import org.tricodex.model.Cell;
+import org.tricodex.model.Cat;
+import org.tricodex.model.PowerUp;
 import org.tricodex.model.Vaccum;
 import org.tricodex.model.manager.CellManager;
 import org.tricodex.utils.settings.ScreenSettings;
 
 import java.awt.*;
-import java.util.Random;
 
 public abstract class AssetPainter {
     public static void paintVaccumCleaner(Graphics2D g2, Vaccum vaccum, ScreenSettings screenSettings) {
         g2.setColor(Color.RED);
         g2.fillRect(vaccum.getPosition().x, vaccum.getPosition().y, screenSettings.getTileSize(), screenSettings.getTileSize());
+    }
+    public static void paintCat(Graphics2D g2, Cat cat, ScreenSettings screenSettings) {
+        g2.setColor(Color.BLUE);
+        g2.fillRect(cat.getPosition().x, cat.getPosition().y, screenSettings.getTileSize(), screenSettings.getTileSize());
+    }
+    public static void paintPowerUp(Graphics2D g2, PowerUp cell, ScreenSettings screenSettings) {
+        g2.setColor(Color.BLACK);
+        g2.fillRect(cell.getPosition().x, cell.getPosition().y, screenSettings.getTileSize(), screenSettings.getTileSize());
     }
 
     public static void paintCells(Graphics2D g2, CellManager cellManager, ScreenSettings screenSettings, int mapCellNum[][]) {
