@@ -5,11 +5,6 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
-	/*	ArrayList<Cashier> cashiers = new ArrayList<Cashier>();
-		cashiers.add(new NormalCashier(1));
-		cashiers.add(new NormalCashier(2));
-		cashiers.add(new NormalCashier(3));
-		cashiers.add(new FastCashier(4));*/
 		Supermarket supermarket=new Supermarket();
 
 		Menu menu = new Menu();
