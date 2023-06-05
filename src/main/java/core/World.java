@@ -1,6 +1,6 @@
-package src.main.java.core;
-import src.main.java.core.Terrain;
-import src.main.java.core.character.*;
+package core;
+import core.Terrain;
+import core.character.*;
 
 import java.util.ArrayList;
 import java.util.Collection;

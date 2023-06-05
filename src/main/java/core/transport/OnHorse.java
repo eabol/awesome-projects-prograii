@@ -1,4 +1,4 @@
-package src.main.java.core.transport;
+package core.transport;
 
 public class OnHorse extends Transport{
 }

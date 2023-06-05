@@ -1,4 +1,4 @@
-package src.main.java.view.character;
+package view.character;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

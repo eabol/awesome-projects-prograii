@@ -1,4 +1,4 @@
-package src.main.java.enumerators;
+package enumerators;
 
 public enum TerrainType {
     ROAD,

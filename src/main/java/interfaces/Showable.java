@@ -1,4 +1,4 @@
-package src.main.java.interfaces;
+package interfaces;
 
 public interface Showable {
 
