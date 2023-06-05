@@ -1,0 +1,95 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class World {
+    - well: Well
+    - snail: Snail
+    - rain: Rain
+    - car: Car
+    - day: Day
+    + World()
+}
+
+class Well {
+- Snail snail
+- final int depth
++ public int waterDepth
++ Well()
++ void survive()
+
+}
+
+class Snail {
+- Final String name: Paquillo
+-int altitude
+-Fatigue fatigue
++ int getAltitude()
+}
+
+class Rain {
+    - type: String
+    + Rain(type: String)
+    + success(): int
+}
+
+class Car{
++ Car(String)
+}
+
+class Day {
+    - int day
+    + Day()
+    + void nextDay()
+    + int getDay()
+
+}
+enum Warning {
+    HEAVY_RAIN
+    WEAK_RAIN
+    NO_RAIN
+    CAR_PASS
+}
+class Alive{
++ Alive(String)
+}
+class Death{
++ Death(String)
+}
+class Fatigue{
++ Fatigue(String)
+}
+class Movement{
++ static void nextDay()
+- void rise()
+- void drop()
+}
+abstract class Problem{
+- String description
++ Problem(String)
++ String getDescription()
++ void setDescription(String)
+}
+class Tier{
++ Tier()
+}
+
+
+World  --  Well
+World  --  Snail
+Problem --  Rain
+Problem  --  Car
+Problem  --  Fatigue
+World  --  Day
+
+Well  --  Rain
+
+Snail -- Fatigue
+
+Snail  --  Death
+Snail  --  Alive
+Snail -- Movement
+Snail -- Tier
+
+
+
+@enduml
