@@ -1,9 +1,5 @@
 package Orders;
 
-import Cashiers.FastCashier;
-import Cashiers.NormalCashier;
-
-
 public abstract class Order {
 	protected int numItems = 0;
 

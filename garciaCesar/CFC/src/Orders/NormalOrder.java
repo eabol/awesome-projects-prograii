@@ -1,7 +1,5 @@
 package Orders;
 
-import Cashiers.NormalCashier;
-
 public class NormalOrder extends Order{
 	public NormalOrder() {
 		this.setNumItems(numberOfItems());

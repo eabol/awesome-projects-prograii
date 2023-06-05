@@ -3,7 +3,6 @@ import Orders.Order;
 import java.util.ArrayList;
 
 public class Queue {
-	private int peopleInQueue = 0;
 	private ArrayList<Order> queue ;
 	private int minutesWithoutQueue = 0;
 	public Queue() {
@@ -18,8 +17,8 @@ public class Queue {
 	public int getMinutesWithoutQueue() {
 		return minutesWithoutQueue;
 	}
-	public void setMinutesWithoutQueue(int minutesWithoutQueue) {
-		this.minutesWithoutQueue = minutesWithoutQueue;
+	public void setMinutesWithoutQueue() {
+		this.minutesWithoutQueue++;
 	}
 
 	public void addOrder(Order order) {
@@ -27,10 +26,13 @@ public class Queue {
 	}
 	public void removePerson() {
 		this.queue.remove(0);
-
 	}
 	public int getQueueSize() {
 		return this.queue.size();
 	}
+	public void setQueueSize(int size) {
+		this.queue.size();
+	}
+
 
 }
