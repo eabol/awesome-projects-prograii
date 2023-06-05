@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9f7b3ee5-47aa-43cb-b953-98778fb87bf9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/awesome-projects-prograii.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/.idea/awesome-projects-prograii.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/KeyHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/entity/Entity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/entity/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/resources/player/left1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/resources/player/left2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/resources/player/left3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/resources/player/right1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/resources/player/right2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/resources/player/right3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/resources/player/up1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/resources/player/up2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/resources/player/upLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/awesome-projects-prograii/src/resources/player/upRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/KeyHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/entity/Entity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/entity/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/resources/player/left1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/resources/player/left2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/resources/player/left3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/resources/player/right1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/resources/player/right2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/resources/player/right3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/resources/player/up1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/resources/player/up2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/resources/player/upLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Phase_0/src/resources/player/upRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/.idea/awesome-projects-prograii.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/.idea/awesome-projects-prograii.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/src/resources/player/left1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/src/resources/player/left2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/src/resources/player/left3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/src/resources/player/right1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/src/resources/player/right2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/src/resources/player/right3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/src/resources/player/up1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/src/resources/player/up2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/src/resources/player/upLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/awesome-projects-prograii/src/resources/player/upRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/src/resources/player/left1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/src/resources/player/left2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/src/resources/player/left3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/src/resources/player/right1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/src/resources/player/right2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/src/resources/player/right3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/src/resources/player/up1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/src/resources/player/up2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/src/resources/player/upLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/Phase_0/src/resources/player/upRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/src/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/src/KeyHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/src/entity/Entity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/src/entity/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/src/main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/target/classes/docs/diagram.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/target/classes/playableGameCharacter/left1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/target/classes/playableGameCharacter/left2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/target/classes/playableGameCharacter/left3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/target/classes/playableGameCharacter/right1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/target/classes/playableGameCharacter/right2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/target/classes/playableGameCharacter/right3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/target/classes/playableGameCharacter/up1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/target/classes/playableGameCharacter/up2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/target/classes/playableGameCharacter/upLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/target/classes/playableGameCharacter/upRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/Maze.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/Position.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/Terrain.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/Thread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/Time.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/World.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/character/GameCharacter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/character/NonPlayableGameCharacter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/character/PlayableGameCharacter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/transport/OnBoat.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/transport/OnFoot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/transport/OnHorse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/transport/OnRug.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/core/transport/Transport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/docs/diagram.puml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/enumerators/TerrainType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interfaces/Movable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interfaces/Showable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/playableGameCharacter/left1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/playableGameCharacter/left2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/playableGameCharacter/left3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/playableGameCharacter/right1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/playableGameCharacter/right2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/playableGameCharacter/right3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/playableGameCharacter/up1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/playableGameCharacter/up2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/playableGameCharacter/upLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/playableGameCharacter/upRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/TerrainResolver.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/WorldHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/character/GameCharacterHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/character/KeyHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/view/character/PlayableGameCharacterHandler.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2PWOittzZXZGdabdSEvsDXORjmC" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/David/Documents/Code github/Code/awesome-projects-prograii&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/resources/player" />
+      <recent name="$PROJECT_DIR$/src/resources" />
+      <recent name="$PROJECT_DIR$/src/entity/Sprites" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.main" />
+      <module name="awesome-projects-prograii" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9f7b3ee5-47aa-43cb-b953-98778fb87bf9" name="Changes" comment="" />
+      <created>1683569502024</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683569502024</updated>
+      <workItem from="1683569515556" duration="8772000" />
+      <workItem from="1683880296468" duration="16088000" />
+      <workItem from="1685955021146" duration="1006000" />
+      <workItem from="1685957508693" duration="646000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
