@@ -8,3 +8,6 @@ Faltaría de hacer:
 - README.MD
 - PlantUML (se han modificado clases y el código)
 - Test
+
+Las clases Accesories y Machine me dan error ahora que las he abierto para pasarlas pero ya el miercoles lo solucionamos. 
+El paquete out y .idea que vienen por defecto no se han tocado por eso no les pongo.
