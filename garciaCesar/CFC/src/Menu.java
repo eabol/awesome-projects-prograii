@@ -1,80 +1,45 @@
-import Cashiers.Cashier;
-import Cashiers.FastCashier;
-import Cashiers.NormalCashier;
-import Exceptions.CloseCashierException;
-import Exceptions.OpenCashierException;
 import Exceptions.OptionNotValidException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
-	private ArrayList<Cashier> cashiers;
+	ArrayList<String>options;
 
+	public Menu() {
+		this.options = new ArrayList<>();
+	    this.addOption("Añade una nueva caja");
+		this.addOption("Cierra una caja");
+		this.addOption("Ver cajas actuales");
+		this.addOption("Enseña el resumen del dia");
+		this.addOption("Simula la llegada de un cliente");
+		this.addOption("Simula la jornada completa");
+		this.addOption("Salir");
+	}
+
+	public void addOption(String option) {
+		this.options.add(option);
+	}
 	public void showMenu() {
-		System.out.println("Elige una opcion:");
-		System.out.println("1. Añade una nueva caja");
-		System.out.println("2. Cierra una caja abierta");
-		System.out.println("3. Ver cajas actuales");
-		System.out.println("4. Enseña el resumen del dia");
-		System.out.println("5. Simula la llegada de un cliente");
-		System.out.println("6. Simula la jornada completa");
-		System.out.println("7. Salir");
-	}
-	public void showCashiers(ArrayList<Cashier> cashiers) {
-		for (Cashier cashier : cashiers) {
-			System.out.println("Caja " + cashier.getNumber() + " " + cashier.getState());
+		int cont=1;
+		for (String option : options) {
+			System.out.println(cont+"."+option);
+			cont++;
 		}
 	}
-	public void closeCashier(ArrayList<Cashier> cashiers) {
-		int number = cashiers.size();
-		try {
-			if (number == 0) {
-				throw new CloseCashierException();
-			} else {
-				cashiers.remove(number - 1);
-				System.out.println("Caja " + number + " cerrada");
-			}
-		} catch (CloseCashierException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-	public void addCashier(ArrayList<Cashier> cashiers) {
+
+	public int selectOption() throws OptionNotValidException {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("¿Qué tipo de caja desea añadir?");
-		System.out.println("1. Caja normal");
-		System.out.println("2. Caja rápida");
-		int option = scanner.nextInt();
-		try {
-			if (cashiers.size() >= 8) {
-				throw new OpenCashierException();
-			}
+		int optionSelected = scanner.nextInt();
+		int cont=1;
 
-			if (option == 1) {
-				cashiers.add(new NormalCashier(cashiers.size() + 1));
-				System.out.println("Caja normal añadida");
-			} else if (option == 2) {
-				cashiers.add(new FastCashier(cashiers.size() + 1));
-				System.out.println("Caja rápida añadida");
-			} else {
-				throw new OptionNotValidException();
+		for (String option : options) {
+			if(optionSelected==cont){
+				return optionSelected;
 			}
-		} catch (OptionNotValidException | OpenCashierException e) {
-			System.out.println(e.getMessage());
+			cont++;
 		}
-	}
-	public void showSummary() {
-		Supermarket supermarket = new Supermarket();
-		supermarket.summary();
-	}
-	public void simulateClient() {
-		Supermarket supermarket = new Supermarket();
-		System.out.println("Hay una probabilidad de que llegue un cliente a la cola...");
-		supermarket.getAnyOrder();
-	}
-	public void simulateDay(ArrayList<Cashier> cashiers) {
-		Supermarket supermarket = new Supermarket();
-		supermarket.begin(cashiers);
-	}
 
+		throw new OptionNotValidException();
+	}
 }
