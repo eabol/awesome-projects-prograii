@@ -90,9 +90,6 @@ public class Supermarket {
 			}
 		}
 
-		if (queue.getQueueSize() == 0) {
-			queue.setMinutesWithoutQueue();
-		}
 	}
 	public void summary() {
 		System.out.println("-----------------------------------------------------------------------------");
@@ -100,7 +97,6 @@ public class Supermarket {
 		System.out.println("Clientes atendidos: " + cashiers.get(0).getClientsServed());
 		System.out.println("Productos vendidos: " + (NormalCashier.getNumItemsProcessed() + FastCashier.getNumItemsProcessed()));
 		System.out.println("Clientes sin atender en la cola: " + (NormalCashier.getClientsServed() + FastCashier.getClientsServed()));
-		System.out.println("Minutos sin cola: " + (queue.getMinutesWithoutQueue()));
 		System.out.println("-----------------------------------------------------------------------------");
 	}
 
