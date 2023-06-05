@@ -34,13 +34,13 @@ public class Main {
 							menu.showCashiers(cashiers);
 							break;
 						case 4:
-							menu.showSummary(cashiers);
+							menu.showSummary();
 							break;
 						case 5:
 							menu.simulateClient();
 							break;
 						case 6:
-							menu.simulateDay();
+							menu.simulateDay(cashiers);
 							break;
 						case 7:
 							System.out.println("Saliendo del menu...");

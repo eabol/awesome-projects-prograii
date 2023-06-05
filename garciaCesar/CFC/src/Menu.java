@@ -1,11 +1,16 @@
 import Cashiers.Cashier;
+import Cashiers.FastCashier;
 import Cashiers.NormalCashier;
 import Exceptions.CloseCashierException;
 import Exceptions.OpenCashierException;
+import Exceptions.OptionNotValidException;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Menu {
+	private ArrayList<Cashier> cashiers;
+
 	public void showMenu() {
 		System.out.println("Elige una opcion:");
 		System.out.println("1. Añade una nueva caja");
@@ -34,7 +39,31 @@ public class Menu {
 			System.out.println(e.getMessage());
 		}
 	}
-	public void showSummary(ArrayList<Cashier> cashiers) {
+	public void addCashier(ArrayList<Cashier> cashiers) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("¿Qué tipo de caja desea añadir?");
+		System.out.println("1. Caja normal");
+		System.out.println("2. Caja rápida");
+		int option = scanner.nextInt();
+		try {
+			if (cashiers.size() >= 8) {
+				throw new OpenCashierException();
+			}
+
+			if (option == 1) {
+				cashiers.add(new NormalCashier(cashiers.size() + 1));
+				System.out.println("Caja normal añadida");
+			} else if (option == 2) {
+				cashiers.add(new FastCashier(cashiers.size() + 1));
+				System.out.println("Caja rápida añadida");
+			} else {
+				throw new OptionNotValidException();
+			}
+		} catch (OptionNotValidException | OpenCashierException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	public void showSummary() {
 		Supermarket supermarket = new Supermarket();
 		supermarket.summary();
 	}
@@ -43,21 +72,9 @@ public class Menu {
 		System.out.println("Hay una probabilidad de que llegue un cliente a la cola...");
 		supermarket.getAnyOrder();
 	}
-	public void simulateDay() {
+	public void simulateDay(ArrayList<Cashier> cashiers) {
 		Supermarket supermarket = new Supermarket();
-		supermarket.begin();
+		supermarket.begin(cashiers);
 	}
-	public void addCashier(ArrayList<Cashier> cashiers) {
-		int number = cashiers.size()+1;
-		try {
-			if (number > 7) {
-				throw new OpenCashierException();
-			} else {
-				cashiers.add(new NormalCashier(number));
-				System.out.println("Caja " + number + " abierta");
-			}
-		} catch (OpenCashierException e) {
-			System.out.println(e.getMessage());
-		}
-	}
+
 }

@@ -25,7 +25,7 @@ public abstract class Cashier {
 	public void setNumItemsProcessed(int numItemsProcessed) {
 		this.numItemsProcessed = numItemsProcessed;
 	}
-	public static int getClientsServed() {
+	public int getClientsServed() {
 		return clientsServed;
 	}
 	public void setClientsServed(int clientsServed) {
