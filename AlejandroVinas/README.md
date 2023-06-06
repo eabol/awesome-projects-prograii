@@ -49,3 +49,5 @@ Del mismo modo, en las clases "Sword", "Handaxe" y "Flail" realizan un proceso s
 - Se comprueba si la salud del vampiro es mayor que 0. En caso contrario, el juego termina.
 
 
+Existe una clase llamada "General Manager", que se encarga de manejar toda la dinñamica de combate.
+
