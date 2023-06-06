@@ -16,7 +16,7 @@ public class CellManager {
     private ScreenSettings screenSettings;
 
 
-    public CellManager (ScreenSettings screenSettings) {
+    public CellManager(ScreenSettings screenSettings) {
         this.cell = new Cell[16];
         this.screenSettings = screenSettings;
         this.mapCellNumber = new int[screenSettings.getMaxScreenTilesWidth()][screenSettings.getMaxScreenTilesHeight()];
@@ -89,7 +89,7 @@ public class CellManager {
     }
 
     public void removeFurniture(Cell localCell) {
-        if(localCell.hasFurniture()) {
+        if (localCell.hasFurniture()) {
             localCell.setHasFurniture(false);
         }
     }

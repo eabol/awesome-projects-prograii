@@ -27,8 +27,11 @@ public class Vacuum extends MovingEntity implements Cleanable, RandomMoveable {
 
     @Override
     public void clean() {
+
         surface.getCell(position).clean();
         bagContent++;
+
+
     }
 
     @Override

@@ -1,9 +1,12 @@
 package org.tricodex.model;
 
+import org.tricodex.utils.enums.DirtLevel;
+
 import java.awt.*;
 
 public class DirtSensor {
     private Surface surface;
+    private DirtLevel dirtLevel;
 
     public DirtSensor(Surface surface) {
         this.surface = surface;

@@ -6,13 +6,14 @@ import org.tricodex.utils.settings.ScreenSettings;
 import org.tricodex.view.assets.AssetLoader;
 import org.tricodex.view.assets.AssetPainter;
 
-
 import javax.swing.*;
 import java.awt.*;
 
 
 public class GamePanel extends JPanel implements Runnable {
 
+    public static GameState gameState = GameState.MENU;
+    public static boolean paused = false;
     private final CellManager cellManager;
     private final KeyHandler keyHandler;
     private final MouseHandler mouseHandler;
@@ -25,36 +26,21 @@ public class GamePanel extends JPanel implements Runnable {
     private final UserGuide userGuide;
     private final ScreenSettings screenSettings;
     private final SurfacePanel surfacePanel;
-    private int catSpawningTime = 0;
     private final int catSpawningTimeLimit = 600;
+    private int catSpawningTime = 0;
     private boolean catHasSpawned = false;
     private int catSpawningCooldown = 0;
-
-
-    public static enum GameState {
-        MENU,
-        GAME,
-        LEADERBOARD,
-        PAUSE,
-        GAME_ENDED,
-        GAME_OVER
-    }
-
-
-    public static GameState gameState = GameState.MENU;
     private MenuWindow menuWindow;
     private LeaderboardWindow leaderboardWindow;
     private GameEndedWindow gameEndedWindow;
     private GameOverWindow gameOverWindow;
-
-    public static boolean paused = false;
 
     public GamePanel() {
         menuWindow = new MenuWindow();
         leaderboardWindow = new LeaderboardWindow();
         gameOverWindow = new GameOverWindow();
         gameEndedWindow = new GameEndedWindow();
-        screenSettings = new ScreenSettings(16, 2, 32, 24, 60);
+        screenSettings = new ScreenSettings(16,3 , 32, 24, 60);
         keyHandler = new KeyHandler();
         mouseHandler = new MouseHandler();
         cellManager = new CellManager(screenSettings);
@@ -66,6 +52,7 @@ public class GamePanel extends JPanel implements Runnable {
         userGuide = new UserGuide(surface, vacuum);
         controlPanel = new ControlPanel(userGuide, keyHandler);
         surfacePanel = new SurfacePanel(cellManager, new AssetLoader(screenSettings), screenSettings);
+
         setupPanel();
     }
 
@@ -106,7 +93,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     private void update() {
 
-        controlPanel.actionPerformed();
+        if (gameState == GameState.GAME) {
+
+            if (!paused) {
+
+                controlPanel.actionPerformed();
+            }
+        }
 
     }
 
@@ -144,7 +137,6 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
 
-
         } else if (gameState == GameState.MENU) {
             g.clearRect(0, 0, getWidth(), getHeight());
             menuWindow.render(g);
@@ -167,7 +159,7 @@ public class GamePanel extends JPanel implements Runnable {
             g.clearRect(0, 0, getWidth(), getHeight());
             gameEndedWindow.render(g);
 
-        }else if (gameState == GameState.GAME_OVER) {
+        } else if (gameState == GameState.GAME_OVER) {
             g.clearRect(0, 0, getWidth(), getHeight());
             gameOverWindow.render(g);
 
@@ -188,6 +180,20 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }*/
 
+    }
+
+    public void gameStatistics() {
+
+
+    }
+
+    public static enum GameState {
+        MENU,
+        GAME,
+        LEADERBOARD,
+        PAUSE,
+        GAME_ENDED,
+        GAME_OVER
     }
 }
 
