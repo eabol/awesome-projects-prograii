@@ -3,10 +3,16 @@ public class Maze {
     private int height;
     private Cell[][] cells;
 
-    public Maze(int width, int height) {
-        this.width = width;
-        this.height = height;
-        this.cells = new Cell[width][height];
+    public Maze(int[][] map) {
+        this.height = map.length;
+        this.width = map[0].length;
+        cells = new Cell[this.height][this.width];
+        
+        for(int i = 0; i < this.height ; i++) {
+            for(int j = 0; j < this.width; j++) {
+                cells[i][j] = new Cell(i,j, map[i][j]);
+            }
+        }   
     }
     
     public int getWidth() {

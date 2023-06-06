@@ -4,7 +4,8 @@ public class PacmanGame {
 
     public PacmanGame() {
         game = new Game();
-        renderer = new SwingRenderer();
+        renderer = new ConsoleRenderer();
+        renderer.renderGame(game);
     }
 
     public static void main(String[] args) {
