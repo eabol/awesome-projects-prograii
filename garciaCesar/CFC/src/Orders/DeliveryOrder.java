@@ -1,25 +1,24 @@
 package Orders;
 
-public class DeliveryOrder extends Order implements Delivery{
-	public boolean isDelivery;
+public class DeliveryOrder extends Order implements Delivery {
+
+	private boolean isDelivery;
+
 	public DeliveryOrder() {
-		isDelivery =true;
+		isDelivery = true;
 		this.setNumItems(numberOfItems());
 	}
 
 	@Override
 	public boolean isDelivery() {
-		return false;
+		return isDelivery;
 	}
-	public int numberOfItems(){
-		numItems=(int)(Math.random()*50+1);
-		if (numItems<25){
-			numItems= numItems+25;
+
+	public int numberOfItems() {
+		numItems = (int) (Math.random() * 50 + 1);
+		if (numItems < 25) {
+			numItems += 25;
 		}
-		return  numItems;
+		return numItems;
 	}
-
-
-
-
 }

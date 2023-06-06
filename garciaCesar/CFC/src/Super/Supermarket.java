@@ -1,19 +1,19 @@
+package Super;
+
 import Cashiers.Cashier;
 import Cashiers.FastCashier;
 import Cashiers.NormalCashier;
 import Cashiers.State;
 import Exceptions.CloseCashierException;
 import Exceptions.OpenCashierException;
-import Exceptions.OptionNotValidException;
 import Orders.DeliveryOrder;
 import Orders.NormalOrder;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Supermarket {
 	private ArrayList <Cashier> cashiers;
-	private Queue queue;
+	Queue queue;
 	public Supermarket() {
 		this.queue = new Queue();
 		cashiers = new ArrayList<Cashier>();

@@ -1,3 +1,5 @@
+package Super;
+
 import Exceptions.OptionNotValidException;
 
 import java.util.ArrayList;
