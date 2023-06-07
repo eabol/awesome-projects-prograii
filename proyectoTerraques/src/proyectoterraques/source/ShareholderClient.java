@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ShareholderClient extends Client implements ClientMethods{
+public class ShareholderClient extends Client implements ClientManagement{
 
     Scanner scNumber = new Scanner(System.in);
     Scanner scText = new Scanner(System.in);
@@ -36,22 +36,25 @@ public class ShareholderClient extends Client implements ClientMethods{
     }
 
     @Override
-    public void addAccount(Account account)  {
+    public boolean addAccount(Account account)  {
 
             if (account instanceof DebitAccount) {
                 debitAccounts.add((DebitAccount) account);
                 System.out.println("Debit account vinculated to client\n");
+                return false;
             }
             else if (account instanceof CreditAccount) {
                 if (credit_Account==null){
                     credit_Account = (CreditAccount) account;
                     System.out.println("Credit account vinculated to client\n");
+                    return false;
                 }else {
                     System.out.println("You can't vinculate another credit account to the client\n");
+                    return true;
                 }
 
             }
-
+        return false;
     }
 
     @Override

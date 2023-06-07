@@ -18,8 +18,4 @@ public abstract class Account {
         return amount;
     }
 
-
-
-
-
 }

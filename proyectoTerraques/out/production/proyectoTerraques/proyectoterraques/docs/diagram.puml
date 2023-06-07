@@ -10,14 +10,17 @@ class proyectoterraques.source.Bank {
 - List<Client> clients
 - List<Account> accounts
 + <<Create>> Bank()
-+ List<Client> getClients()
-+ List<Account> getAccounts()
-+ newClient()
-+ newAccount()
-+ removeClient()
-+ removeAccount()
-+ showClient(String)
-+ showAccount(String)
++ void getClients()
++ void getAccounts()
++ void newClient()
++ Account newAccount()
++ void removeClient()
++ void removeAccount()
++ void showClient()
++ void showAccount()
++ void loadData()
++ void depositMoney()
++ void withdrawMoney()
 
 }
 
@@ -60,15 +63,15 @@ abstract class proyectoterraques.source.Account {
 
 }
 
-interface proyectoterraques.source.AccountMethods {
+interface proyectoterraques.source.AccountBalance {
 + void deposit(double)
 + void withdraw(double)
 
 
 }
 
-interface proyectoterraques.source.ClientMethods {
-+void addAccount(Account)
+interface proyectoterraques.source.ClientManagement {
++boolean addAccount(Account)
 +void removeAccount(String)
 +void listAccounts()
 
@@ -107,23 +110,27 @@ class proyectoterraques.exceptions.Exception{
 
 }
 
+
+
 class proyectoterraques.exceptions.InvalidCharacterException{
 + <<Create>> InvalidCharacterException(String)
++ <<Create>> NotEnoughMoneyExcepcion(String)
+
 
 }
 
 proyectoterraques.source.Bank o-- "O..*" proyectoterraques.source.Account : Has
 proyectoterraques.source.Bank o-- "O..*" proyectoterraques.source.Client : Has
-proyectoterraques.source.Bank o-- "O..*" proyectoterraques.source.AccountMethods : Has
-proyectoterraques.source.Bank o-- "O..*" proyectoterraques.source.ClientMethods : Has
+proyectoterraques.source.Bank o-- "O..*" proyectoterraques.source.AccountBalance : Has
+proyectoterraques.source.Bank o-- "O..*" proyectoterraques.source.ClientManagement : Has
 proyectoterraques.source.Client <|-- proyectoterraques.source.ShareholderClient
-proyectoterraques.source.ClientMethods <|-- proyectoterraques.source.ShareholderClient
+proyectoterraques.source.ClientManagement <|-- proyectoterraques.source.ShareholderClient
 proyectoterraques.source.Account <|-- proyectoterraques.source.DebitAccount
-proyectoterraques.source.AccountMethods <|-- proyectoterraques.source.DebitAccount
+proyectoterraques.source.AccountBalance <|-- proyectoterraques.source.DebitAccount
 proyectoterraques.source.Client <|-- proyectoterraques.source.StandardClient
-proyectoterraques.source.ClientMethods <|-- proyectoterraques.source.StandardClient
+proyectoterraques.source.ClientManagement <|-- proyectoterraques.source.StandardClient
 proyectoterraques.source.Account <|-- proyectoterraques.source.CreditAccount
-proyectoterraques.source.AccountMethods <|-- proyectoterraques.source.CreditAccount
+proyectoterraques.source.AccountBalance <|-- proyectoterraques.source.CreditAccount
 proyectoterraques.source.Bank --> proyectoterraques.source.FileHandler : Uses
 proyectoterraques.source.Bank --> proyectoterraques.exceptions.InvalidCharacterException : Uses
 proyectoterraques.exceptions.Exception <|-- proyectoterraques.exceptions.InvalidCharacterException
