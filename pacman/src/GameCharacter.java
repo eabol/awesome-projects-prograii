@@ -1,43 +1,45 @@
 public abstract class GameCharacter implements GameElement {
-    private int x;
-    private int y;
+    private Position position;
     private Direction direction;
 
-    public GameCharacter(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public GameCharacter(Position position) {
+        this.position = position;
     }
     
     public int getX() {
-        return x;
+        return position.getX();
     }
     
     public int getY() {
-        return y;
+        return position.getY();
+    }
+
+    public Position getPosition() {
+        return position;
     }
     
     public Direction getDirection() {
         return direction;
     }
     
-    public int[] move(Direction direction) {
+    public Position move(Direction direction) {
         this.direction = direction;
+        Position previousPosition = new Position(position.getX(), position.getY());
         switch(direction) {
             case UP:
-                y--;
+                position.setY(position.getY() - 1);
                 break;
             case DOWN:
-                y++;
+                position.setY(position.getY() + 1);
                 break;
             case LEFT:
-                x--;
+                position.setX(position.getX() - 1);
                 break;
             case RIGHT:
-                x++;
+                position.setX(position.getX() + 1);
                 break;
         }
-        int[] position = {x, y};
-        return position;
+        return previousPosition;
     }
 
     public abstract void die();

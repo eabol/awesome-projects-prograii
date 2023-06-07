@@ -1,7 +1,7 @@
 public class Pacman extends GameCharacter {
 
     public Pacman(int x, int y) {
-        super(x, y);
+        super(new Position(x, y));
     }
     
     public void eatDot() {
@@ -15,5 +15,5 @@ public class Pacman extends GameCharacter {
     public void die() {
         // Lógica para el Pacman muerto
     }
-    
+
 }
