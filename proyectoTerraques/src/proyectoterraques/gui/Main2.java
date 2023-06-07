@@ -26,7 +26,10 @@ public class Main2 {
         //bank.showClient();
         bank.getAccounts();
         bank.depositMoney();
-        bank.removeAccount();
+        //bank.getClients();
+        //bank.getAccounts();
+        //bank.removeAccount();
+        bank.removeClient();
         bank.getClients();
         bank.getAccounts();
         bank.showClient();

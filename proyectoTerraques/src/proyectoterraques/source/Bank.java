@@ -219,7 +219,8 @@ public class Bank {
             if (dni.equalsIgnoreCase(clients.get(i).getDni())){
                 found=true;
                 clients.remove(i);
-                System.out.println("Client successfully removed");
+                //todo borrar cuentas asociadas al cliente en el array de cuentas
+                System.out.println("Client successfully removed\n");
             }
         }
         if (!found){
@@ -246,20 +247,38 @@ public class Bank {
 
                 for(int j=0;j<clients.size();j++){
                     if(clients.get(j) instanceof StandardClient){
-                        if( ((StandardClient)clients.get(j)).debit_Account.accountNumber.equalsIgnoreCase(accountNumber) ){
-                            ((StandardClient)clients.get(j)).debit_Account.accountNumber=null;
-                        }
-                    }
-                    else if(clients.get(j) instanceof ShareholderClient){
-                        if( ((ShareholderClient)clients.get(j)).credit_Account.accountNumber.equalsIgnoreCase(accountNumber) ){
-                            ((ShareholderClient)clients.get(j)).credit_Account.accountNumber=null;
-                        }
-                        //todo otro if para las de debito con un for
-                        for(int k=0;k<((ShareholderClient)clients.get(j)).debitAccounts.size();k++){
-                            if(((ShareholderClient)clients.get(j)).debitAccounts.get(k).accountNumber.equalsIgnoreCase(accountNumber)){
-                                ((ShareholderClient)clients.get(j)).debitAccounts.remove(k);
+                        if(((StandardClient)clients.get(j)).debit_Account!=null){
+                            if( ((StandardClient)clients.get(j)).debit_Account.accountNumber.equalsIgnoreCase(accountNumber) ){
+                                ((StandardClient)clients.get(j)).debit_Account=null;
                             }
                         }
+                        else{
+                            System.out.println("No debit account associated to the client");
+                        }
+
+                    }
+                    else if(clients.get(j) instanceof ShareholderClient){
+                        if(((ShareholderClient)clients.get(j)).credit_Account!=null){
+                            if( ((ShareholderClient)clients.get(j)).credit_Account.accountNumber.equalsIgnoreCase(accountNumber) ){
+                                ((ShareholderClient)clients.get(j)).credit_Account=null;
+                            }
+                        }
+                        else{
+                            System.out.println("No credit account associated to the client");
+                        }
+
+                        //todo otro if para las de debito con un for
+                        if(((ShareholderClient)clients.get(j)).debitAccounts.size()>0){
+                            for(int k=0;k<((ShareholderClient)clients.get(j)).debitAccounts.size();k++){
+                                if(((ShareholderClient)clients.get(j)).debitAccounts.get(k).accountNumber.equalsIgnoreCase(accountNumber)){
+                                    ((ShareholderClient)clients.get(j)).debitAccounts.remove(k);
+                                }
+                            }
+                        }
+                        else{
+                            System.out.println("No debit accounts associated to the client");
+                        }
+
                     }
                 }
 
