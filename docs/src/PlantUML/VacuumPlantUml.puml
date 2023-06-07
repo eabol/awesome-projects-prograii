@@ -1,0 +1,126 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title Vacuum Cleaner
+class Main{
+		-gameState
+		+startGame-void()
+		+victory-boolean()
+		+defeat-boolean()
+		+endGame-void()
+}
+interface Entity{
+       -x:int
+       -y:int
+       -skin-String
+       +randomMovement-void()
+       +collision-void()
+}
+class VacuumCleaner extends RandomMovement{
+		-x:int
+		-y:int
+		-skin-String
+		-vacuumedDirt-int
+		-bag-int
+		-battery-int
+		+randomMovement-void()
+		+directedMovement-void()
+		+vacuum-int()
+		+perceive()
+		+checkBag-int
+		+emptyBag-void()
+}
+class Cat extends RandomMovement{
+		-x:int
+		-y:int
+		-skin - String
+		-spawned - Boolean
+		+spawn-void()
+		+randomMovement-void()
+		+collision-void()
+        +makeDirt-void()
+}
+abstract class Table extends NoMovement{
+		-x:int
+		-y:int
+		-skin- string
+		+collision-void()
+}
+abstract class Sofa extends NoMovement{
+		-x:int
+		-y:int
+		-skin- string
+		+collision-void()
+}
+class Controller {
+		-moveUp-int
+        -moveDown-int
+        -moveLeft-int
+        -moveRight-int
+        -moveUpRight-int
+        -moveUpLeft-int
+        -moveDownRight-int
+        -moveDownLeft-int
+        -switchmovement-string
+		-checkmovement-boolean
+		+detectnobattery-void()
+        +detectallclean-void()
+        +getDirection-void()
+		+changemovement-void()
+}
+class DirectedMovement extends InMovement{
+	    -getPickedMovement
+	    -setPickedMovement
+}
+class RandomMovement extends InMovement{
+	    -Math.random-int
+}
+class Player {
+		-direction-int
+		-x:int
+		-y:int
+		+getDirection-void()
+		+set direction-void()
+}
+class Board{
+	    -Tiles[] matrix
+        +board-void()
+        +get ArrayList<Tiles>
+        +print Arraylist<Tiles>
+}
+interface Tiles extends Board{
+		-vacuum-Boolean
+		-cat-Boolean
+		-wall-Boolean
+		-dirtyZone-Boolean
+		-furniture-Boolean
+}
+
+class Score {
+		-totalSteps - int
+		-totalDirt - int
+		-dirtynessLevel-int
+		-BatteryLevel-int
+		+getSteps int()
+		+getdirty int()
+		+getdirtyLevel int()
+		+getBatteryLevel int()
+}
+abstract class NoMovement extends Entity{
+		-x:int
+		-y:int
+		-skin-string
+		+collision-void()
+}
+abstract class InMovement extends Entity{
+		-x:int
+		-y:int
+		-skin-string
+		+collision-void()
+		-movement-string
+}
+class VacuumCleaner extends DirectedMovement{
+}
+Controller -- Main
+Player-- Main
+Score -- Main
+@enduml
