@@ -34,7 +34,7 @@ public class Main {
 						supermarket.simulateDay();
 						break;
 					case 7:
-						System.out.println("Hasta luego");
+						System.out.println("Saliendo del sistema...");
 						System.exit(0);
 						break;
 				}
