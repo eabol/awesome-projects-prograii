@@ -8,6 +8,7 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
+import java.security.acl.Owner;
 
 public class ConsoleRenderer implements Renderer {
 
@@ -18,7 +19,7 @@ public class ConsoleRenderer implements Renderer {
     public void renderGame(Game game) {
         DefaultTerminalFactory defaultTerminalFactory = new DefaultTerminalFactory();
         defaultTerminalFactory
-                .setInitialTerminalSize(new TerminalSize(game.getMaze().getWidth() * 3, game.getMaze().getHeight()));
+                .setInitialTerminalSize(new TerminalSize(game.getMaze().getWidth() * 3, game.getMaze().getHeight() + 1));
         this.terminal = defaultTerminalFactory.createSwingTerminal();
         makeWindowVisible(terminal);
         try {
@@ -39,14 +40,15 @@ public class ConsoleRenderer implements Renderer {
         TextGraphics textGraphics = screen.newTextGraphics();
 
         textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
-        textGraphics.setForegroundColor(TextColor.ANSI.CYAN);
+        textGraphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
+        textGraphics.putString(0, maze.getHeight(), "Score: " + "10", SGR.BOLD);
 
         for (int i = 0; i < maze.getHeight(); i++) {
             for (int j = 0; j < maze.getWidth(); j++) {
                 Cell cell = maze.getCell(i, j);
                 if (cell.hasDot()) {
                     textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
-                    textGraphics.setForegroundColor(TextColor.ANSI.YELLOW);
+                    textGraphics.setForegroundColor(TextColor.ANSI.MAGENTA_BRIGHT);
                     textGraphics.putString(j == 0 ? 0 : j * 3, i, " o ", SGR.BOLD);
                 } else if (cell.isWall()) {
                     textGraphics.setBackgroundColor(TextColor.ANSI.CYAN);
@@ -79,9 +81,9 @@ public class ConsoleRenderer implements Renderer {
     private void printCharacter(Pacman pacman) throws IOException {
         TextGraphics textGraphics = this.screen.newTextGraphics();
 
-        textGraphics.setBackgroundColor(TextColor.ANSI.WHITE);
-        textGraphics.setForegroundColor(TextColor.ANSI.BLUE_BRIGHT);
-        textGraphics.putString(pacman.getX() == 0 ? 0 : (pacman.getX() * 3) + 1, pacman.getY(), "C");
+        textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
+        textGraphics.setForegroundColor(TextColor.ANSI.YELLOW_BRIGHT);
+        textGraphics.putString(pacman.getX() == 0 ? 0 : ((pacman.getX()-1) * 3), pacman.getY(), " " + Symbols.SOLID_SQUARE + " ", SGR.BOLD);
 
         refresh();
     }

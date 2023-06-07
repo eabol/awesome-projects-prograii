@@ -1,4 +1,4 @@
-public class Cell {
+public class Cell implements GameElement{
     private int x;
     private int y;
     private boolean isWall;

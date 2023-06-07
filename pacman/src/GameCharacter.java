@@ -1,4 +1,4 @@
-public abstract class GameCharacter {
+public abstract class GameCharacter implements GameElement {
     private int x;
     private int y;
     private Direction direction;
