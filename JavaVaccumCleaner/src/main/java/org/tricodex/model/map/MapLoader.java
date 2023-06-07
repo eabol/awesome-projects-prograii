@@ -17,6 +17,7 @@ public class MapLoader {
     }
 
     public void loadMap(String path) {
+        System.out.println("Loading map: " + path);
         int[][] mapCellNum = new int[screenSettings.getMaxScreenTilesWidth()][screenSettings.getMaxScreenTilesHeight()];
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(path)))) {

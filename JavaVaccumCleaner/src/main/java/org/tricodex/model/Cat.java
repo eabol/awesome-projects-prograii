@@ -12,8 +12,11 @@ public class Cat extends MovingEntity implements RandomMoveable {
 
     public Cat(Point position, int speed, CellManager cellManager, int scale) {
         super(position, speed, cellManager, scale);
+        System.out.println("Super constructor called in Cat");
         this.moveObject = new MoveObject(position.x, position.y, speed, 5, cellManager);
+        System.out.println("MoveObject created in Cat");
         moveObject.generateRandomTarget(cellManager.getMapWidth(), cellManager.getMapHeight());
+        System.out.println("generateRandomTarget called in Cat");
     }
 
     @Override

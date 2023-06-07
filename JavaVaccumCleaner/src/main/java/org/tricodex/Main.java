@@ -19,7 +19,7 @@ import javax.swing.*;
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         GameObjectsFactory gameObjectsFactory = new GameObjectsFactory();
         CellManager cellManager = gameObjectsFactory.createCellManager();
         MapLoader mapLoader = gameObjectsFactory.createMapLoader(cellManager);
@@ -32,7 +32,9 @@ public class Main {
 
         DirtSensor dirtSensor = gameObjectsFactory.createDirtSensor(cellManager);
         Cat cat = gameObjectsFactory.createCat(cellManager);
-        Vacuum vacuum = gameObjectsFactory.createVacuum(dirtSensor, cellManager);
+        System.out.println("Cat created");
+        Vacuum vacuum = gameObjectsFactory.createVacuum(cellManager, dirtSensor);
+        System.out.println("Vacuum created");
         PowerUp powerUp = gameObjectsFactory.createPowerUp(cellManager);
         UserGuide userGuide = gameObjectsFactory.createUserGuide(vacuum);
         SurfacePanel surfacePanel = gameObjectsFactory.createSurfacePanel(cellManager);
@@ -42,6 +44,9 @@ public class Main {
 
         GamePanel gamePanel = new GamePanel(gameStateManager, gameUpdater, gameRenderer, screenSettings, inputHandler);
 
-        SwingUtilities.invokeLater(() -> new MainWindow(gamePanel));
+        SwingUtilities.invokeLater(() -> {
+            new MainWindow(gamePanel);
+            System.out.println("Main Window created");
+        });
     }
 }

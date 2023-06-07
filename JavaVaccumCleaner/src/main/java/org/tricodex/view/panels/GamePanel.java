@@ -41,9 +41,11 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void startGameThread() {
+        System.out.println("Game thread started");
         if(!isGameRunning) {
             gameThread.start();
             isGameRunning = true;
+            System.out.println("Game thread started");
         } else {
             throw new IllegalStateException("Game is already running!");
         }
@@ -52,6 +54,8 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void run() {
         long desiredUpdateTime = 1000 / screenSettings.getFPS();
+
+        System.out.println("Game running at " + screenSettings.getFPS() + " FPS");
 
         while (isGameRunning) {
             long startTime = System.nanoTime();

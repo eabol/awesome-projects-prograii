@@ -17,6 +17,8 @@ public class MainWindow extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
 
+        System.out.println("Main Window created");
+
         gamePanel.startGameThread();
     }
 }

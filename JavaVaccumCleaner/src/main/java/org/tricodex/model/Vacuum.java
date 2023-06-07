@@ -16,7 +16,7 @@ public class Vacuum extends MovingEntity implements Cleanable, RandomMoveable {
     private DirtSensor dirtSensor;
 
 
-    public Vacuum(Point position, DirtSensor dirtSensor, int speed, CellManager cellManager, int scale) {
+    public Vacuum(Point position, int speed, CellManager cellManager, int scale, DirtSensor dirtSensor) {
         super(position, speed, cellManager, scale);
         this.dirtSensor = dirtSensor;
     }

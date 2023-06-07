@@ -40,9 +40,10 @@ public class GameRenderer {
         this.leaderboardWindow = leaderboardWindow;
         this.assetPainter = assetPainter;
         this.generateWindows();
+
     }
 
-    public void generateWindows() {
+    private void generateWindows() {
         this.gameOverWindow = gameObjectsFactory.createGameOverWindow();
         this.gameEndedWindow = gameObjectsFactory.createGameEndedWindow();
     }

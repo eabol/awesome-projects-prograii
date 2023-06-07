@@ -17,15 +17,19 @@ public class MoveObject {
         this.speed = speed;
         this.minDistance = minDistance;
         this.cellManager = cellManager;
+        System.out.println("MoveObject constructor completed");
         generateRandomTarget(cellManager.getMapWidth(), cellManager.getMapHeight());
     }
 
     public void generateRandomTarget(int mapWidth, int mapHeight) {
+        int counter = 0;
         do {
             int x = random.nextInt(mapWidth);
             int y = random.nextInt(mapHeight);
             targetLocation = new Point(x, y);
-        } while (!isValidTargetLocation());
+            counter++;
+        } while (!isValidTargetLocation() && counter < 100);
+        System.out.println("generateRandomTarget method completed in MoveObject");
     }
 
     private boolean isValidTargetLocation() {

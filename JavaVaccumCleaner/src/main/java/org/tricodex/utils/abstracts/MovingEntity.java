@@ -13,6 +13,7 @@ public abstract class MovingEntity extends Entity {
 
     public MovingEntity(Point position, int speed, CellManager cellManager, int scale) {
         super(position);
+        System.out.println("Super constructor called in MovingEntity");
         this.speed = speed * scale;
         this.cellManager = cellManager;
         this.scale = scale;

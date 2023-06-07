@@ -24,14 +24,17 @@ public class GameObjectsFactory {
     }
 
     public LeaderboardWindow createLeaderboardWindow() {
+        System.out.println("Creating LeaderboardWindow");
         return new LeaderboardWindow(this.createScreenSettings());
     }
 
     public GameOverWindow createGameOverWindow() {
+        System.out.println("Creating GameOverWindow");
         return new GameOverWindow();
     }
 
     public GameEndedWindow createGameEndedWindow() {
+        System.out.println("Creating GameEndedWindow");
         return new GameEndedWindow();
     }
 
@@ -40,52 +43,64 @@ public class GameObjectsFactory {
     }
 
     public SurfacePanel createSurfacePanel(CellManager cellManager) {
+        System.out.println("Creating SurfacePanel");
         return new SurfacePanel(cellManager, createAssetPainter());
     }
 
     public Cat createCat(CellManager cellManager) {
+        System.out.println("Creating Cat");
         ScreenSettings screenSettings = this.createScreenSettings();
         return new Cat(new Point(600, 0), 4, cellManager, screenSettings.getScale());
     }
 
-    public Vacuum createVacuum(DirtSensor dirtSensor, CellManager cellManager) {
+    public Vacuum createVacuum(CellManager cellManager, DirtSensor dirtSensor) {
+        System.out.println("Creating Vacuum");
         ScreenSettings screenSettings = this.createScreenSettings();
-        return new Vacuum(new Point(0, 0), dirtSensor, 4, cellManager, screenSettings.getScale());
+        return new Vacuum(new Point(100, 100), 4, cellManager, screenSettings.getScale(), dirtSensor);
     }
 
     public PowerUp createPowerUp(CellManager cellManager) {
+        System.out.println("Creating PowerUp");
         return new PowerUp(new Point(0, 400), cellManager);
     }
 
-    public CellManager createCellManager() throws IOException {
+    public CellManager createCellManager()  {
+        System.out.println("Creating CellManager");
         return new CellManager(this.createScreenSettings(), this.createCellFactory());
     }
 
     public MapLoader createMapLoader(CellManager cellManager) {
+        System.out.println("Creating MapLoader");
         return new MapLoader(this.createScreenSettings(), cellManager);
     }
 
     public AssetPainter createAssetPainter() {
+        System.out.println("Creating AssetPainter");
         return new AssetPainter(this.createScreenSettings());
     }
 
     public CellFactory createCellFactory() {
+        System.out.println("Creating CellFactory");
         return new CellFactory(this.createAssetLoader());
     }
 
     public AssetLoader createAssetLoader() {
+        System.out.println("Creating AssetLoader");
         return new AssetLoader();
     }
 
     public UserGuide createUserGuide(Vacuum vaccum) {
+        System.out.println("Creating UserGuide");
         return new UserGuide(vaccum);
     }
 
     public ControlPanel createControlPanel(UserGuide userGuide, KeyHandler keyHandler) {
+        System.out.println("Creating ControlPanel");
         return new ControlPanel(userGuide, keyHandler);
     }
 
     public DirtSensor createDirtSensor(CellManager cellManager) {
+        System.out.println("Creating DirtSensor");
         return new DirtSensor(cellManager);
     }
 }
