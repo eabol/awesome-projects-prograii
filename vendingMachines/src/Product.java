@@ -1,15 +1,14 @@
 public class Product {
     protected String name;
     protected double price;
-    protected int[] quantity;
+    protected int id;
+    protected int quantity;
 
-    public Product(String name, double price, int quantity1, int quantity2, int quantity3) {
+    public Product(String name, double price, int id, int quantity) {
         this.name = name;
         this.price = price;
-        this.quantity = new int[3];
-        this.quantity[0] = quantity1;
-        this.quantity[1] = quantity2;
-        this.quantity[2] = quantity3;
+        this.id = id;
+        this.quantity = quantity;
     }
 
     public String getName() {
@@ -29,14 +28,18 @@ public class Product {
     }
 
     public int getQuantity(int i) {
-        return quantity[i];
+        return quantity;
     }
 
     public void setQuantity(int i, int quantity) {
-        this.quantity[i] = quantity;
+        this.quantity = quantity;
     }
 
     public void sell(int i) {
-        this.quantity[i] = this.quantity[i] - 1;
+        this.quantity = this.quantity - 1;
+    }
+
+    public int getId() {
+        return this.id;
     }
 }
