@@ -86,10 +86,12 @@ public class Supermarket {
 			}
 
 			if (queue.getQueueSize() >= 15 && cashier instanceof FastCashier && cashier.getState() == State.CLOSED) {
+				System.out.println("La caja rápida se ha abierto");
 				cashier.setState(State.OPEN);
 				cashier.insertOrder(queue.getQueue().get(0));
 				queue.removePerson();
 			} else if (queue.getQueueSize() <= 15 && cashier instanceof FastCashier && cashier.getState() == State.OPEN) {
+				System.out.println("La caja rápida se ha cerrado");
 				cashier.setState(State.CLOSED);
 			}
 		}
@@ -139,5 +141,9 @@ public class Supermarket {
 	}
 	public void simulateDay() {
 		begin();
+	}
+
+	public ArrayList<Cashier> getCashiers() {
+		return  cashiers;
 	}
 }
