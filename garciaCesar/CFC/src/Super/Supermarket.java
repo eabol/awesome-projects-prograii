@@ -53,17 +53,17 @@ public class Supermarket {
 
 	public void getAnyOrder() {
 			int probablity = (int)(Math.random()*100+1);
-			if (probablity<=40){
+			if (probablity<=20){
 				System.out.println("Llega un cliente normal");
 				queue.addOrder(new NormalOrder());
 
 			}
-			if (probablity>=90){
+			if (probablity>=95){
 				System.out.println("Llega un cliente con pedido a domicilio");
 				queue.addOrder(new DeliveryOrder());
 
 			}
-			if (probablity>40 && probablity<90){
+			if (probablity>20 && probablity<95){
 				System.out.println("No llega ningun cliente");
 			}
 	}
