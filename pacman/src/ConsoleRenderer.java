@@ -8,7 +8,6 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
-import java.security.acl.Owner;
 
 public class ConsoleRenderer implements Renderer {
 
@@ -28,8 +27,14 @@ public class ConsoleRenderer implements Renderer {
             screen.startScreen();
 
             printMaze(game.getMaze());
+
             this.printCharacter(game.getPacman());
-            readUserInput(terminal);
+
+            game.start();
+
+            while(game.isRunning()){
+                readUserInput(terminal, game.getPacman());
+            }
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -63,19 +68,41 @@ public class ConsoleRenderer implements Renderer {
         refresh();
     }
 
-    private void readUserInput(Terminal terminal) throws IOException {
-            keyStroke = terminal.pollInput();
+    private void readUserInput(Terminal terminal, Pacman pacman) throws IOException {
+        keyStroke = terminal.pollInput();
+        if(keyStroke!= null){
+            if(keyStroke.getKeyType() == KeyType.Escape || keyStroke.getKeyType() == KeyType.EOF) {
+                this.close();
+            }
 
-            if(keyStroke!= null){
-                if(keyStroke.getKeyType() == KeyType.Escape || keyStroke.getKeyType() == KeyType.EOF) {
-                    this.close();
-                    
-                }
-
-                if (keyStroke.getKeyType() == KeyType.Character) {
-                    System.out.println("KeyStroke: " + keyStroke.getCharacter());
+            if (keyStroke.getKeyType() == KeyType.Character) {
+                switch(Character.toLowerCase((keyStroke.getCharacter()))) {
+                    case 'p':
+                        this.close();
+                        break;
+                    case 'a':
+                        movePacman(pacman, Direction.LEFT);
+                        break;
+                    case 'd':
+                        movePacman(pacman, Direction.RIGHT);
+                        break;
+                    case 'w':
+                        movePacman(pacman, Direction.UP);
+                        break;
+                    case 's':
+                        movePacman(pacman, Direction.DOWN);
+                        break;
                 }
             }
+        }
+    }
+
+    private void movePacman(Pacman pacman, Direction direction) throws IOException {
+        int[] previousPosition = {pacman.getX(), pacman.getY()};
+        int[] newPosition = pacman.move(direction);
+        if (newPosition[0] != previousPosition[0] || newPosition[1] != previousPosition[1]) {
+            printCharacter(pacman, previousPosition);
+        }
     }
     
     private void printCharacter(Pacman pacman) throws IOException {
@@ -86,6 +113,15 @@ public class ConsoleRenderer implements Renderer {
         textGraphics.putString(pacman.getX() == 0 ? 0 : ((pacman.getX()-1) * 3), pacman.getY(), " " + Symbols.SOLID_SQUARE + " ", SGR.BOLD);
 
         refresh();
+    }
+    private void printCharacter(Pacman pacman, int[] previousPosition) throws IOException {
+        printCell(previousPosition);
+        printCharacter(pacman);
+    }
+
+    private void printCell(int[] position) throws IOException {
+        TextGraphics textGraphics = this.screen.newTextGraphics();
+        textGraphics.putString(position[0] == 0 ? 0 : ((position[0]-1) * 3), position[1], "   ");
     }
 
 

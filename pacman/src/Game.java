@@ -4,6 +4,7 @@ public class Game {
     private Maze maze;
     private Pacman pacman;
     private List<Ghost> ghosts;
+    private boolean isRunning = false;
 
     public Game(){
         int[][] map = {
@@ -42,6 +43,7 @@ public class Game {
     }
     
     public void start() {
+        this.isRunning = true;
     }
     
     public void stop() {
@@ -61,5 +63,8 @@ public class Game {
     }
     public Pacman getPacman() {
         return pacman;
+    }
+    public boolean isRunning() {
+        return isRunning;
     }
 }

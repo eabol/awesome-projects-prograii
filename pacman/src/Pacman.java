@@ -15,8 +15,5 @@ public class Pacman extends GameCharacter {
     public void die() {
         // Lógica para el Pacman muerto
     }
-
-    public void draw() {
-        // Lógica para dibujar el Pacman
-    }
+    
 }

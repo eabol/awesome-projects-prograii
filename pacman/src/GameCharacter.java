@@ -20,11 +20,25 @@ public abstract class GameCharacter implements GameElement {
         return direction;
     }
     
-    public void move() {
-        // Lógica para mover el personaje
+    public int[] move(Direction direction) {
+        this.direction = direction;
+        switch(direction) {
+            case UP:
+                y--;
+                break;
+            case DOWN:
+                y++;
+                break;
+            case LEFT:
+                x--;
+                break;
+            case RIGHT:
+                x++;
+                break;
+        }
+        int[] position = {x, y};
+        return position;
     }
-    
-    public abstract void draw();
 
     public abstract void die();
 }
