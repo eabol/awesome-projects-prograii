@@ -1,4 +1,6 @@
-package org.tricodex.view;
+package org.tricodex.view.windows;
+
+import org.tricodex.view.panels.GamePanel;
 
 import java.awt.*;
 

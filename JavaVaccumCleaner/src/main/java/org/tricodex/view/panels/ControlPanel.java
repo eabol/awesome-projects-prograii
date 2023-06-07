@@ -1,8 +1,9 @@
-package org.tricodex.view;
+package org.tricodex.view.panels;
 
 import org.tricodex.model.UserGuide;
 import org.tricodex.utils.abstracts.Panel;
 import org.tricodex.utils.enums.MoveDirection;
+import org.tricodex.view.handlers.KeyHandler;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class  ControlPanel extends Panel {
         }};
     }
 
-    void actionPerformed() {
+    public void actionPerformed() {
         keyMapping.forEach((keyPress, direction) -> {
             if (keyPress.getAsBoolean()) {
                 userGuide.guideVaccume(direction);

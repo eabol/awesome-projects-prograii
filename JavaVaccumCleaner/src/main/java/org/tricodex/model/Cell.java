@@ -8,35 +8,39 @@ import java.awt.image.BufferedImage;
 
 public class Cell extends Entity {
     private DirtLevel dirtLevel;
-    private boolean hasFurniture;
-    public BufferedImage image;
+    private final boolean isCollidable;
+    private final BufferedImage image;
 
-    public Cell(Point position, DirtLevel dirtLevel, boolean hasFurniture) {
+    public Cell(Point position, DirtLevel dirtLevel, boolean isCollidable, BufferedImage image) {
         super(position);
         this.dirtLevel = dirtLevel;
-        this.hasFurniture = hasFurniture;
+        this.isCollidable = isCollidable;
+        this.image = new BufferedImage(image.getColorModel(), image.copyData(null), image.isAlphaPremultiplied(), null);
     }
 
     public void clean() {
-        dirtLevel = dirtLevel.previous();
-    }
-
-    public void foul() {
-        dirtLevel = dirtLevel.next();
+        DirtLevel previousDirtLevel = dirtLevel.previous();
+        if (previousDirtLevel != null) {
+            dirtLevel = previousDirtLevel;
+        }
     }
 
     public void increaseDirtLevel() {
-        dirtLevel = dirtLevel.next();
+        DirtLevel nextDirtLevel = dirtLevel.next();
+        if (nextDirtLevel != null) {
+            dirtLevel = nextDirtLevel;
+        }
     }
 
-    public boolean hasFurniture() {
-        return hasFurniture;
-    }
-    public void setHasFurniture(boolean setBoolean) {
-        hasFurniture = setBoolean;
+    public boolean canCollide() {
+        return isCollidable;
     }
 
     public DirtLevel getDirtLevel() {
         return dirtLevel;
+    }
+
+    public BufferedImage getImage() {
+        return new BufferedImage(image.getColorModel(), image.copyData(null), image.isAlphaPremultiplied(), null);
     }
 }

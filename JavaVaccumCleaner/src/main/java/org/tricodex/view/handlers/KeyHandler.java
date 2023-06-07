@@ -1,6 +1,8 @@
-package org.tricodex.view;
+package org.tricodex.view.handlers;
 
+import org.tricodex.utils.enums.GameState;
 import org.tricodex.utils.enums.MoveDirection;
+import org.tricodex.view.manager.GameStateManager;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -8,6 +10,11 @@ import java.util.EnumSet;
 
 public class KeyHandler implements KeyListener {
     private EnumSet<MoveDirection> activeDirections = EnumSet.noneOf(MoveDirection.class);
+    private final GameStateManager gameStateManager;
+
+    public KeyHandler(GameStateManager gameStateManager) {
+        this.gameStateManager = gameStateManager;
+    }
 
     public boolean isUpPressed() {
         return activeDirections.contains(MoveDirection.UP);
@@ -25,17 +32,10 @@ public class KeyHandler implements KeyListener {
         return activeDirections.contains(MoveDirection.RIGHT);
     }
 
-    /**
-     * An empty implementation of keyTyped, as it is not needed for this class.
-     */
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
-    /**
-     * Handles keyPressed events by adding the corresponding direction to the activeDirections set.
-     */
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -43,20 +43,31 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_DOWN -> activeDirections.add(MoveDirection.DOWN);
             case KeyEvent.VK_LEFT -> activeDirections.add(MoveDirection.LEFT);
             case KeyEvent.VK_RIGHT -> activeDirections.add(MoveDirection.RIGHT);
-        }
-
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE && GamePanel.gameState == GamePanel.GameState.GAME) {
-            if (GamePanel.paused) {
-                GamePanel.paused = false;
-            } else {
-                GamePanel.paused = true;
+            case KeyEvent.VK_ENTER -> {
+                if (gameStateManager.getGameState() == GameState.MENU) {
+                    gameStateManager.setGameState(GameState.GAME);
+                }
+            }
+            case KeyEvent.VK_SPACE -> {
+                if (gameStateManager.getGameState() == GameState.GAME_OVER) {
+                    gameStateManager.setGameState(GameState.MENU);
+                }
+            }
+            case KeyEvent.VK_ESCAPE -> {
+                if (gameStateManager.getGameState() == GameState.GAME) {
+                    gameStateManager.setGameState(GameState.PAUSE);
+                } else if (gameStateManager.getGameState() == GameState.PAUSE) {
+                    gameStateManager.setGameState(GameState.GAME);
+                }
+            }
+            case KeyEvent.VK_R -> {
+                if (gameStateManager.getGameState() == GameState.GAME_OVER) {
+                    gameStateManager.setGameState(GameState.GAME);
+                }
             }
         }
     }
 
-    /**
-     * Handles keyReleased events by removing the corresponding direction from the activeDirections set.
-     */
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {

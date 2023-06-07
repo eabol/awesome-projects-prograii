@@ -1,45 +1,20 @@
 package org.tricodex.view.assets;
 
-import org.tricodex.model.manager.CellManager;
-import org.tricodex.utils.settings.ScreenSettings;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
 
 public class AssetLoader {
-    ScreenSettings screenSettings;
-    public AssetLoader(ScreenSettings screenSettings) {
-        this.screenSettings = screenSettings;
-
-    }
-    public void loadMap(CellManager cellManager, ScreenSettings screenSettings, int mapCellNum[][], String path) {
+    public BufferedImage loadImage(String imagePath) {
         try {
-            InputStream is = getClass().getResourceAsStream(path);
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
-            int col = 0;
-            int row = 0;
-
-            while (col < screenSettings.getMaxScreenTilesWidth() && row < screenSettings.getMaxScreenTilesHeight()) {
-                String line = br.readLine();
-                while (col < screenSettings.getMaxScreenTilesWidth()) {
-                    String numbers[] = line.split(" ");
-                    int num = Integer.parseInt(numbers[col]);
-
-                    mapCellNum[col][row] = num;
-                    col++;
-                }
-                if (col == screenSettings.getMaxScreenTilesWidth()) {
-                    col = 0;
-                    row++;
-                }
+            URL resourceUrl = getClass().getClassLoader().getResource(imagePath);
+            if (resourceUrl == null) {
+                throw new IllegalArgumentException("Could not find resource on path: " + imagePath);
             }
-            br.close();
-
-        }catch (Exception e) {
-
+            return ImageIO.read(resourceUrl);
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load image: " + imagePath, e);
         }
     }
 }
-

@@ -1,8 +1,10 @@
-package org.tricodex.view;
+package org.tricodex.view.windows;
+
+import org.tricodex.view.panels.GamePanel;
 
 import java.awt.*;
 
-public class GameOverWindow {
+public class PauseWindow {
     public Rectangle goBackButton = new Rectangle(GamePanel.WIDTH / 2 + 400, 250, 250, 50);
     public void render(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -11,7 +13,7 @@ public class GameOverWindow {
         g.setFont(fnt0);
 
         g.setColor(Color.black);
-        g.drawString("Coming Soon...", GamePanel.WIDTH/2 + 400, 150);
+        g.drawString("Paused", GamePanel.WIDTH/2 + 400, 150);
 
         Font fnt1 = new Font("arial", Font.BOLD, 30);
         g.setFont(fnt1);

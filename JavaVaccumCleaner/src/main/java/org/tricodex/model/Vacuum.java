@@ -16,8 +16,8 @@ public class Vacuum extends MovingEntity implements Cleanable, RandomMoveable {
     private DirtSensor dirtSensor;
 
 
-    public Vacuum(Point position, Surface surface, DirtSensor dirtSensor, int speed, CellManager cellManager) {
-        super(position, surface, speed, cellManager);
+    public Vacuum(Point position, DirtSensor dirtSensor, int speed, CellManager cellManager, int scale) {
+        super(position, speed, cellManager, scale);
         this.dirtSensor = dirtSensor;
     }
 
@@ -27,11 +27,9 @@ public class Vacuum extends MovingEntity implements Cleanable, RandomMoveable {
 
     @Override
     public void clean() {
-
-        surface.getCell(position).clean();
+        //TODO
+        cellManager.getCellByPoint(this.position).clean();
         bagContent++;
-
-
     }
 
     @Override

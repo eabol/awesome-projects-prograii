@@ -1,24 +1,22 @@
 package org.tricodex.utils.abstracts;
 
-import org.tricodex.model.Cell;
-import org.tricodex.model.Surface;
 import org.tricodex.model.manager.CellManager;
 import org.tricodex.utils.enums.MoveDirection;
 
 import java.awt.*;
 
 public abstract class MovingEntity extends Entity {
-
-    protected Surface surface;
-    private CellManager cellManager;
+    protected CellManager cellManager;
     protected int offset = 32;
     protected int speed;
+    protected int scale;
 
-    public MovingEntity(Point position, Surface surface, int speed, CellManager cellManager) {
+    public MovingEntity(Point position, int speed, CellManager cellManager, int scale) {
         super(position);
-        this.surface = surface;
-        this.speed = speed;
+        this.speed = speed * scale;
         this.cellManager = cellManager;
+        this.scale = scale;
+        this.offset = cellManager.getCellSize() * scale / 2;
     }
 
     protected void move(MoveDirection direction) {
@@ -41,7 +39,7 @@ public abstract class MovingEntity extends Entity {
 
     public void moveDown() {
         int newX = position.x;
-        int newY = Math.min(position.y + speed, surface.getHeight() - offset);
+        int newY = Math.min(position.y + speed, cellManager.getMapHeight() - offset);
 
         if (!willCollide(newX, newY)) {
             position.y = newY;
@@ -49,7 +47,7 @@ public abstract class MovingEntity extends Entity {
     }
 
     public void moveRight() {
-        int newX = Math.min(position.x + speed, surface.getWidth() - offset);
+        int newX = Math.min(position.x + speed, cellManager.getMapWidth() - offset);
         int newY = position.y;
 
         if (!willCollide(newX, newY)) {
@@ -67,8 +65,8 @@ public abstract class MovingEntity extends Entity {
     }
 
     private boolean willCollide(int newX, int newY) {
-        int tileSize = surface.getTileSize();
-        int playerSize = surface.getTileSize();
+        int tileSize = cellManager.getCellSize();
+        int playerSize = cellManager.getCellSize();
 
         int topLeftX = newX / tileSize;
         int topLeftY = newY/tileSize;
@@ -82,8 +80,8 @@ public abstract class MovingEntity extends Entity {
         int bottomRightX = topRightX;
         int bottomRightY = bottomLeftY;
 
-        return cellManager.getCell(cellManager.getMapCellNumber()[topLeftX][topLeftY]).hasFurniture() || cellManager.getCell(cellManager.getMapCellNumber()[topRightX][topRightY]).hasFurniture()
-                || cellManager.getCell(cellManager.getMapCellNumber()[bottomLeftX][bottomLeftY]).hasFurniture() || cellManager.getCell(cellManager.getMapCellNumber()[bottomRightX][bottomRightY]).hasFurniture();
+        return cellManager.getCellByPoint(new Point(topLeftX, topLeftY)).canCollide() || cellManager.getCellByPoint(new Point(topRightX, topRightY)).canCollide()
+                || cellManager.getCellByPoint(new Point(bottomLeftX, bottomLeftY)).canCollide() || cellManager.getCellByPoint(new Point(bottomRightX, bottomRightY)).canCollide();
     }
 
 }
