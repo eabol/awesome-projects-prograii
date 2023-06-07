@@ -48,7 +48,7 @@ public class GameRenderer {
         this.gameEndedWindow = gameObjectsFactory.createGameEndedWindow();
     }
 
-    public void render(Graphics g, boolean catHasSpawned, GameState gameState) {
+    public void render(Graphics g, boolean catHasSpawned, GameState gameState)  {
         Graphics2D g2d = (Graphics2D) g;
         switch (gameState) {
             case GAME -> paintGameState(g2d, catHasSpawned);
@@ -66,7 +66,7 @@ public class GameRenderer {
         if (catHasSpawned) {
             assetPainter.paintEntity(g2d, cat, Color.BLUE);
         }
-        assetPainter.paintEntity(g2d, vacuum, Color.BLACK);
+        assetPainter.paintEntity(g2d, powerUp, Color.BLACK);
         g2d.dispose();
     }
 
@@ -85,8 +85,8 @@ public class GameRenderer {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, screenSettings.getScreenWidth(), screenSettings.getScreenHeight());
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 50));
-        g.drawString("PAUSED", 300, 300);
+        g.setFont(new Font("Arial", Font.BOLD, 60));
+        g.drawString("PAUSED", 650, 500);
     }
 
     private void paintGameEndedState(Graphics g) {
@@ -96,7 +96,15 @@ public class GameRenderer {
 
     private void paintGameOverState(Graphics g) {
         clearScreen(g);
-        gameOverWindow.render(g);
+    }
+
+    private void paintGameStatistic(Graphics g){
+
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 60));
+        g.drawString("Score:", 0, 0);
+
+
     }
 
     private void clearScreen(Graphics g) {

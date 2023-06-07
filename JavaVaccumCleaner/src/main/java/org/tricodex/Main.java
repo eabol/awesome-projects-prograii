@@ -7,6 +7,7 @@ import org.tricodex.utils.settings.ScreenSettings;
 import org.tricodex.view.handlers.InputHandler;
 import org.tricodex.view.manager.GameStateManager;
 import org.tricodex.model.map.MapLoader;
+import org.tricodex.view.panels.ControlPanel;
 import org.tricodex.view.panels.GamePanel;
 import org.tricodex.view.panels.SurfacePanel;
 import org.tricodex.view.renderer.GameRenderer;
@@ -38,8 +39,9 @@ public class Main {
         PowerUp powerUp = gameObjectsFactory.createPowerUp(cellManager);
         UserGuide userGuide = gameObjectsFactory.createUserGuide(vacuum);
         SurfacePanel surfacePanel = gameObjectsFactory.createSurfacePanel(cellManager);
+        ControlPanel controlPanel = gameObjectsFactory.createControlPanel(userGuide, inputHandler.getKeyHandler());
 
-        GameUpdater gameUpdater = new GameUpdater(gameObjectsFactory.createControlPanel(userGuide, inputHandler.getKeyHandler()), cat);
+        GameUpdater gameUpdater = new GameUpdater(controlPanel, cat, vacuum);
         GameRenderer gameRenderer =  new GameRenderer(menuWindow, leaderboardWindow, gameObjectsFactory, screenSettings, surfacePanel, cat, vacuum, powerUp, gameObjectsFactory.createAssetPainter());
 
         GamePanel gamePanel = new GamePanel(gameStateManager, gameUpdater, gameRenderer, screenSettings, inputHandler);

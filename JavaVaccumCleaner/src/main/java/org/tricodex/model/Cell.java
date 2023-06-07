@@ -43,4 +43,8 @@ public class Cell extends Entity {
     public BufferedImage getImage() {
         return new BufferedImage(image.getColorModel(), image.copyData(null), image.isAlphaPremultiplied(), null);
     }
+
+    public boolean cellIsDirty() {
+        return dirtLevel != DirtLevel.CLEAN;
+    }
 }

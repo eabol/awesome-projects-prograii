@@ -69,6 +69,12 @@ public class Vacuum extends MovingEntity implements Cleanable, RandomMoveable {
         batteryLevel--;
     }
 
+    public void vacuumClean() {
+        Cell currentCell = cellManager.getCellByPoint(position);
+        if (currentCell.cellIsDirty()) {
+            cellManager.getCellByPoint(position).increaseDirtLevel();
+        }
+    }
 
     public int getBagCapacity() {
         return bagCapacity;
@@ -93,4 +99,6 @@ public class Vacuum extends MovingEntity implements Cleanable, RandomMoveable {
     public void setBatteryLevel(int batteryLevel) {
         this.batteryLevel = batteryLevel;
     }
+
+
 }

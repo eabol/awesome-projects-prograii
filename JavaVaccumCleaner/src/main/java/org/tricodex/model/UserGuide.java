@@ -9,7 +9,7 @@ public class UserGuide {
         this.vacuum = vacuum;
     }
 
-    public void guideVaccume(MoveDirection position) {
+    public void guideVacuum(MoveDirection position) {
         vacuum.move(position);
     }
 

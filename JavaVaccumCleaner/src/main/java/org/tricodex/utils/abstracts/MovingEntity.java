@@ -7,13 +7,12 @@ import java.awt.*;
 
 public abstract class MovingEntity extends Entity {
     protected CellManager cellManager;
-    protected int offset = 32;
+    protected int offset;
     protected int speed;
     protected int scale;
 
     public MovingEntity(Point position, int speed, CellManager cellManager, int scale) {
         super(position);
-        System.out.println("Super constructor called in MovingEntity");
         this.speed = speed * scale;
         this.cellManager = cellManager;
         this.scale = scale;
@@ -65,6 +64,7 @@ public abstract class MovingEntity extends Entity {
         }
     }
 
+
     private boolean willCollide(int newX, int newY) {
         int tileSize = cellManager.getCellSize();
         int playerSize = cellManager.getCellSize();
@@ -80,6 +80,9 @@ public abstract class MovingEntity extends Entity {
 
         int bottomRightX = topRightX;
         int bottomRightY = bottomLeftY;
+
+        System.out.println(cellManager.getCellByPoint(new Point(topLeftX, topLeftY)).canCollide() + " " + cellManager.getCellByPoint(new Point(topRightX, topRightY)).canCollide()
+                + " " + cellManager.getCellByPoint(new Point(bottomLeftX, bottomLeftY)).canCollide() + " " + cellManager.getCellByPoint(new Point(bottomRightX, bottomRightY)).canCollide());
 
         return cellManager.getCellByPoint(new Point(topLeftX, topLeftY)).canCollide() || cellManager.getCellByPoint(new Point(topRightX, topRightY)).canCollide()
                 || cellManager.getCellByPoint(new Point(bottomLeftX, bottomLeftY)).canCollide() || cellManager.getCellByPoint(new Point(bottomRightX, bottomRightY)).canCollide();

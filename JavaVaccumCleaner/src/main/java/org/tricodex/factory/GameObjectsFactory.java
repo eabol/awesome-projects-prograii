@@ -56,7 +56,7 @@ public class GameObjectsFactory {
     public Vacuum createVacuum(CellManager cellManager, DirtSensor dirtSensor) {
         System.out.println("Creating Vacuum");
         ScreenSettings screenSettings = this.createScreenSettings();
-        return new Vacuum(new Point(100, 100), 4, cellManager, screenSettings.getScale(), dirtSensor);
+        return new Vacuum(new Point(150, 150), 4, cellManager, screenSettings.getScale(), dirtSensor);
     }
 
     public PowerUp createPowerUp(CellManager cellManager) {

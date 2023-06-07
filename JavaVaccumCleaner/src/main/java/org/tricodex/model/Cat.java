@@ -27,4 +27,8 @@ public class Cat extends MovingEntity implements RandomMoveable {
         moveObject.moveToTarget();
         position = new Point(moveObject.getCurrentLocation());
     }
+
+    public void catFoul(){
+        cellManager.getCellByPoint(position).increaseDirtLevel();
+    }
 }

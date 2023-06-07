@@ -26,7 +26,7 @@ public class  ControlPanel extends Panel {
     public void actionPerformed() {
         keyMapping.forEach((keyPress, direction) -> {
             if (keyPress.getAsBoolean()) {
-                userGuide.guideVaccume(direction);
+                userGuide.guideVacuum(direction);
             }
         });
     }
