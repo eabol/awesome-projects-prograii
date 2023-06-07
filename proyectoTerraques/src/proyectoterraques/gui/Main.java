@@ -8,6 +8,7 @@ public class Main {
         DebitAccount debito0 = new DebitAccount("000000");
         CreditAccount credito0 = new CreditAccount("0000");
         DebitAccount debito1 = new DebitAccount("0000001");
+        DebitAccount debito2 = new DebitAccount("0000002");
         CreditAccount credito1 = new CreditAccount("0001");
 
         debito0.showAccountData();
