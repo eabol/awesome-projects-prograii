@@ -1,99 +1,140 @@
 @startuml
 
-abstract class Cashier {
-    +numItemsProcessed: int
-    +clientsServed: int
-    +number: int
-    +state: State
-    +actualItems: int
-    -getState(): State
-    -setState(State): void
-    -open(): void
-    -getNumItemsProcessed(): int
-    -setNumItemsProcessed(int): void
-    -getClientsServed(): int
-    -setClientsServed(int): void
-    -getNumber(): int
-    -setNumber(int): void
-    -getActualItems(): int
-    -setActualItems(int): void
-    -insertOrder(Order): void
-    -processOrder(): void
+package Cashiers {
+  abstract class Cashier {
+    - numItemsProcessed: int
+    - clientsServed: int
+    - number: int
+    - state: State
+    - actualItems: int
+    + Cashier(number: int)
+    + getState(): State
+    + setState(state: State): void
+    + getNumItemsProcessed(): int
+    + setNumItemsProcessed(numItemsProcessed: int): void
+    + getClientsServed(): int
+    + setClientsServed(clientsServed: int): void
+    + getNumber(): int
+    + setNumber(number: int): void
+    + getActualItems(): int
+    + setActualItems(actualItems: int): void
+    + insertOrder(order: Order): void
+    + processOrder(): void
+  }
 
-}
+  class FastCashier {
+    + FastCashier(number: int)
+    + processOrder(): void
+  }
 
-class FastCashier {
-    +open : boolean
-    -isOpen(): boolean
-    -open(): void
-    -close(): void
+  class NormalCashier {
+    + NormalCashier(number: int)
+  }
 
-}
-
-class NormalCashier {
-    +open : boolean
-    -isOpen(): boolean
-    -open(): void
-    -close(): void
-
-}
-
-abstract class Order {
-    +int numItems
-    -getNumitems(): int
-    -setNumItems(int): void
-}
-
-enum state {
+  enum State {
     OPEN
     CLOSED
     BUSY
+  }
 }
 
-class NormalOrder {
-    -numberOfItems: int
+package Exceptions {
+class OptionNotValidException {
+    + OptionNotValidException()
+  }
+  class CloseCashierException {
+    + CloseCashierException()
+  }
+
+  class OpenCashierException {
+    + OpenCashierException()
+  }
 }
 
-class DeliveryOrder {
-    +isDelivery: boolean
-    -isDelivery(): boolean
-    -numberOfItems(): int
-}
+package Orders {
+  interface Delivery {
+    + isDelivery(): boolean
+  }
 
-interface Status {
-    +isOpen(): boolean
-}
-interface Delivery{
-    +isDelivery(): boolean
-}
-class Queue {
-    +Arraylist <Order>
-    +int minutesWithoutQueue
-    -getQueue(): Order[]
-    -setQueue(Order[]): void
-    -getMinutesWithoutQueue(): int
-    -setMinutesWithoutQueue(int): void
-    -addOrder(Order): void
-    -getQueueSize(): int
-    -removePerson(): void
+  class Order {
+    - numItems: int
+    + Order()
+    + getNumItems(): int
+    + setNumItems(numItems: int): void
+  }
 
+  class DeliveryOrder {
+    - isDelivery: boolean
+    + DeliveryOrder()
+    + isDelivery(): boolean
+    + numberOfItems(): int
+  }
+
+  class NormalOrder {
+    + NormalOrder()
+    + NormalOrder(i: int)
+    + numberOfItems(): int
+  }
 }
-
-
+package Super{
 class Supermarket {
-    -cashier: Cashier[]
-    +getCashier(): Cashier[]
+  - cashiers: ArrayList<Cashier>
+  - queue: Queue
+  + Supermarket()
+  + begin(): void
+  + closedSupermarket(): void
+  + openSupermarket(): void
+  + getAnyOrder(): void
+  + nextMinute(cashiers: ArrayList<Cashier>): void
+  + summary(): void
+  + addCashier(): void
+  + closeCashier(): void
+  + showCashiers(): void
+  + simulateArrival(): void
+  + simulateDay(): void
+  + getCashiers(): ArrayList<Cashier>
 }
+
+class Queue {
+  - queue: ArrayList<Order>
+  + Queue()
+  + getQueue(): ArrayList<Order>
+  + setQueue(queue: ArrayList<Order>): void
+  + addOrder(order: Order): void
+  + removePerson(): void
+  + getQueueSize(): int
+}
+
+class Menu {
+  - options: ArrayList<String>
+  + Menu()
+  + addOption(option: String): void
+  + showMenu(): void
+  + selectOption(): int
+}
+}
+class Main {
+  + main(args: String[]): void
+}
+
+Menu--> OptionNotValidException: throws
+Supermarket  ---->  OpenCashierException: throws
+Supermarket  ---->  CloseCashierException: throws
 
 Cashier <|-- FastCashier
 Cashier <|-- NormalCashier
-Order <|-- NormalOrder
-Order <|-- DeliveryOrder
-Status <|.. FastCashier
-Status <|.. NormalCashier
+Cashier  *--  State: uses
+Main --> Supermarket
+Main --> Menu
+
+
+Order <|.. DeliveryOrder
+Order <|.. NormalOrder
+
 Delivery <|.. DeliveryOrder
-Cashier --o Supermarket : contains
-Queue --o Supermarket
-Order --o Supermarket
+Queue  o-- Order
+Supermarket  o---  Cashier
+Supermarket  o-- Queue
+
 
 @enduml
