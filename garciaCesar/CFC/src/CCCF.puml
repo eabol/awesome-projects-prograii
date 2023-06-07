@@ -128,8 +128,8 @@ Main --> Supermarket
 Main --> Menu
 
 
-Order <|.. DeliveryOrder
-Order <|.. NormalOrder
+Order <|-- DeliveryOrder
+Order <|-- NormalOrder
 
 Delivery <|.. DeliveryOrder
 Queue  o-- Order
