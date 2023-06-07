@@ -4,9 +4,9 @@ El repositorio original se encuentra en el siguiente enlace: https://github.com/
 
 ## Encargados
 
--   Jorge Quiñonez
--   David Montenegro
--   Veronika Esparragoza
+- Jorge Quiñonez
+- David Montenegro
+- Veronika Esparragoza
 
 ## Manejo del repositorio
 
@@ -21,22 +21,23 @@ Finalmente cada semana (Lunes) se va a realizar el Pull Request desde Develop a 
 1. Jorge
 2. David
 3. Veronika
+
 ## Generalidades
 
 El proyecto debe cumplir con algunos requisitos mínimos basándonos en el checklist que se muestra abajo.
 
 ## Checklist
 
--   [ ] 5 Clases
--   [ ] 2 Clases Abstractas
--   [ ] 2 Interfaces
--   [ ] 1 uso de alguna colección
--   [ ] 2 tests unitarios por cada clase
--   [ ] Diagrama UML (PlantUML)
--   [ ] 3 PR por cada repositorio
--   [ ] Uso de paquetes para organizar el proyecto
--   [ ] Manejo de excepciones.
--   [ ] Documento README.md con las instrucciones para ejecutar el proyecto y con la estructura descrita abajo.
+- [ ] 5 Clases
+- [ ] 2 Clases Abstractas
+- [ ] 2 Interfaces
+- [ ] 1 uso de alguna colección
+- [ ] 2 tests unitarios por cada clase
+- [ ] Diagrama UML (PlantUML)
+- [ ] 3 PR por cada repositorio
+- [ ] Uso de paquetes para organizar el proyecto
+- [ ] Manejo de excepciones.
+- [ ] Documento README.md con las instrucciones para ejecutar el proyecto y con la estructura descrita abajo.
 
 ## Documento README.md
 
