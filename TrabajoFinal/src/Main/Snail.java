@@ -10,7 +10,7 @@ public class Snail {
 
 
     public Snail() {
-        fatigue=new Fatigue("The snail is tired");
+        fatigue=new Fatigue();
         this.state=State.ALIVE;
         fallInHole();
 
@@ -37,8 +37,8 @@ public class Snail {
 
     public void fallInHole(){
        Tier tier=new Tier();
-        altitude =-tier.getValue(10,20);
-        System.out.println(name+" begin in the altitude "+altitude);
+        altitude =-tier.getValue(10,19);
+        System.out.print(name+" begin in the altitude "+altitude);
     }
 
     public int getAltitude() {
@@ -49,13 +49,13 @@ public class Snail {
         Tier tier=new Tier();
         int up=tier.getValue(1,fatigue.getSeverity(Day.getDay()));
         this.altitude +=up;
-        System.out.println(name+" rise "+up+" and is in the altitude "+altitude);
+        System.out.print(name+" rise "+up+ " / ");
     }
     public void drop(){
         Tier tier=new Tier();
-        int down=-tier.getValue(0,2);
+        int down=tier.getValue(0,2);
         this.altitude-=down;
-        System.out.println(name+" drop "+ down);
+        System.out.print(name+" drop "+ down + " / ");
 
     }
 

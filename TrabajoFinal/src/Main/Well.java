@@ -15,7 +15,6 @@ public  class Well {
 
     public Well() {
         this.depth = -20;
-        this.snail = new Snail();
     }
 
     public void survive() throws Death {
@@ -29,7 +28,7 @@ public  class Well {
 
             if (waterDepth >= this.snail.getAltitude()) {
                 isAlive = false;
-                throw new Death("Main.Snail is dead");
+                throw new Death("Snail is dead");
             }
 
             System.out.println();

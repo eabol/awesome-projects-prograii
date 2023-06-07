@@ -8,7 +8,7 @@ public class Car{
         Random r= new Random();
         int probability=r.nextInt(100);
         if(probability<=35){
-            return Warning.CAR_PASS;
+            return Warning.CAR_PASS ;
         }else {
             return Warning.CAR_NOT_PASS;
         }

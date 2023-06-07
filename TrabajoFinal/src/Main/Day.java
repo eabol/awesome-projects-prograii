@@ -1,7 +1,7 @@
 package Main;
 
  public class Day {
-     int day=1;
+    static int day=1;
 
 
     public static void nextDay(){
