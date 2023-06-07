@@ -1,10 +1,12 @@
+package Super;
+
+
 import Orders.Order;
 
 import java.util.ArrayList;
 
 public class Queue {
 	private ArrayList<Order> queue ;
-
 	public Queue() {
 		this.queue = new ArrayList<Order>();
 	}
@@ -15,7 +17,6 @@ public class Queue {
 		this.queue = queue;
 	}
 
-
 	public void addOrder(Order order) {
 		this.queue.add(order);
 	}
@@ -24,9 +25,6 @@ public class Queue {
 	}
 	public int getQueueSize() {
 		return this.queue.size();
-	}
-	public void setQueueSize(int size) {
-		this.queue.size();
 	}
 
 

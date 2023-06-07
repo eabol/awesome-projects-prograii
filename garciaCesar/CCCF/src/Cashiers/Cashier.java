@@ -9,6 +9,7 @@ public abstract class Cashier {
 	protected State state;
 	protected int actualItems = 0;
 
+
 	public Cashier(int number) {
 		this.number = number;
 	}
@@ -56,7 +57,6 @@ public abstract class Cashier {
 		}
 
 	}
-
 
 
 

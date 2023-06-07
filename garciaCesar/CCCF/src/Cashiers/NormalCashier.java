@@ -8,6 +8,4 @@ public class NormalCashier extends Cashier {
 	}
 
 
-
-
 }
