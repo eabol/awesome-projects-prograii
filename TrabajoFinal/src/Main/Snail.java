@@ -32,9 +32,6 @@ public class Snail {
         this.state = state;
     }
 
-
-
-
     public void fallInHole(){
        Tier tier=new Tier();
         altitude =-tier.getValue(10,19);
@@ -49,13 +46,13 @@ public class Snail {
         Tier tier=new Tier();
         int up=tier.getValue(1,fatigue.getSeverity(Day.getDay()));
         this.altitude +=up;
-        System.out.print(name+" rise "+up+ " / ");
+        System.out.print(name+" rise [+"+up+ "] / ");
     }
     public void drop(){
         Tier tier=new Tier();
         int down=tier.getValue(0,2);
         this.altitude-=down;
-        System.out.print(name+" drop "+ down + " / ");
+        System.out.print(name+" drop [-"+ down + "] / ");
 
     }
 

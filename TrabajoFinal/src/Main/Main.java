@@ -10,7 +10,7 @@ World world= new World();
             System.out.println(e.getMessage());
         } catch (Death e) {
             System.out.println(e.getMessage());
-        } catch (FueraPozo e) {
+        } catch (CameOut e) {
             System.out.println(e.getMessage());
         }
     }
