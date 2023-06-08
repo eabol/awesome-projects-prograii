@@ -10,15 +10,22 @@ public class Game {
     private int score = 0;
     private int foodCount = 0;
     private Timer pacmanTimer;
+    private Timer ghostTimer;
 
     public Game() {
         createMaze();
         this.pacman = new Pacman(22, 13);
+        this.ghosts = List.of(new Ghost(9, 13), new Ghost(12, 13), new Ghost(15, 13), new Ghost(17, 13));
+    }
+
+    public List<Ghost> getGhosts() {
+        return ghosts;
     }
 
     public void start() {
         this.isRunning = true;
         this.foodCount = maze.getFoodCount();
+        startGhostMovement();
     }
 
     public void stop() {
@@ -28,6 +35,7 @@ public class Game {
     public void restart(){
         createMaze();
         this.pacman = new Pacman(22, 13);
+        this.ghosts = List.of(new Ghost(10, 10), new Ghost(12, 10), new Ghost(14, 10));
         this.score = 0;
     }
     public void handleKeyPress(Character character, Renderer renderer) {
@@ -102,6 +110,33 @@ public class Game {
         this.pacmanTimer.schedule(timerTask, 0, 300);
     }
 
+    private void startGhostMovement() {
+        if (this.ghostTimer != null) {
+            this.ghostTimer.cancel();
+            this.ghostTimer = null;
+        }
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                for (Ghost ghost : ghosts) {
+                    Position nextCellPosition = ghost.getNextPosition(pacman.getPosition());
+                    if (maze.getCell(nextCellPosition) == null || maze.getCell(nextCellPosition).isWall()) {
+                        continue;
+                    }
+                    ghost.move(pacman.getPosition());
+                }
+            }
+        };
+        this.ghostTimer = new Timer();
+        this.ghostTimer.schedule(timerTask, 0, 500);
+    }
+
+    private void stopGhostMovement() {
+        if (this.ghostTimer != null) {
+            this.ghostTimer.cancel();
+            this.ghostTimer = null;
+        }
+    }
     public void update() {
         // Lógica para actualizar el estado del juego
     }

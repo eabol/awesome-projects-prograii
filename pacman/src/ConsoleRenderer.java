@@ -82,6 +82,11 @@ public class ConsoleRenderer implements Renderer {
         refresh();
     }
 
+    public void moveGhost(Ghost ghost) throws IOException {
+        printCharacter(ghost);
+        refresh();
+    }
+
     private void printCharacter(Pacman pacman) throws IOException {
         TextGraphics textGraphics = this.screen.newTextGraphics();
 
@@ -96,6 +101,22 @@ public class ConsoleRenderer implements Renderer {
     private void printCharacter(Pacman pacman, Position previousPosition) throws IOException {
         printCell(previousPosition);
         printCharacter(pacman);
+    }
+
+    private void printCharacter(Ghost ghost) throws IOException {
+        TextGraphics textGraphics = this.screen.newTextGraphics();
+    
+        textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
+        textGraphics.setForegroundColor(TextColor.ANSI.RED);
+        textGraphics.putString(ghost.getPosition().getXWithOffset(offset), ghost.getPosition().getY(),
+                " " + Symbols.SOLID_SQUARE + " ", SGR.BOLD);
+    
+        refresh();
+    }
+    
+    private void printCharacter(Ghost ghost, Position previousPosition) throws IOException {
+        printCell(previousPosition);
+        printCharacter(ghost);
     }
 
     private void printCell(Position position) throws IOException {
@@ -162,6 +183,9 @@ public class ConsoleRenderer implements Renderer {
         game.start();
         printMaze(game.getMaze());
         printCharacter(game.getPacman());
+        for (Ghost ghost : game.getGhosts()) {
+            printCharacter(ghost);
+        }
         while (game.isRunning()) {
             readUserInput(terminal);
         }
