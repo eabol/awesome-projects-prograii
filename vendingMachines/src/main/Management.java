@@ -1,3 +1,9 @@
+package main;
+
+import exceptions.FailureException;
+import exceptions.JamException;
+import interfaces.Incidence;
+
 import java.util.ArrayList;
 
 public class Management {
@@ -59,26 +65,23 @@ public class Management {
     }
 
     public void screen(int machine) {
-        for (int i = 0; i < this.machines.size(); i++) {
-            if (this.machines.get(i).getId() == machine) {
-                this.machines.get(i).machineReport();
+        for (Machine value : this.machines) {
+            if (value.getId() == machine) {
+                value.machineReport();
             }
-
         }
     }
 
     public void paymentManagement(int machine, int idProduct, Money clientMoney) {
+        Money change = null;
         try {
-            Money change = null;
-            try {
-                change = this.machines.get(machine).buyProduct(clientMoney, idProduct);
-                System.out.println(change.getTotal() + "euros are returned to the client");
-            } catch (JamException e) {
-                System.out.println(e.getMessage());
-            } catch (FailureException e) {
-                this.incidences.add(e);
-                System.out.println(e.getMessage());
-            }
+            change = this.machines.get(machine).buyProduct(clientMoney, idProduct);
+            System.out.println(change.getTotal() + "euros are returned to the client");
+        } catch (JamException e) {
+            System.out.println(e.getMessage());
+        } catch (FailureException e) {
+            this.incidences.add(e);
+            System.out.println(e.getMessage());
         }
     }
 }

@@ -1,6 +1,11 @@
+package exceptions;
+
+import main.Alert;
+import interfaces.Incidence;
+
 import java.time.LocalDate;
 
-public class FailureException extends Exception implements Incidence{
+public class FailureException extends Alert implements Incidence {
     private int idMachine;
     private LocalDate date;
     public FailureException(int idMachine) {
