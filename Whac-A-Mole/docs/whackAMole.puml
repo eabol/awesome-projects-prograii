@@ -9,14 +9,6 @@ interface View{
     + showMenu() : void
 }
 
-abstract class Luck implements LuckDirection{
-    - float certainty
-    + Luck()
-    + Luck(float certainty)
-    + getPositiveLuck() : boolean
-    + getNegativeLuck() : boolean
-}
-
 abstract class SmackableCharacter{
     - String name
     - String avatar
@@ -31,6 +23,18 @@ abstract class SmackableCharacter{
     + setBeaten(boolean beaten) : void
 }
 
+abstract class Space {
+
+}
+
+class Luck implements LuckDirection{
+    - float certainty
+    + Luck()
+    + Luck(float certainty)
+    + getPositiveLuck() : boolean
+    + getNegativeLuck() : boolean
+}
+
 class Mole extends SmackableCharacter{
  + Mole()
  + Mole(String name)
@@ -43,15 +47,15 @@ class Board {
   + showBoard() : void
   + beatenHole(int position) : Hole
 }
-class Hole extends Luck{
+class Hole extends Space {
   - String aspect
   - SmackableCharacter character
   + Hole()
   + Hole(SmackableCharacter character)
   + getAspect() : String
   + setAspect(String aspect) : void
-  + getMole() : SmackableCharacter
-  + setMole(SmackableCharacter character) : void
+  + getSmackableCharacter() : SmackableCharacter
+  + setSmackableCharacter(SmackableCharacter character) : void
   - showMoleInside() : String
   - isMoleInside() : boolean
 }
@@ -83,6 +87,7 @@ class Main{
 
 Hole o-- SmackableCharacter
 Board *-- Hole
+Luck -- Board
 Game *-- Board
 Game *-- Turn
 Main o-- Game
