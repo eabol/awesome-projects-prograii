@@ -32,11 +32,10 @@ public class StandardClient extends Client implements ClientManagement{
 
     @Override
     public boolean addAccount(Account account)   {
-        //TODO MIRAR SI ESTA BIEN
         if (account instanceof DebitAccount) {
             if (debit_Account==null){
                 debit_Account=((DebitAccount) account);
-                System.out.println("Debit account vinculated to client\n");
+                System.out.println("Debit account succesfully created and vinculated\n");
                 return false;
             }else {
                 System.out.println("You can't vinculate another debit account to the client\n");
@@ -55,7 +54,6 @@ public class StandardClient extends Client implements ClientManagement{
 
     @Override
     public void removeAccount(String accountNumber){
-        //Todo
 
         boolean found=false;
 

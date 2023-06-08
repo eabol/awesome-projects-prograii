@@ -104,6 +104,7 @@ class proyectoterraques.source.FileHandler {
 + List<String> loadFileContent(String)
 - boolean isPathEmpty(String)
 - List<String> readFileContent(String)
++ void clear()
 }
 
 class proyectoterraques.exceptions.Exception{

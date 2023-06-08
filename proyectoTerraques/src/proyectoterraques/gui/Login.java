@@ -1,11 +1,14 @@
 package proyectoterraques.gui;
 
+import proyectoterraques.exceptions.InvalidCharacterException;
+import proyectoterraques.source.Bank;
 import proyectoterraques.source.FileHandler;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Login {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidCharacterException {
 
 
         Scanner scNumber = new Scanner(System.in);
@@ -15,6 +18,13 @@ public class Login {
 
         int option;
         String path;
+        int menuOption=0;
+
+        ArrayList<String> offices_available= new ArrayList<>();
+        ArrayList<String> countries_available= new ArrayList<>();
+
+        Bank bank=null;
+
 
         do {
 
@@ -43,10 +53,10 @@ public class Login {
 
                 path="src/proyectoterraques/files/banks.dat";
 
-                for (String bank: file.loadFileContent(path)){
+                for (String currentBank: file.loadFileContent(path)){
 
                     String [] cell;
-                    cell= bank.split(",");
+                    cell= currentBank.split(",");
 
                     String office=cell[0];
                     String address=cell[1];
@@ -57,74 +67,182 @@ public class Login {
 
                     System.out.println(office+"\t\t"+address+"\t\t"+countryName+"\t\t"+country+"\t\t"+city);
                     bankNumber++;
+                    offices_available.add(office);
+                    countries_available.add(country);
                     /*Client tempClient = new Client(name,surName,address,phone);
                     clients.add(tempClient);
                     numeroClientes++;*/
                 }
 
-                file.lines.clear();
+
+                file.clear();
+
+                boolean mustLogin=false;
 
                 System.out.print("\nChoose an office number: ");
                 office_selected=scNumber.next();
 
-                //todo LOGIN
+                for (int i=0;i<offices_available.size();i++){
 
-                System.out.println("\n-------LOGIN--------");
-                System.out.print("User: ");
-                user_selected = scText.next();
-                System.out.print("Password: ");
-                password_selected = scText.next();
+                    if (office_selected.equalsIgnoreCase(offices_available.get(i))){
+                        mustLogin=true;
+                        bank = new Bank(offices_available.get(i),countries_available.get(i));
+                    }
 
-                System.out.println();
+                }
 
-                //todo leer archivo employees.dat
-
-                path="src/proyectoterraques/files/employees.dat";
-
-                for (String employee: file.loadFileContent(path)){
-
-                    String [] cell;
-                    cell= employee.split(",");
-
-                    String office=cell[0];
-                    String user=cell[1];
-                    String password=cell[2];
-                    String name=cell[3];
-                    String dni=cell[4];
+                if (mustLogin){
 
 
-                    //System.out.println(office+"\t\t"+user+"\t\t"+password+"\t\t"+name+"\t\t"+dni);
-                    employeeNumber++;
+
+                    //todo LOGIN
+
+                    System.out.println("\n-------LOGIN--------");
+                    System.out.print("User: ");
+                    user_selected = scText.next();
+                    System.out.print("Password: ");
+                    password_selected = scText.next();
+
+                    System.out.println();
+
+                    //todo leer archivo employees.dat
+
+                    path="src/proyectoterraques/files/employees.dat";
+
+                    for (String currentEmployee: file.loadFileContent(path)){
+
+                        String [] cell;
+                        cell= currentEmployee.split(",");
+
+                        String office=cell[0];
+                        String user=cell[1];
+                        String password=cell[2];
+                        String name=cell[3];
+                        String dni=cell[4];
+
+
+                        //System.out.println(office+"\t\t"+user+"\t\t"+password+"\t\t"+name+"\t\t"+dni);
+                        employeeNumber++;
                     /*Client tempClient = new Client(name,surName,address,phone);
                     clients.add(tempClient);
                     numeroClientes++;*/
 
-                    if(office_selected.equalsIgnoreCase(office)){
+                        if(office_selected.equalsIgnoreCase(office)){
 
-                        if(user_selected.equalsIgnoreCase(user) && password_selected.equalsIgnoreCase(password)){
+                            if(user_selected.equalsIgnoreCase(user) && password_selected.equalsIgnoreCase(password)){
 
-                            userFound=true;
-                            System.out.println("User found");
+                                userFound=true;
+                                System.out.println("Connecting...");
 
-                            //todo MENU
+                                //todo MENU
+
+                                do{
+
+                                    System.out.println("\n--SANTANDER BANK--");
+                                    System.out.println("1 - New Client");
+                                    System.out.println("2 - New Account");
+                                    System.out.println("3 - Show Client");
+                                    System.out.println("4 - Show Account");
+                                    System.out.println("5 - Deposit");
+                                    System.out.println("6 - Withdraw");
+                                    System.out.println("7 - List Clients");
+                                    System.out.println("8 - List Accounts");
+                                    System.out.println("9 - Remove Client");
+                                    System.out.println("10 - Remove Account");
+                                    System.out.println("11 - Exit\n");
+
+                                    System.out.print("Choose an option: ");
+                                    menuOption= scNumber.nextInt();
+
+                                    if (menuOption==1){
+
+                                        System.out.println("");
+                                        bank.newClient();
+
+                                    } else if (menuOption==2) {
+
+                                        System.out.println("");
+                                        bank.newAccount();
+
+                                    }else if (menuOption==3) {
+
+                                        System.out.println("");
+                                        bank.showClient();
+
+
+                                    }else if (menuOption==4) {
+
+                                        System.out.println("");
+                                        bank.showAccount();
+
+                                    }else if (menuOption==5) {
+
+                                        System.out.println("");
+                                        bank.depositMoney();
+
+                                    }else if (menuOption==6) {
+
+                                        System.out.println("");
+                                        bank.withDrawMoney();
+
+                                    }else if (menuOption==7) {
+
+                                        System.out.println("");
+                                        bank.getClients();
+
+                                    }else if (menuOption==8) {
+
+                                        System.out.println("");
+                                        bank.getAccounts();
+
+
+                                    }else if (menuOption==9) {
+
+                                        System.out.println("");
+                                        bank.removeClient();
+
+
+                                    }else if (menuOption==10) {
+
+                                        System.out.println("");
+                                        bank.removeAccount();
+
+
+                                    }else if (menuOption==11) {
+
+                                        System.out.println("");
+                                        System.out.println("Exiting...");
+
+                                    }else {
+
+                                        System.out.println("");
+                                        System.out.println("¡Invalid option!");
+
+                                    }
+
+
+                                }while(menuOption!=11);
+
+                            }
 
                         }
 
                     }
 
+                    file.clear();
+
+                    if(!userFound){
+
+                        System.out.println("Invalid user or password");
+
+                    }
+
+                    //System.out.println("\n"+employeeNumber+" employees loaded");
+
+
+                }else{
+                    System.out.println("Invalid office number");
                 }
-
-                file.lines.clear();
-
-                if(!userFound){
-
-                    System.out.println("Invalid user or password");
-
-                }
-
-                //System.out.println("\n"+employeeNumber+" employees loaded");
-
-
 
 
             } else if (option==2){

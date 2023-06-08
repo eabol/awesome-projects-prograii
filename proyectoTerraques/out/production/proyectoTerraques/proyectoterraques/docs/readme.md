@@ -85,33 +85,33 @@ src.proyectoterraques.files
 -----------------------------
 En este paquete se encuentran los archivos necesarios para guardar la información de forma persistente.
 
-> accounts.dat: 
-> banks.dat:
-> clients.dat:
-> employees.dat:
-> numberOfAccounts.dat: 
+> accounts.dat: Almacenamiento de las cuentas existentes
+> banks.dat: Almacenamiento de los bancos existentes
+> clients.dat: Almacenamiento de los clientes existentes
+> employees.dat: Almacenamiento de los empleados existentes
+> numberOfAccounts.dat: Almacenamiento del numero de cuentas que se pueden crear
 	     
 src.proyectoterraques.gui
 ---------------------------
 En este paquete se encuentra la clase ejecutable para iniciar la aplicación
 
-> Login: 
+> Login: Clase ejecutable que refleja toda la información necesaria para que funcione la aplicación correctamente
 
 
 src.proyectoterraques.source
 ------------------------------
 En este paquete se encuentran todas las clases que dan funcionalidad a la aplicación
 
-> Account:
-> AccountMethods:
-> Bank:
-> Client:
-> ClientMethods:
-> CreditAccount:
-> DebitAccount:
-> FileHandler:
-> ShareholderClient:
-> StandardClient:
+> Account: Clase Abstracta en el que se almacenan las cuentas
+> AccountBalance: Interfaz que contiene los métodos deposit, withdraw y mirar los datos de las cuentas
+> Bank: Clase principal que contiene todos los datos necesario de cuentas, clientes, etc... 
+> Client: Clase Abstracta que crea los clientes y sus datos
+> ClientManagement: Interfaz que crea, elimina y lista las cuentas de los clientes
+> CreditAccount: Clase que contiene cuentas de crédito y los métodos deposit y withdraw
+> DebitAccount: Clase que contiene cuentas de débito y los métodos deposit y withdraw
+> FileHandler: Clase que contiene los archivos fichero
+> ShareholderClient: Clase de accionistas que contiene toda la información de la clase Client y la interfaz ClientManagement
+> StandardClient: Clase de usuarios que contiene toda la información de la clase Client y la interfaz ClientManagement
 
 test
 ------

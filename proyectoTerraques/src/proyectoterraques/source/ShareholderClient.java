@@ -40,13 +40,13 @@ public class ShareholderClient extends Client implements ClientManagement{
 
             if (account instanceof DebitAccount) {
                 debitAccounts.add((DebitAccount) account);
-                System.out.println("Debit account vinculated to client\n");
+                System.out.println("Debit account succesfully created and vinculated\n");
                 return false;
             }
             else if (account instanceof CreditAccount) {
                 if (credit_Account==null){
                     credit_Account = (CreditAccount) account;
-                    System.out.println("Credit account vinculated to client\n");
+                    System.out.println("Credit account succesfully created and vinculated\n");
                     return false;
                 }else {
                     System.out.println("You can't vinculate another credit account to the client\n");

@@ -30,7 +30,7 @@ public class CreditAccount extends Account implements AccountBalance {
         System.out.println("Account - "+accountNumber);
         System.out.println("Balance - "+amount+"€");
         System.out.println("Debt - "+debt+"€");
-        System.out.println("Interest - "+interest+"%\n");
+        System.out.println("Interest - "+interest+"%1\n");
 
     }
 

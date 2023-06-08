@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileHandler {
-    public List<String> lines;
+    private List<String> lines;
 
     public FileHandler(){
         this.lines = new ArrayList<>();
@@ -54,6 +54,10 @@ public class FileHandler {
             }
         }
         return this.lines;
+    }
+
+    public void clear(){
+        lines.clear();
     }
 
 }

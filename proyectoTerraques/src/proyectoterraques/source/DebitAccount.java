@@ -42,7 +42,7 @@ public class DebitAccount extends Account implements AccountBalance {
     public void withdraw(double quantity) throws InvalidCharacterException {
 
         if ((amount-quantity)<0){
-            System.out.println("You don't have enough money to do this operation, your balance is "+amount+"€\n");
+            System.err.println("You don't have enough money to do this operation, your balance is "+amount+"€\n");
         } else if ((amount-quantity)>=0){
             amount= amount-quantity;
             System.out.println("You have withdrawn "+quantity+"€, your new balance is "+amount+"€\n");
