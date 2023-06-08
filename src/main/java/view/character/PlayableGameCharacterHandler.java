@@ -9,17 +9,21 @@ import java.util.Objects;
 public class PlayableGameCharacterHandler extends GameCharacterHandler {
     WorldHandler gp;
     KeyHandler keyH;
+    public final int screenY;
+    public final int screenX;
 
     public PlayableGameCharacterHandler(WorldHandler gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
+        screenX = gp.screenWidth/2 - (gp.originalSize/2);
+        screenY = gp.screenHeight/2 - (gp.originalSize/2);
         setDefaultValue();
         getPlayerImage();
     }
 
     public void setDefaultValue() {
-        x = 100;
-        y = 100;
+        worldX = gp.originalSize * 23;
+        worldY = gp.originalSize * 21;
         speed = 4;
         direction = "right1";
     }
@@ -59,16 +63,16 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
                 || keyH.rightPressed) {
             if (keyH.upPressed) {
                 direction = "up";
-                y -= speed;
+                worldY -= speed;
             } else if (keyH.downPressed) {
                 direction = "down";
-                y += speed;
+                worldY += speed;
             } else if (keyH.leftPressed) {
                 direction = "left";
-                x -= speed;
+                worldX -= speed;
             } else if (keyH.rightPressed) {
                 direction = "right";
-                x += speed;
+                worldX += speed;
             }
             spriteCounter++;
             if (spriteCounter > 40) {
@@ -126,6 +130,6 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
                 }
             }
         }
-        g2d.drawImage(image, x, y, gp.originalSize, gp.originalSize, null);
+        g2d.drawImage(image, screenX, screenY, gp.originalSize, gp.originalSize, null);
     }
 }
