@@ -9,16 +9,23 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WorldHandler extends JPanel implements Runnable {
-    public final int originalSize = 80;
+    public final int originalSize = 60;
     private World world;
-    final int maxScreenRow = 20;
-    final int maxScreenCol = 27;
-    final int screenWidth = maxScreenCol * originalSize;
-    final int screenHeight = maxScreenRow * originalSize;
+    final int maxScreenRow = 10;
+    final int maxScreenCol = 20;
+    public final int screenWidth = maxScreenCol * originalSize;
+    public final int screenHeight = maxScreenRow * originalSize;
     KeyHandler keyHandler = new KeyHandler();
 
     int FPS = 60;
+    TileManager tileManager = new TileManager(this);
     public long drawCount = 0;
+
+
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
+    public final int worldWidth = maxWorldCol * originalSize;
+    public final int worldHeight = maxWorldRow * originalSize;
 
 
     Thread gameThread;
@@ -103,6 +110,7 @@ public class WorldHandler extends JPanel implements Runnable {
         Graphics2D g2d = (Graphics2D) g;
 
         drawMaze(g);
+        tileManager.draw(g2d);
         player.draw(g2d);
 
 
