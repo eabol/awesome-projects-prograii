@@ -1,6 +1,11 @@
+package exceptions;
+
+import main.Alert;
+import interfaces.Incidence;
+
 import java.time.LocalDate;
 
-public class JamException extends Exception implements Incidence{
+public class JamException extends Alert implements Incidence {
     private int idMachine;
     private LocalDate date;
     private int idProduct;
