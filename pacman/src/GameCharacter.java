@@ -21,6 +21,10 @@ public abstract class GameCharacter implements GameElement {
     public Direction getDirection() {
         return direction;
     }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
     
     public Position move(Direction direction) {
         this.direction = direction;

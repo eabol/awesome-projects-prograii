@@ -1,32 +1,55 @@
-public class Cell implements GameElement{
-    private int x;
-    private int y;
-    private boolean isWall;
-    private boolean hasDot;
+public class Cell implements GameElement {
+    Position position;
+    CellType type;
 
-    public Cell(int x, int y, int value) {
-        this.x = x;
-        this.y = y;
-        if(value == 1) {
-            this.isWall = true;
-        } else if (value == 2) {
-            this.hasDot = true;
+    public Cell(Position position, int value) {
+        this.position = position;
+        switch (value) {
+            case 0:
+                type = CellType.EMPTY;
+                break;
+            case 1:
+                type = CellType.WALL;
+                break;
+            case 2:
+                type = CellType.FOOD;
+                break;
+            case 3:
+                type = CellType.POWER;
+                break;
         }
     }
-    
+
+    public Cell(Position position, CellType type) {
+        this.position = position;
+        this.type = type;
+    }
+
     public int getX() {
-        return x;
+        return position.getX();
     }
-    
+
     public int getY() {
-        return y;
+        return position.getY();
     }
-    
+
+    public Position getPosition() {
+        return position;
+    }
+
     public boolean isWall() {
-        return isWall;
+        return type == CellType.WALL;
     }
-    
-    public boolean hasDot() {
-        return hasDot;
+
+    public boolean isFood() {
+        return type == CellType.FOOD;
+    }
+
+    public boolean isPower() {
+        return type == CellType.POWER;
+    }
+
+    public boolean isEmpty() {
+        return type == CellType.EMPTY;
     }
 }
