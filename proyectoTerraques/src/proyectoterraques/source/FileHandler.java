@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileHandler {
-    private List<String> lines;
+    public List<String> lines;
 
     public FileHandler(){
         this.lines = new ArrayList<>();

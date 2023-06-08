@@ -19,9 +19,8 @@ public class Main2 {
         bank.getAccounts();
         bank.showAccount();
          */
-
+        /*
         bank.newClient();
-
         bank.getClients();
         //bank.showClient();
         bank.getAccounts();
@@ -33,5 +32,15 @@ public class Main2 {
         bank.getClients();
         bank.getAccounts();
         bank.showClient();
+         */
+
+        bank.newClient();
+        bank.newAccount();
+        bank.getClients();
+        bank.getAccounts();
+        bank.showClient();
+        bank.newAccount();
+        bank.showClient();
+
     }
 }

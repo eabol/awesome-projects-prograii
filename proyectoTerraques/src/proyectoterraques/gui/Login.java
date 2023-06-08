@@ -9,6 +9,8 @@ public class Login {
 
 
         Scanner scNumber = new Scanner(System.in);
+        Scanner scText = new Scanner(System.in);
+        FileHandler file = new FileHandler();
 
 
         int option;
@@ -27,24 +29,30 @@ public class Login {
                 clearScreen();
                 clearConsole();
                 //TODO listar bancos
-                FileHandler fileHandler = new FileHandler();
-                int bankNumber=1;
-                String suboption;
+
+                int bankNumber=0;
+                int employeeNumber=0;
+                String office_selected;
+                String user_selected;
+                String password_selected;
+                boolean userFound=false;
+
+
                 System.out.println("\nOFFICE\t\tOFFICE FULL ADDRESS\t\tCOUNTRY\t\tCODE\tCITY");
                 System.out.println("------------------------------------------------------------------");
 
                 path="src/proyectoterraques/files/banks.dat";
 
-                for (String bank: fileHandler.loadFileContent(path)){
+                for (String bank: file.loadFileContent(path)){
 
-                    String [] separarTexto;
-                    separarTexto= bank.split(",");
+                    String [] cell;
+                    cell= bank.split(",");
 
-                    String office=separarTexto[0];
-                    String address=separarTexto[1];
-                    String city=separarTexto[2];
-                    String countryName=separarTexto[3];
-                    String country=separarTexto[4];
+                    String office=cell[0];
+                    String address=cell[1];
+                    String city=cell[2];
+                    String countryName=cell[3];
+                    String country=cell[4];
 
 
                     System.out.println(office+"\t\t"+address+"\t\t"+countryName+"\t\t"+country+"\t\t"+city);
@@ -54,8 +62,68 @@ public class Login {
                     numeroClientes++;*/
                 }
 
+                file.lines.clear();
+
                 System.out.print("\nChoose an office number: ");
-                suboption=scNumber.next();
+                office_selected=scNumber.next();
+
+                //todo LOGIN
+
+                System.out.println("\n-------LOGIN--------");
+                System.out.print("User: ");
+                user_selected = scText.next();
+                System.out.print("Password: ");
+                password_selected = scText.next();
+
+                System.out.println();
+
+                //todo leer archivo employees.dat
+
+                path="src/proyectoterraques/files/employees.dat";
+
+                for (String employee: file.loadFileContent(path)){
+
+                    String [] cell;
+                    cell= employee.split(",");
+
+                    String office=cell[0];
+                    String user=cell[1];
+                    String password=cell[2];
+                    String name=cell[3];
+                    String dni=cell[4];
+
+
+                    //System.out.println(office+"\t\t"+user+"\t\t"+password+"\t\t"+name+"\t\t"+dni);
+                    employeeNumber++;
+                    /*Client tempClient = new Client(name,surName,address,phone);
+                    clients.add(tempClient);
+                    numeroClientes++;*/
+
+                    if(office_selected.equalsIgnoreCase(office)){
+
+                        if(user_selected.equalsIgnoreCase(user) && password_selected.equalsIgnoreCase(password)){
+
+                            userFound=true;
+                            System.out.println("User found");
+
+                            //todo MENU
+
+                        }
+
+                    }
+
+                }
+
+                file.lines.clear();
+
+                if(!userFound){
+
+                    System.out.println("Invalid user or password");
+
+                }
+
+                //System.out.println("\n"+employeeNumber+" employees loaded");
+
 
 
 

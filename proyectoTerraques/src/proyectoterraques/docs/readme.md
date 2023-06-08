@@ -7,13 +7,9 @@
 
 
 
-
     ╔╦╗╔═╗╔═╗╔═╗╦═╗╦╔═╗╔═╗╦╔═╗╔╗╔
      ║║║╣ ╚═╗║  ╠╦╝║╠═╝║  ║║ ║║║║
     ═╩╝╚═╝╚═╝╚═╝╩╚═╩╩  ╚═╝╩╚═╝╝╚╝
-
-
-
 
 
 Se trata de una aplicación de gestión bancaria, en este caso para el Banco Santander, donde en este caso el banco
@@ -23,14 +19,9 @@ gestión
 
 
 
-
-
     ╔═╗╦ ╦╔╗╔╔═╗╦╔═╗╔╗╔╔═╗╦  ╦╔╦╗╔═╗╔╦╗╔═╗╔═╗
     ╠╣ ║ ║║║║║  ║║ ║║║║╠═╣║  ║ ║║╠═╣ ║║║╣ ╚═╗
     ╚  ╚═╝╝╚╝╚═╝╩╚═╝╝╚╝╩ ╩╩═╝╩═╩╝╩ ╩═╩╝╚═╝╚═╝
-
-
-
 
         
 * [ ] Un empleado del banco puede seleccionar a que oficina desea conectarse 
@@ -48,7 +39,11 @@ gestión
 * [ ] Mostrar las cuentas existentes (y los datos de dichas cuentas)
 * [ ] Depositar dinero en cuentas
 * [ ] Sacar dinero de cuentas
-* [ ] ... 
+* [ ] Los clientes standard solo pueden tener una cuenta de débito
+* [ ] Los clientes accionistas no tienen un máximo de cuentas de débito
+* [ ] Solo los clientes accionistas pueden tener una cuenta de crédito
+* [ ] Las cuentas de crédito podrán sacar más dinero del disponible y tendrán un 20% de intereses
+* [ ] Se llevará un registro de la deuda acumulada en cada cuenta de crédito
 
 
 
@@ -56,17 +51,17 @@ gestión
     ║ ║║║║║
     ╚═╝╩ ╩╩═╝
 
+Diagrama UML de la aplicación.
+
 
 
 ![](uml.png)
 
 
 
-
     ╔═╗╔═╗╔╦╗╦═╗╦ ╦╔═╗╔╦╗╦ ╦╦═╗╔═╗
     ║╣ ╚═╗ ║ ╠╦╝║ ║║   ║ ║ ║╠╦╝╠═╣
     ╚═╝╚═╝ ╩ ╩╚═╚═╝╚═╝ ╩ ╚═╝╩╚═╩ ╩
-
 
 
 src.proyectoterraques.docs
@@ -123,6 +118,7 @@ test
 > Test1: 
 >
     
+
 
     ╔═╗╔═╗╔═╗╔╦╗╦ ╦╦═╗╔═╗╔═╗
     ║  ╠═╣╠═╝ ║ ║ ║╠╦╝╠═╣╚═╗
