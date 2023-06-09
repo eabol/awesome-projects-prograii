@@ -3,6 +3,11 @@
 ___
 Este proyecto consta de un software que permite a los clientes de una comercializadora de gas acceder y registrar las lecturas de sus contadores de gas a través de fotografías. Dichas lecturas se asocian de manera automática al cliente y a un periodo mensual, facilitando el cálculo correspondiente al suministro consumido por periodo.
 
+> [Ver repositorio original](https://github.com/CarlosCasadoo/gasify)
+
+> [Ver documentación completa en PDF](Documentación/Doc_GASIFY.pdf)
+___
+
 
 ## Diagrama UML
 ___
