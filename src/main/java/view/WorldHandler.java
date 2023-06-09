@@ -9,12 +9,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WorldHandler extends JPanel implements Runnable {
-    public final int originalSize = 60;
+    public final int originalSize = 84;
     private World world;
     final int maxScreenRow = 10;
     final int maxScreenCol = 20;
     public final int screenWidth = maxScreenCol * originalSize;
     public final int screenHeight = maxScreenRow * originalSize;
+    public final int characterWidth = 48;
+    public final int characterHeight = 64;
     KeyHandler keyHandler = new KeyHandler();
 
     int FPS = 60;
@@ -31,9 +33,6 @@ public class WorldHandler extends JPanel implements Runnable {
     Thread gameThread;
     GameCharacterHandler player = new PlayableGameCharacterHandler(this, keyHandler);
 
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 2;
     private static String[][][] mazesData = {
 
     };

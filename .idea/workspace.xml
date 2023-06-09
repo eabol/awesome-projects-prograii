@@ -5,41 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f7b3ee5-47aa-43cb-b953-98778fb87bf9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/TileImages/grass.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/TileImages/mediumgrass.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/TileImages/tallgrass.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/TileImages/troubledwater.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/TileImages/wall.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/awesome-projects-prograii.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/awesome-projects-prograii.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Terrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Terrain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Thread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Thread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Time.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Time.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/World.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/World.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/character/GameCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/character/GameCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/character/NonPlayableGameCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/character/NonPlayableGameCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/character/PlayableGameCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/character/PlayableGameCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/transport/OnBoat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/transport/OnBoat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/transport/OnFoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/transport/OnFoot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/transport/OnHorse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/transport/OnHorse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/transport/OnRug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/transport/OnRug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/transport/Transport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/transport/Transport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enumerators/TerrainType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enumerators/TerrainType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaces/Movable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/Showable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaces/Showable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/TerrainResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/TerrainResolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/TileManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/character/GameCharacterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/character/GameCharacterHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/character/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/character/KeyHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/character/PlayableGameCharacterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/character/PlayableGameCharacterHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/tile/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TileImages/road.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TileImages/road.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TileImages/sand.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TileImages/sand.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TileImages/tree.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TileImages/tree.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/TileImages/water.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/TileImages/water.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

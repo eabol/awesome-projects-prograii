@@ -116,6 +116,6 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
                 }
             }
         }
-        g2d.drawImage(image, screenX, screenY, gp.originalSize, gp.originalSize, null);
+        g2d.drawImage(image, screenX, screenY, gp.characterWidth, gp.characterWidth, null);
     }
 }
