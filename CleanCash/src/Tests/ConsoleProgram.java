@@ -4,14 +4,14 @@ import DataClasses.Entity;
 import DataClasses.Product;
 import SystemData.InventoryDataBase;
 import SystemManagement.CartManager;
-import SystemManagement.MemberManager;
+import SystemManagement.DiscountsManager;
 
 import java.util.Scanner;
 
 public class ConsoleProgram {
 
     InventoryDataBase inventoryDataBase = new InventoryDataBase();
-    MemberManager memberManager = new MemberManager();
+    DiscountsManager discountsManager = new DiscountsManager();
     CartManager cartManager = new CartManager();
 
 
@@ -90,7 +90,7 @@ public class ConsoleProgram {
     public void useDiscount(){
         System.out.println("Introduce your coupon code");
         String saleCode = consoleInput();
-        int discount = memberManager.getDiscount(saleCode);
+        int discount = discountsManager.getDiscount(saleCode);
         if (discount > 0) {
             cartManager.applyDiscount(discount);
             System.out.println("Applied " + discount + "% of discount");

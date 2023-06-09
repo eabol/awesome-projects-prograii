@@ -1,11 +1,11 @@
 package SystemManagement;
 
 import DataClasses.Entity;
-import SystemData.MemberDataBase;
+import SystemData.DiscountsDataBase;
 
-public class MemberManager implements DataManager{
+public class DiscountsManager implements DataManager{
 
-    private MemberDataBase memberDataBase = new MemberDataBase();
+    private DiscountsDataBase discountsDataBase = new DiscountsDataBase();
 
     @Override
     public void add(Entity newEntity) {
@@ -23,7 +23,7 @@ public class MemberManager implements DataManager{
     }
 
     public int getDiscount(String code){
-        String saleDiscount = memberDataBase.getSaleDiscount(code);
+        String saleDiscount = discountsDataBase.getSaleDiscount(code);
         if (saleDiscount != null){
             int discount = Integer.parseInt(saleDiscount);
             return discount;
