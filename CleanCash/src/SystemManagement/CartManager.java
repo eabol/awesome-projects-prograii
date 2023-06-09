@@ -1,6 +1,7 @@
 package SystemManagement;
 
 import DataClasses.Entity;
+import DataClasses.Product;
 import SystemData.ShoppingCart;
 
 public class CartManager implements DataManager{
@@ -12,7 +13,8 @@ public class CartManager implements DataManager{
 
     @Override
     public void add(Entity newEntity) {
-
+        Product product = (Product) newEntity;
+        shoppingCart.addProduct(product);
     }
 
     @Override
@@ -41,7 +43,8 @@ public class CartManager implements DataManager{
 
     }
 
-    public void applyDiscount(){
+    public void applyDiscount(float discount){
+        shoppingCart.applyDiscount(discount);
         // Calls shopping cart and tests discount to apply it
     }
 
