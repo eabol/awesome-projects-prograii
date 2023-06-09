@@ -1,0 +1,13 @@
+idEmployee;name;nameCompany;area
+EMP-483274,Pedro,Naturgy,Marketing
+EMP-483254,Julian,Naturgy,Técnico
+EMP-483234,Sandra,Naturgy,Facturación
+EMP-003274,Carlota,Naturgy,Marketing
+EMP-043274,Jaime,Naturgy,IT
+EMP-483543,Rosana,Naturgy,Operaciones
+EMP-423274,Paula,Naturgy,Facturación
+EMP-563274,Sheila,Naturgy,Mantenimiento
+EMP-653274,Raul,Naturgy,Outsourcing
+EMP-645274,Daniel,Naturgy,Financiero
+EMP-123345,Victor,Naturgy,RRHH
+EMP-543543,Sergio,Naturgy,Técnico

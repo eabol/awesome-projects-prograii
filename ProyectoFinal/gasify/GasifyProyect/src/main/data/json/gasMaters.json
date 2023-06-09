@@ -1,0 +1,30 @@
+[
+  {
+    "idGasMeter": "GM-1",
+    "brand": "Elster",
+    "ref": "GC01006",
+    "ean13": "8432953036461",
+    "serie": "Serie 27",
+    "readInstallationDay": -1,
+    "plcId": "PLC-01"
+  },
+  {
+    "idGasMeter": "GM-2",
+    "brand": "Elster",
+    "ref": "GC01006",
+    "ean13": "8432953036461",
+    "serie": "Serie 27",
+    "readInstallationDay": 100,
+    "plcId": "PLC-02"
+  },
+  {
+
+    "idGasMeter": "GM-3",
+    "brand": "Elster",
+    "ref": "GC01006",
+    "ean13": "8432953036461",
+    "serie": "Serie 27",
+    "readInstallationDay": 500,
+    "plcId": "PLC-03"
+
+}]

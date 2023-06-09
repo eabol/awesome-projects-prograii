@@ -1,0 +1,5 @@
+idPlc;maker;model
+PLC-01,Siemens,S7-1200
+PLC-02,Siemens,S7-1200
+PLC-03,Siemens,S7-1200
+PLC-04,Siemens,S7-1200

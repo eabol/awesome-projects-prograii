@@ -1,0 +1,8 @@
+idDataSim;numberDataSim;servicesCompany
+SIM-001,687493284,Vodafone
+SIM-002,789304958,Moviestar
+SIM-003,675482390,Vodafone
+SIM-004,609430342,Vodafone
+SIM-005,754384094,Vodafone
+SIM-006,753485894,Moviestar
+SIM-007,653487545,Digi
