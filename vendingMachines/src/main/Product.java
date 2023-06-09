@@ -1,6 +1,6 @@
 package main;
 
-public abstract class Product {
+public class Product {
     protected String name;
     protected double price;
     protected int id;
@@ -37,7 +37,9 @@ public abstract class Product {
         this.quantity = quantity;
     }
 
-    public abstract void sell(int i);
+    public void sell(int i) {
+        this.quantity -= i;
+    }
 
     public int getId() {
         return this.id;
