@@ -1,0 +1,64 @@
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@ExtendWith(MockitoExtension.class)
+class MenuOptionsTest {
+
+    @Mock
+    private Manager register;
+
+    @Mock
+    private Data search;
+
+    @BeforeEach
+    void setUp() {
+        // Configurar los mocks necesarios antes de cada prueba
+    }
+
+    @AfterEach
+    void tearDown() {
+        // Realizar tareas de limpieza después de cada prueba
+    }
+
+    @Test
+    @DisplayName("Prueba del método login")
+    void testLogin() {
+    
+        String simulatedUserInput = "username\npassword";
+        InputStream inputStream = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        System.setIn(inputStream);
+
+        Mockito.when(register.login(Mockito.anyString(), Mockito.anyString())).thenReturn(true);
+
+        MenuOptions menuOptions = new MenuOptions();
+        menuOptions.login();
+
+        Mockito.verify(register).login("username", "password");
+    }
+
+    @Test
+    @DisplayName("Prueba del método registerOption")
+    void testRegisterOption() {
+
+        String simulatedUserInput = "username\nemail\npassword\ndepartment\nY";
+        InputStream inputStream = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        System.setIn(inputStream);
+
+        Mockito.when(search.findWorkerByEmail(Mockito.anyString())).thenReturn(Collections.emptyList());
+        Mockito.when(search.findWorkerByUser(Mockito.anyString())).thenReturn(Collections.emptyList());
+
+        MenuOptions menuOptions = new MenuOptions();
+        menuOptions.registerOption();
+
+        Mockito.verify(register).userCreate(Mockito.eq("username"), Mockito.eq("password"), Mockito.eq("email"), Mockito.eq("department"));
+    }
+
+}

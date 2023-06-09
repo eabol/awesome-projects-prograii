@@ -1,0 +1,31 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import java.util.List;
+
+public class DataTest {
+
+    private Data data;
+
+    @BeforeEach
+    void setUp() {
+        data = new Data();
+     
+    }
+
+    @Test
+    void testFindCustomerByID() {
+        String customerId = "C001";
+        List<Customer> customers = data.findCustomerByID(customerId);
+        Assertions.assertFalse(customers.isEmpty());
+        customers.forEach(customer -> Assertions.assertEquals(customerId, customer.getIdCustomer()));
+    }
+
+    @Test
+    void testFindSimDataByID() {
+        String customerId = "C001";
+        List<DataSim> simData = data.findSimDataByID(customerId);
+        Assertions.assertFalse(simData.isEmpty());
+    }
+
+}

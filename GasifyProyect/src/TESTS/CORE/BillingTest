@@ -1,0 +1,43 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class BillingTest {
+
+    private Billing billing;
+
+    @BeforeEach
+    void setUp() {
+        billing = new Billing(1, "C001", "G001", "P001", "S001", "2023-01-01", "2023-01-31", 100, 200);
+    }
+
+    @Test
+    void testGetIdReport() {
+        int expectedId = 1;
+        int actualId = billing.getIdReport();
+        Assertions.assertEquals(expectedId, actualId);
+    }
+
+    @Test
+    void testSetIdReport() {
+        int expectedId = 2;
+        billing.setIdReport(expectedId);
+        int actualId = billing.getIdReport();
+        Assertions.assertEquals(expectedId, actualId);
+    }
+
+    @Test
+    void testGetIdCustomer() {
+        String expectedId = "C001";
+        String actualId = billing.getIdCustomer();
+        Assertions.assertEquals(expectedId, actualId);
+    }
+
+    @Test
+    void testSetIdCustomer() {
+        String expectedId = "C002";
+        billing.setIdCustomer(expectedId);
+        String actualId = billing.getIdCustomer();
+        Assertions.assertEquals(expectedId, actualId);
+    }
+}
