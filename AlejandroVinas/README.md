@@ -90,7 +90,7 @@ The abstract class "Characters" class only has 2 protected variables:
   - Health, which is a double.
   - Name, which is a string.
   - With these 2 variables, it creates and instance of the "Characters" class
-
+![](https://github.com/AlejandroVinas/awesome-projects-prograii/blob/main/AlejandroVinas/docs/Characters.jpg)^{width=100 height=100}
 The "Equipment" class also has only 2 protected variables:
   - Name, which is a string.
   - Cuantity, which is an int.
