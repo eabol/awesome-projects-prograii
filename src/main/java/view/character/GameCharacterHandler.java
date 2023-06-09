@@ -10,6 +10,8 @@ public class GameCharacterHandler {
     public int spriteNum = 1;
     public int screenX;
     public int screenY;
+    public Rectangle solidArea;
+    public boolean collision = false;
 
     public void update() {
     }

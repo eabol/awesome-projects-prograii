@@ -1,7 +1,6 @@
 package core;
 
 import enumerators.TerrainType;
-import enumerators.TerrainType;
 
 public class Terrain {
 

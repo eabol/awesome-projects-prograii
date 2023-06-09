@@ -9,7 +9,7 @@ import view.tile.Tile;
 
 public class TileManager {
     WorldHandler gp;
-    Tile[] tile;
+    public Tile[] tile;
     public int mapTileNum[][];
 
     public TileManager(WorldHandler gp) {
@@ -74,9 +74,11 @@ public class TileManager {
 
             tile[7] = new Tile();
             tile[7].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/wall.png"));
+            tile[7].collision = true;
 
             tile[8] = new Tile();
             tile[8].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/tree.png"));
+            tile[8].collision = true;
 
         } catch (IOException e){
             e.printStackTrace();

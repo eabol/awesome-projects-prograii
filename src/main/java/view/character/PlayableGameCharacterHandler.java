@@ -16,6 +16,12 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
         this.keyH = keyH;
         this.screenX = gp.screenWidth/2 - (gp.originalSize/2);
         this.screenY = gp.screenHeight/2 - (gp.originalSize/2);
+
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.width = 12;
+        solidArea.height = 32;
         setDefaultValue();
         getPlayerImage();
     }
@@ -53,16 +59,27 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
         ) {
             if (keyH.upPressed) {
                 direction = "up";
-                worldY -= speed;
+
             } else if (keyH.downPressed) {
                 direction = "down";
-                worldY += speed;
             } else if (keyH.leftPressed) {
                 direction = "left";
-                worldX -= speed;
             } else if (keyH.rightPressed) {
                 direction = "right";
-                worldX += speed;
+            }
+
+//Check the collision
+            collision = false;
+            gp.collisionChecker.checkTile(this);
+
+            //if colletion is false
+            if(collision == false) {
+                switch (direction){
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
+                }
             }
             spriteCounter++;
             if (spriteCounter > 40) {
