@@ -43,7 +43,7 @@ The project keeps in mind the possible failures and jams that might occur during
 <p align = "left"> -> Drinks: The Drinks class is a subclass of Product that represents beverage products. It has additional properties such as isAlcoholic (indicates if it is alcoholic) and milliliters (amount in milliliters). Implements the sell method to reduce the number of drinks available when a sale is made. It also provides an isAlcoholic method to check if the product is alcoholic.</p>
 <p align = "left"> -> Alert: The Alert class is an abstract class that extends the Exception class. It serves as the basis for defining custom alert types. It has a constructor that takes a message as a parameter and passes it to the constructor of the Exception base class. In addition, it has an empty alertException() method that can be implemented by subclasses to perform specific actions related to the alert.</p>
   
-
+![](https://github.com/lostal/awesome-projects-prograii/blob/alvaroLostal/vendingMachines/docs/vendingMachines.png)
 
 </p> 
 
