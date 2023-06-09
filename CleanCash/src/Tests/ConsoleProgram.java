@@ -8,11 +8,17 @@ import SystemManagement.MemberManager;
 
 import java.util.Scanner;
 
-public class MainTest {
+public class ConsoleProgram {
 
     InventoryDataBase inventoryDataBase = new InventoryDataBase();
     MemberManager memberManager = new MemberManager();
     CartManager cartManager = new CartManager();
+
+
+    public static void main(String[] args) {
+        ConsoleProgram consoleProgram = new ConsoleProgram();
+        consoleProgram.run();
+    }
 
 
     public void run() {
