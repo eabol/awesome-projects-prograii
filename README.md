@@ -28,7 +28,7 @@ ___
 - username: Pedro
 - password: 23
 
-## ¿Qué funcionalidades generales permite Gasify)
+## ¿Qué funcionalidades generales permite Gasify?
 ___
 
 - Válida el acceso del login
