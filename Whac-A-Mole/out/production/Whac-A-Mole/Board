@@ -1,8 +1,5 @@
-package main;
-
 import java.util.ArrayList;
 import java.util.List;
-import main.Hole;
 
 public class Board {
     private List<List<Hole>> holes;
@@ -27,18 +24,12 @@ public class Board {
     }
 
     public void showBoard() {
-        StringBuilder boardBuilder = new StringBuilder();
         for (List<Hole> row : holes) {
             for (Hole hole : row) {
-                if (hole.getSmackableCharacter() != null) {
-                    boardBuilder.append(hole.getSmackableCharacter().getName()).append(" ");
-                } else {
-                    boardBuilder.append("O ");
-                }
+                System.out.print(hole.isMoleInside() ? "M " : "O ");
             }
-            boardBuilder.append("\n");
+            System.out.println();
         }
-        System.out.println(boardBuilder.toString());
     }
 
     public Hole beatenHole(int position) {
