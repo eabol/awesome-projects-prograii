@@ -78,4 +78,5 @@ public class CellManager {
     public int getCellSize() {
         return screenSettings.getTileSize();
     }
+
 }

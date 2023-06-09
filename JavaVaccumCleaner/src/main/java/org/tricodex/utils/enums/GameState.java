@@ -5,6 +5,5 @@ public enum GameState {
     GAME,
     LEADERBOARD,
     PAUSED,
-    GAME_ENDED,
-    GAME_OVER
+    GAME_ENDED
 }

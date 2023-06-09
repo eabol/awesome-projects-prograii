@@ -55,6 +55,9 @@ public abstract class MovingEntity extends Entity {
 
     private boolean isColliding(Point point) {
         Cell cell = cellManager.getCellByPoint(point);
+        if(cell == null) {
+            return false;
+        }
         return cell.canCollide() && cell.getBounds().contains(point);
     }
 

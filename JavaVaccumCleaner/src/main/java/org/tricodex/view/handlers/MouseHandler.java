@@ -2,6 +2,7 @@ package org.tricodex.view.handlers;
 
 import org.tricodex.utils.enums.GameState;
 import org.tricodex.view.manager.GameStateManager;
+import org.tricodex.view.windows.GameEndedWindow;
 import org.tricodex.view.windows.LeaderboardWindow;
 import org.tricodex.view.windows.MenuWindow;
 
@@ -17,11 +18,13 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     private final GameStateManager gameStateManager;
     private final MenuWindow menuWindow;
     private final LeaderboardWindow leaderboardWindow;
+    private final GameEndedWindow gameEndedWindow;
 
-    public MouseHandler(GameStateManager gameStateManager, MenuWindow menuWindow, LeaderboardWindow leaderboardWindow) {
+    public MouseHandler(GameStateManager gameStateManager, MenuWindow menuWindow, LeaderboardWindow leaderboardWindow, GameEndedWindow gameEndedWindow) {
         this.gameStateManager = gameStateManager;
         this.menuWindow = menuWindow;
         this.leaderboardWindow = leaderboardWindow;
+        this.gameEndedWindow = gameEndedWindow;
     }
 
     @Override
@@ -30,6 +33,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
             handleMenuStateClick(e.getPoint());
         } else if (gameStateManager.getGameState() == GameState.LEADERBOARD) {
             handleLeaderboardStateClick(e.getPoint());
+        } else if (gameStateManager.getGameState() == GameState.GAME_ENDED) {
+            handleGameEndedStateClick(e.getPoint());
         }
     }
 
@@ -51,6 +56,15 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
         }
     }
 
+    private void handleGameEndedStateClick(Point mousePoint) {
+        HashMap<String, Rectangle> bounds = gameEndedWindow.getBounds();
+        if (bounds.get("goBackButton").contains(mousePoint)) {
+            gameStateManager.setGameState(GameState.MENU);
+        } else if (bounds.get("quitButton").contains(mousePoint)) {
+            System.exit(0);
+        }
+    }
+
     @Override
     public void mouseMoved(MouseEvent e) {
         Point mousePoint = e.getPoint();
@@ -59,6 +73,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
             handleMenuStateHover(mousePoint);
         } else if (gameStateManager.getGameState() == GameState.LEADERBOARD) { // New condition for leaderboard state
             handleLeaderboardStateHover(mousePoint); // New method
+        } else if (gameStateManager.getGameState() == GameState.GAME_ENDED) {
+            handleGameEndedStateHover(mousePoint);
         }
     }
 
@@ -86,6 +102,19 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
         }
 
         menuWindow.setHoveredButton(null);
+    }
+
+    private void handleGameEndedStateHover(Point mousePoint) {
+        HashMap<String, Rectangle> bounds = gameEndedWindow.getBounds();
+
+        for (Map.Entry<String, Rectangle> entry : bounds.entrySet()) {
+            if (entry.getValue().contains(mousePoint)) {
+                gameEndedWindow.setHoveredButton(entry.getKey());
+                return;
+            }
+        }
+
+        gameEndedWindow.setHoveredButton(null);
     }
 
     @Override

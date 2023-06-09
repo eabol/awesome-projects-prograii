@@ -4,7 +4,7 @@ import org.tricodex.model.UserGuide;
 import org.tricodex.model.Vacuum;
 import org.tricodex.utils.abstracts.Panel;
 import org.tricodex.utils.enums.MoveDirection;
-import org.tricodex.view.audio.AudioPlayer;
+import org.tricodex.view.services.AudioService;
 import org.tricodex.view.handlers.KeyHandler;
 
 import java.util.HashMap;
@@ -13,42 +13,32 @@ import java.util.function.BooleanSupplier;
 
 public class ControlPanel extends Panel {
     private final Map<BooleanSupplier, Runnable> keyMapping;
-    private AudioPlayer vacuumSound;
-    private boolean isVacuumCleaning;
+    private AudioService audioService;
 
     public ControlPanel(UserGuide userGuide, KeyHandler keyHandler, Vacuum vacuum) {
         keyMapping = new HashMap<>() {{
             put(keyHandler::isUpPressed, () -> {
                 userGuide.guideVacuum(MoveDirection.UP);
-                playVacuumSound();
+                audioService.playVacuumSound();
             });
             put(keyHandler::isDownPressed, () -> {
                 userGuide.guideVacuum(MoveDirection.DOWN);
-                playVacuumSound();
+                audioService.playVacuumSound();
             });
             put(keyHandler::isLeftPressed, () -> {
                 userGuide.guideVacuum(MoveDirection.LEFT);
-                playVacuumSound();
+                audioService.playVacuumSound();
             });
             put(keyHandler::isRightPressed, () -> {
                 userGuide.guideVacuum(MoveDirection.RIGHT);
-                playVacuumSound();
+                audioService.playVacuumSound();
             });
             put(keyHandler::isCleaningPressed, () -> {
                 vacuum.clean();
-                isVacuumCleaning = true;
-                playVacuumSound();
+                audioService.playVacuumSound();
             });
-            put(keyHandler::isRechargingPressed, () -> {
-                vacuum.recharge();
-                stopVacuumSound();
-                isVacuumCleaning = false;
-            });
-            put(keyHandler::isEmptyingPressed, () -> {
-                vacuum.emptyBag();
-                stopVacuumSound();
-                isVacuumCleaning = false;
-            });
+            put(keyHandler::isRechargingPressed, vacuum::recharge);
+            put(keyHandler::isEmptyingPressed, vacuum::emptyBag);
         }};
     }
 
@@ -60,19 +50,7 @@ public class ControlPanel extends Panel {
         });
     }
 
-    public void setVacuumSound(AudioPlayer vacuumSound) {
-        this.vacuumSound = vacuumSound;
-    }
-
-    private void playVacuumSound() {
-        if (!vacuumSound.isPlaying() && isVacuumCleaning) {
-            vacuumSound.play();
-        }
-    }
-
-    private void stopVacuumSound() {
-        if (vacuumSound.isPlaying()) {
-            vacuumSound.stop();
-        }
+    public void setVacuumSound(AudioService audioService) {
+        this.audioService = audioService;
     }
 }

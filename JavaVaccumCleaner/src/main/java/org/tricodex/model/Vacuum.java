@@ -62,7 +62,6 @@ public class Vacuum extends MovingEntity implements Cleanable {
 
     public void applyPowerUp(BoostType powerUpBoostType, int powerUpBoostAmount) {
         switch (powerUpBoostType) {
-            case SPEED -> increaseSpeed(powerUpBoostAmount);
             case BATTERY_LEVEL -> increaseBatteryLevel(powerUpBoostAmount);
             case BATTERY_MAX -> increaseBatteryMax(powerUpBoostAmount);
             case VACUUM_CAPACITY -> increaseBagCapacity(powerUpBoostAmount);
@@ -108,9 +107,6 @@ public class Vacuum extends MovingEntity implements Cleanable {
         MAX_EMPTIES += amount;
     }
 
-    private void increaseSpeed(int amount) {
-        speed += amount;
-    }
 
     private void increaseBatteryLevel(int amount) {
         batteryFill = Math.min(batteryCapacity, batteryFill + amount);
@@ -164,4 +160,23 @@ public class Vacuum extends MovingEntity implements Cleanable {
     public int getNumEmpties() {
         return numEmpties;
     }
+
+    public int getSpeed() {
+        return speed;
+    }
+    public void reset() {
+        this.setPosition(this.generateRandomNonCollidablePosition());
+        this.batteryCapacity = 100;
+        this.bagCapacity = 100;
+        this.batteryFill = batteryCapacity;
+        this.bagFill = 0;
+        this.numRecharges = 0;
+        this.numEmpties = 0;
+        this.cleaningScore = 0;
+        this.speed = 4;
+        MAX_RECHARGES = 5;
+        MAX_EMPTIES = 5;
+    }
+
+
 }

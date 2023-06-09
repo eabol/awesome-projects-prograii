@@ -10,7 +10,6 @@ import org.tricodex.model.map.MapLoader;
 import org.tricodex.view.panels.ControlPanel;
 import org.tricodex.view.panels.SurfacePanel;
 import org.tricodex.view.windows.GameEndedWindow;
-import org.tricodex.view.windows.GameOverWindow;
 import org.tricodex.view.windows.LeaderboardWindow;
 import org.tricodex.view.windows.MenuWindow;
 
@@ -38,12 +37,8 @@ public class GameObjectsFactory {
         return new LeaderboardWindow(screenSettings);
     }
 
-    public GameOverWindow createGameOverWindow() {
-        return new GameOverWindow();
-    }
-
     public GameEndedWindow createGameEndedWindow() {
-        return new GameEndedWindow();
+        return new GameEndedWindow(screenSettings, "Game Over");
     }
 
     public SurfacePanel createSurfacePanel(CellManager cellManager) {

@@ -49,8 +49,6 @@ public class PowerUp extends Entity {
         Random random = new Random();
         int boostTypeIndex = random.nextInt(BoostType.values().length);
         this.boostType = BoostType.values()[boostTypeIndex];
-        if (this.boostType == BoostType.SPEED)
-            this.boostAmount = random.nextInt(2) + 1;
         if (this.boostType == BoostType.RECHARGE_MAX)
             this.boostAmount = 1;
         if (this.boostType == BoostType.EMPTY_MAX)

@@ -30,4 +30,8 @@ public class Cat extends MovingEntity implements RandomMoveable {
     public void catFoul(){
         cellManager.getCellByPoint(position).increaseDirtLevel();
     }
+
+    public void setMoveObject(MoveObject moveObject) {
+        this.moveObject = moveObject;
+    }
 }

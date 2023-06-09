@@ -43,10 +43,6 @@ public class MenuWindow extends WindowBase {
         drawButton(g2d, quitButton, "Quit", "quitButton");
     }
 
-    public void loadMap() {
-        mapLoader.loadMap("/maps/map01.txt");
-    }
-
     private void drawGradientShadowedString(Graphics2D g2d, String text, int y) {
         // Create the gradient color
         GradientPaint gradient = new GradientPaint(

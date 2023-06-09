@@ -12,7 +12,6 @@ import java.awt.*;
 public class GameRenderer {
     private MenuWindow menuWindow;
     private LeaderboardWindow leaderboardWindow;
-    private GameOverWindow gameOverWindow;
     private GameEndedWindow gameEndedWindow;
     private GamePausedWindow gamePausedWindow;
     private final ScreenSettings screenSettings;
@@ -20,13 +19,11 @@ public class GameRenderer {
     private final Cat cat;
     private final Vacuum vacuum;
     private final PowerUp powerUp;
-    private final GameObjectsFactory gameObjectsFactory;
     private final AssetPainter assetPainter;
     private final GameUpdater gameUpdater;
-    public GameRenderer(MenuWindow menuWindow, LeaderboardWindow leaderboardWindow, GameObjectsFactory gameObjectsFactory,
+    public GameRenderer(MenuWindow menuWindow, LeaderboardWindow leaderboardWindow, GameEndedWindow gameEndedWindow,
                         ScreenSettings screenSettings, SurfacePanel surfacePanel,
                         Cat cat, Vacuum vacuum, PowerUp powerUp, AssetPainter assetPainter, GameUpdater gameUpdater) {
-        this.gameObjectsFactory = gameObjectsFactory;
         this.screenSettings = screenSettings;
         this.surfacePanel = surfacePanel;
         this.cat = cat;
@@ -36,11 +33,10 @@ public class GameRenderer {
         this.leaderboardWindow = leaderboardWindow;
         this.assetPainter = assetPainter;
         this.gameUpdater = gameUpdater;
+        this.gameEndedWindow = gameEndedWindow;
         this.generateWindows();
     }
     private void generateWindows() {
-        this.gameOverWindow = gameObjectsFactory.createGameOverWindow();
-        this.gameEndedWindow = gameObjectsFactory.createGameEndedWindow();
         this.gamePausedWindow = new GamePausedWindow(screenSettings);
     }
     public void render(Graphics g, boolean catHasSpawned, boolean hasPowerUpSpawned, GameState gameState)  {
@@ -54,7 +50,6 @@ public class GameRenderer {
             case MENU -> renderMenuState(g2d);
             case LEADERBOARD -> renderLeaderboardState(g2d);
             case GAME_ENDED -> renderGameEndedState(g2d);
-            case GAME_OVER -> renderGameOverState(g2d);
         }
 
         if (gameState == GameState.PAUSED) {
@@ -102,7 +97,7 @@ public class GameRenderer {
 
         g2d.setColor(Color.ORANGE); // Power-up in a different color
         g2d.setFont(new Font("Arial", Font.ITALIC, 12)); // Italic for differentiation
-        g2d.drawString(gameUpdater.getPoweUp(), statsPosX + panelPadding, currentY + lineSpacing);
+        g2d.drawString(gameUpdater.getPowerUp(), statsPosX + panelPadding, currentY + lineSpacing);
 
         currentY += 2 * lineSpacing; // Adding some space before next element
 
@@ -134,10 +129,6 @@ public class GameRenderer {
 
     private void renderGameEndedState(Graphics2D g2d) {
         gameEndedWindow.render(g2d);
-    }
-
-    private void renderGameOverState(Graphics2D g2d) {
-        gameOverWindow.render(g2d);
     }
 
     private void clearScreen(Graphics g) {

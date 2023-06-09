@@ -1,188 +1,326 @@
 @startuml
-skinparam packageStyle rect
+!theme plain
+top to bottom direction
+skinparam linetype ortho
 
-package org.tricodex.model {
-    abstract class Entity {
-        - position: Point
-        + Entity(position: Point)
-        + getPosition(): Point
-        + setPosition(position: Point): void
-    }
-
-    abstract class MovingEntity extends Entity {
-        - surface: Surface
-        - offset: int
-        + MovingEntity(position: Point, surface: Surface)
-        + move(direction: MoveDirection, speed: int): void
-    }
-
-
-    enum DirtLevel {
-        CLEAN
-        DIRTY
-        VERY_DIRTY
-        FILTHY
-    }
-
-    enum MoveDirection {
-        UP
-        DOWN
-        LEFT
-        RIGHT
-    }
-
-    interface Cleanable {
-        + clean(): void
-    }
-
-    interface RandomMoveable {
-        + moveRandomly(): void
-    }
-
-    class ScreenSettings {
-        - tileSize: int
-        - screenWidth: int
-        - screenHeight: int
-        - FPS: int
-        + ScreenSettings(tileSize: int, scale: int, maxScreenTilesWidth: int, maxScreenTilesHeight: int, FPS: int)
-        + getDimension(): Dimension
-        + getFPS(): int
-        + getTileSize(): int
-        + getScreenWidth(): int
-        + getScreenHeight(): int
-    }
-
-    class Cat extends MovingEntity implements RandomMoveable {
-        - speed: int
-        + Cat(position: Point, surface: Surface)
-        + moveRandomly(): void
-    }
-
-    class Cell extends Entity {
-        - dirtLevel: DirtLevel
-        - hasFurniture: boolean
-        + Cell(position: Point, dirtLevel: DirtLevel, hasFurniture: boolean)
-        + clean(): void
-        + increaseDirtLevel(): void
-        + getDirtLevel(): DirtLevel
-    }
-
-    class DirtSensor {
-        - surface: Surface
-        + DirtSensor(surface: Surface)
-        + getDirtiestCell(): Cell
-    }
-
-    class Surface {
-        - width: int
-        - height: int
-        - screenSettings: ScreenSettings
-        - cells: Cell[][]
-        + Surface(screenSettings: ScreenSettings)
-        + getCell(position: Point): Cell
-        + setCell(position: Point, cell: Cell): void
-        + getWidth(): int
-        + getHeight(): int
-    }
-
-    class UserGuide {
-        - surface: Surface
-        - vacuum: Vacuum
-        + UserGuide(surface: Surface, vacuum: Vacuum)
-        + guideVacuum(position: MoveDirection): void
-    }
-
-    class Vacuum extends MovingEntity implements Cleanable, RandomMoveable {
-        - bagCapacity: int
-        - bagContent: int
-        - batteryLevel: int
-        - speed: int
-        - dirtSensor: DirtSensor
-        + Vacuum(position: Point, surface: Surface, dirtSensor: DirtSensor)
-        + emptyBag(): void
-        + clean(): void
-        + moveRandomly(): void
-        + move(direction: MoveDirection): void
-        + getBagCapacity(): int
-        + setBagCapacity(bagCapacity: int): void
-        + getBagContent(): int
-        + setBagContent(bagContent: int): void
-        + getBatteryLevel(): int
-        + setBatteryLevel(batteryLevel: int): void
-    }
+class AssetLoader
+class AssetPainter {
+  - ANIMATION_FRAME_THRESHOLD: int
+  - imageMap: Map<String, BufferedImage>
+  - assetLoader: AssetLoader
+  - ANIMATION_CYCLE_LENGTH: int
+  - screenSettings: ScreenSettings
+}
+class AudioLoader {
+  - audioList: List<URL>
+}
+class AudioPlayer {
+  - clip: Clip
+}
+class AudioService {
+  - audioLoader: AudioLoader
+  - CAT_SOUND_COOLDOWN_MAX: int
+  - vacuumSound: AudioPlayer
+  - powerUpSound: AudioPlayer
+  - catSoundCooldown: int
+  - catSounds: AudioPlayer[]
+}
+enum BoostType << enumeration >> {
+  + BATTERY_LEVEL:
+  + RECHARGE_MAX:
+  + BATTERY_MAX:
+  + VACUUM_CAPACITY:
+  + EMPTY_MAX:
+  - displayName: String
+}
+class Cat {
+  - moveObject: MoveObject
+}
+class Cell {
+  - dirtLevel: DirtLevel
+  - images: Map<DirtLevel, BufferedImage>
+  - isCollidable: boolean
+  - TILE_PATH: String
+  - fixedImage: BufferedImage
+}
+class CellFactory {
+  - imageLoader: AssetLoader
+  - TILE_PATH: String
+  - screenSettings: ScreenSettings
+  - FURNITURE_IMAGES: String[]
+}
+class CellManager {
+  - WALL_CELL: int
+  - FLOOR_CELL: int
+  - mapCell: Cell[][]
+  - screenSettings: ScreenSettings
+  - cellFactory: CellFactory
+  - FURNITURE_CELL: int
+  - mapCellNumber: int[][]
+}
+interface Cleanable << interface >>
+class ControlPanel {
+  - audioService: AudioService
+  - keyMapping: Map<BooleanSupplier, Runnable>
+}
+enum DirtLevel << enumeration >> {
+  + VERY_DIRTY:
+  + CLEAN:
+  + FILTHY:
+  + DIRTY:
+}
+class Entity {
+  # entitySize: int
+  # position: Point
+}
+class EntityService {
+  - spawningTime: int
+  - hasSpawned: boolean
+  - despawningTime: int
+  - respawnCooldown: int
+  - respawnCooldownLimit: int
+  - despawningTimeLimit: int
+  - spawningTimeLimit: int
+}
+class GameEndedWindow {
+  - goBackButton: Rectangle
+  - quitButton: Rectangle
+  - message: String
+}
+class GameObjectsFactory {
+  - assetLoader: AssetLoader
+  - screenSettings: ScreenSettings
+}
+class GamePanel {
+  - isMusicPlaying: boolean
+  - gameUpdater: GameUpdater
+  - gameThread: Thread
+  - isGameRunning: boolean
+  - gameRenderer: GameRenderer
+  - screenSettings: ScreenSettings
+  - audioLoader: AudioLoader
+  - gameMusic: AudioPlayer
+  - gameStateManager: GameStateManager
+}
+class GamePausedWindow {
+  - screenSettings: ScreenSettings
+}
+class GameRenderer {
+  - menuWindow: MenuWindow
+  - leaderboardWindow: LeaderboardWindow
+  - gameEndedWindow: GameEndedWindow
+  - surfacePanel: SurfacePanel
+  - cat: Cat
+  - powerUp: PowerUp
+  - assetPainter: AssetPainter
+  - vacuum: Vacuum
+  - gamePausedWindow: GamePausedWindow
+  - screenSettings: ScreenSettings
+  - gameUpdater: GameUpdater
+}
+enum GameState << enumeration >> {
+  + GAME_ENDED:
+  + MENU:
+  + GAME:
+  + LEADERBOARD:
+  + PAUSED:
+}
+class GameStateManager {
+  - gameState: GameState
+  - paused: boolean
+}
+class GameUpdater {
+  - controlPanel: ControlPanel
+  - cellManager: CellManager
+  - scoreService: ScoreService
+  - previousCleaningScore: int
+  - catController: EntityService
+  - gameStateManager: GameStateManager
+  - cat: Cat
+  - powerUpController: EntityService
+  - boostTypeReceived: String
+  - powerUp: PowerUp
+  - vacuum: Vacuum
+  - audioService: AudioService
+  - catDirtCooldown: int
+}
+class InputHandler {
+  - keyHandler: KeyHandler
+  - mouseHandler: MouseHandler
+}
+class KeyHandler {
+  - isEmptyingHandled: boolean
+  - isEmptyingPressed: boolean
+  - activeDirections: EnumSet<MoveDirection>
+  - gameStateManager: GameStateManager
+  - isRechargingPressed: boolean
+  - isRechargingHandled: boolean
+  - isCleaningPressed: boolean
+  - isCleaningHandled: boolean
+}
+class LeaderboardWindow {
+  - goBackButton: Rectangle
+}
+class Main {
+  - gameEndedWindow: GameEndedWindow
+  - inputHandler: InputHandler
+  - gamePanel: GamePanel
+  - leaderboardWindow: LeaderboardWindow
+  - mapLoader: MapLoader
+  - gameStateManager: GameStateManager
+  - screenSettings: ScreenSettings
+  - menuWindow: MenuWindow
+  - gameObjectsFactory: GameObjectsFactory
+  - cellManager: CellManager
+}
+class MainWindow
+class MapLoader {
+  - cellManager: CellManager
+  - mapCellNum: int[][]
+  - screenSettings: ScreenSettings
+}
+class MenuWindow {
+  - mapLoader: MapLoader
+  - quitButton: Rectangle
+  - playButton: Rectangle
+  - scoreLeaderboardButton: Rectangle
+}
+class MouseHandler {
+  - menuWindow: MenuWindow
+  - leaderboardWindow: LeaderboardWindow
+  - gameStateManager: GameStateManager
+  - gameEndedWindow: GameEndedWindow
+}
+enum MoveDirection << enumeration >> {
+  + LEFT:
+  + RIGHT:
+  + DOWN:
+  + UP:
+}
+class MoveObject {
+  - targetLocation: Point
+  - random: Random
+  - minDistance: double
+  - cellManager: CellManager
+  - currentLocation: Point
+  - speed: double
+}
+class MovingEntity {
+  # offset: int
+  # scale: int
+  # cellManager: CellManager
+  # speed: int
+  # direction: MoveDirection
+}
+class Panel
+class PowerUp {
+  - boostAmount: int
+  - cellManager: CellManager
+  - boostType: BoostType
+}
+enum PowerUpSoundType << enumeration >> {
+  + POWER_UP_COLLECTED:
+  + POWER_UP_SPAWNED:
+}
+interface RandomMoveable << interface >>
+class ScoreService {
+  - gameScore: int
+  - highScore: int
+}
+class ScreenSettings {
+  - screenWidth: int
+  - scale: int
+  - maxScreenTilesHeight: int
+  - FPS: int
+  - screenHeight: int
+  - tileSize: int
+  - maxScreenTilesWidth: int
+}
+class StatusService {
+  - vacuum: Vacuum
+}
+class SurfacePanel {
+  - cellManager: CellManager
+  - assetPainter: AssetPainter
+}
+class UserGuide {
+  - vacuum: Vacuum
+}
+class Vacuum {
+  - cleaningScore: int
+  - batteryCapacity: int
+  - batteryFill: double
+  - MAX_EMPTIES: int
+  - bagFill: int
+  - CLEANING_POINTS: int
+  - bagCapacity: int
+  - numEmpties: int
+  - numRecharges: int
+  - MAX_RECHARGES: int
+  - batteryConsumptionRate: double
+}
+class WindowBase {
+  # hoverColor: Color
+  # screenSettings: ScreenSettings
+  # buttonFont: Font
+  # hoveredButton: String
+  # titleFont: Font
+  # buttonColor: Color
 }
 
-package org.tricodex.view {
-
-    abstract class AssetLoader
-    abstract class AssetPainter {
-        + paintVaccumCleaner(g2: Graphics2D, vacuum: Vaccum, screenSettings: ScreenSettings): void
-    }
-
-    abstract class Panel extends JPanel {
-        + Panel()
-        + paintComponent(g: Graphics): void
-    }
-    class ControlPanel extends Panel {
-        - userGuide: UserGuide
-        - keyMapping: Map<BooleanSupplier, MoveDirection>
-        + ControlPanel(userGuide: UserGuide, keyHandler: KeyHandler)
-        + actionPerformed(): void
-    }
-
-    class GamePanel extends JPanel implements Runnable {
-        - keyHandler: KeyHandler
-        - vacuum: Vaccum
-        - surface: Surface
-        - dirtSensor: DirtSensor
-        - controlPanel: ControlPanel
-        - userGuide: UserGuide
-        - screenSettings: ScreenSettings
-        + GamePanel()
-        + startGameThread(): void
-        + run(): void
-        + paintComponent(g: Graphics): void
-    }
-
-    class KeyHandler implements KeyListener {
-        - activeDirections: EnumSet<MoveDirection>
-        + isUpPressed(): boolean
-        + isDownPressed(): boolean
-        + isLeftPressed(): boolean
-        + isRightPressed(): boolean
-        + keyTyped(e: KeyEvent): void
-        + keyPressed(e: KeyEvent): void
-        + keyReleased(e: KeyEvent): void
-    }
-
-    class MainWindow extends JFrame {
-        - ICON: ImageIcon
-        + MainWindow()
-    }
-
-    class SurfacePanel extends Panel {
-        + SurfacePanel()
-    }
-}
-
-MovingEntity --> Surface: uses
-Cell --> DirtLevel: uses
-DirtSensor --> Surface: uses
-DirtSensor --> Cell: uses
-Surface --> Cell: uses
-Surface --> ScreenSettings: uses
-UserGuide --> Surface: uses
-UserGuide --> MoveDirection: uses
-UserGuide --> Vacuum: uses
-Vacuum --> DirtSensor: uses
-ControlPanel --> UserGuide: uses
-ControlPanel --> KeyHandler: uses
-AssetPainter --> AssetLoader: uses
-GamePanel --> KeyHandler: uses
-GamePanel --> AssetPainter: uses
-GamePanel --> Vacuum: uses
-GamePanel --> Surface: uses
-GamePanel --> ControlPanel: uses
-GamePanel --> ScreenSettings: uses
-MainWindow --> GamePanel: uses
+AssetPainter o--> AssetLoader
+AssetPainter o--> ScreenSettings
+CellFactory o--> AssetLoader
+CellFactory o--> ScreenSettings
+CellManager o--> ScreenSettings
+CellManager o--> CellFactory
+GameObjectsFactory o--> AssetLoader
+GameObjectsFactory o--> ScreenSettings
+GamePanel o--> GameUpdater
+GamePanel o--> GameRenderer
+GamePanel o--> ScreenSettings
+GamePanel o--> AudioLoader
+GamePanel o--> GameStateManager
+GameRenderer o--> MenuWindow
+GameRenderer o--> LeaderboardWindow
+GameRenderer o--> GameEndedWindow
+GameRenderer o--> SurfacePanel
+GameRenderer o--> AssetPainter
+GameRenderer o--> ScreenSettings
+GameRenderer o--> GameUpdater
+GameUpdater o--> ControlPanel
+GameUpdater o--> CellManager
+GameUpdater o--> ScoreService
+GameUpdater o--> EntityService
+GameUpdater o--> GameStateManager
+GameUpdater o--> AudioService
+Main o--> GameEndedWindow
+Main o--> InputHandler
+Main o--> GamePanel
+Main o--> LeaderboardWindow
+Main o--> MapLoader
+Main o--> GameStateManager
+Main o--> ScreenSettings
+Main o--> MenuWindow
+Main o--> GameObjectsFactory
+Main o--> CellManager
+MenuWindow o--> MapLoader
+MouseHandler o--> MenuWindow
+MouseHandler o--> LeaderboardWindow
+MouseHandler o--> GameStateManager
+MouseHandler o--> GameEndedWindow
+MapLoader o--> CellManager
+MapLoader o--> ScreenSettings
+Cat                 -[#000082,plain]-^  MovingEntity
+Cat                 -[#008200,dashed]-^  RandomMoveable
+Cell                -[#000082,plain]-^  Entity
+ControlPanel        -[#000082,plain]-^  Panel
+GameEndedWindow     -[#000082,plain]-^  WindowBase
+LeaderboardWindow   -[#000082,plain]-^  WindowBase
+MenuWindow          -[#000082,plain]-^  WindowBase
+MovingEntity        -[#000082,plain]-^  Entity
+PowerUp             -[#000082,plain]-^  Entity
+SurfacePanel        -[#000082,plain]-^  Panel
+Vacuum              -[#008200,dashed]-^  Cleanable
+Vacuum              -[#000082,plain]-^  MovingEntity
 @enduml
