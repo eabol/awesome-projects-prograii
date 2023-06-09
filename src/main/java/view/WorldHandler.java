@@ -1,9 +1,9 @@
-package src.main.java.view;
-import src.main.java.core.Maze;
-import src.main.java.core.World;
-import src.main.java.core.Terrain;
-import src.main.java.enumerators.TerrainType;
-import src.main.java.view.character.*;
+package main.java.view;
+import main.java.core.Maze;
+import main.java.core.World;
+import main.java.core.Terrain;
+import main.java.enumerators.TerrainType;
+import main.java.view.character.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +39,16 @@ public class WorldHandler extends JPanel implements Runnable {
     };
 
     public WorldHandler() {
-        this.world = new World(mazesData);
+        int[][] arrayToTransform = tileManager.mapTileNum;
+        String[][] arrayTransform;
+        arrayTransform = new String[arrayToTransform.length][arrayToTransform[0].length];
+        for (int i = 0; i < arrayToTransform.length; i++) {
+            for (int j = 0; j < arrayToTransform[0].length; j++) {
+                arrayTransform[i][j] = String.valueOf(arrayToTransform[i][j]);
+            }
+        }
+        String [][][] worldData = {arrayTransform};
+        this.world = new World(worldData);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);

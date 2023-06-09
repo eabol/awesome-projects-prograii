@@ -1,4 +1,4 @@
-package src.main.java.view.tile;
+package main.java.view.tile;
 
 import java.awt.image.BufferedImage;
 

@@ -1,6 +1,6 @@
-package src.main.java.view.character;
+package main.java.view.character;
 
-import src.main.java.view.WorldHandler;
+import main.java.view.WorldHandler;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,14 +10,12 @@ import java.util.Objects;
 public class PlayableGameCharacterHandler extends GameCharacterHandler {
     WorldHandler gp;
     KeyHandler keyH;
-    public final int screenY;
-    public final int screenX;
 
     public PlayableGameCharacterHandler(WorldHandler gp, KeyHandler keyH) {
         this.gp = gp;
         this.keyH = keyH;
-        screenX = gp.screenWidth/2 - (gp.originalSize/2);
-        screenY = gp.screenHeight/2 - (gp.originalSize/2);
+        this.screenX = gp.screenWidth/2 - (gp.originalSize/2);
+        this.screenY = gp.screenHeight/2 - (gp.originalSize/2);
         setDefaultValue();
         getPlayerImage();
     }
@@ -31,16 +29,16 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
 
     public void getPlayerImage() {
         try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("playableGameCharacter/up1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("playableGameCharacter/up2.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("playableGameCharacter/left1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("playableGameCharacter/left2.png")));
-            left3 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("playableGameCharacter/left3.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("playableGameCharacter/right1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("playableGameCharacter/right2.png")));
-            right3 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("playableGameCharacter/right3.png")));
-            upLeft = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("playableGameCharacter/upLeft.png")));
-            upRight = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("playableGameCharacter/upRight.png")));
+            up1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/up1.png")));
+            up2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/up2.png")));
+            left1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/left1.png")));
+            left2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/left2.png")));
+            left3 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/left3.png")));
+            right1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/right1.png")));
+            right2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/right2.png")));
+            right3 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/right3.png")));
+            upLeft = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/upLeft.png")));
+            upRight = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/upRight.png")));
 
         } catch (Exception e) {
             e.printStackTrace();

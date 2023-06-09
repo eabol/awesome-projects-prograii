@@ -1,4 +1,4 @@
-package src.main.java.view;
+package main.java.view;
 
 import javax.swing.*;
 public class Main {

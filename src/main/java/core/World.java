@@ -1,6 +1,6 @@
-package src.main.java.core;
-import src.main.java.core.Terrain;
-import src.main.java.core.character.*;
+package main.java.core;
+import main.java.core.Terrain;
+import main.java.core.character.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,6 +45,8 @@ public class World {
     }
 
     public ArrayList<Maze> generateLevels (String[][][] data) {
+        System.out.println("Generating levels...");
+
         ArrayList<Maze> arrayList = new ArrayList<>();
         for (String[][] map: data) {
             arrayList.add(new Maze(map));

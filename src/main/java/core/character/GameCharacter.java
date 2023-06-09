@@ -1,8 +1,10 @@
-package src.main.java.core.character;
+package main.java.core.character;
 
-import src.main.java.core.Terrain   ;
-import src.main.java.core.transport.*;
-import src.main.java.interfaces.Movable;
+import main.java.core.Terrain   ;
+import main.java.core.transport.*;
+import main.java.interfaces.Movable;
+
+import static main.java.enumerators.TerrainType.*;
 
 public abstract class GameCharacter implements Movable {
 

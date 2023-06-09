@@ -1,4 +1,4 @@
-package src.main.java.view.character;
+package main.java.view.character;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -8,6 +8,8 @@ public class GameCharacterHandler {
     public String direction;
     public int spriteCounter = 0;
     public int spriteNum = 1;
+    public int screenX;
+    public int screenY;
 
     public void update() {
     }

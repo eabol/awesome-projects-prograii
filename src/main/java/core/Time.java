@@ -1,4 +1,4 @@
-package src.main.java.core;
+package main.java.core;
 
 public class Time {
     private int hours;
