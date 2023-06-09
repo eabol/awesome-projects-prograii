@@ -1,7 +1,7 @@
 # CleanCash project
 ## Description
-    This project is a simple cash register that allows you to add products to the cart, remove the products you do not want and calculate the total price of the purchase.
-    Also, you can add some discount codes to the products and see the total price with the discount applied.
+This project is a simple cash register that allows you to add products to the cart, remove the products you do not want and calculate the total price of the purchase.
+Also, you can add some discount codes to the products and see the total price with the discount applied.
 
 ## Functionalities
 - Add products to the cart
@@ -18,8 +18,8 @@
 ## Images of the project
 
 ## Usage Guide
-    To run this project first you need to download the project and a Java environment. Then you need to open the project in your Java environment and run the main class.
-    Once you run the main class you will see the menu of the project and you can start using it.
+To run this project first you need to download the project and a Java environment. Then you need to open the project in your Java environment and run the main class.
+Once you run the main class you will see the menu of the project and you can start using it.
 
 ## Authors
 - Diego García Niño
