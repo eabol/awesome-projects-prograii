@@ -26,11 +26,11 @@ public class CheckoutKiosk extends JFrame {
     private JLabel newTotalLabel;
     private JButton applyDiscountButton;
 
-
     public CheckoutKiosk() {
         productList = new InventoryDataBase();
         discountList = new DiscountsManager();
         cartManager = new CartManager();
+
         setupGUI();
         updateInventoryUI();
     }
@@ -49,8 +49,16 @@ public class CheckoutKiosk extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         JLabel welcomeLabel = new JLabel("Welcome to CleanCash!", SwingConstants.CENTER);
         JButton startButton = new JButton("Start");
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         welcomePanel.add(welcomeLabel, gbc);
+        
+        gbc.gridy = 1;
+        gbc.insets = new Insets(10, 0, 0, 0);
         welcomePanel.add(startButton, gbc);
+        
+        gbc.insets = new Insets(0, 0, 0, 0);
 
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -59,16 +67,13 @@ public class CheckoutKiosk extends JFrame {
             }
         });
 
-        welcomePanel.add(welcomeLabel);
-        welcomePanel.add(startButton);
-
         JPanel shopPanel = new JPanel(new BorderLayout());
         productJList = new JList<>();
         productJList.setPrototypeCellValue("Item Name --------------------");
         cartModel = new DefaultListModel<>();
         cartJList = new JList<>(cartModel);
         cartJList.setPrototypeCellValue("Item Name --------------------");
-        JButton addToCartButton = new JButton("Add to cart / remove");
+        JButton addToCartButton = new JButton("Add to cart // Remove from cart");
 
         cartTotalLabel = new JLabel("Cart total: ");
         JButton checkoutButton = new JButton("Checkout");
@@ -81,7 +86,6 @@ public class CheckoutKiosk extends JFrame {
                     if (product != null) {
                         cartManager.add(product);
                         updateInventoryUI();
-                        //selectedProducts.add(product);
                         cartModel.addElement(product.getEntityName() + ": " + product.getPrice());
                         updateCartTotal();
                     }
@@ -92,7 +96,6 @@ public class CheckoutKiosk extends JFrame {
                     if (product != null) {
                         cartManager.remove(product);
                         updateInventoryUI();
-                        //selectedProducts.add(product);
                         cartModel.removeElement(product.getEntityName() + ": " + product.getPrice());
                         updateCartTotal();
                     }
@@ -126,7 +129,6 @@ public class CheckoutKiosk extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String discountCode = discountCodeField.getText();
                 int discount = discountList.getDiscount(discountCode);
-                //Discount discount = discountList.getItem(discountCode);
                 if (discount>0) {
                     cartManager.applyDiscount(discount);
                     discountValueLabel.setText("Discount value: " + discount);
@@ -168,17 +170,22 @@ public class CheckoutKiosk extends JFrame {
         JPanel thankYouPanel = new JPanel(new GridBagLayout());
         JLabel thankYouLabel = new JLabel("Thank you for shopping!", SwingConstants.CENTER);
         JButton exitButton = new JButton("Exit");
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
         thankYouPanel.add(thankYouLabel, gbc);
+        
+        gbc.gridy = 1;
+        gbc.insets = new Insets(10, 0, 0, 0);
         thankYouPanel.add(exitButton, gbc);
+        
+        gbc.insets = new Insets(0, 0, 0, 0);
 
         exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
-
-        thankYouPanel.add(thankYouLabel);
-        thankYouPanel.add(exitButton);
 
         mainPanel.add(welcomePanel, "WELCOME_PANEL");
         mainPanel.add(shopPanel, "SHOP_PANEL");
@@ -187,7 +194,6 @@ public class CheckoutKiosk extends JFrame {
 
         setVisible(true);
     }
-
 
     public void updateInventoryUI(){
         DefaultListModel<String> model = new DefaultListModel<>();
