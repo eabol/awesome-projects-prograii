@@ -4,12 +4,20 @@
 
 Nuestro proyecto en Java "Máquina Expendedora de Productos con devolución de cambio" es una aplicación que simula el funcionamiento de una máquina expendedora automatizada. Permite a los usuarios insertar dinero y seleccionar un producto deseado, proporcionando tanto el artículo seleccionado como el cambio correspondiente.
 Características principales:
+
 -Selección de productos: Los usuarios pueden elegir entre una variedad de productos disponibles, como refrescos, chocolatinas, etc. Cada artículo tiene un precio asociado.
+
 -Inserción de dinero: Los usuarios pueden insertar dinero en forma de monedas o billetes. El programa acepta diferentes denominaciones y realiza un seguimiento del montón total ingresado.
+
 -Cálculo de cambio: Después de seleccionar un producto y haber insertado suficiente dinero, el programa determina el cambio necesario. Utiliza un algoritmo para calcular la cantidad mínima de monedas y billetes necesarios para devolver el cambio al usuario.
+
 -Entrega del producto: Una vez que se ha realizado la selección y se ha insertado el dinero adecuado, el programa dispensa el producto deseado. Si no hay suficiente dinero ingresado, se mostrará un mensaje indicando la cantidad faltante.
+
 -Gestión de inventario: El programa realiza un seguimiento del inventario de productos, asegurando que solo los productos disponibles se muestren como opciones para los usuarios. Además, si un artículo se agota, se muestra un mensaje adecuado.
+
+
 -Opciones adicionales: El programa puede incluir características adicionales, como el poder tener incidencias y la posibilidad de guardar la fecha de dicha incidencia.
+
 
 ## Funcionalidades del proyecto.
 
