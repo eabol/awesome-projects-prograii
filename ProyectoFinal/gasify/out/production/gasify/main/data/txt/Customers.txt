@@ -1,5 +1,0 @@
-idCustomer;nameCustomer;numberPhone;address;
-
-72171365X,Daniel Perez Gonzales,687220274,Calle Camarreal 1
-50394857E,Sara Gomez Gonzalez,664351012,Calle Peña Herbosa 23
-72438457X,Javier Roldán Rábago,666778833,Plaza Ayuntamiento 2
