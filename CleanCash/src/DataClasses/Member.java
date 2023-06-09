@@ -4,7 +4,6 @@ public class Member extends Entity {
     private String phoneNumber;
     private int pointsBalance;
 
-
     public int getPointsBalance() {
         return pointsBalance;
     }

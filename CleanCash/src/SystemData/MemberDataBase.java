@@ -1,6 +1,5 @@
 package SystemData;
 
-import DataClasses.Client;
 import DataClasses.Member;
 
 public class MemberDataBase {
