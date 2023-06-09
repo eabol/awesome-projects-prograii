@@ -1,81 +1,76 @@
 @startuml
-Controller --> DataBase
-
-
-Client --|> Entity
-Item --|> Entity
-
-ItemDataBase --|> DataBase
-ClientDataBase --|> DataBase
-
-ItemDataBase --> Entity
-ClientDataBase --> Entity
-
-DataBase --> FileReader
-
-
-Abstract DataBase{
-    List BaseList
-
-    ReadFile()
-    WriteFile()
-
+abstract Entity {
++String entityId
++String entityName
 }
 
-Abstract Entity{
-    String name
-    String id
+class Product {
++float price
+}
+Product --|> Entity
 
-    void identify()
+class InventoryDataBase {
++findProduct(String): Product
++getProducts(): List<Product>
 }
 
-Class ItemDataBase{
-    List ItemList
-
-    ReadFile()
-    WriteFile()
+class DiscountsDataBase {
++getSaleDiscount(String): String
 }
 
-Class ClientDataBase{
-    List ClientList
+class ShoppingCart {
++List<Product> productsCart
++float totalCost
++float discountsTotal
++float finalCost
++addProduct(Product): void
++applyDiscount(float): void
++removeProduct(Product): void
++findProduct(Product): Product
++findProduct(String): Product
++getProductsCart(): List<Product>
++getTotalCost(): float
++setTotalCost(float): void
++getDiscountsTotal(): float
++setDiscountsTotal(float): void
++getFinalCost(): float
++setFinalCost(float): void
+}
+ShoppingCart "1" o-- "many" Product
 
-    ReadFile()
-    WriteFile()
+interface DataManager {
++add(Entity): void
++remove(Entity): void
++identify(Entity): void
 }
 
-
-Class FileReader{
-    void read()
-    void write()
+class CartManager {
++ShoppingCart shoppingCart
++getShoppingCart(): ShoppingCart
++getTotalCost(): float
++getTotalDiscount(): float
++getFinalCost(): float
++applyDiscount(float): void
 }
+CartManager o-- ShoppingCart
+CartManager ..|> DataManager
 
-Class Client{
-    String name
-    String id
-    String phone
-
-    void identify()
+class DiscountsManager {
++DiscountsDataBase discountsDataBase
++getDiscount(String): int
 }
+DiscountsManager o-- DiscountsDataBase
+DiscountsManager ..|> DataManager
 
-Class Item{
-    String name
-    String id
-    long price
-
-    void identify()
+class CheckoutKiosk {
++InventoryDataBase productList
++DiscountsManager discountList
++CartManager cartManager
++setupGUI(): void
++updateInventoryUI(): void
++updateCartTotal(): void
 }
-
-Class Controller{
-    Item list
-    Client list
-
-    void addItem(FileReader())
-    void removeItem()
-
-    void createClient()
-    void loginClient()
-}
-
-
-
+CheckoutKiosk o-- InventoryDataBase
+CheckoutKiosk o-- DiscountsManager
+CheckoutKiosk o-- CartManager
 @enduml
