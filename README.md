@@ -25,17 +25,20 @@ ___
 
 ![gasify](https://i.ibb.co/Dw3DZnn/ejecutar.jpg)
 
--username: Pedro
--password: 23
+- username: Pedro
+- password: 23
 
 ## ¿Qué funcionalidades generales permite Gasify)
 ___
 
-1 . Válida el acceso del login
-2. Buscar un cliente por Nombre
-3. Buscar un cliente por ID, posteriormente decides si quieres:
+- Válida el acceso del login
+- Buscar un cliente por Nombre 
+- Buscar un cliente por ID, posteriormente decides si quieres:
     - Generar una factura para un peridodo 
     - Visualizar el historico de consumos entre dos fechas del año 2023
+
+* Ejemplo, factura en servidor y mostrarla en pdf
+![gasify](https://i.ibb.co/tK7HY0g/factura.jpg)
 
 ## Si quieres ampliar información de la documentación...
 ___
