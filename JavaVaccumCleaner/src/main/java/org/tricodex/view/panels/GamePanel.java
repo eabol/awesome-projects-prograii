@@ -1,5 +1,7 @@
 package org.tricodex.view.panels;
 
+import org.tricodex.view.audio.AudioLoader;
+import org.tricodex.view.audio.AudioPlayer;
 import org.tricodex.view.handlers.InputHandler;
 import org.tricodex.view.handlers.KeyHandler;
 import org.tricodex.view.handlers.MouseHandler;
@@ -18,6 +20,9 @@ public class GamePanel extends JPanel implements Runnable {
     private final ScreenSettings screenSettings;
     private final Thread gameThread;
     private boolean isGameRunning;
+    private final AudioLoader audioLoader;
+    private final AudioPlayer gameMusic;
+    private boolean isMusicPlaying;
 
     public GamePanel(GameStateManager gameStateManager, GameUpdater gameUpdater, GameRenderer gameRenderer, ScreenSettings screenSettings, InputHandler inputHandler) {
         this.gameStateManager = gameStateManager;
@@ -26,6 +31,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.screenSettings = screenSettings;
         this.gameThread = new Thread(this);
         this.isGameRunning = false;
+        this.audioLoader = new AudioLoader();
+        this.gameMusic = new AudioPlayer();
+        this.gameMusic.load(audioLoader.getAudioStream(6));
+        this.isMusicPlaying = false;
 
         setupPanel(inputHandler.getKeyHandler(), inputHandler.getMouseHandler());
     }
@@ -60,6 +69,11 @@ public class GamePanel extends JPanel implements Runnable {
         while (isGameRunning) {
             long startTime = System.nanoTime();
 
+            if (!isMusicPlaying) {
+                playGameMusic();
+                isMusicPlaying = true;
+            }
+
             gameUpdater.updateGame(gameStateManager.getGameState(), gameStateManager.isPaused());
 
             SwingUtilities.invokeLater(this::repaint);
@@ -88,5 +102,10 @@ public class GamePanel extends JPanel implements Runnable {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         gameRenderer.render(g, gameUpdater.isCatSpawned(), gameUpdater.isPowerUpSpawned(), gameStateManager.getGameState());
+    }
+
+    private void playGameMusic() {
+        gameMusic.play();
+        gameMusic.loop();
     }
 }

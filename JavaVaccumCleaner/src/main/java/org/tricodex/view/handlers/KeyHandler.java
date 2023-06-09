@@ -83,13 +83,6 @@ public class KeyHandler implements KeyListener {
                     gameStateManager.setGameState(GameState.MENU);
                 }
             }
-            case KeyEvent.VK_ESCAPE -> {
-                if (gameStateManager.getGameState() == GameState.GAME) {
-                    gameStateManager.setGameState(GameState.PAUSE);
-                } else if (gameStateManager.getGameState() == GameState.PAUSE) {
-                    gameStateManager.setGameState(GameState.GAME);
-                }
-            }
             case KeyEvent.VK_O -> {
                 if (gameStateManager.getGameState() == GameState.GAME_OVER) {
                     gameStateManager.setGameState(GameState.GAME);

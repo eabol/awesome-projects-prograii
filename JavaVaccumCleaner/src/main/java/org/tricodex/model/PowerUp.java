@@ -50,7 +50,11 @@ public class PowerUp extends Entity {
         int boostTypeIndex = random.nextInt(BoostType.values().length);
         this.boostType = BoostType.values()[boostTypeIndex];
         if (this.boostType == BoostType.SPEED)
-            this.boostAmount = random.nextInt(2) + 1;  // Random boost amount between 1 and 2
+            this.boostAmount = random.nextInt(2) + 1;
+        if (this.boostType == BoostType.RECHARGE_MAX)
+            this.boostAmount = 1;
+        if (this.boostType == BoostType.EMPTY_MAX)
+            this.boostAmount = 1;
         else this.boostAmount = random.nextInt(10) + 1;  // Random boost amount between 1 and 10
     }
 

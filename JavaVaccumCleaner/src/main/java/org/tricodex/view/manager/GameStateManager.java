@@ -17,7 +17,4 @@ public class GameStateManager {
         return paused;
     }
 
-    public void setPaused(boolean paused) {
-        this.paused = paused;
-    }
 }

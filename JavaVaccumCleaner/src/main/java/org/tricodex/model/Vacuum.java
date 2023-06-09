@@ -10,10 +10,9 @@ import java.awt.*;
 
 public class Vacuum extends MovingEntity implements Cleanable {
 
-    private static final int MAX_RECHARGES = 5;
-    private static final int MAX_EMPTIES = 5;
+    private static int MAX_RECHARGES = 5;
+    private static int MAX_EMPTIES = 5;
     private static final int CLEANING_POINTS = 10;
-
     private int bagCapacity = 100;
     private int bagFill = 0;
     private double batteryFill = 100;
@@ -67,6 +66,8 @@ public class Vacuum extends MovingEntity implements Cleanable {
             case BATTERY_LEVEL -> increaseBatteryLevel(powerUpBoostAmount);
             case BATTERY_MAX -> increaseBatteryMax(powerUpBoostAmount);
             case VACUUM_CAPACITY -> increaseBagCapacity(powerUpBoostAmount);
+            case RECHARGE_MAX -> increaseMaxRecharges(powerUpBoostAmount);
+            case EMPTY_MAX -> increaseMaxEmpties(powerUpBoostAmount);
             default -> throw new IllegalArgumentException("Invalid boost type: " + powerUpBoostType);
         }
     }
@@ -97,6 +98,14 @@ public class Vacuum extends MovingEntity implements Cleanable {
     private void decreaseBattery(double amount) {
         batteryFill -= amount;
         if (batteryFill < 0) batteryFill = 0;
+    }
+
+    private void increaseMaxRecharges(int amount) {
+        MAX_RECHARGES += amount;
+    }
+
+    private void increaseMaxEmpties(int amount) {
+        MAX_EMPTIES += amount;
     }
 
     private void increaseSpeed(int amount) {

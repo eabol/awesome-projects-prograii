@@ -61,16 +61,25 @@ public abstract class MovingEntity extends Entity {
     protected Point generateRandomNonCollidablePosition() {
         Random random = new Random();
         Point randomPosition;
-        int entitySize = cellManager.getCellSize();  // Assuming entitySize is equal to cellSize
+        int entitySize = getEntitySize();  // Assuming entitySize is equal to cellSize
 
         do {
             int x = random.nextInt(cellManager.getMapWidth() - entitySize);
             int y = random.nextInt(cellManager.getMapHeight() - entitySize);
             randomPosition = new Point(x, y);
-        } while (isColliding(randomPosition));
+        } while (isEntityColliding(randomPosition, entitySize));
 
         return randomPosition;
     }
+
+    private boolean isEntityColliding(Point topLeft, int entitySize) {
+        Point topRight = new Point(topLeft.x + entitySize - 1, topLeft.y);
+        Point bottomLeft = new Point(topLeft.x, topLeft.y + entitySize - 1);
+        Point bottomRight = new Point(topLeft.x + entitySize - 1, topLeft.y + entitySize - 1);
+
+        return isColliding(topLeft) || isColliding(topRight) || isColliding(bottomLeft) || isColliding(bottomRight);
+    }
+
 
     public MoveDirection getDirection() {
         return direction;

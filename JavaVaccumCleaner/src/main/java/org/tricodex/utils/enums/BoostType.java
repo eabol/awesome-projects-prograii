@@ -4,7 +4,9 @@ public enum BoostType {
     SPEED("Speed"),
     BATTERY_LEVEL("Battery Level"),
     BATTERY_MAX("Battery Max"),
-    VACUUM_CAPACITY("Vacuum Capacity");
+    VACUUM_CAPACITY("Vacuum Capacity"),
+    RECHARGE_MAX("Recharge Max"),
+    EMPTY_MAX("Empty Max");
 
     private final String displayName;
 

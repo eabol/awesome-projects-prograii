@@ -4,7 +4,7 @@ public enum GameState {
     MENU,
     GAME,
     LEADERBOARD,
-    PAUSE,
+    PAUSED,
     GAME_ENDED,
     GAME_OVER
 }

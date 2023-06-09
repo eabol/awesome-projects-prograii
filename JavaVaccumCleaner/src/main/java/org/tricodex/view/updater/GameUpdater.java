@@ -3,8 +3,13 @@ package org.tricodex.view.updater;
 import org.tricodex.model.*;
 import org.tricodex.model.manager.CellManager;
 import org.tricodex.utils.enums.BoostType;
+import org.tricodex.view.audio.AudioLoader;
+import org.tricodex.view.audio.AudioPlayer;
 import org.tricodex.view.panels.ControlPanel;
 import org.tricodex.utils.enums.GameState;
+
+import java.util.Random;
+import java.util.function.Function;
 
 public class GameUpdater {
     private final ControlPanel controlPanel;
@@ -29,6 +34,10 @@ public class GameUpdater {
     private int gameScore = 0;
     private int previousCleaningScore = 0;
     private String boostTypeReceived = "";
+    private final AudioLoader audioLoader;
+    private final AudioPlayer vacuumSound;
+    private final AudioPlayer powerUpSound;
+    private final AudioPlayer[] catSounds;
 
     public GameUpdater(ControlPanel controlPanel, Cat cat, Vacuum vacuum, CellManager cellManager, PowerUp powerUp) {
         this.controlPanel = controlPanel;
@@ -36,15 +45,37 @@ public class GameUpdater {
         this.vacuum = vacuum;
         this.powerUp = powerUp;
         this.cellManager = cellManager;
+
+        // Audio related initializations
+        audioLoader = new AudioLoader();
+        vacuumSound = new AudioPlayer();
+        powerUpSound = new AudioPlayer();
+        catSounds = new AudioPlayer[]{
+                new AudioPlayer(),
+                new AudioPlayer(),
+                new AudioPlayer()
+        };
+
+        vacuumSound.load(audioLoader.getAudioStream(5));  // Load vacuum_cleaner.wav
+        powerUpSound.load(audioLoader.getAudioStream(3)); // Load power_up_1.wav
+
+        for (int i = 0; i < 3; i++) {
+            catSounds[i].load(audioLoader.getAudioStream(i)); // Load cat_meow_1.wav, cat_meow_2.wav and cat_meow_3.wav
+        }
     }
 
     public void updateGame(GameState gameState, boolean isPaused) {
         if (gameState == GameState.GAME && !isPaused) {
-            controlPanel.actionPerformed();
+            controlPanelActionPerformed();
             updateCatState();
             updatePowerUpState();
             updateGameScore();
         }
+    }
+
+    private void controlPanelActionPerformed() {
+        controlPanel.setVacuumSound(vacuumSound);
+        controlPanel.actionPerformed();
     }
 
     public void updateGameScore() {
@@ -60,7 +91,23 @@ public class GameUpdater {
         } else {
             moveAndDirtyCat();
             checkForCatDespawn();
+            playCatSound();
         }
+    }
+
+    private void playCatSound() {
+        // Check if any cat sound is currently playing
+        for (AudioPlayer catSound : catSounds) {
+            if (catSound.isPlaying()) {
+                return; // If a sound is playing, do not play a new sound
+            }
+        }
+
+        // Select a random cat sound
+        int randomIndex = new Random().nextInt(catSounds.length);
+
+        // Play the selected cat sound
+        catSounds[randomIndex].play();
     }
 
     private void spawnCat() {
@@ -69,6 +116,12 @@ public class GameUpdater {
             if (catSpawningTime == catSpawningCooldown) {
                 catHasSpawned = true;
                 cat.moveRandomly();
+
+                // Reload and play cat sound
+                for (int i = 0; i < 3; i++) {
+                    catSounds[i].load(audioLoader.getAudioStream(i));
+                }
+                playCatSound();
             }
         }
     }
@@ -121,6 +174,10 @@ public class GameUpdater {
             if (powerUpSpawningTime == powerUpSpawningTimeLimit) {
                 powerUpHasSpawned = true;
                 powerUp.setNewPosition();  // Spawn the PowerUp at a new random position
+
+                // Reload and play power up sound
+                powerUpSound.load(audioLoader.getAudioStream(3));
+                powerUpSound.play();
             }
         }
     }
@@ -141,7 +198,17 @@ public class GameUpdater {
         BoostType boostType = powerUp.getBoostType();
         int boostAmount = powerUp.getBoostAmount();
         vacuum.applyPowerUp(boostType, boostAmount);
+
+        // Stop the power-up sound if it's playing
+        if (powerUpSound.isPlaying()) {
+            powerUpSound.stop();
+        }
+
+        // Reload and play power up sound
+        powerUpSound.load(audioLoader.getAudioStream(4));
+        powerUpSound.play();
     }
+
 
     private boolean vacuumCollidesWithPowerUp() {
         double dx = vacuum.getPosition().getX() - powerUp.getPosition().getX();
@@ -167,7 +234,6 @@ public class GameUpdater {
     public String getBattery() {
         return ("Battery: " + String.format("%.2f", vacuum.getBatteryFill()) + "/" + vacuum.getBatteryCapacity());
     }
-
 
     public int getGameScore() {
         return gameScore;
