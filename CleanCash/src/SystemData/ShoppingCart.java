@@ -1,6 +1,7 @@
 package SystemData;
 import DataClasses.Product;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,16 @@ public class ShoppingCart {
     private float totalCost;
     private float discountsTotal;
     private float finalCost;
+
+    public ShoppingCart(){
+        productsCart = new ArrayList<>();
+    }
+    public List<Product> getProductsCart(){
+        return productsCart;
+    }
+
+
+
     public float getTotalCost() {
         return totalCost;
     }
@@ -22,9 +33,12 @@ public class ShoppingCart {
 
     public void setDiscountsTotal(float discountsTotal) {
         this.discountsTotal = discountsTotal;
+        finalCost = totalCost-discountsTotal;
     }
 
     public float getFinalCost() {
+        float effectiveDiscount = (totalCost*discountsTotal)/100;
+        finalCost = totalCost-effectiveDiscount;
         return finalCost;
     }
 
@@ -35,6 +49,7 @@ public class ShoppingCart {
     public void addProduct(Product product){
         productsCart.add(product);
         totalCost+=product.getPrice();
+        finalCost = totalCost;
     }
 
     /**
@@ -45,8 +60,8 @@ public class ShoppingCart {
         }
     }*/
 
-    public void applyDiscount(){
-
+    public void applyDiscount(float discount){
+        discountsTotal+=discount;
     }
 
 
