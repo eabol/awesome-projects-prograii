@@ -3,7 +3,7 @@ package SystemManagement;
 import DataClasses.Entity;
 import SystemData.DiscountsDataBase;
 
-public class DiscountsManager implements DataManager{
+public class DiscountsManager implements DataManager {
 
     private DiscountsDataBase discountsDataBase = new DiscountsDataBase();
 
@@ -22,12 +22,18 @@ public class DiscountsManager implements DataManager{
 
     }
 
-    public int getDiscount(String code){
+    public int getDiscount(String code) {
         String saleDiscount = discountsDataBase.getSaleDiscount(code);
-        if (saleDiscount != null){
-            int discount = Integer.parseInt(saleDiscount);
-            return discount;
-        }
-        else return 0;
+        if (saleDiscount != null) {
+            try {
+                int discount = Integer.parseInt(saleDiscount);
+                return discount;
+            } catch (NumberFormatException e) {
+                System.err.println("Invalid code");
+                return 0;
+            }
+        } else
+            return 0;
     }
 }
+
