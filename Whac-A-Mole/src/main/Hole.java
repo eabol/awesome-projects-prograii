@@ -12,7 +12,7 @@ public class Hole extends Space {
     }
 
     public Hole(SmackableCharacter character) {
-        this.aspect = "O";
+        this.aspect = aspect;
         this.character = character;
     }
 
@@ -32,11 +32,20 @@ public class Hole extends Space {
         this.character = character;
     }
 
-    private boolean isMoleInside() {
-        return this.character != null;
+    public void setMole(SmackableCharacter character) {
+        this.character = character;
     }
 
-    private String showMoleInside() {{
-        return this.character.getAvatar();
+    public boolean isMoleInside() {
+        return character != null && !character.isBeaten();
+    }
+
+    public String showMoleInside() {
+        if (character != null) {
+            return "Mole inside: " + character.getName();
+        } else {
+            return "No mole inside";
+        }
     }
 }
+
