@@ -13,20 +13,14 @@ public class MemberDataBase {
         members[3] = new Member("Pepe", "04", "12895683");
         members[4] = new Member("Diego", "05", "945104432");
 
-        sales[0][0] = "golden";
+        sales[0][0] = "summertime";
         sales[0][1] = "10";
 
-        sales[1][0] = "silver";
+        sales[1][0] = "5to5";
         sales[1][1] = "5";
 
-        sales[2][0] = "bronze";
+        sales[2][0] = "sweetycash";
         sales[2][1] = "2";
     }
-
-
-
-
-
-
 
 }
