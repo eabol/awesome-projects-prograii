@@ -41,9 +41,9 @@ public class InventoryDataBase {
                     return product;
                 }
             }
-            throw new ItemNotFoudException(ItemNotFoudException.MESSAGE);
+            throw new ItemNotFoudException();
         } catch (ItemNotFoudException e){
-            System.err.println(e.getMessage());
+            e.logException();
             return null;
         }
     }
