@@ -1,0 +1,49 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+public class UserTest {
+
+    @Test
+    void testGetName() {
+        String name = "John";
+        String password = "password";
+
+        User user = new UserImpl(name, password);
+
+        Assertions.assertEquals(name, user.getName());
+    }
+
+    @Test
+    void testSetName() {
+        String name = "John";
+        String password = "password";
+
+        User user = new UserImpl("", password);
+
+        user.setName(name);
+
+        Assertions.assertEquals(name, user.getName());
+    }
+
+    @Test
+    void testGetPassword() {
+        String name = "John";
+        String password = "password";
+
+        User user = new UserImpl(name, password);
+
+        Assertions.assertEquals(password, user.getPassword());
+    }
+
+    @Test
+    void testSetPassword() {
+        String name = "John";
+        String password = "password";
+
+        User user = new UserImpl(name, "");
+
+        user.setPassword(password);
+
+        Assertions.assertEquals(password, user.getPassword());
+    }
+}

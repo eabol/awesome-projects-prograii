@@ -1,0 +1,32 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import java.util.List;
+
+public class FindersTest {
+
+    private Finders finders;
+
+    @BeforeEach
+    void setUp() {
+       
+        finders = new FindersImpl();
+    }
+
+    @Test
+    void testFindSimDataByID() {
+        String customerId = "123";
+        List<DataSim> simDataList = finders.findSimDataByID(customerId);
+        Assertions.assertNotNull(simDataList);
+
+    }
+
+    @Test
+    void testFindWorkerByID() {
+        String id = "456";
+        List<Worker> workerList = finders.findWorkerByID(id);
+        Assertions.assertNotNull(workerList);
+
+    }
+
+}

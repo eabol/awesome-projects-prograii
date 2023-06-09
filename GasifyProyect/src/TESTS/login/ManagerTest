@@ -1,0 +1,42 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import java.util.List;
+
+public class ManagerTest {
+
+    private Manager manager;
+
+    @BeforeEach
+    void setUp() {
+        manager = new Manager();
+    }
+
+    @Test
+    void testUserCreate() {
+        String username = "john";
+        String password = "password";
+        String email = "john@example.com";
+        String department = "IT";
+
+        manager.userCreate(username, password, email, department);
+
+        List<Worker> workers = manager.getData().workerData();
+        Assertions.assertFalse(workers.isEmpty());
+        Worker createdUser = workers.get(workers.size() - 1);
+        Assertions.assertEquals(username, createdUser.getName());
+        Assertions.assertEquals(password, createdUser.getPassword());
+        Assertions.assertEquals(email, createdUser.getEmail());
+        Assertions.assertEquals(department, createdUser.getDepartment());
+    }
+
+    @Test
+    void testLogin() {
+        String username = "john";
+        String password = "password";
+        manager.userCreate(username, password, "john@example.com", "IT");
+        Assertions.assertTrue(manager.login(username, password));
+        Assertions.assertFalse(manager.login("invalid", "password"));
+        Assertions.assertFalse(manager.login(username, "invalid"));
+    }
+}

@@ -1,0 +1,49 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+public class DateValidatorTest {
+
+    private DateValidator dateValidator;
+
+    @BeforeEach
+    public void setup() {
+        dateValidator = new DateValidator("dd/MM/yyyy");
+    }
+
+    @Test
+    public void isValid_ValidDate_ReturnsTrue() {
+        // Arrange
+        String validDate = "01/01/2023";
+
+        // Act
+        boolean isValid = dateValidator.isValid(validDate);
+
+        // Assert
+        Assertions.assertTrue(isValid);
+    }
+
+    @Test
+    public void isValid_InvalidDate_ReturnsFalse() {
+        // Arrange
+        String invalidDate = "99/99/9999";
+
+        // Act
+        boolean isValid = dateValidator.isValid(invalidDate);
+
+        // Assert
+        Assertions.assertFalse(isValid);
+    }
+
+    @Test
+    public void dateFormat_ValidDate_ReturnsArrayWithThreeElements() {
+        // Arrange
+        String date = "01/01/2023";
+
+        // Act
+        String[] result = dateValidator.dateFormat(date);
+
+        // Assert
+        Assertions.assertEquals(3, result.length);
+    }
+}

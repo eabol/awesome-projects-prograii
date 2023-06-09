@@ -1,0 +1,40 @@
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class MenusTest {
+
+    @Test
+    public void testPrettyDecimal() {
+
+        Menus menus = new Menus();
+
+        BigDecimal result = menus.prettyDecimal(3.456f);
+        assertEquals(new BigDecimal("3.46"), result);
+    }
+
+    @Test
+    public void testPrincipal() {
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        Menus menus = new Menus();
+
+        menus.principal();
+
+        String expectedOutput = "  Number  | Option Name" + System.lineSeparator() +
+                                "---------------------" + System.lineSeparator() +
+                                "   1.     |   Login   " + System.lineSeparator() +
+                                "   2.     | Register  " + System.lineSeparator() +
+                                "   3.     |   Exit    " + System.lineSeparator();
+        assertEquals(expectedOutput, outputStream.toString());
+    }
+
+}
