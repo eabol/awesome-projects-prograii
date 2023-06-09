@@ -6,5 +6,7 @@ public class Discount extends Item {
         this.discountValue = discountValue;
     }
 
-    public double getDiscountValue() { return discountValue; }
+    public double getDiscountValue() {
+        return discountValue;
+    }
 }

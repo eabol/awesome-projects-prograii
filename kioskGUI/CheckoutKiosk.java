@@ -17,6 +17,7 @@ public class CheckoutKiosk extends JFrame {
     private JLabel cartTotalLabel;
     private JLabel discountValueLabel;
     private JLabel newTotalLabel;
+    private JButton applyDiscountButton;
 
     public CheckoutKiosk() {
         productList = new ProductList();
@@ -30,13 +31,17 @@ public class CheckoutKiosk extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Create a main panel with CardLayout.
         JPanel mainPanel = new JPanel(new CardLayout());
         add(mainPanel, BorderLayout.CENTER);
 
-        JPanel welcomePanel = new JPanel();
-        JLabel welcomeLabel = new JLabel("Welcome to the self checkout kiosk!");
+        JPanel welcomePanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        JLabel welcomeLabel = new JLabel("Welcome to CleanCash!", SwingConstants.CENTER);
         JButton startButton = new JButton("Start");
+        welcomePanel.add(welcomeLabel, gbc);
+        welcomePanel.add(startButton, gbc);
 
         startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +60,7 @@ public class CheckoutKiosk extends JFrame {
         cartJList = new JList<>(cartModel);
         cartJList.setPrototypeCellValue("Item Name --------------------");
         JButton addToCartButton = new JButton("Add to cart");
-        
+
         cartTotalLabel = new JLabel("Cart total: ");
         JButton checkoutButton = new JButton("Checkout");
 
@@ -83,12 +88,14 @@ public class CheckoutKiosk extends JFrame {
         shopPanel.add(new JScrollPane(productJList), BorderLayout.WEST);
         shopPanel.add(addToCartButton, BorderLayout.CENTER);
         shopPanel.add(new JScrollPane(cartJList), BorderLayout.EAST);
-        shopPanel.add(cartTotalLabel, BorderLayout.SOUTH);
-        shopPanel.add(checkoutButton, BorderLayout.SOUTH);
+        JPanel southPanel = new JPanel(new BorderLayout());
+        southPanel.add(cartTotalLabel, BorderLayout.NORTH);
+        southPanel.add(checkoutButton, BorderLayout.SOUTH);
+        shopPanel.add(southPanel, BorderLayout.SOUTH);
 
-        JPanel checkoutPanel = new JPanel();
+        JPanel checkoutPanel = new JPanel(new GridBagLayout());
         discountCodeField = new JTextField(10);
-        JButton applyDiscountButton = new JButton("Apply Discount");
+        applyDiscountButton = new JButton("Apply Discount");
         discountValueLabel = new JLabel("Discount value: ");
         newTotalLabel = new JLabel("New total: ");
         JButton confirmButton = new JButton("Confirm");
@@ -115,16 +122,33 @@ public class CheckoutKiosk extends JFrame {
             }
         });
 
-        checkoutPanel.add(new JLabel("Enter discount code: "));
-        checkoutPanel.add(discountCodeField);
-        checkoutPanel.add(applyDiscountButton);
-        checkoutPanel.add(discountValueLabel);
-        checkoutPanel.add(newTotalLabel);
-        checkoutPanel.add(confirmButton);
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0;
+        c.gridy = 0;
+        c.anchor = GridBagConstraints.WEST;
+        checkoutPanel.add(new JLabel("Enter discount code: "), c);
 
-        JPanel thankYouPanel = new JPanel();
-        JLabel thankYouLabel = new JLabel("Thank you for shopping!");
+        c.gridy++;
+        checkoutPanel.add(discountCodeField, c);
+
+        c.gridx++;
+        checkoutPanel.add(applyDiscountButton, c);
+
+        c.gridx = 0;
+        c.gridy++;
+        checkoutPanel.add(discountValueLabel, c);
+
+        c.gridy++;
+        checkoutPanel.add(newTotalLabel, c);
+
+        c.gridy++;
+        checkoutPanel.add(confirmButton, c);
+
+        JPanel thankYouPanel = new JPanel(new GridBagLayout());
+        JLabel thankYouLabel = new JLabel("Thank you for shopping!", SwingConstants.CENTER);
         JButton exitButton = new JButton("Exit");
+        thankYouPanel.add(thankYouLabel, gbc);
+        thankYouPanel.add(exitButton, gbc);
 
         exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -165,3 +189,4 @@ public class CheckoutKiosk extends JFrame {
         discountList.addItem(discount);
     }
 }
+
