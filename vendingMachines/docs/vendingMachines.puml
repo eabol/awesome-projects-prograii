@@ -1,88 +1,104 @@
 @startuml
-
-class Product {
-  - name: String
-  - price: double
-  - cantidad: int[3]
-  + Product(name: String, price: double, cantidad1: int, cantidad2: int, cantidad3: int)
-  + getName(): String
-  + setName(name: String): void
-  + getPrice(): double
-  + setPrice(price: double): void
-  + getCantidad(i: int): int
-  + setCantidad(i: int, cantidad: int): void
-  + sell(i: int): void
-}
-
-class Money {
-  - valor: ArrayList<Float>
-  - cantidad: ArrayList<Integer>
-  + Money()
-  + add(valor: float, cantidad: int): void
-  + getCantidad(valor: float): int
-  + setCantidad(valor: float, cantidad: int): void
-}
-
-interface Salable {
-  + isSalable(): boolean
-  + replanish(newQuantity: int): void
-}
-
-class Management {
-  - products: ArrayList<Product>
-  - money: ArrayList<Money>
-  + Management()
-  + pantalla(machine: int): void
-  + paymentGestion(machine: int, product: int, money: float): void
-}
-
-class Accesories {
-  + Accesories(name: String, price: double, id: int)
-}
-
-class Alert {
-  // Empty class
+abstract class Alert {
+    +Alert(String message)
+    +alertException()
 }
 
 class Drinks {
-  - isAlcoholic: boolean
-  - milliliters: int
-  + Drinks(name: String, price: double, id: int, isAlcoholic: boolean, milliliters: int)
-  + isSalable(): boolean
-  + replanish(newQuantity: int): void
-}
-
-class Failure {
-  // Empty class
+    -isAlcoholic: boolean
+    -milliliters: int
+    +Drinks(name: String, price: double, id: int, quantity: int, isAlcoholic: boolean, milliliters: int)
+    +isAlcoholic(): boolean
 }
 
 class Food {
-  + Food(name: String, price: double, id: int)
-}
-
-class Gluten {
-  // Empty class
-}
-
-class Jam {
-  // Empty class
+    +Food(name: String, price: double, id: int, quantity: int)
 }
 
 class Machine {
-  - amount: int
+    -id: int
+    -products: ArrayList<Product>
+    -money: Money
+    -status: Status
+    +Machine(id: int)
+    +getId(): int
+    +setId(id: int)
+    +getProducts(): ArrayList<Product>
+    +setProducts(products: ArrayList<Product>)
+    +getMoney(): Money
+    +setMoney(money: Money)
+    +getStatus(): Status
+    +setStatus(status: Status)
+    +machineReport()
+    +manageChange(clientMoney: Money, productPrice: float): Money
+    +possibleJam(): Status
+    +possibleFailure(): Status
+    +getProductPrice(id: int): float
+    +productList()
+    +buyProduct(clientMoney: Money, idProduct: int): Money
 }
 
-class Main {
-  + main(args: String[]): void
+class Management {
+    -machines: ArrayList<Machine>
+    -incidences: ArrayList<Incidence>
+    +Management()
+    +screen(machine: int)
+    +paymentManagement(machine: int, idProduct: int, clientMoney: Money)
 }
 
-class WithoutGluten {
-  // Empty class
+class Money {
+    -worth: ArrayList<Float>
+    -quantity: ArrayList<Integer>
+    +Money()
+    +insert(w: float, q: int)
+    +add(d: Money)
+    +remove(d: Money): boolean
+    +getWorth(): ArrayList<Float>
+    +getQuantity(w: float): int
+    +getTotal(): float
+    +information()
 }
 
-Product --> Salable
-Product --> Money
-Management --> Product
-Management --> Money
+abstract class Product {
+    -name: String
+    -price: double
+    -id: int
+    -quantity: int
+    +Product(name: String, price: double, id: int, quantity: int)
+    +getName(): String
+    +setName(name: String)
+    +getPrice(): double
+    +setPrice(price: double)
+    +getQuantity(i: int): int
+    +setQuantity(i: int, quantity: int)
+    +sell(i: int)
+    +getId(): int
+}
 
+enum Status {
+    JAM
+    FAILURE
+    END_STOCK
+    NO_CHANGE
+    NORMAL
+}
+
+interface Incidence {
+    +setDate()
+}
+
+interface Salable {
+    final float[] values
+    +manageChange(money: Money, price: float): Money
+    +possibleJam(): Status
+    +possibleFailure(): Status
+}
+
+Alert <|-- FailureException
+Alert <|-- JamException
+Product <|-- Drinks
+Product <|-- Food
+Product <|-- Money
+Salable <|.. Machine
+Management o-- Machine
 @enduml

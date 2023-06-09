@@ -11,6 +11,11 @@ public class Drinks extends Product {
         this.milliliters = milliliters;
     }
 
+    @Override
+    public void sell(int quantity) {
+        this.quantity = this.quantity - 1;
+    }
+
     public boolean isAlcoholic() {
         return isAlcoholic;
     }
