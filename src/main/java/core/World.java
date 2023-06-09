@@ -1,6 +1,5 @@
 package core;
 
-import core.Terrain;
 import core.character.*;
 
 import java.util.ArrayList;

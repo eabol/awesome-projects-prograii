@@ -2,6 +2,7 @@ package view;
 
 import core.Maze;
 import core.World;
+import core.character.Player;
 import core.Terrain;
 import enumerators.TerrainType;
 import view.character.*;
@@ -10,30 +11,27 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WorldHandler extends JPanel implements Runnable {
+        public final int originalSize = 84;
         private World world;
-        Thread gameThread;
-        KeyHandler keyHandler = new KeyHandler();
-
         final int maxScreenRow = 10;
         final int maxScreenCol = 20;
-        public final int originalSize = 70;
         public final int screenWidth = maxScreenCol * originalSize;
         public final int screenHeight = maxScreenRow * originalSize;
+        public final int characterWidth = 48;
+        public final int characterHeight = 64;
+        KeyHandler keyHandler = new KeyHandler();
 
-        public final int maxWorldCol = 30;
-        public final int maxWorldRow = 30;
+        int FPS = 60;
+        TileManager tileManager = new TileManager(this);
+        public long drawCount = 0;
+
+        public final int maxWorldCol = 50;
+        public final int maxWorldRow = 50;
         public final int worldWidth = maxWorldCol * originalSize;
         public final int worldHeight = maxWorldRow * originalSize;
 
-        public long drawCount = 0;
-        int FPS = 60;
-        TileManager tileManager = new TileManager(this);
-
-        int playerX = 100;
-        int playerY = 100;
-        int playerSpeed = 2;
-
-        PlayerDrawer player = new PlayerHandler(this, keyHandler);
+        Thread gameThread;
+        PlayerHandler player = new PlayerHandler(this, keyHandler);
 
         public WorldHandler() {
                 int[][] arrayToTransform = tileManager.mapTileNum;
