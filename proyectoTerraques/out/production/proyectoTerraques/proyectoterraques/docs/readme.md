@@ -115,9 +115,36 @@ En este paquete se encuentran todas las clases que dan funcionalidad a la aplica
 
 test
 ------
-> Test1: 
->
+ 
+
+
+
+
+
+
+
+    ╦╔╗╔╔═╗╔╦╗╦═╗╦ ╦╔═╗╔═╗╦╔═╗╔╗╔╔═╗╔═╗  ╔╦╗╔═╗  ╦ ╦╔═╗╔═╗
+    ║║║║╚═╗ ║ ╠╦╝║ ║║  ║  ║║ ║║║║║╣ ╚═╗   ║║║╣   ║ ║╚═╗║ ║
+    ╩╝╚╝╚═╝ ╩ ╩╚═╚═╝╚═╝╚═╝╩╚═╝╝╚╝╚═╝╚═╝  ═╩╝╚═╝  ╚═╝╚═╝╚═╝
     
+Dejamos unas instrucciones para que se sepa como funciona y poder navegar cómodamente por la aplicación.
+
+1- En cuanto se inicia la aplicación (En la clase Login) nos salen dos (2) opciones. Login y Exit, si queremos seguir utilizando la aplicación le daremos al número 1 (Login).
+2- A la hora de iniciar con el login, nos saldrán 3 oficinas a escoger, tenemos que poner la oficina (número) en la que nos queremos meter (1357,3941 o 7364)
+3- Una vez introducida nos pedirá un User y Password, tendremos que poner un nombre de usuario y contraseña guardado en el archivo employees.dat. En caso contrario, nos pondrá: Invalid user or password
+Ejemplo: (Oficina número 1357, Usuario: mgpinto, Contraseña: MGp1234)
+4- Una vez conectado el usuario nos saldrán 11 opciones, elegiremos la que mas nos convenga. A continuación las explico.
+OPCIONES:
+1- New Client: Te crea un cliente de tipo Standard o Shareholder (Accionista). En cualquiera de las dos opciones nos va a pedir que le demos los datos de nuestro DNI,Nombre,Apellido,Dirección y número de teléfono.
+Una vez metidos todos los datos te va a pedir que elijas una cuenta de debito o de crédito, elegirás la opción que mas te guste. Una vez escogida volverá a las 11 opciones iniciales.
+2- New Account: Crea una cuenta de Débito (1) o Crédito (2), una vez elijas la cuenta te pedirá un DNI a vincular, en caso de vincular bien el DNI estará correcto, sino te pondrá: Client not found.
+3- Show Client: Te pedirá el DNI del cliente, si encuentra el DNI te saldrán todos los datos, en caso contrario te pondrá: Client not found.
+4- Show Account: Te pedirá el número de cuenta, en caso de que le pases un número de cuenta correcto (accounts.dat), te saldrá la información de la cuenta, en caso contrario te pondrá: Account not found.
+5- Deposit: Te pedirá un número de cuenta, en caso de ponerle un número de cuenta bien, podrás depositar la cantidad, en caso contrario: Account not found.
+6- Withdraw: Te pedirá un número de cuenta, en caso de ponerle un número de cuenta bien, podrás restar la cantidad, en caso contrario: Account not found.
+7- List Clients: Simplemente si seleccionas esta opción te va a listar los Clientes con sus datos.
+8- List Accounts: Simplemente si seleccionas esta opción te va a listar las cuentas con sus datos.
+9- Remove Client: 
 
 
     ╔═╗╔═╗╔═╗╔╦╗╦ ╦╦═╗╔═╗╔═╗

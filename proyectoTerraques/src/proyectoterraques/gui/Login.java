@@ -4,11 +4,12 @@ import proyectoterraques.exceptions.InvalidCharacterException;
 import proyectoterraques.source.Bank;
 import proyectoterraques.source.FileHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Login {
-    public static void main(String[] args) throws InvalidCharacterException {
+    public static void main(String[] args) throws InvalidCharacterException, IOException {
 
 
         Scanner scNumber = new Scanner(System.in);
@@ -24,6 +25,9 @@ public class Login {
         ArrayList<String> countries_available= new ArrayList<>();
 
         Bank bank=null;
+
+        String office_login=null;
+        String country_login=null;
 
 
         do {
@@ -86,7 +90,9 @@ public class Login {
 
                     if (office_selected.equalsIgnoreCase(offices_available.get(i))){
                         mustLogin=true;
-                        bank = new Bank(offices_available.get(i),countries_available.get(i));
+                        office_login=offices_available.get(i);
+                        country_login=countries_available.get(i);
+                        //bank = new Bank(offices_available.get(i),countries_available.get(i));
                     }
 
                 }
@@ -133,6 +139,10 @@ public class Login {
 
                                 userFound=true;
                                 System.out.println("Connecting...");
+
+                                //todo .
+
+                                bank = new Bank(office_login,country_login);
 
                                 //todo MENU
 
@@ -213,7 +223,8 @@ public class Login {
                                         System.out.println("");
                                         System.out.println("Exiting...");
 
-                                    }else {
+                                    }
+                                    else {
 
                                         System.out.println("");
                                         System.out.println("¡Invalid option!");

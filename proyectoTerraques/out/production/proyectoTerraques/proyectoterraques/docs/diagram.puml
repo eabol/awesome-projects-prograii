@@ -54,12 +54,13 @@ class proyectoterraques.source.StandardClient {
 }
 
 abstract class proyectoterraques.source.Account {
-#  String accountNumber
-#  double amount
+# String accountNumber
+# double amount
+# String dni
 + <<Create>> Account(String)
++ {abstract} String getDni()
 + {abstract} String getAccountNumber()
 + {abstract} double getAmount()
-+ {abstract} void showAccountData()
 
 }
 

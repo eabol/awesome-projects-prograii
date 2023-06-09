@@ -26,7 +26,7 @@ public class FileHandler {
         return readFileContent(path);
     }
 
-    private boolean isPathEmpty(String path) {
+    public boolean isPathEmpty(String path) {
         return path.isEmpty();
     }
 
@@ -58,6 +58,30 @@ public class FileHandler {
 
     public void clear(){
         lines.clear();
+    }
+
+    public void write(String path, String text)throws IOException{
+
+        String txt = text;
+        BufferedWriter writer = new BufferedWriter(new FileWriter(path, true));
+        writer.append(txt+"\n");
+        //writer.append('\n');
+        writer.close();
+
+    }
+
+    public void rewrite(String path, String text)throws IOException{
+
+        String txt = text;
+        BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+        writer.append(txt);
+        //writer.append('\n');
+        writer.close();
+
+    }
+
+    public int length(){
+        return lines.size();
     }
 
 }

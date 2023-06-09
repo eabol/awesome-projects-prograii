@@ -9,7 +9,7 @@ public class StandardClient extends Client implements ClientManagement{
     Scanner scNumber = new Scanner(System.in);
     Scanner scText = new Scanner(System.in);
 
-    DebitAccount debit_Account;
+    public DebitAccount debit_Account;
 
     public StandardClient(String dni, String name, String surname, String address, String phoneNumber) {
         super(dni, name, surname, address, phoneNumber);
@@ -35,17 +35,17 @@ public class StandardClient extends Client implements ClientManagement{
         if (account instanceof DebitAccount) {
             if (debit_Account==null){
                 debit_Account=((DebitAccount) account);
-                System.out.println("Debit account succesfully created and vinculated\n");
+                //System.out.println("\nDebit account succesfully created and vinculated");
                 return false;
             }else {
-                System.out.println("You can't vinculate another debit account to the client\n");
+                System.out.println("\nYou can't vinculate another debit account to the client");
                 //todo borrar cuenta del array de cuentas en Bank
                 //todo retornar un booleano a la clase Bank y si es false borrarla
                 return true;
             }
         } else if (account instanceof CreditAccount) {
             //todo borrar cuenta del array de cuentas en Bank
-            System.out.println("You can't vinculate a credit account to a standard client\n");
+            System.out.println("\nYou can't vinculate a credit account to a standard client");
             return true;
         }
         return false;
