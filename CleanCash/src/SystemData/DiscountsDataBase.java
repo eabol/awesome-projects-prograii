@@ -21,9 +21,9 @@ public class DiscountsDataBase {
                     return sales[i][1];
                 }
             }
-            throw new CodeNotFoundException(CodeNotFoundException.MESSAGE);
+            throw new CodeNotFoundException();
         } catch (CodeNotFoundException e) {
-            System.err.println(e.getMessage());
+            e.logException();
             return null;
         }
     }
