@@ -81,8 +81,8 @@ public class TileManager {
 
             int worldX = worldCol * gp.originalSize;
             int worldY = worldRow * gp.originalSize;
-            int screenX = worldX - gp.player.worldX + gp.player.screenX;
-            int screenY = worldY - gp.player.worldY + gp.player.screenY;
+            int screenX = worldX - gp.player.worldX;
+            int screenY = worldY - gp.player.worldY;
             g2.drawImage(tile[tileNum].image, screenX, screenY, gp.originalSize, gp.originalSize, null);
             worldCol++;
             if (worldCol == gp.maxScreenCol) {
