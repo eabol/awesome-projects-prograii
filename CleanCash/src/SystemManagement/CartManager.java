@@ -19,7 +19,7 @@ public class CartManager implements DataManager{
 
     @Override
     public void remove(Entity removedEntity) {
-
+        shoppingCart.removeProduct((Product) removedEntity);
     }
 
     public ShoppingCart getShoppingCart(){

@@ -1,6 +1,8 @@
 package SystemData;
 
 import DataClasses.Product;
+import Exceptions.ItemNotFoudException;
+
 public class InventoryDataBase {
 
     Product[] products = new Product[20];
@@ -33,13 +35,16 @@ public class InventoryDataBase {
     }
 
     public Product findProduct(String input){
-        for (Product product : products) {
-            if (input.equals(product.getEntityName()) || input.equals(product.getEntityId())){
-                return product;
+        try {
+            for (Product product : products) {
+                if (input.equals(product.getEntityName()) || input.equals(product.getEntityId())){
+                    return product;
+                }
             }
+            throw new ItemNotFoudException(ItemNotFoudException.MESSAGE);
+        } catch (ItemNotFoudException e){
+            System.err.println(e.getMessage());
+            return null;
         }
-        return null;
     }
-
-
 }
