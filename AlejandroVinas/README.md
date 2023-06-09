@@ -1,53 +1,87 @@
-### Proyecto final Programación II - Juego del Guerrero y el Vampiro.
+### Proyecto final Programación II - Warrior-Vampire game
 
-El objetivo de este trabajo era realizar un programa que ejecute un juego sencillo, en el que hay dos personajes:
+The goal of this proyect is to create a program that runs a farily simple game. This game has two characthers:
 
-- Un guerrero, controlado por el usuario.
-- Un vampiro, que ejecuta acciones automáticamente.
+- A warrior, controled by the user.
+- A vampire, automatically controlled by the program. 
 
-En el turno del guerrero, el usuario puede escoger diferentes opciones:
+During his turn, the warrior can choose between three different options:
 
-1. Atacar: el usuario elige atacar al vampiro, escogiendo entre una de sus 3 armas:
-  1. Espada: poco precisión alta a cambio de daño bajo.
-  2. Hacha de mano: daño y precisión neutras.
-  3. Mangual: daño alto a cambio de baja precisión.
+1. Attack: the user chooses to attack the vampire, picking one of three weapons to do so:
+  1. Sword: low damage and high accuracy.
+  2. Handaxe: medium damage and accuracy.
+  3. Flail: high damage and low accuracy
 
-2. Objeto: el usuario abre la bolsa y elige  entre dos objeto para usar:
-  1. Daga: el guerrero lanza una daga al vampiro, causándole daño
-  2. Bomba de humo: el guerrero lanza una granada de humo, lo que le permite huir de la pelea si acierta
+2. Item: the user opens the warriors bag, and can choose between two items:
+  1. Dagger: the warrior hurls a dagger at the vampire, damaging him if hit.
+  2. Smoke bomb: the warrior throws a smoke grenade which, if it hits the vampire, allow him to run from the fight.
 
-3. Grito: el guerrero grita a su oponente, tratando intimidarle y, de esa forma, hacerle huir de la pelea.
+3. Scream: the warrior screams, trying to intimidate the vampire. If he is successful, the vampire will run from the fight
 
-El vampiro, por su parte, realizará una acción aleatoria entre las 3 que posee:
+The vampire will automatically select one of three actions every turn:
 
-1. Arañazo: poco daño a cambio de mucha precisión.
-2. Mordisco: daño y precisión neutros.
-3. Devorador de almas: mucho daño a cambio de poca precisión.
+1. Scratch: low damage and high accuracy.
+2. Bite: medium damage and accuracy.
+3. Soul Siphon: high damage and low accuracy.
 
-Cada personaje tiene su estadística de vida correspondiente. El juego funciona en un sistema de turnos, empezando siempre el guerrero.
+Each character has its own health stat. The game works in a turn based combat system.
 
-El juego acaba cuando uno de los dos personajes pierde todos sus puntos de vida o huye del combate.
+The game ends when one character either reaches 0 health points or runs from the fight.
 
 #### Lista de funcionalidades:
 
-- Clase "Bite":
-  - La clase Bite extiende la clase Weapons.
-  - Se crea un objeto de la clase Bite, con nombre y daño.
-  - La función biteAttack() realiza un ataque de mordisco.
-  - Se establece un número aleatorio para la precisión.
-  - Se comprueba si el ataque acierta, en cuyo caso se reduce la salud del guerrero. En caso contrario, no hará nada y aparecerá un mensaje de fallo.
-  - Se comprueba si la salud del guerrero es mayor que 0. En caso contrario, el juego termina.
+- Class "Bite":
+  - The class "Bite" extends the class "Weapons".
+  - A "Bite" class object is created, with name and damage.
+  - The function biteAttack() does a bite attack.
+  - A random number is established to check accuracy.
+  - The program checks if the attack hits, case in which the warrior's health is reduced. If it doesn't hit, nothing will happen and an error message will appear.
+  - The program checks if the warrior's health is greater than 0. If it's not, the game will end.
 
-Este mismo proceso lo podemos ver replicado en la clase "Claw" y la clase "SoulShypon", cada una con sus respectivas variables.
+We can see the same process replicated in the class "Claw" and the class "SoulShypon", each of them with their corresponding variables.
 
-Del mismo modo, en las clases "Sword", "Handaxe" y "Flail" realizan un proceso similar:
+Additionally, the classes "Sword", "Handaxe" and "Flail" operate in a similar way:
 
-- Se crea un objeto de la respectiva clase, con nombre y daño.
-- Cada clase tiene su función de ataque, "swordAttack", etc.
-- Se establece un número aleatorio para la precisión.
-- Se comprueba si el ataque acierta, en cuyo caso se reduce la salud del vampiro. En caso contrario, no hará nada y aparecerá un mensaje de fallo.
-- Se comprueba si la salud del vampiro es mayor que 0. En caso contrario, el juego termina.
+- An object of the corresponding class is created, with name and damage.
+- Each class has its own attack function, "swordAttack", etc.
+- A random number is established to check accuracy.
+- The program checks if the attack hits, case in which the vampire's health is reduced. If it doesn't hit, nothing will happen and an error message will appear.
+- The program checks if the vampire's health is greater than 0. If it's not, the game will end.
 
+There is a class called "General Manager", which handles the entire battle dynamic:
+  - Several objects and variables are declared beforehand.
+  - The iniciate() method initializes the objects and variables created, and creates instances of other classes.
+  - the combat() method is the core of the game. The entire combat structure is in this function, ending itself when the health of one of the characters reaches 0.
+  - The "Scanner" class is also used, to register the user's inputs and to know what actions the user wants the warrior to perform.
+  - After every turn, the game checks the characters' health. If one of them has no health left, the gameOver() variable turns true and the game ends with a message.
 
-Existe una clase llamada "General Manager", que se encarga de manejar toda la dinñamica de combate.
+The "Warrior" class is a fairly simple one, in which the warrior is created:
+  - The Warrior class extends the Characters class.
+  - Instances of the Warrior class are created, with 2 parameters: name and health.
+  - The function setName() allows for the program to set the name for the warrior character
+  - The function setHealth() allows for the program to set the current health for the warrior character.
+  - The functions getName() and getHealth() allows for the program to obtain the current values of the aforementioned variables.
 
+A very similar process is followed in the "Vampire" class, with only an extra function at the end of it to send a message when the vampire has been defeated.
+
+The "WarriorActions" class defines the available actions for the warrior character:
+  - The class "WarriorActions" extends the "Warrior" class.
+  - Instances of the "WarriorActions" class are created, with a name and a damage value.
+  - Attack objects like "AttackFlail" and others similar are created.
+  - An instance of the "Warrior" class is created, with name and damage.
+  - Utility objects like the smoke bomb or intimidation are declared.
+  - Attack methods are defined in "attackFlail" and similar functions.
+  - The NigerunDayo() method is used for the smoke bomb.
+  - The Spooky() mehtod is used for the intimidate action.
+
+Parallel to this class, the "VampireAttack" class defines the actions the vampire can take:
+  - The "VampireAttack" class extends the "Weapons" class.
+  - An instance of the "VampireAttack" class is created, with damage and accuracy.
+  - The objects of the different attacks the vampire can perform are created.
+  - The vampireAttack() method selects what attack the vampire will use, taking a generated random number.
+
+The "Dagger" class is really simple. It extends the "Equipment" class, and it creates an instance of the "Dagger" class, with name and cuantity.
+
+The "SmokeBomb" class does the exact same thing, only it also provides with a message in case the smoke bomb lands and the warrior runs from the battle.
+
+The "DaggThrow" class 
