@@ -9,3 +9,16 @@ ___
 - Precio por unidad de consumo ajustable por la empresa suministradora.
 - Obtención de los precios mediante un registro en línea (fallback).
 - Comparativa de consumo entre diferentes rangos de tiempo; se destaca la hora y fecha de mayor consumo, generando consigo un patrón estadístico a la disponibilidad del usuario.
+
+## Representación diagrama UML
+_____
+
+A continuación se viasualiza la representación gráfica del UML para el proyecto de Gasify.
+
+
+
+## Autores:
+____
+- Daniel Roldán Rábago
+- Carlos Alexis Casado Tamayo
+- Cayetano Castillo Ruiz
