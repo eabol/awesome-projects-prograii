@@ -59,18 +59,15 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
         ) {
             if (keyH.upPressed) {
                 direction = "up";
-                worldY -= speed;
+
             } else if (keyH.downPressed) {
                 direction = "down";
-                worldY += speed;
             } else if (keyH.leftPressed) {
                 direction = "left";
-                worldX -= speed;
             } else if (keyH.rightPressed) {
                 direction = "right";
-                worldX += speed;
             }
-            spriteCounter++;
+
 //Check the collision
             collision = false;
             gp.collisionChecker.checkTile(this);
@@ -84,6 +81,7 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
                     case "right": worldX += speed; break;
                 }
             }
+            spriteCounter++;
             if (spriteCounter > 40) {
                 if (spriteNum == 1) {
                     spriteNum = 2;
