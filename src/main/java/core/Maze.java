@@ -30,8 +30,6 @@ public class Maze {
         ArrayList<Terrain> row = map.get(random.nextInt(map.size()));
         Terrain terrain = row.get(random.nextInt(row.size()));
         if (terrain.isWalkable()) {
-            // System.out.println(terrain.getType()+" : "+terrain.isWalkable() + " : " +
-            // terrain.getPositionAsString() + " : " + terrain);
             return terrain;
         }
         return getRandomOccupableTerrain();

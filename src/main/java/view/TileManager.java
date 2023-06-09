@@ -8,7 +8,7 @@ import view.tile.Tile;
 public class TileManager {
     WorldHandler gp;
     Tile[] tile;
-    int mapTileNum[][];
+    public int mapTileNum[][];
 
     public TileManager(WorldHandler gp) {
         this.gp = gp;
@@ -27,12 +27,12 @@ public class TileManager {
             while (((line = reader.readLine()) != null) && (col < gp.maxWorldCol && row < gp.maxWorldRow)) {
                 line = line.replace("{", "").replace("}", "");
                 String numbers[] = line.split(",");
-                while (col < gp.maxWorldCol) {
+                while (col < gp.maxWorldCol && col < numbers.length) {
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[col][row] = num;
                     col++;
                 }
-                if (col == gp.maxWorldCol) {
+                if (col == gp.maxWorldCol || col == numbers.length) {
                     col = 0;
                     row++;
                 }
@@ -53,16 +53,16 @@ public class TileManager {
     public void getTileImage() {
         try {
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/src/main/resources/TileImages/road.png"));
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/road.png"));
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/src/main/resources/TileImages/sand.png"));
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/sand.png"));
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/src/main/resources/TileImages/water.png"));
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/water.png"));
 
             tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/src/main/resources/TileImages/tree.png"));
+            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/tree.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -76,7 +76,7 @@ public class TileManager {
 
         int worldCol = 0;
         int worldRow = 0;
-        while (worldCol < gp.maxWorldCol && worldCol < gp.maxWorldRow) {
+        while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
             int tileNum = mapTileNum[worldCol][worldRow];
 
             int worldX = worldCol * gp.originalSize;
@@ -85,7 +85,7 @@ public class TileManager {
             int screenY = worldY - gp.player.worldY;
             g2.drawImage(tile[tileNum].image, screenX, screenY, gp.originalSize, gp.originalSize, null);
             worldCol++;
-            if (worldCol == gp.maxScreenCol) {
+            if (worldCol == gp.maxWorldCol) {
                 worldCol = 0;
                 worldRow++;
             }
