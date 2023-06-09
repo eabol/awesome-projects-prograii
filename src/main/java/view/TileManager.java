@@ -1,10 +1,12 @@
 package view;
 
+import view.tile.Tile;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.*;
-
-import view.tile.Tile;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 
 public class TileManager {
@@ -77,7 +79,7 @@ public class TileManager {
             tile[7].collision = true;
 
             tile[8] = new Tile();
-            tile[8].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/tree.png"));
+            tile[8].image = ImageIO.read(getClass().getResourceAsStream("/TileImages/tree.png"));
             tile[8].collision = true;
 
         } catch (IOException e){

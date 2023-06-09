@@ -1,10 +1,10 @@
 package view.character;
 
 import view.WorldHandler;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Objects;
 
 
 public class PlayableGameCharacterHandler extends GameCharacterHandler {
@@ -35,16 +35,16 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
 
     public void getPlayerImage() {
         try {
-            up1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/up1.png")));
-            up2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/up2.png")));
-            left1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/left1.png")));
-            left2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/left2.png")));
-            left3 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/left3.png")));
-            right1 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/right1.png")));
-            right2 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/right2.png")));
-            right3 = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/right3.png")));
-            upLeft = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/upLeft.png")));
-            upRight = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("./main/resources/playableGameCharacter/upRight.png")));
+            up1 = ImageIO.read(getClass().getResourceAsStream("/playableGameCharacter/up1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/playableGameCharacter/up2.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("/playableGameCharacter/left1.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("/playableGameCharacter/left2.png"));
+            left3 = ImageIO.read(getClass().getResourceAsStream("/playableGameCharacter/left3.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("/playableGameCharacter/right1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/playableGameCharacter/right2.png"));
+            right3 = ImageIO.read(getClass().getResourceAsStream("/playableGameCharacter/right3.png"));
+            upLeft = ImageIO.read(getClass().getResourceAsStream("/playableGameCharacter/upLeft.png"));
+            upRight = ImageIO.read(getClass().getResourceAsStream("/playableGameCharacter/upRight.png"));
 
         } catch (Exception e) {
             e.printStackTrace();
