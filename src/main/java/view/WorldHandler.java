@@ -27,6 +27,7 @@ public class WorldHandler extends JPanel implements Runnable {
 
         public long drawCount = 0;
         int FPS = 60;
+        TileManager tileManager = new TileManager(this);
 
         int playerX = 100;
         int playerY = 100;
@@ -107,8 +108,8 @@ public class WorldHandler extends JPanel implements Runnable {
 
                 for (int row = 0; row < rows; row++) {
                         for (int col = 0; col < cols; col++) {
-                                g.setColor(SelectTerrain.terrainSelection(
-                                                world.getCurrentMaze().getTerrainByPosition(col, row).getType()));
+                                // g.setColor(SelectTerrain.terrainSelection(
+                                // world.getCurrentMaze().getTerrainByPosition(col, row).getType()));
                                 g.fillRect(col * tileSize, row * tileSize, tileSize, tileSize);
                         }
                 }

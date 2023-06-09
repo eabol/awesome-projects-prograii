@@ -9,6 +9,8 @@ public abstract class PlayerDrawer {
     public String direction;
     public int spriteCounter = 0;
     public int spriteNum = 1;
+    public int screenX;
+    public int screenY;
 
     public void update() {
     }
