@@ -188,7 +188,7 @@ public class CheckoutKiosk extends JFrame {
 
     private void updateCartTotal() {
         cartTotalLabel.setText("Cart total: " + cartManager.getTotalCost());
-        newTotalLabel.setText("New total: " + cartManager.getTotalCost());
+        newTotalLabel.setText("New total: " + cartManager.getFinalCost());
     }
 }
 
