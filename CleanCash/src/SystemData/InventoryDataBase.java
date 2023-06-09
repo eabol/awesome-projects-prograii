@@ -4,6 +4,11 @@ import DataClasses.Product;
 public class InventoryDataBase {
 
     Product[] products = new Product[20];
+
+    public Product[] getProducts() {
+        return products;
+    }
+
     public  InventoryDataBase() {
         products[0] = new Product("Cocacola", "01", 2.0F);
         products[1] = new Product("Fanta", "02", 1.8F);
@@ -26,5 +31,15 @@ public class InventoryDataBase {
         products[18] = new Product("Chicken", "19", 7.0F);
         products[19] = new Product("Beef", "20", 10.0F);
     }
+
+    public Product findProduct(String input){
+        for (Product product : products) {
+            if (input.equals(product.getEntityName()) || input.equals(product.getEntityId())){
+                return product;
+            }
+        }
+        return null;
+    }
+
 
 }

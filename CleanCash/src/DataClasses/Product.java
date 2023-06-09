@@ -11,5 +11,8 @@ public class Product extends Entity{
         this.price = price;
     }
 
+    public void debugProduct(){
+        System.out.println(this.getEntityName()+" id:"+getEntityId()+" Price:"+getPrice()+"€");
+    }
 
 }
