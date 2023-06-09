@@ -21,4 +21,12 @@ public class JamException extends Alert implements Incidence {
     public void setDate() {
         this.date = LocalDate.now();
     }
+
+    public LocalDate getDate() {
+        return date;
+    }
+    @Override
+    public void alertException() {
+        System.out.println("Jam exception detected");
+    }
 }
