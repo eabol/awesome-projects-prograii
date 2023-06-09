@@ -12,5 +12,6 @@ public class DiscountsDataBaseTest {
         DiscountsDataBase db = new DiscountsDataBase();
         String expected = "10";
         assertEquals(expected, db.getSaleDiscount("summertime"));
+
     }
 }
