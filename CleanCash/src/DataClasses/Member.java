@@ -1,6 +1,6 @@
 package DataClasses;
 
-public class Client extends Entity {
+public class Member extends Entity {
     private String phoneNumber;
     private int pointsBalance;
 
@@ -20,19 +20,19 @@ public class Client extends Entity {
         this.phoneNumber = phoneNumber;
     }
 
-    public Client(String entityName, String entityId) {
+    public Member(String entityName, String entityId) {
         super(entityName, entityId);
     }
 
     @Override
     public boolean compare (Entity entity) {
         super.compare(entity);
-        if (entity instanceof Client){
-            Client client = (Client) entity;
-            if (client.getEntityId() == this.getEntityId()){
+        if (entity instanceof Member){
+            Member member = (Member) entity;
+            if (member.getEntityId() == this.getEntityId()){
                 return true;
             }
-            else if (client.getPhoneNumber() == this.getPhoneNumber()){
+            else if (member.getPhoneNumber() == this.getPhoneNumber()){
                 return true;
             }
             else return false;
