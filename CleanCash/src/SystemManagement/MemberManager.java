@@ -2,7 +2,7 @@ package SystemManagement;
 
 import DataClasses.Entity;
 
-public class ClientManager implements DataManager{
+public class MemberManager implements DataManager{
     @Override
     public void add(Entity newEntity) {
 
