@@ -1,10 +1,7 @@
 package Main;
 
-public class Alive extends Events{
+public class Alive extends Exception{
     public Alive(String message){
         super(message);
-    }
-    public Alive(){
-        super("The snail is alive");
     }
 }

@@ -28,7 +28,7 @@ public  class Well {
 
             if (waterDepth >= this.snail.getAltitude()) {
                 isAlive = false;
-                throw new Death();
+                throw new Death("Snail is dead");
             }
 
             System.out.println();

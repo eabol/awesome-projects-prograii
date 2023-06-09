@@ -1,7 +1,7 @@
 package Main;
 
-public class CameOut extends Events{
-    public CameOut(){
+public class FueraPozo extends Exception{
+    public FueraPozo(){
         super("The snail get out of the well");
     }
 }

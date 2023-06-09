@@ -1,7 +1,7 @@
 package Main;
 
 import java.util.Random;
-public class Car extends Circumstances {
+public class Car{
     public Car() {
     }
     public Warning succes(){
@@ -13,8 +13,4 @@ public class Car extends Circumstances {
             return Warning.CAR_NOT_PASS;
         }
     }
-    public void setDescription() {
-        super.setDescription("The car passed");
-    }
-
 }
