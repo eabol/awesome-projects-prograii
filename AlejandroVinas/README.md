@@ -84,4 +84,17 @@ The "Dagger" class is really simple. It extends the "Equipment" class, and it cr
 
 The "SmokeBomb" class does the exact same thing, only it also provides with a message in case the smoke bomb lands and the warrior runs from the battle.
 
-The "DaggThrow" class 
+The "DaggThrow" class behaves the same as the class of any of the other warrior weapons.
+
+The abstract class "Characters" class only has 2 protected variables:
+  - Health, which is a double.
+  - Name, which is a string.
+  - With these 2 variables, it creates and instance of the "Characters" class
+
+The "Equipment" class also has only 2 protected variables:
+  - Name, which is a string.
+  - Cuantity, which is an int.
+  - With these 2 variables, it creates an instance of the "Equipment" class.
+
+The "Main" class only has an object of the class "General Manager" which initiates the "initiate" and "combat" actions, defined in the "GeneralManager" class.
+
