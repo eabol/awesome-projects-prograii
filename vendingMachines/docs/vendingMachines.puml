@@ -1,0 +1,135 @@
+@startuml
+package exceptions {
+    class FailureException {
+        - idMachine: int
+        - date: LocalDate
+        + FailureException(int idMachine)
+        + setDate()
+        + getDate(): LocalDate
+        + alertException()
+    }
+
+    class JamException {
+        - idMachine: int
+        - date: LocalDate
+        - idProduct: int
+        + JamException(int idMachine, int idProduct)
+        + setDate()
+        + getDate(): LocalDate
+        + alertException()
+    }
+}
+
+package interfaces {
+    interface Incidence {
+        + setDate()
+    }
+
+    interface Salable {
+        - values: float[]
+        + manageChange(money: Money, price: float): Money
+        + possibleJam(): Status
+        + possibleFailure(): Status
+    }
+}
+
+package main {
+    abstract class Alert {
+        + Alert(message: String)
+        + alertException()
+    }
+
+    class Drinks {
+        - isAlcoholic: boolean
+        - milliliters: int
+        + Drinks(name: String, price: double, id: int, quantity: int, isAlcoholic: boolean, milliliters: int)
+        + sell(quantity: int)
+        + isAlcoholic(): boolean
+    }
+
+    class FoodCategory {
+        + FoodCategory(name: String, description: String)
+        + sell(product: Product, quantity: int)
+    }
+
+    class Machine {
+        - id: int
+        - products: ArrayList<Product>
+        - money: Money
+        - status: Status
+        + Machine(id: int)
+        + getId(): int
+        + setId(id: int)
+        + getProducts(): ArrayList<Product>
+        + setProducts(products: ArrayList<Product>)
+        + getMoney(): Money
+        + setMoney(money: Money)
+        + getStatus(): Status
+        + setStatus(status: Status)
+        + machineReport()
+        + manageChange(clientMoney: Money, productPrice: float): Money
+        + possibleJam(): Status
+        + possibleFailure(): Status
+        + getProductPrice(id: int): float
+        + productList()
+        + buyProduct(clientMoney: Money, idProduct: int): Money
+    }
+
+    class Management {
+        - machines: ArrayList<Machine>
+        - incidences: ArrayList<Incidence>
+        + Management()
+        + screen(machine: int)
+        + paymentManagement(machine: int, idProduct: int, clientMoney: Money)
+    }
+
+    class Money {
+        - worth: ArrayList<Float>
+        - quantity: ArrayList<Integer>
+        + Money()
+        + insert(w: float, q: int)
+        + add(d: Money)
+        + remove(d: Money): boolean
+        + getWorth(): ArrayList<Float>
+        + getQuantity(w: float): int
+        + getTotal(): float
+        + information()
+    }
+
+    class Product {
+        - name: String
+        - price: double
+        - id: int
+        - quantity: int
+        + Product(name: String, price: double, id: int, quantity: int)
+        + getName(): String
+        + setName(name: String)
+        + getPrice(): double
+        + setPrice(price: double)
+        + getQuantity(i: int): int
+        + setQuantity(i: int, quantity: int)
+        + sell(i: int)
+        + getId(): int
+    }
+
+    enum Status {
+        JAM, FAILURE, END_STOCK, NO_CHANGE, NORMAL
+    }
+}
+
+exceptions.FailureException --|> main.Alert
+exceptions.JamException --|> main.Alert
+
+interfaces.Incidence <|.. exceptions.FailureException
+interfaces.Incidence <|.. exceptions.JamException
+
+main.Drinks --|> main.Product
+main.FoodCategory --> main.Product
+main.Machine "1" -- "n" main.Product
+main.Machine --> main.Status
+main.Management "1" -- "n" main.Machine
+main.Management --> main.Incidence
+main.Money --> main.Money
+main.Product --> main.Product
+main.Product --> main.Status
+@enduml
