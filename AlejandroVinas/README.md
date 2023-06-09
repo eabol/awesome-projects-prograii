@@ -1,4 +1,4 @@
-### Final Proyect Pro II- Warrior-Vampire game                          By: Pablo Lastra Tabuenca & Alejandro Viñas Portilla
+### Final Proyect Pro II- Warrior-Vampire game                          by: Pablo Lastra Tabuenca & Alejandro Viñas Portilla
 
 The goal of this proyect is to create a program that runs a farily simple game. This game has two characthers:
 
