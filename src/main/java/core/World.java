@@ -9,10 +9,10 @@ import java.util.Random;
 public class World {
 
     private ArrayList<ArrayList<GameCharacter>> NPCs;
-    private ArrayList<Maze> maps;
+    private static ArrayList<Maze> maps;
     private GameCharacter player;
     private Time time;
-    private int currentMaze;
+    private static int currentMaze;
 
     public World (String[][][] mazesData) {
         this.time = new Time(6,0,15);
@@ -52,7 +52,7 @@ public class World {
         return arrayList;
     }
 
-    public Maze getCurrentMaze() {
+    public static Maze getCurrentMaze() {
         return maps.get(currentMaze);
     }
 }

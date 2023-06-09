@@ -1,8 +1,10 @@
-package src.main.java.view;
+package view;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.IOException;
+import java.util.Objects;
+
 import src.main.java.view.tile.Tile;
 
 public class TileManager {
@@ -21,9 +23,11 @@ public class TileManager {
           //  tile[i] = new Tile(gp, i)
     }
     public void getTileImage() {
-      //  for (int i = 0; i < tile.length; i++) {
-        //    tile[i] = new Tile(gp, i);
-        //}
+      /*  for (int i = 0; i < tile.length; i++) {
+           tile[i] = new Tile(gp, i);
+        }
+
+       */
     try{
         tile[0] = new Tile();
         tile[0].image = ImageIO.read(getClass().getResourceAsStream("/src/main/resources/TileImages/road.png"));

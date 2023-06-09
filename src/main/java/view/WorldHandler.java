@@ -10,15 +10,15 @@ import java.awt.*;
 
 public class WorldHandler extends JPanel implements Runnable {
     public final int originalSize = 60;
-    private World world;
-    final int maxScreenRow = 10;
-    final int maxScreenCol = 20;
+    public final int maxScreenRow = 10;
+    public final int maxScreenCol = 20;
     public final int screenWidth = maxScreenCol * originalSize;
     public final int screenHeight = maxScreenRow * originalSize;
     KeyHandler keyHandler = new KeyHandler();
+    World World;
 
     int FPS = 60;
-    TileManager tileManager = new TileManager(this);
+    view.TileManager tileManager = new view.TileManager(this);
     public long drawCount = 0;
 
 
@@ -60,7 +60,7 @@ public class WorldHandler extends JPanel implements Runnable {
     };
 
     public WorldHandler() {
-        this.world = new World(mazesData);
+        this.World = new World(mazesData);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
@@ -119,13 +119,13 @@ public class WorldHandler extends JPanel implements Runnable {
     }
 
     private void drawMaze(Graphics g){
-        int rows = world.getCurrentMaze().getMapYSize();
-        int cols = world.getCurrentMaze().getMapXSize();
+        int rows = World.getCurrentMaze().getMapYSize();
+        int cols = World.getCurrentMaze().getMapXSize();
         int tileSize = Math.min(getWidth() / cols, getHeight() / rows);
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                g.setColor(TerrainResolver.solveTerrainColor(world.getCurrentMaze().getTerrainByPosition(col, row).getType()));
+                g.setColor(TerrainResolver.solveTerrainColor(World.getCurrentMaze().getTerrainByPosition(col, row).getType()));
                 g.fillRect(col * tileSize, row * tileSize, tileSize, tileSize);
             }
         }
