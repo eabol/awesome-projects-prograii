@@ -27,6 +27,7 @@ Also, you can add some discount codes to the products and see the total price wi
 ### Exit
 !["Exit"](docs/Images/Exit.png)
 
+
 ## Usage Guide
 To run this project first you need to download the project and a Java environment. Then you need to open the project in your Java environment and run the main class.
 Once you run the main class you will see the menu of the project and you can start using it.
