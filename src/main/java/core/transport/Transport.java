@@ -1,4 +1,4 @@
-package main.java.core.transport;
+package core.transport;
 
 public abstract class Transport {
 }

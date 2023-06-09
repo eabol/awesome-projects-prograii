@@ -1,10 +1,10 @@
-package main.java.view;
+package view;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.*;
 
-import main.java.view.tile.Tile;
+import view.tile.Tile;
 
 
 public class TileManager {
@@ -52,7 +52,7 @@ public class TileManager {
     public void getTileImage() {
         try{
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/road.png"));
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/TileImages/sand.png"));
 
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/sand.png"));

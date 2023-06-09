@@ -1,6 +1,6 @@
-package main.java.view;
+package view;
 
-import main.java.enumerators.TerrainType;
+import enumerators.TerrainType;
 import java.awt.*;
 
 public class TerrainResolver {

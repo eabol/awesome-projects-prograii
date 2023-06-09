@@ -1,6 +1,6 @@
-package main.java.view.character;
+package view.character;
 
-import main.java.view.WorldHandler;
+import view.WorldHandler;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
