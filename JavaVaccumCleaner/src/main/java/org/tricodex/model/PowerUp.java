@@ -1,32 +1,73 @@
 package org.tricodex.model;
 
+import org.tricodex.model.manager.CellManager;
 import org.tricodex.utils.abstracts.Entity;
+import org.tricodex.utils.enums.BoostType;
 
 import java.awt.*;
+import java.util.Random;
 
 public class PowerUp extends Entity {
-    Point position;
-    Surface surface;
+    private CellManager cellManager;
+    private BoostType boostType;
+    private int boostAmount;
 
-    public PowerUp(Point position, Surface surface) {
-        super(position);
-        this.surface = surface;
+    public PowerUp(CellManager cellManager, int size) {
+        super(size);
+        this.cellManager = cellManager;
+        this.position = generateRandomNonCollidablePosition();
+        generateRandomBoost();
     }
 
-    public Point randomPosition() {
-        this.position.x = (int) Math.random() * (surface.getWidth() + 1);
-        this.position.y = (int) Math.random() * (surface.getHeight()  + 1);
+    protected Point generateRandomNonCollidablePosition() {
+        Random random = new Random();
+        Point randomPosition;
+        int entitySize = cellManager.getCellSize();  // Assuming entitySize is equal to cellSize
 
-        Point randomPoint = new Point(position.x, position.y);
-        return randomPoint;
-    }
-    public void spawn() {
-        Point spawningPoint = randomPosition();
+        do {
+            int x = random.nextInt(cellManager.getMapWidth() - entitySize);
+            int y = random.nextInt(cellManager.getMapHeight() - entitySize);
+            randomPosition = new Point(x, y);
+        } while (isColliding(randomPosition, entitySize));
 
-       if(!surface.getCell(spawningPoint).hasFurniture()) {
-           PowerUp powerUp = new PowerUp(spawningPoint, surface);
-       }
-
+        return randomPosition;
     }
 
+    private boolean isColliding(Point position, int entitySize) {
+        Point topLeft = position;
+        Point topRight = new Point(position.x + entitySize, position.y);
+        Point bottomLeft = new Point(position.x, position.y + entitySize);
+        Point bottomRight = new Point(position.x + entitySize, position.y + entitySize);
+
+        return cellManager.getCellByPoint(topLeft).canCollide() ||
+                cellManager.getCellByPoint(topRight).canCollide() ||
+                cellManager.getCellByPoint(bottomLeft).canCollide() ||
+                cellManager.getCellByPoint(bottomRight).canCollide();
+    }
+
+    public void generateRandomBoost() {
+        Random random = new Random();
+        int boostTypeIndex = random.nextInt(BoostType.values().length);
+        this.boostType = BoostType.values()[boostTypeIndex];
+        if (this.boostType == BoostType.SPEED)
+            this.boostAmount = random.nextInt(2) + 1;  // Random boost amount between 1 and 2
+        else this.boostAmount = random.nextInt(10) + 1;  // Random boost amount between 1 and 10
+    }
+
+    public BoostType getBoostType() {
+        return boostType;
+    }
+
+    public int getBoostAmount() {
+        return boostAmount;
+    }
+
+    public Point getPosition() {
+        return position;
+    }
+
+    public void setNewPosition() {
+        this.position = generateRandomNonCollidablePosition();
+        generateRandomBoost();  // Generate a new boost whenever we set a new position
+    }
 }

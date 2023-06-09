@@ -3,17 +3,13 @@ package org.tricodex.model;
 import org.tricodex.utils.enums.MoveDirection;
 
 public class UserGuide {
-    private Surface surface;
-    private Vaccum vaccum;
+    private Vacuum vacuum;
 
-    public UserGuide(Surface surface, Vaccum vaccum) {
-        this.surface = surface;
-        this.vaccum = vaccum;
+    public UserGuide(Vacuum vacuum) {
+        this.vacuum = vacuum;
     }
 
-    public void guideVaccume(MoveDirection position) {
-        vaccum.move(position);
+    public void guideVacuum(MoveDirection position) {
+        vacuum.move(position);
     }
-
-
 }
