@@ -19,7 +19,9 @@ public class Plc {
 
     public String getSimDataId(){return idDataSim;}
 
-    public void setSimDataId(String simDataId){this.idDataSim=idDataSim;}
+    public void setSimDataId(String simDataId){
+        this.idDataSim = simDataId;
+    }
 
     public String getMaker() {
         return maker;

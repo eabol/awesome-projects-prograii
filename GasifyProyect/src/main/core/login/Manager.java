@@ -1,6 +1,6 @@
 package main.core.login;
 
-import main.core.Worker;
+import main.core.data.Worker;
 import main.core.data.Data;
 import main.utils.FileWriter;
 

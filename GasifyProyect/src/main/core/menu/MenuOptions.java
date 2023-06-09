@@ -1,8 +1,8 @@
 package main.core.menu;
 
-import main.core.Worker;
+import main.core.data.Worker;
 import main.core.data.Billing;
-import main.core.Customer;
+import main.core.data.Customer;
 import main.core.data.Data;
 import main.core.login.Manager;
 import main.utils.InvoiceGeneratorHTTP;

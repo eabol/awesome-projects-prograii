@@ -1,7 +1,5 @@
 package main.core.data;
 
-import main.core.Customer;
-import main.core.Worker;
 import main.core.equipment.DataSim;
 import main.core.equipment.GasMater;
 import main.core.equipment.Plc;

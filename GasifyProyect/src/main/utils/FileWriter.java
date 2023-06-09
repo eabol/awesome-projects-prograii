@@ -2,9 +2,9 @@ package main.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import main.core.Customer;
+import main.core.data.Customer;
 import main.core.data.Billing;
-import main.core.Worker;
+import main.core.data.Worker;
 import main.core.data.Prices;
 import main.core.equipment.DataSim;
 import main.core.equipment.GasMater;

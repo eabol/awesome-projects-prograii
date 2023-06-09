@@ -1,7 +1,7 @@
 package main.core.menu;
 
 import main.core.data.Billing;
-import main.core.Customer;
+import main.core.data.Customer;
 import main.utils.ProcessData;
 import main.utils.TableList;
 

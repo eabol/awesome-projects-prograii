@@ -30,5 +30,13 @@
     "department": "IT",
     "name": "prueba2",
     "password": "prueba2"
+  },
+  {
+    "idEmployee": "EMP-234277",
+    "email": "admin@admin.com",
+    "nameCompany": "Naturgy",
+    "department": "IT",
+    "name": "admin",
+    "password": "admin"
   }
 ]
