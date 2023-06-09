@@ -16,6 +16,12 @@ _____
 A continuación se viasualiza la representación gráfica del UML para el proyecto de Gasify.
 
 
+## ¿Cómo ejecutar el programa?
+____
+
+## ¿Qué puedes realizar con el programa?
+____
+
 
 ## Autores:
 ____
