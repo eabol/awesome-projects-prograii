@@ -84,17 +84,15 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
             case "up" -> {
                 if (spriteNum == 1) {
                     image = up1;
-                } else if (spriteNum == 2) {
+                } else if (spriteNum == 2 || spriteNum == 3) {
                     image = up2;
-                    spriteNum = 1;
                 }
             }
             case "down" -> {
                 if (spriteNum == 1) {
                     image = left1;
-                } else if (spriteNum == 2) {
+                } else if (spriteNum == 2 || spriteNum == 3) {
                     image = right1;
-                    spriteNum = 1;
                 }
             }
             case "left" -> {
