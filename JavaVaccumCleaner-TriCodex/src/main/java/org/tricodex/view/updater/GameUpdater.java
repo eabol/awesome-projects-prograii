@@ -170,6 +170,10 @@
             return scoreService.getGameScore();
         }
 
+        public int getHighScore() {
+            return scoreService.getHighScore();
+        }
+
         public String getVaccumRecharge() {
             return statusDisplay.getVaccumRecharge();
         }

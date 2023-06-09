@@ -92,14 +92,14 @@ public class GameRenderer {
         currentY += 2 * lineSpacing; // Adding some space before next element
 
         currentY = drawStatsText(g2d, Color.CYAN, new Font("Arial", Font.PLAIN, 12), statsPosX, currentY, lineSpacing,
-                "Score: " + gameUpdater.getGameScore(), gameUpdater.getBag(), gameUpdater.getBattery(),
+                "High Score: " + gameUpdater.getHighScore(),"Score: " + gameUpdater.getGameScore(), gameUpdater.getBag(), gameUpdater.getBattery(),
                 gameUpdater.getVaccumRecharge(), gameUpdater.getVaccumEmpty());
 
         g2d.setColor(Color.ORANGE); // Power-up in a different color
         g2d.setFont(new Font("Arial", Font.ITALIC, 12)); // Italic for differentiation
         g2d.drawString(gameUpdater.getPowerUp(), statsPosX + panelPadding, currentY + lineSpacing);
 
-        currentY += 2 * lineSpacing; // Adding some space before next element
+        currentY += lineSpacing; // Adding some space before next element
 
         currentY = drawStatsText(g2d, Color.PINK, new Font("Arial", Font.PLAIN, 12), statsPosX, currentY, lineSpacing,
                 "Controls:", "- Clean: C", "- Recharge: R", "- Empty Bag: E");
