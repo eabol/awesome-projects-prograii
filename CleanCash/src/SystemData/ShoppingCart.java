@@ -52,14 +52,6 @@ public class ShoppingCart {
         finalCost = totalCost;
     }
 
-    /**
-    public void tryDiscount(){
-        for (String discount :
-             ) {
-
-        }
-    }*/
-
     public void applyDiscount(float discount){
         discountsTotal+=discount;
     }
