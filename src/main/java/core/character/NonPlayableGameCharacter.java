@@ -1,7 +1,7 @@
-package core.character;
+package main.java.core.character;
 
-import core.Terrain;
-import core.character.GameCharacter;
+import main.java.core.Terrain;
+import main.java.core.character.GameCharacter;
 import java.util.Random;
 
 public class NonPlayableGameCharacter extends GameCharacter {

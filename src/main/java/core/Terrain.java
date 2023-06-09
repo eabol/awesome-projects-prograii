@@ -1,25 +1,25 @@
-package core;
+package main.java.core;
 
-import enumerators.TerrainType;
+import main.java.enumerators.TerrainType;
 
 public class Terrain {
 
     private Position position;
     private TerrainType terrainType;
-        public Terrain(Position position, String terrainType) {
-            this.position = position;
-            for (TerrainType terrainTypeConstant : TerrainType.values()) {
-                if (terrainTypeConstant.name().equalsIgnoreCase(terrainType)) {
-                    this.terrainType = terrainTypeConstant;
-                    return;
-                }
+    public Terrain(Position position, String terrainType) {
+        this.position = position;
+        for (TerrainType terrainTypeConstant : TerrainType.values()) {
+            if (terrainTypeConstant.ordinal() == Integer.parseInt(terrainType)) {
+                this.terrainType = terrainTypeConstant;
+                return;
             }
+        }
 
-            throw new IllegalArgumentException("Invalid value for terrainType: " + terrainType);
+        throw new IllegalArgumentException("Invalid value for terrainType: " + terrainType);
     }
 
     public TerrainType getType() {
-            return terrainType;
+        return terrainType;
     }
     public boolean isWalkable() {
         switch (getType()) {
@@ -34,7 +34,7 @@ public class Terrain {
     }
 
     public Position getPosition() {
-            return position;
+        return position;
     }
 
     public String getPositionAsString() {

@@ -1,4 +1,4 @@
-package core;
+package main.java.core;
 
 public class Position {
     private int x;

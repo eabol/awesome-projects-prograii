@@ -1,54 +1,91 @@
-package view;
+package main.java.view;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.IOException;
-import java.util.Objects;
+import java.io.*;
 
-import src.main.java.view.tile.Tile;
+import main.java.view.tile.Tile;
+
 
 public class TileManager {
     WorldHandler gp;
     Tile[] tile;
-    int mapTileNum[][];
+    public int mapTileNum[][];
 
     public TileManager(WorldHandler gp) {
         this.gp = gp;
         tile = new Tile[10];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        //tile = new Tile[gp.getTileCount()];
-
-        //for (int i = 0; i < tile.length; i++) {
-          //  tile[i] = new Tile(gp, i)
+        mazeParser("./src/main/resources/mazes/level1.txt");
+    }
+    public void mazeParser(String filePath){
+        try{
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            String line;
+            int col = 0;
+            int row = 0;
+            while (((line = reader.readLine()) != null) && (col < gp.maxWorldCol && row < gp.maxWorldRow)) {
+                line = line.replace("{", "").replace("}", "");
+                String numbers[] = line.split(",");
+                while(col < gp.maxWorldCol && col < numbers.length){
+                    int num = Integer.parseInt(numbers[col]);
+                    mapTileNum[col][row] = num;
+                    col++;
+                }
+                if (col == gp.maxWorldCol || col == numbers.length){
+                    col = 0;
+                    row++;
+                }
+            }
+            reader.close();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void loadMap(BufferedReader reader, String[] numbers) {
+        for (int col = 0; col < numbers.length; col++) {
+            System.out.print(numbers[col]);
+        }
+        System.out.println();
     }
     public void getTileImage() {
-      /*  for (int i = 0; i < tile.length; i++) {
-           tile[i] = new Tile(gp, i);
-        }
+        try{
+            tile[0] = new Tile();
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/road.png"));
 
-       */
-    try{
-        tile[0] = new Tile();
-        tile[0].image = ImageIO.read(getClass().getResourceAsStream("/src/main/resources/TileImages/road.png"));
-    } catch (IOException e){
-        e.printStackTrace();
-    }
+            tile[1] = new Tile();
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/sand.png"));
+
+            tile[2] = new Tile();
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/water.png"));
+
+            tile[3] = new Tile();
+            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/main/resources/TileImages/tree.png"));
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
     public void draw(Graphics2D g2){
-        g2.drawImage(tile[0].image, 0, 0, gp.originalSize, gp.originalSize, null);
-        int col =0;
-        int row =0;
-        int x  = 0;
-        int y = 0;
-        while (col < gp.maxScreenCol && row < gp.maxScreenRow){
-            x = col * gp.originalSize;
-            y = row * gp.originalSize;
-            g2.drawImage(tile[0].image, x, y, gp.originalSize, gp.originalSize, null);
-            col++;
-            if (col == gp.maxScreenCol){
-                col = 0;
-                row++;
+        //g2.drawImage(tile[0].image, 0, 0, gp.originalSize, gp.originalSize, null);
+        //g2.drawImage(tile[1].image, 48, 0, gp.originalSize, gp.originalSize, null);
+        //g2.drawImage(tile[2].image, 96, 0, gp.originalSize, gp.originalSize, null);
+        //g2.drawImage(tile[3].image, 150, 0, gp.originalSize, gp.originalSize, null);
+
+        int worldCol =0;
+        int worldRow =0;
+        while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow){
+            int tileNum = mapTileNum[worldCol][worldRow];
+
+            int worldX = worldCol * gp.originalSize;
+            int worldY = worldRow * gp.originalSize;
+            int screenX = worldX - gp.player.worldX + gp.player.screenX;
+            int screenY = worldY - gp.player.worldY + gp.player.screenY;
+            g2.drawImage(tile[tileNum].image, screenX, screenY, gp.originalSize, gp.originalSize, null);
+            worldCol++;
+            if (worldCol == gp.maxWorldCol){
+                worldCol = 0;
+                worldRow++;
             }
         }
     }

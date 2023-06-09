@@ -1,6 +1,6 @@
-package core;
-import core.Terrain;
-import core.character.*;
+package main.java.core;
+import main.java.core.Terrain;
+import main.java.core.character.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,10 +9,10 @@ import java.util.Random;
 public class World {
 
     private ArrayList<ArrayList<GameCharacter>> NPCs;
-    private static ArrayList<Maze> maps;
+    private ArrayList<Maze> maps;
     private GameCharacter player;
     private Time time;
-    private static int currentMaze;
+    private int currentMaze;
 
     public World (String[][][] mazesData) {
         this.time = new Time(6,0,15);
@@ -45,6 +45,8 @@ public class World {
     }
 
     public ArrayList<Maze> generateLevels (String[][][] data) {
+        System.out.println("Generating levels...");
+
         ArrayList<Maze> arrayList = new ArrayList<>();
         for (String[][] map: data) {
             arrayList.add(new Maze(map));
@@ -52,7 +54,7 @@ public class World {
         return arrayList;
     }
 
-    public static Maze getCurrentMaze() {
+    public Maze getCurrentMaze() {
         return maps.get(currentMaze);
     }
 }

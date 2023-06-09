@@ -1,4 +1,4 @@
-package view.character;
+package main.java.view.character;
 
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
