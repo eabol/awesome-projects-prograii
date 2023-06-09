@@ -8,13 +8,13 @@ The goal of this proyect is to create a program that runs a farily simple game. 
 During his turn, the warrior can choose between three different options:
 
 1. Attack: the user chooses to attack the vampire, picking one of three weapons to do so:
-  1. Sword: low damage and high accuracy.
-  2. Handaxe: medium damage and accuracy.
-  3. Flail: high damage and low accuracy
+  - Sword: low damage and high accuracy.
+  - Handaxe: medium damage and accuracy.
+  - Flail: high damage and low accuracy
 
 2. Item: the user opens the warriors bag, and can choose between two items:
-  1. Dagger: the warrior hurls a dagger at the vampire, damaging him if hit.
-  2. Smoke bomb: the warrior throws a smoke grenade which, if it hits the vampire, allow him to run from the fight.
+  - Dagger: the warrior hurls a dagger at the vampire, damaging him if hit.
+  - Smoke bomb: the warrior throws a smoke grenade which, if it hits the vampire, allow him to run from the fight.
 
 3. Scream: the warrior screams, trying to intimidate the vampire. If he is successful, the vampire will run from the fight
 
