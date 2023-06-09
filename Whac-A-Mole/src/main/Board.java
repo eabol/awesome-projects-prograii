@@ -27,12 +27,18 @@ public class Board {
     }
 
     public void showBoard() {
+        StringBuilder boardBuilder = new StringBuilder();
         for (List<Hole> row : holes) {
             for (Hole hole : row) {
-                System.out.print(hole.isMoleInside() ? "M " : "O ");
+                if (hole.getSmackableCharacter() != null) {
+                    boardBuilder.append(hole.getSmackableCharacter().getName()).append(" ");
+                } else {
+                    boardBuilder.append("O ");
+                }
             }
-            System.out.println();
+            boardBuilder.append("\n");
         }
+        System.out.println(boardBuilder.toString());
     }
 
     public Hole beatenHole(int position) {
