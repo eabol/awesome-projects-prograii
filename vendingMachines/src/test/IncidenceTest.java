@@ -13,6 +13,7 @@ class IncidenceTest {
 
     @BeforeEach
     void setUp() {
+        FailureException failuretest = new FailureException(1);
     }
 
     @Test

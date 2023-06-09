@@ -58,7 +58,6 @@ public class Machine implements Salable {
         productList();
     }
 
-    @Override
     public Money manageChange(Money clientMoney, float productPrice) {
         Money change = new Money();
         float quantity = clientMoney.getTotal();
@@ -78,7 +77,7 @@ public class Machine implements Salable {
             }
         }
         if (debt > 0) {
-            return null;
+            return new Money();
         } else {
             return change;
         }
@@ -128,7 +127,7 @@ public class Machine implements Salable {
             setStatus(Status.FAILURE);
             throw new FailureException(this.id);
         }
-        Money change = null;
+        Money change = new Money();
         if (clientMoney.getTotal() >= this.products.get(idProduct).getPrice()) {
             change = manageChange(clientMoney, getProductPrice(idProduct));
             this.money.add(clientMoney);
