@@ -71,6 +71,19 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
                 worldX += speed;
             }
             spriteCounter++;
+//Check the collision
+            collision = false;
+            gp.collisionChecker.checkTile(this);
+
+            //if colletion is false
+            if(collision == false) {
+                switch (direction){
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
+                }
+            }
             if (spriteCounter > 40) {
                 if (spriteNum == 1) {
                     spriteNum = 2;

@@ -4,6 +4,7 @@ import core.World;
 import core.Terrain;
 import enumerators.TerrainType;
 import view.character.*;
+import view.collision.CollisionChecker;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +19,8 @@ public class WorldHandler extends JPanel implements Runnable {
     KeyHandler keyHandler = new KeyHandler();
 
     int FPS = 60;
-    TileManager tileManager = new TileManager(this);
+    public TileManager tileManager = new TileManager(this);
+    public CollisionChecker collisionChecker = new CollisionChecker(this);
     public long drawCount = 0;
 
 

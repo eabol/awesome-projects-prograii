@@ -9,7 +9,7 @@ import main.java.view.tile.Tile;
 
 public class TileManager {
     WorldHandler gp;
-    Tile[] tile;
+    public Tile[] tile;
     public int mapTileNum[][];
 
     public TileManager(WorldHandler gp) {
