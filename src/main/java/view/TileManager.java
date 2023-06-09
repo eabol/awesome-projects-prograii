@@ -15,7 +15,8 @@ public class TileManager {
         tile = new Tile[10];
         mapTileNum = new int[gameWindow.maxWorldCol][gameWindow.maxWorldRow];
         getTileImage();
-        mazeParser("./src/main/resources/mazes/level1.txt");
+        mazeParser("src/main/resources/mazes/level1.txt");
+
     }
 
     public void mazeParser(String filePath) {
@@ -54,16 +55,16 @@ public class TileManager {
     public void getTileImage() {
         try {
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/src/main/resources/TileImages/road.png"));
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/TileImages/road.png"));
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/src/main/resources/TileImages/sand.png"));
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/TileImages/sand.png"));
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/src/main/resources/TileImages/water.png"));
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/TileImages/water.png"));
 
             tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/src/main/resources/TileImages/tree.png"));
+            tile[3].image = ImageIO.read(getClass().getResourceAsStream("/TileImages/tree.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
