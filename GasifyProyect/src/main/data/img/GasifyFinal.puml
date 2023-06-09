@@ -1,0 +1,359 @@
+@startuml
+class main.core.menu.MenuOptions {
+- Scanner userInput
+- Data search
+- ProcessData find
+- Manager register
++ <<Create>> MenuOptions()
++ void principalMenu()
+- void login()
+- void registerOption()
+- void loginOption()
+- void searchByName(String)
+- void searchByID(String)
+- void workWithUserOption(String)
+- void findBillingByDate(String)
+- void findBillingByRangeDate(String)
+- void generateInvoiceOption(String,String,String)
+}
+abstract class main.core.login.User {
+- String name
+- String password
++ <<Create>> User(String,String)
++ <<Create>> User()
++ String getName()
++ void setName(String)
++ String getPassword()
++ void setPassword(String)
+}
+class main.core.data.Data {
+~ DateValidator fullDate
+~ DateValidator monthYear
+~ DateValidator format
++ <<Create>> Data()
++ List<DataSim> findSimDataByID(String)
++ List<Worker> findWorkerByID(String)
++ List<Worker> findWorkerByUser(String)
++ List<Worker> findWorkerByEmail(String)
++ float findPriceByDate(String)
++ List<Billing> findBillingByUser(String)
++ List<GasMater> findGasMeter(String)
++ List<DataSim> findSim(String)
++ List<Plc> findPlc(String)
++ List<Customer> findCustomerByName(String)
++ List<Customer> findCustomerByID(String)
++ List<Customer> findCustomerByNumber(String)
+}
+interface main.utils.Writer {
+~ void writeBillingData(Billing)
+~ void writeCustomerData(Customer)
+~ void writeSimData(DataSim)
+~ void writeGasMeterData(GasMater)
+~ void writePLCData(Plc)
+~ void writeWorkersData(Worker)
+~ void writePriceData(Prices)
+}
+class main.core.equipment.Plc {
+- String idPlc
+- String maker
+- String model
+- String idDataSim
++ <<Create>> Plc(String,String,String,String)
++ <<Create>> Plc()
++ String getSimDataId()
++ void setSimDataId(String)
++ String getMaker()
++ void setMaker(String)
++ String getModel()
++ void setModel(String)
++ String getIdPlc()
++ void setIdPlc(String)
++ String toStringPlc()
+}
+class main.core.login.Manager {
+- Worker employee
+- Data data
++ <<Create>> Manager()
+- String newIdEmployee()
++ void userCreate(String,String,String,String)
++ boolean login(String,String)
+}
+class main.core.data.Billing {
+- int idReport
+- String idCustomer
+- String idGasMeter
+- String idPlc
+- String idDataSim
+- String firstDate
+- String secondDate
+- int firstValue
+- int secondValue
++ <<Create>> Billing(int,String,String,String,String,String,String,int,int)
++ <<Create>> Billing()
++ int getIdReport()
++ void setIdReport(int)
++ String getIdCustomer()
++ void setIdCustomer(String)
++ String getIdGasMeter()
++ void setIdGasMeter(String)
++ String getIdPlc()
++ void setIdPlc(String)
++ String getIdDataSim()
++ void setIdDataSim(String)
++ String getFirstDate()
++ void setFirstDate(String)
++ String getSecondDate()
++ void setSecondDate(String)
++ int getFirstValue()
++ void setFirstValue(int)
++ int getSecondValue()
++ void setSecondValue(int)
+}
+interface main.utils.Parser {
+~ List<Billing> billingData()
+~ List<Customer> customerData()
+~ List<DataSim> simData()
+~ List<GasMater> gasMaterData()
+~ List<Plc> plcData()
+~ List<Worker> workerData()
+~ List<Prices> pricesData()
+}
+class main.core.equipment.DataSim {
+- String idDataSim
+- String numberDataSim
+- String serviceCompany
++ <<Create>> DataSim(String,String,String)
++ <<Create>> DataSim()
++ String getIdDataSim()
++ void setIdDataSim(String)
++ String getNumberDataSim()
++ void setNumberDataSim(String)
++ String getServiceCompany()
++ void setServiceCompany(String)
++ String toStringDataSim()
+}
+class main.core.Customer {
+- String idCustomer
+- String nameCustomer
+- String numberPhone
+- String address
+- String plcId
+- String simId
+- String gasMaterID
++ <<Create>> Customer(String,String,String,String,String,String,String)
++ <<Create>> Customer()
++ void setNameCustomer(String)
++ String getNameCustomer()
++ String getIdCustomer()
++ void setIdCustomer(String)
++ String getNumberPhone()
++ void setNumberPhone(String)
++ String getAddress()
++ void setAddress(String)
++ String getPlcId()
++ void setPlcId(String)
++ String getSimId()
++ void setSimId(String)
++ String getGasMaterID()
++ void setGasMaterID(String)
++ String toString()
+}
+class main.core.equipment.GasMater {
+- String idGasMeter
+- String brand
+- String ref
+- String ean13
+- String serie
+- String nameModel
+- int readInstallationDay
+- String plcId
++ <<Create>> GasMater(String,String,String,String,String,int,String)
++ <<Create>> GasMater()
++ String getPlcId()
++ void setPlcId(String)
++ String getIdGasMater()
++ void setIdGasMater(String)
++ String getBrand()
++ void setBrand(String)
++ String getRef()
++ void setRef(String)
++ String getEan13()
++ void setEan13(String)
++ String getSerie()
++ void setSerie(String)
++ void setNameModel(String)
++ int getReadInstallationDay()
++ void setReadInstallationDay(int)
++ String toStringGasMater()
+}
+class main.utils.ProcessData {
+~ DateValidator fullDate
+~ DateValidator monthYear
+~ DateValidator format
++ <<Create>> ProcessData()
++ List<String> allUsage(String,String,String)
++ List<Billing> findSpecificMonthBill(String,String)
++ List<Billing> monthlyBill(String,String,String)
++ float priceCalc(String,String)
++ float diffValues(String,String)
+}
+abstract class main.utils.ParseData {
+- Gson gson
+- String data
++ <<Create>> ParseData()
++ List<Billing> billingData()
++ List<Customer> customerData()
++ List<DataSim> simData()
++ List<GasMater> gasMaterData()
++ List<Plc> plcData()
++ List<Worker> workerData()
++ List<Prices> pricesData()
+}
+class main.core.data.Prices {
+- int year
+- String period
+- float value
++ <<Create>> Prices(int,String,int)
++ int getYear()
++ void setYear(int)
++ String getPeriod()
++ void setPeriod(String)
++ float getValue()
++ void setValue(int)
+}
+abstract class main.utils.FileReader {
+# <<Create>> FileReader()
++ String readAsString(String)
+}
+class main.core.Worker {
+- String idEmployee
+- String email
+- String nameCompany
+- String department
++ <<Create>> Worker(String,String,String,String,String,String)
++ <<Create>> Worker()
++ String getEmail()
++ void setEmail(String)
++ String toString()
++ String getIdEmployee()
++ void setIdEmployee(String)
++ String getNameCompany()
++ void setNameCompany(String)
++ String getDepartment()
++ void setDepartment(String)
+}
+class main.utils.InvoiceGeneratorHTTP {
+- String API
+- URL url
+- HttpURLConnection connection
+- byte[] body
+- StringBuilder base
+- StringBuilder responseBody
++ <<Create>> InvoiceGeneratorHTTP()
++ String generateInvoice(String)
++ String connectHTTP(String)
+}
+class main.utils.TableList {
+- {static} String[] BLINE
+- {static} String[] CROSSING
+- {static} String[] VERTICAL_TSEP
+- {static} String[] VERTICAL_BSEP
+- {static} String TLINE
+- {static} String CORNER_TL
+- {static} String CORNER_TR
+- {static} String CORNER_BL
+- {static} String CORNER_BR
+- {static} String CROSSING_L
+- {static} String CROSSING_R
+- {static} String CROSSING_T
+- {static} String CROSSING_B
+- String[] descriptions
+- ArrayList<String[]> table
+- int[] tableSizes
+- int rows
+- int findex
+- String filter
+- boolean ucode
+- Comparator<String[]> comparator
+- int spacing
+- EnumAlignment[] aligns
++ <<Create>> TableList(String)
++ <<Create>> TableList(int,String)
+- void updateSizes(String[])
++ TableList compareWith(Comparator<String[]>)
++ TableList sortBy(int)
++ TableList align(int,EnumAlignment)
++ TableList withSpacing(int)
++ TableList addRow(String)
++ TableList filterBy(int,String)
++ TableList withUnicode(boolean)
++ void print()
+- String gc(String[])
+}
+enum main.utils.EnumAlignment {
++  LEFT
++  CENTER
++  RIGHT
+}
+interface main.core.data.Finders {
+~ List<DataSim> findSimDataByID(String)
+~ List<Worker> findWorkerByID(String)
+~ List<Worker> findWorkerByUser(String)
+~ List<Worker> findWorkerByEmail(String)
+~ float findPriceByDate(String)
+~ List<Billing> findBillingByUser(String)
+~ List<GasMater> findGasMeter(String)
+~ List<DataSim> findSim(String)
+~ List<Plc> findPlc(String)
+~ List<Customer> findCustomerByName(String)
+~ List<Customer> findCustomerByID(String)
+~ List<Customer> findCustomerByNumber(String)
+}
+class main.utils.DateValidator {
+- String dateFormat
++ <<Create>> DateValidator(String)
++ boolean isValid(String)
++ String[] dateFormat(String)
+}
+abstract class main.utils.FileWriter {
+- Gson gson
+- String data
+- java.io.FileWriter writer
++ <<Create>> FileWriter()
++ void writeBillingData(Billing)
++ void writeCustomerData(Customer)
++ void writeSimData(DataSim)
++ void writeGasMeterData(GasMater)
++ void writePLCData(Plc)
++ void writeWorkersData(Worker)
++ void writePriceData(Prices)
+}
+class main.utils.RecOptico {
+}
+abstract class main.core.menu.Menus {
+- TableList table
+- ProcessData find
+- BigDecimal decimalFix
++ <<Create>> Menus()
+- BigDecimal prettyDecimal(float)
+# void principal()
+# void registerCheck(String,String,String)
+# void logged()
+# void actionsCustomer()
+# void customerList(List<Customer>)
+# void billSpecificMonth(List<Billing>,String,String)
+# void billRangeMonth(List<String>)
+}
+
+
+main.core.menu.Menus <|-- main.core.menu.MenuOptions
+main.core.data.Finders <|.. main.core.data.Data
+main.utils.ParseData <|-- main.core.data.Data
+main.utils.FileWriter <|-- main.core.login.Manager
+main.core.data.Data <|-- main.utils.ProcessData
+main.utils.Parser <|.. main.utils.ParseData
+main.utils.FileReader <|-- main.utils.ParseData
+main.core.login.User <|-- main.core.Worker
+main.utils.Writer <|.. main.utils.FileWriter
+main.utils.FileReader <|-- main.utils.FileWriter
+@enduml
