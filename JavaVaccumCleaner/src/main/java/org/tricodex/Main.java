@@ -19,16 +19,31 @@ import org.tricodex.view.windows.MenuWindow;
 import javax.swing.*;
 
 public class Main {
+    private static GameObjectsFactory gameObjectsFactory;
+    private static CellManager cellManager;
+    private static MapLoader mapLoader;
+    private static ScreenSettings screenSettings;
+    private static GameStateManager gameStateManager;
+    private static MenuWindow menuWindow;
+    private static LeaderboardWindow leaderboardWindow;
+    private static InputHandler inputHandler;
+    private static GamePanel gamePanel;
+
     public static void main(String[] args) {
-        GameObjectsFactory gameObjectsFactory = new GameObjectsFactory();
-        CellManager cellManager = gameObjectsFactory.createCellManager();
-        MapLoader mapLoader = gameObjectsFactory.createMapLoader(cellManager);
+        initializeGameObjects();
+        createMainWindow();
+    }
+
+    private static void initializeGameObjects() {
+        gameObjectsFactory = new GameObjectsFactory();
+        cellManager = gameObjectsFactory.createCellManager();
+        mapLoader = gameObjectsFactory.createMapLoader(cellManager);
         mapLoader.loadMap("/maps/map01.txt");
-        ScreenSettings screenSettings = gameObjectsFactory.createScreenSettings();
-        GameStateManager gameStateManager = new GameStateManager();
-        MenuWindow menuWindow = gameObjectsFactory.createMenuWindow();
-        LeaderboardWindow leaderboardWindow = gameObjectsFactory.createLeaderboardWindow();
-        InputHandler inputHandler = new InputHandler(gameStateManager, menuWindow, leaderboardWindow);
+        screenSettings = gameObjectsFactory.createScreenSettings();
+        gameStateManager = new GameStateManager();
+        menuWindow = gameObjectsFactory.createMenuWindow(mapLoader);
+        leaderboardWindow = gameObjectsFactory.createLeaderboardWindow();
+        inputHandler = new InputHandler(gameStateManager, menuWindow, leaderboardWindow);
 
         Cat cat = gameObjectsFactory.createCat(cellManager);
         Vacuum vacuum = gameObjectsFactory.createVacuum(cellManager);
@@ -40,8 +55,10 @@ public class Main {
         GameUpdater gameUpdater = new GameUpdater(controlPanel, cat, vacuum, cellManager, powerUp);
         GameRenderer gameRenderer =  new GameRenderer(menuWindow, leaderboardWindow, gameObjectsFactory, screenSettings, surfacePanel, cat, vacuum, powerUp, gameObjectsFactory.createAssetPainter(), gameUpdater);
 
-        GamePanel gamePanel = new GamePanel(gameStateManager, gameUpdater, gameRenderer, screenSettings, inputHandler);
+        gamePanel = new GamePanel(gameStateManager, gameUpdater, gameRenderer, screenSettings, inputHandler);
+    }
 
+    private static void createMainWindow() {
         SwingUtilities.invokeLater(() -> {
             new MainWindow(gamePanel);
             System.out.println("Main Window created");

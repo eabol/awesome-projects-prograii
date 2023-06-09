@@ -1,5 +1,6 @@
 package org.tricodex.view.windows;
 
+import org.tricodex.model.map.MapLoader;
 import org.tricodex.utils.abstracts.WindowBase;
 import org.tricodex.utils.settings.ScreenSettings;
 
@@ -12,8 +13,9 @@ public class MenuWindow extends WindowBase {
     private Rectangle playButton;
     private Rectangle scoreLeaderboardButton;
     private Rectangle quitButton;
+    private MapLoader mapLoader;
 
-    public MenuWindow(ScreenSettings screenSettings) {
+    public MenuWindow(ScreenSettings screenSettings, MapLoader mapLoader) {
         super(screenSettings);
         int buttonWidth = 400;
         int buttonHeight = 80;
@@ -21,6 +23,7 @@ public class MenuWindow extends WindowBase {
         playButton = new Rectangle(buttonX, 350, buttonWidth, buttonHeight);
         scoreLeaderboardButton = new Rectangle(buttonX, 450, buttonWidth, buttonHeight);
         quitButton = new Rectangle(buttonX, 550, buttonWidth, buttonHeight);
+        this.mapLoader = mapLoader;
     }
 
     public void render(Graphics g) {
@@ -38,6 +41,10 @@ public class MenuWindow extends WindowBase {
         drawButton(g2d, playButton, "Play", "playButton");
         drawButton(g2d, scoreLeaderboardButton, "Leaderboard", "scoreLeaderboardButton");
         drawButton(g2d, quitButton, "Quit", "quitButton");
+    }
+
+    public void loadMap() {
+        mapLoader.loadMap("/maps/map01.txt");
     }
 
     private void drawGradientShadowedString(Graphics2D g2d, String text, int y) {

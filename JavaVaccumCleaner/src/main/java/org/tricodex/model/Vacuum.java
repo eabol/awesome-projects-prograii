@@ -10,17 +10,20 @@ import java.awt.*;
 
 public class Vacuum extends MovingEntity implements Cleanable {
 
+    private static final int MAX_RECHARGES = 5;
+    private static final int MAX_EMPTIES = 5;
+    private static final int CLEANING_POINTS = 10;
+
     private int bagCapacity = 100;
     private int bagFill = 0;
-    private double batteryFill= 100;
+    private double batteryFill = 100;
     private int batteryCapacity = 100;
-    private double batteryConsumptionRate = 0.1;
-    private final int MAX_RECHARGES = 5;
-    private final int MAX_EMPTIES = 5;
+    private final double batteryConsumptionRate = 0.1;
+
     private int numRecharges = 0;
     private int numEmpties = 0;
-    int cleaningScore = 0;
-    int cleaningPoints = 10;
+
+    private int cleaningScore = 0;
 
     public Vacuum(Point position, int speed, CellManager cellManager, int scale, int size) {
         super(position, speed, cellManager, scale, size);
@@ -28,43 +31,25 @@ public class Vacuum extends MovingEntity implements Cleanable {
     }
 
     public void move(MoveDirection direction) {
-        if (batteryFill <= 0) {
-            batteryFill = 0;
-            return;
+        if (batteryFill > 0) {
+            super.move(direction);
+            decreaseBattery(batteryConsumptionRate);
         }
-        super.move(direction);
-        batteryFill -= batteryConsumptionRate;
     }
 
     @Override
     public void clean() {
-        if (bagFill >= bagCapacity) {
-            return;
-        }
-        int middleX = this.position.x + entitySize / 2;
-        int middleY = this.position.y + entitySize / 2;
-
-        // If the middle position is exactly on the border, choose the cell to the right/below.
-        if (middleX % cellManager.getCellSize() == 0) {
-            middleX++;
-        }
-        if (middleY % cellManager.getCellSize() == 0) {
-            middleY++;
-        }
-
-        Point middlePosition = new Point(middleX, middleY);
-
-        if (cellManager.getCellByPoint(middlePosition).cellIsDirty()) {
-            cellManager.getCellByPoint(middlePosition).clean();
-            batteryFill -= batteryConsumptionRate * 3;
-            bagFill++;
-            cleaningScore += cleaningPoints;
+        if (canClean()) {
+            Cell cellToClean = getCellToClean();
+            if (cellToClean.cellIsDirty()) {
+                performCleaning(cellToClean);
+            }
         }
     }
 
     public void recharge() {
         if (numRecharges < MAX_RECHARGES) {
-            batteryFill = 100;
+            batteryFill = batteryCapacity;
             numRecharges++;
         }
     }
@@ -74,6 +59,65 @@ public class Vacuum extends MovingEntity implements Cleanable {
             bagFill = 0;
             numEmpties++;
         }
+    }
+
+    public void applyPowerUp(BoostType powerUpBoostType, int powerUpBoostAmount) {
+        switch (powerUpBoostType) {
+            case SPEED -> increaseSpeed(powerUpBoostAmount);
+            case BATTERY_LEVEL -> increaseBatteryLevel(powerUpBoostAmount);
+            case BATTERY_MAX -> increaseBatteryMax(powerUpBoostAmount);
+            case VACUUM_CAPACITY -> increaseBagCapacity(powerUpBoostAmount);
+            default -> throw new IllegalArgumentException("Invalid boost type: " + powerUpBoostType);
+        }
+    }
+
+    private Cell getCellToClean() {
+        int middleX = this.position.x + entitySize / 2;
+        int middleY = this.position.y + entitySize / 2;
+
+        // If the middle position is exactly on the border, choose the cell to the right/below.
+        if (middleX % cellManager.getCellSize() == 0) middleX++;
+        if (middleY % cellManager.getCellSize() == 0) middleY++;
+
+        Point middlePosition = new Point(middleX, middleY);
+        return cellManager.getCellByPoint(middlePosition);
+    }
+
+    private boolean canClean() {
+        return bagFill < bagCapacity;
+    }
+
+    private void performCleaning(Cell cellToClean) {
+        cellToClean.clean();
+        decreaseBattery(batteryConsumptionRate * 3);
+        bagFill++;
+        increaseCleaningScore();
+    }
+
+    private void decreaseBattery(double amount) {
+        batteryFill -= amount;
+        if (batteryFill < 0) batteryFill = 0;
+    }
+
+    private void increaseSpeed(int amount) {
+        speed += amount;
+    }
+
+    private void increaseBatteryLevel(int amount) {
+        batteryFill = Math.min(batteryCapacity, batteryFill + amount);
+    }
+
+    private void increaseBatteryMax(int amount) {
+        batteryCapacity += amount;
+        batteryFill = Math.min(batteryCapacity, batteryFill);
+    }
+
+    private void increaseBagCapacity(int amount) {
+        bagCapacity += amount;
+    }
+
+    private void increaseCleaningScore() {
+        cleaningScore += CLEANING_POINTS;
     }
 
     public int getBagCapacity() {
@@ -90,19 +134,6 @@ public class Vacuum extends MovingEntity implements Cleanable {
 
     public int getBatteryCapacity() {
         return batteryCapacity;
-    }
-
-    public void applyPowerUp(BoostType powerUpBoostType, int powerUpBoostAmount) {
-        switch (powerUpBoostType) {
-            case SPEED -> speed += powerUpBoostAmount;
-            case BATTERY_LEVEL -> batteryFill = Math.min(batteryCapacity, batteryFill + powerUpBoostAmount);
-            case BATTERY_MAX -> {
-                batteryCapacity += powerUpBoostAmount;
-                batteryFill = Math.min(batteryCapacity, batteryFill); // adjust battery level to not exceed the max
-            }
-            case VACUUM_CAPACITY -> bagCapacity += powerUpBoostAmount;
-            default -> throw new IllegalArgumentException("Invalid boost type: " + powerUpBoostType);
-        }
     }
 
     public int getCleaningScore() {

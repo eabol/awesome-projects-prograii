@@ -54,10 +54,6 @@ public class Cell extends Entity {
         return isCollidable;
     }
 
-    public DirtLevel getDirtLevel() {
-        return dirtLevel;
-    }
-
     public BufferedImage getImage() {
         if (isCollidable) {
             return fixedImage;

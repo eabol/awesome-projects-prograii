@@ -36,6 +36,7 @@ public class MouseHandler implements MouseListener, MouseMotionListener {
     private void handleMenuStateClick(Point mousePoint) {
         HashMap<String, Rectangle> bounds = menuWindow.getBounds();
         if (bounds.get("playButton").contains(mousePoint)) {
+            //menuWindow.loadMap();
             gameStateManager.setGameState(GameState.GAME);
         } else if (bounds.get("scoreLeaderboardButton").contains(mousePoint)) {
             gameStateManager.setGameState(GameState.LEADERBOARD);

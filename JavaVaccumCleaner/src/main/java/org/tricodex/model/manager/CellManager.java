@@ -78,12 +78,4 @@ public class CellManager {
     public int getCellSize() {
         return screenSettings.getTileSize();
     }
-
-    public int getMapCellWidth() {
-        return screenSettings.getMaxScreenTilesWidth();
-    }
-
-    public int getMapCellHeight() {
-        return screenSettings.getMaxScreenTilesHeight();
-    }
 }
