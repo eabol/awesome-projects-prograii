@@ -16,6 +16,22 @@ public class ShoppingCart {
         this.totalCost = totalCost;
     }
 
+    public float getDiscountsTotal() {
+        return discountsTotal;
+    }
+
+    public void setDiscountsTotal(float discountsTotal) {
+        this.discountsTotal = discountsTotal;
+    }
+
+    public float getFinalCost() {
+        return finalCost;
+    }
+
+    public void setFinalCost(float finalCost) {
+        this.finalCost = finalCost;
+    }
+
     public void addProduct(Product product){
         productsCart.add(product);
         totalCost+=product.getPrice();
