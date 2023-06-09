@@ -1,4 +1,5 @@
 package SystemData;
+import DataClasses.Entity;
 import DataClasses.Product;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -56,6 +57,28 @@ public class ShoppingCart {
         discountsTotal+=discount;
     }
 
+    public Product findProduct(Product findProduct){
+        for (Product product : productsCart) {
+            if (product.getEntityId().equals(findProduct.getEntityId())){
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public Product findProduct(String productName){
+        for (Product product : productsCart) {
+            if (product.getEntityName().equals(productName)){
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public void removeProduct(Product product){
+        productsCart.remove(product);
+        totalCost-=product.getPrice();
+    }
 
 
 

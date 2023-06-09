@@ -3,7 +3,7 @@ package GraphicInterface;
 import DataClasses.Product;
 import SystemData.InventoryDataBase;
 import SystemManagement.CartManager;
-import SystemManagement.MemberManager;
+import SystemManagement.DiscountsManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 
 public class CheckoutKiosk extends JFrame {
     private InventoryDataBase productList;
-    private MemberManager discountList;
+    private DiscountsManager discountList;
     private JList<String> productJList;
     private JList<String> cartJList;
     private JLabel totalPriceLabel;
@@ -29,7 +29,7 @@ public class CheckoutKiosk extends JFrame {
 
     public CheckoutKiosk() {
         productList = new InventoryDataBase();
-        discountList = new MemberManager();
+        discountList = new DiscountsManager();
         cartManager = new CartManager();
         setupGUI();
         updateInventoryUI();
@@ -83,6 +83,17 @@ public class CheckoutKiosk extends JFrame {
                         updateInventoryUI();
                         //selectedProducts.add(product);
                         cartModel.addElement(product.getEntityName() + ": " + product.getPrice());
+                        updateCartTotal();
+                    }
+                }
+                for (String productInfo : cartJList.getSelectedValuesList()) {
+                    String productName = productInfo.split(":")[0].trim();
+                    Product product = cartManager.getShoppingCart().findProduct(productName);
+                    if (product != null) {
+                        cartManager.remove(product);
+                        updateInventoryUI();
+                        //selectedProducts.add(product);
+                        cartModel.removeElement(product.getEntityName() + ": " + product.getPrice());
                         updateCartTotal();
                     }
                 }
