@@ -82,8 +82,8 @@ public class ConsoleRenderer implements Renderer {
         refresh();
     }
 
-    public void moveGhost(Ghost ghost) throws IOException {
-        printCharacter(ghost);
+    public void moveGhost(Ghost ghost, Position previousPosition) throws IOException {
+        printCharacter(ghost, previousPosition);
         refresh();
     }
 
@@ -186,6 +186,7 @@ public class ConsoleRenderer implements Renderer {
         for (Ghost ghost : game.getGhosts()) {
             printCharacter(ghost);
         }
+        game.startGhostMovement(this);
         while (game.isRunning()) {
             readUserInput(terminal);
         }
