@@ -1,7 +1,5 @@
 @startuml
-
 package pacman {
-  
   class Game {
     - maze: Maze
     - pacman: Pacman
@@ -11,7 +9,6 @@ package pacman {
     + handleKeyPress(keyCode: int): void
     + update(): void
   }
-  
   class Maze {
     - width: int
     - height: int
@@ -20,19 +17,22 @@ package pacman {
     + getHeight(): int
     + getCell(x: int, y: int): Cell
   }
-  
-  class Cell {
+  abstract class Cell implements GameElement{
     - x: int
     - y: int
-    - isWall: boolean
-    - hasDot: boolean
     + getX(): int
     + getY(): int
-    + isWall(): boolean
-    + hasDot(): boolean
   }
-  
-  abstract class GameCharacter {
+  class Food {
+    + eat(): void
+  }
+  class Wall {
+    + collide(): void
+  }
+  class PowerCell {
+    + eat(): void
+  }
+  abstract class GameCharacter implements GameElement {
     - x: int
     - y: int
     - direction: Direction
@@ -40,42 +40,44 @@ package pacman {
     + getY(): int
     + getDirection(): Direction
     + move(): void
-    + draw(): void
+    + die(): void
   }
-  
   class Pacman {
     + eatDot(): void
     + eatPowerPellet(): void
-    + die(): void
   }
-  
   class Ghost {
     + chasePacman(): void
     + scatter(): void
-    + die(): void
   }
-  
   enum Direction {
     UP
     DOWN
     LEFT
     RIGHT
   }
-  
+  interface GameElement {
+    + getX(): int
+    + getY(): int
+  }
   GameCharacter <|-- Pacman
   GameCharacter <|-- Ghost
-  
   Game --> Maze
   Game --> Pacman
-  Game --> Ghost
-  
+  Game o-- Ghost
+  Cell <|-- Food
+  Cell <|-- Wall
+  Cell <|-- PowerCell
 }
-
 interface Renderer {
   + renderGame(game: Game): void
 }
-
+class SwingRenderer{
+  + renderGame(game: Game): void
+}
+class ConsoleRenderer{
+  + renderGame(game: Game): void
+}
 Renderer <|.. SwingRenderer
 Renderer <|.. ConsoleRenderer
-
 @enduml
