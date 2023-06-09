@@ -17,6 +17,7 @@ Also, you can add some discount codes to the products and see the total price wi
 
 ## Images of the project
 
+![Captura de pantalla 2023-06-09 222412.png](..%2F..%2F..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FCaptura%20de%20pantalla%202023-06-09%20222412.png)
 ## Usage Guide
 To run this project first you need to download the project and a Java environment. Then you need to open the project in your Java environment and run the main class.
 Once you run the main class you will see the menu of the project and you can start using it.
