@@ -1,3 +1,5 @@
+package test;
+
 import main.Board;
 import main.Hole;
 import org.junit.Test;
@@ -7,7 +9,8 @@ public class BoardTest {
 
     @Test
     public void testShowBoardEmpty() {
-        Board board = new Board(3);
+        int boardSize = 3;
+        Board board = new Board(boardSize);
         String expectedOutput = "O O O \nO O O \nO O O \n";
 
         // Redireccionar la salida estándar para capturarla en un StringBuilder
