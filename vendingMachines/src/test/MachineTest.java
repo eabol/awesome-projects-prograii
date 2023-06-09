@@ -1,11 +1,9 @@
 package test;
 
 import main.Machine;
+import main.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import javax.crypto.Mac;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class MachineTest {
@@ -29,6 +27,13 @@ class MachineTest {
 
     @Test
     void manageChange() {
+            // Arrange
+            Money clientMoney = new Money();
+            clientMoney.insert(1.0f, 2); // Insert $1 with quantity 2
+            clientMoney.insert(0.5f, 4); // Insert $0.5 with quantity 4
+            float productPrice = 1.8f;
+
+            Money change = new Money();
     }
 
     @Test
