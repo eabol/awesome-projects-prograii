@@ -25,6 +25,6 @@ ____
 
 ## Autores:
 ____
-- Daniel Roldán Rábago
-- Carlos Alexis Casado Tamayo
-- Cayetano Castillo Ruiz
+- Daniel Roldán Rábago - Ingeniería de Organización Industrial
+- Carlos Alexis Casado Tamayo - Comunicación Audiovisual
+- Cayetano Castillo Ruiz - Ingeniería Informática
