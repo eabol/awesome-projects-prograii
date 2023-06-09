@@ -1,4 +1,4 @@
-### Proyecto final Programación II - Warrior-Vampire game
+### Final Proyect Pro II- Warrior-Vampire game                          By: Pablo Lastra Tabuenca & Alejandro Viñas Portilla
 
 The goal of this proyect is to create a program that runs a farily simple game. This game has two characthers:
 
@@ -28,7 +28,7 @@ Each character has its own health stat. The game works in a turn based combat sy
 
 The game ends when one character either reaches 0 health points or runs from the fight.
 
-#### Lista de funcionalidades:
+#### List of functionalities:
 
 - Class "Bite":
   - The class "Bite" extends the class "Weapons".
