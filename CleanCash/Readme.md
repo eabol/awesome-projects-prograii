@@ -17,20 +17,15 @@ Also, you can add some discount codes to the products and see the total price wi
 
 ## Images of the project
 ### Start menu
-![Captura de pantalla 2023-06-09 222412.png](..%2F..%2F..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FCaptura%20de%20pantalla%202023-06-09%20222412.png)
-
+!["Start Menu"](docs/Images/StartMenu.png)
 ### Products menu
-![Captura de pantalla 2023-06-09 222543.png](..%2F..%2F..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FCaptura%20de%20pantalla%202023-06-09%20222543.png)
-
+!["Products Menu"](docs/Images/ProductsMenu.png)
 ### Price menu
-![Captura de pantalla 2023-06-09 222654.png](..%2F..%2F..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FCaptura%20de%20pantalla%202023-06-09%20222654.png)
-
+!["Price Menu"](docs/Images/PriceMenu.png)
 ### Price with discount menu
-![Captura de pantalla 2023-06-09 222708.png](..%2F..%2F..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FCaptura%20de%20pantalla%202023-06-09%20222708.png)
-
+!["Price with discount Menu"](docs/Images/PriceWithDiscount.png)
 ### Exit
-![Captura de pantalla 2023-06-09 222716.png](..%2F..%2F..%2F..%2F..%2F..%2FPictures%2FScreenshots%2FCaptura%20de%20pantalla%202023-06-09%20222716.png)
-
+!["Exit"](docs/Images/Exit.png)
 
 ## Usage Guide
 To run this project first you need to download the project and a Java environment. Then you need to open the project in your Java environment and run the main class.
