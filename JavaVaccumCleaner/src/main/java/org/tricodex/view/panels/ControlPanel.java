@@ -1,6 +1,7 @@
 package org.tricodex.view.panels;
 
 import org.tricodex.model.UserGuide;
+import org.tricodex.model.Vacuum;
 import org.tricodex.utils.abstracts.Panel;
 import org.tricodex.utils.enums.MoveDirection;
 import org.tricodex.view.handlers.KeyHandler;
@@ -9,26 +10,26 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BooleanSupplier;
 
-public class  ControlPanel extends Panel {
-    UserGuide userGuide;
-    private final Map<BooleanSupplier, MoveDirection> keyMapping;
+public class ControlPanel extends Panel {
+    private final Map<BooleanSupplier, Runnable> keyMapping;
 
-    public ControlPanel(UserGuide userGuide, KeyHandler keyHandler) {
-        this.userGuide = userGuide;
+    public ControlPanel(UserGuide userGuide, KeyHandler keyHandler, Vacuum vacuum) {
         keyMapping = new HashMap<>() {{
-            put(keyHandler::isUpPressed, MoveDirection.UP);
-            put(keyHandler::isDownPressed, MoveDirection.DOWN);
-            put(keyHandler::isLeftPressed, MoveDirection.LEFT);
-            put(keyHandler::isRightPressed, MoveDirection.RIGHT);
+            put(keyHandler::isUpPressed, () -> userGuide.guideVacuum(MoveDirection.UP));
+            put(keyHandler::isDownPressed, () -> userGuide.guideVacuum(MoveDirection.DOWN));
+            put(keyHandler::isLeftPressed, () -> userGuide.guideVacuum(MoveDirection.LEFT));
+            put(keyHandler::isRightPressed, () -> userGuide.guideVacuum(MoveDirection.RIGHT));
+            put(keyHandler::isCleaningPressed, vacuum::clean);
+            put(keyHandler::isRechargingPressed, vacuum::recharge);
+            put(keyHandler::isEmptyingPressed, vacuum::emptyBag);
         }};
     }
 
     public void actionPerformed() {
-        keyMapping.forEach((keyPress, direction) -> {
+        keyMapping.forEach((keyPress, action) -> {
             if (keyPress.getAsBoolean()) {
-                userGuide.guideVacuum(direction);
+                action.run();
             }
         });
     }
-
 }

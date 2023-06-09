@@ -87,6 +87,6 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        gameRenderer.render(g, gameUpdater.isCatSpawned(), gameStateManager.getGameState());
+        gameRenderer.render(g, gameUpdater.isCatSpawned(), gameUpdater.isPowerUpSpawned(), gameStateManager.getGameState());
     }
 }

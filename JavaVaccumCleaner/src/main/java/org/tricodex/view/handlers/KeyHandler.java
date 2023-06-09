@@ -10,6 +10,12 @@ import java.util.EnumSet;
 
 public class KeyHandler implements KeyListener {
     private EnumSet<MoveDirection> activeDirections = EnumSet.noneOf(MoveDirection.class);
+    private boolean isCleaningPressed = false;
+    private boolean isRechargingPressed = false;
+    private boolean isEmptyingPressed = false;
+    private boolean isCleaningHandled = false;
+    private boolean isRechargingHandled = false;
+    private boolean isEmptyingHandled = false;
     private final GameStateManager gameStateManager;
 
     public KeyHandler(GameStateManager gameStateManager) {
@@ -30,6 +36,30 @@ public class KeyHandler implements KeyListener {
 
     public boolean isRightPressed() {
         return activeDirections.contains(MoveDirection.RIGHT);
+    }
+
+    public boolean isCleaningPressed() {
+        if (isCleaningPressed && !isCleaningHandled) {
+            isCleaningHandled = true;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isRechargingPressed() {
+        if (isRechargingPressed && !isRechargingHandled) {
+            isRechargingHandled = true;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEmptyingPressed() {
+        if (isEmptyingPressed && !isEmptyingHandled) {
+            isEmptyingHandled = true;
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -60,11 +90,14 @@ public class KeyHandler implements KeyListener {
                     gameStateManager.setGameState(GameState.GAME);
                 }
             }
-            case KeyEvent.VK_R -> {
+            case KeyEvent.VK_O -> {
                 if (gameStateManager.getGameState() == GameState.GAME_OVER) {
                     gameStateManager.setGameState(GameState.GAME);
                 }
             }
+            case KeyEvent.VK_C -> isCleaningPressed = true;
+            case KeyEvent.VK_R -> isRechargingPressed = true;
+            case KeyEvent.VK_E -> isEmptyingPressed = true;
         }
     }
 
@@ -75,6 +108,18 @@ public class KeyHandler implements KeyListener {
             case KeyEvent.VK_DOWN -> activeDirections.remove(MoveDirection.DOWN);
             case KeyEvent.VK_LEFT -> activeDirections.remove(MoveDirection.LEFT);
             case KeyEvent.VK_RIGHT -> activeDirections.remove(MoveDirection.RIGHT);
+            case KeyEvent.VK_C -> {
+                isCleaningPressed = false;
+                isCleaningHandled = false;
+            }
+            case KeyEvent.VK_R -> {
+                isRechargingPressed = false;
+                isRechargingHandled = false;
+            }
+            case KeyEvent.VK_E -> {
+                isEmptyingPressed = false;
+                isEmptyingHandled = false;
+            }
         }
     }
 }

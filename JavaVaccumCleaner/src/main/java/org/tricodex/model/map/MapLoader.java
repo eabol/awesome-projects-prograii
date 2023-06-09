@@ -10,15 +10,19 @@ import java.io.InputStreamReader;
 public class MapLoader {
     private final ScreenSettings screenSettings;
     private final CellManager cellManager;
+    private int[][] mapCellNum;
 
     public MapLoader(ScreenSettings screenSettings, CellManager cellManager) {
         this.screenSettings = screenSettings;
         this.cellManager = cellManager;
+        this.mapCellNum = new int[screenSettings.getMaxScreenTilesWidth()][screenSettings.getMaxScreenTilesHeight()];
     }
 
     public void loadMap(String path) {
-        System.out.println("Loading map: " + path);
-        int[][] mapCellNum = new int[screenSettings.getMaxScreenTilesWidth()][screenSettings.getMaxScreenTilesHeight()];
+        if (mapCellNum.length != screenSettings.getMaxScreenTilesWidth() ||
+                mapCellNum[0].length != screenSettings.getMaxScreenTilesHeight()) {
+            mapCellNum = new int[screenSettings.getMaxScreenTilesWidth()][screenSettings.getMaxScreenTilesHeight()];
+        }
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(path)))) {
             fillMapArray(br, mapCellNum);
@@ -41,7 +45,7 @@ public class MapLoader {
 
             String[] numbers = line.split(" ");
             for (int col = 0; col < maxTilesWidth && col < numbers.length; col++) {
-                mapCellNum[col][row] = Integer.parseInt(numbers[col]);
+                mapCellNum[col][row] = numbers[col].charAt(0) - '0'; // Assumes single-digit numbers
             }
         }
     }

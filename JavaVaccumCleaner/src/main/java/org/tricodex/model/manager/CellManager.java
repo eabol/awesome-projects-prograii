@@ -7,7 +7,6 @@ import org.tricodex.utils.settings.ScreenSettings;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class CellManager {
 
@@ -26,7 +25,7 @@ public class CellManager {
     }
 
     public void setMapCellNumber(int[][] mapCellNumber) {
-        this.mapCellNumber = Arrays.copyOf(mapCellNumber, mapCellNumber.length);
+        this.mapCellNumber = mapCellNumber;
         initializeMapCell();
     }
 
@@ -49,13 +48,16 @@ public class CellManager {
     }
 
     public int[][] getMapCellNumber() {
-        return Arrays.copyOf(mapCellNumber, mapCellNumber.length);
+        return mapCellNumber;
     }
 
     public Cell getCellByPoint(Point position) {
         int i = position.x / screenSettings.getTileSize();
         int j = position.y / screenSettings.getTileSize();
-        return getCellByIndices(i, j);
+        if (i >= mapCell.length || i < 0 || j >= mapCell[i].length || j < 0) {
+            throw new IllegalArgumentException("Invalid cell index: " + i + ", " + j);
+        }
+        return mapCell[i][j];
     }
 
     public Cell getCellByIndices(int i, int j) {
@@ -85,4 +87,3 @@ public class CellManager {
         return screenSettings.getMaxScreenTilesHeight();
     }
 }
-

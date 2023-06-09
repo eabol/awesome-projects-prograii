@@ -10,13 +10,11 @@ import java.awt.*;
 public class Cat extends MovingEntity implements RandomMoveable {
     private MoveObject moveObject;
 
-    public Cat(Point position, int speed, CellManager cellManager, int scale) {
-        super(position, speed, cellManager, scale);
-        System.out.println("Super constructor called in Cat");
+    public Cat(Point position, int speed, CellManager cellManager, int scale, int size) {
+        super(position, speed, cellManager, scale, size);
+        this.setPosition(this.generateRandomNonCollidablePosition());
         this.moveObject = new MoveObject(position.x, position.y, speed, 5, cellManager);
-        System.out.println("MoveObject created in Cat");
         moveObject.generateRandomTarget(cellManager.getMapWidth(), cellManager.getMapHeight());
-        System.out.println("generateRandomTarget called in Cat");
     }
 
     @Override
@@ -25,6 +23,7 @@ public class Cat extends MovingEntity implements RandomMoveable {
             moveObject.generateRandomTarget(cellManager.getMapWidth(), cellManager.getMapHeight());
         }
         moveObject.moveToTarget();
+        this.direction = moveObject.getMoveDirection();
         position = new Point(moveObject.getCurrentLocation());
     }
 

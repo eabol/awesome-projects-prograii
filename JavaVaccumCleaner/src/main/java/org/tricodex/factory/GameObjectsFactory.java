@@ -15,7 +15,6 @@ import org.tricodex.view.windows.LeaderboardWindow;
 import org.tricodex.view.windows.MenuWindow;
 
 import java.awt.*;
-import java.io.IOException;
 
 public class GameObjectsFactory {
 
@@ -39,7 +38,7 @@ public class GameObjectsFactory {
     }
 
     public ScreenSettings createScreenSettings() {
-        return new ScreenSettings(16, 3, 32, 24, 60);
+        return new ScreenSettings(16, 2, 32, 24, 60);
     }
 
     public SurfacePanel createSurfacePanel(CellManager cellManager) {
@@ -48,20 +47,18 @@ public class GameObjectsFactory {
     }
 
     public Cat createCat(CellManager cellManager) {
-        System.out.println("Creating Cat");
         ScreenSettings screenSettings = this.createScreenSettings();
-        return new Cat(new Point(600, 0), 4, cellManager, screenSettings.getScale());
+        return new Cat(new Point(650, 200), 4, cellManager, screenSettings.getScale(), cellManager.getCellSize());
     }
 
-    public Vacuum createVacuum(CellManager cellManager, DirtSensor dirtSensor) {
-        System.out.println("Creating Vacuum");
+    public Vacuum createVacuum(CellManager cellManager) {
         ScreenSettings screenSettings = this.createScreenSettings();
-        return new Vacuum(new Point(150, 150), 4, cellManager, screenSettings.getScale(), dirtSensor);
+        return new Vacuum(new Point(150, 150), 4, cellManager, screenSettings.getScale(), cellManager.getCellSize());
     }
 
     public PowerUp createPowerUp(CellManager cellManager) {
         System.out.println("Creating PowerUp");
-        return new PowerUp(new Point(0, 400), cellManager);
+        return new PowerUp(cellManager, cellManager.getCellSize());
     }
 
     public CellManager createCellManager()  {
@@ -76,12 +73,12 @@ public class GameObjectsFactory {
 
     public AssetPainter createAssetPainter() {
         System.out.println("Creating AssetPainter");
-        return new AssetPainter(this.createScreenSettings());
+        return new AssetPainter(this.createScreenSettings(), this.createAssetLoader());
     }
 
     public CellFactory createCellFactory() {
         System.out.println("Creating CellFactory");
-        return new CellFactory(this.createAssetLoader());
+        return new CellFactory(this.createAssetLoader(), this.createScreenSettings());
     }
 
     public AssetLoader createAssetLoader() {
@@ -94,13 +91,8 @@ public class GameObjectsFactory {
         return new UserGuide(vaccum);
     }
 
-    public ControlPanel createControlPanel(UserGuide userGuide, KeyHandler keyHandler) {
+    public ControlPanel createControlPanel(UserGuide userGuide, KeyHandler keyHandler, Vacuum vacuum) {
         System.out.println("Creating ControlPanel");
-        return new ControlPanel(userGuide, keyHandler);
-    }
-
-    public DirtSensor createDirtSensor(CellManager cellManager) {
-        System.out.println("Creating DirtSensor");
-        return new DirtSensor(cellManager);
+        return new ControlPanel(userGuide, keyHandler, vacuum);
     }
 }

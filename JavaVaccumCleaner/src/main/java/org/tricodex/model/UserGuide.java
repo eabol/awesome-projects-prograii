@@ -12,6 +12,4 @@ public class UserGuide {
     public void guideVacuum(MoveDirection position) {
         vacuum.move(position);
     }
-
-
 }

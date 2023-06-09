@@ -17,7 +17,6 @@ import org.tricodex.view.windows.MainWindow;
 import org.tricodex.view.windows.MenuWindow;
 
 import javax.swing.*;
-import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,18 +30,15 @@ public class Main {
         LeaderboardWindow leaderboardWindow = gameObjectsFactory.createLeaderboardWindow();
         InputHandler inputHandler = new InputHandler(gameStateManager, menuWindow, leaderboardWindow);
 
-        DirtSensor dirtSensor = gameObjectsFactory.createDirtSensor(cellManager);
         Cat cat = gameObjectsFactory.createCat(cellManager);
-        System.out.println("Cat created");
-        Vacuum vacuum = gameObjectsFactory.createVacuum(cellManager, dirtSensor);
-        System.out.println("Vacuum created");
+        Vacuum vacuum = gameObjectsFactory.createVacuum(cellManager);
         PowerUp powerUp = gameObjectsFactory.createPowerUp(cellManager);
         UserGuide userGuide = gameObjectsFactory.createUserGuide(vacuum);
         SurfacePanel surfacePanel = gameObjectsFactory.createSurfacePanel(cellManager);
-        ControlPanel controlPanel = gameObjectsFactory.createControlPanel(userGuide, inputHandler.getKeyHandler());
+        ControlPanel controlPanel = gameObjectsFactory.createControlPanel(userGuide, inputHandler.getKeyHandler(), vacuum);
 
-        GameUpdater gameUpdater = new GameUpdater(controlPanel, cat, vacuum);
-        GameRenderer gameRenderer =  new GameRenderer(menuWindow, leaderboardWindow, gameObjectsFactory, screenSettings, surfacePanel, cat, vacuum, powerUp, gameObjectsFactory.createAssetPainter());
+        GameUpdater gameUpdater = new GameUpdater(controlPanel, cat, vacuum, cellManager, powerUp);
+        GameRenderer gameRenderer =  new GameRenderer(menuWindow, leaderboardWindow, gameObjectsFactory, screenSettings, surfacePanel, cat, vacuum, powerUp, gameObjectsFactory.createAssetPainter(), gameUpdater);
 
         GamePanel gamePanel = new GamePanel(gameStateManager, gameUpdater, gameRenderer, screenSettings, inputHandler);
 

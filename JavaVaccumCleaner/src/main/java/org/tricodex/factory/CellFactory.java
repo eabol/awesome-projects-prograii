@@ -2,6 +2,7 @@ package org.tricodex.factory;
 
 import org.tricodex.model.Cell;
 import org.tricodex.utils.enums.DirtLevel;
+import org.tricodex.utils.settings.ScreenSettings;
 import org.tricodex.view.assets.AssetLoader;
 
 import java.awt.*;
@@ -11,15 +12,17 @@ public class CellFactory {
     private static final String TILE_PATH = "tiles/";
     private static final String[] FURNITURE_IMAGES = { "chair1.png", "chair2.png", "stool.png", "table.png" };
     private final AssetLoader imageLoader;
+    private final ScreenSettings screenSettings;
 
-    public CellFactory(AssetLoader imageLoader) {
+    public CellFactory(AssetLoader imageLoader, ScreenSettings screenSettings) {
         this.imageLoader = imageLoader;
+        this.screenSettings = screenSettings;
     }
 
     public Cell createFloorCell(Point position) {
         DirtLevel dirtLevel = getDirtLevelBasedOnRandomValue();
 
-        return new Cell(position, dirtLevel, false, imageLoader.loadImage(TILE_PATH + dirtLevel.name().toLowerCase() + ".png"));
+        return new Cell(position, dirtLevel, false, imageLoader.loadImage(TILE_PATH + dirtLevel.name().toLowerCase() + ".png"), screenSettings.getTileSize(), imageLoader);
     }
 
     private DirtLevel getDirtLevelBasedOnRandomValue() {
@@ -40,10 +43,10 @@ public class CellFactory {
         int randomIndex = (int) (Math.random() * FURNITURE_IMAGES.length);
         String imagePath = TILE_PATH + FURNITURE_IMAGES[randomIndex];
 
-        return new Cell(position, DirtLevel.CLEAN, true, imageLoader.loadImage(imagePath));
+        return new Cell(position, DirtLevel.CLEAN, true, imageLoader.loadImage(imagePath), screenSettings.getTileSize(), imageLoader);
     }
 
     public Cell createWallCell(Point position) {
-        return new Cell(position, DirtLevel.CLEAN, true, imageLoader.loadImage(TILE_PATH + "default_wall.png")); // Default image for walls
+        return new Cell(position, DirtLevel.CLEAN, true, imageLoader.loadImage(TILE_PATH + "default_wall.png"), screenSettings.getTileSize(), imageLoader); // Default image for walls
     }
 }
