@@ -1,6 +1,6 @@
 package Main;
 
-public  abstract class Circumstances {
+public abstract class Circumstances {
     protected String description;
 
     public Circumstances() {

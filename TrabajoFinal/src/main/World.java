@@ -3,8 +3,8 @@ package Main;
 import java.util.ArrayList;
 
 public class World {
-    private Well well;
-    private Snail snail;
+    public Well well;
+    public Snail snail;
     private Rain rain;
     private Car car;
     private Leaf leaf;
@@ -13,46 +13,46 @@ public class World {
     public World() {
         this.well = new Well();
         this.snail = new Snail();
-        this.rain =new Rain();
+        this.rain = new Rain();
         this.car = new Car();
         this.leaf = new Leaf();
     }
 
-    public State check(){
-        if(this.well.getWaterDepth()<this.snail.getAltitude()&& Day.getDay()<50){
+    public State check() {
+        if (this.well.getWaterDepth() < this.snail.getAltitude() && Day.getDay() < 50) {
             this.snail.setState(State.ALIVE);
             return State.ALIVE;
-        }else{
+        } else {
             this.snail.setState(State.DEATH);
             return State.DEATH;
         }
     }
 
     public void simulate() throws Alive, Death, CameOut {
-        ArrayList<Warning> warnings=new ArrayList<>();
-        while (check()==State.ALIVE && Day.getDay()<50){
-            warnings=new ArrayList<>();
+        ArrayList<Warning> warnings = new ArrayList<>();
+        while (check() == State.ALIVE && Day.getDay() < 50) {
+            warnings = new ArrayList<>();
             System.out.println("");
             System.out.println("");
-            System.out.println("Day "+Day.getDay());
+            System.out.println("Day " + Day.getDay());
 
-           switch (this.rain.succes()){
+            switch (this.rain.succes()) {
                 case HEAVY_RAIN -> {
                     System.out.println("Heavy rain");
-                    this.well.setWaterDepth(this.well.getWaterDepth()+5);
+                    this.well.setWaterDepth(this.well.getWaterDepth() + 5);
                 }
                 case WEAK_RAIN -> {
                     System.out.println("Weak rain");
-                    this.well.setWaterDepth(this.well.getWaterDepth()+2);
+                    this.well.setWaterDepth(this.well.getWaterDepth() + 2);
                 }
                 case NO_RAIN -> {
                 }
             }
 
-            switch (this.car.succes()){
+            switch (this.car.succes()) {
                 case CAR_PASS -> {
                     System.out.println("Car pass [-2]");
-                    this.snail.setAltitude(this.snail.getAltitude()-2);
+                    this.snail.setAltitude(this.snail.getAltitude() - 2);
                     warnings.add(Warning.CAR_PASS);
                 }
                 case CAR_NOT_PASS -> {
@@ -60,10 +60,10 @@ public class World {
 
 
             }
-            switch (this.leaf.succes()){
+            switch (this.leaf.succes()) {
                 case FALL_LEAF -> {
                     System.out.println("The snail ate a leaf [+1]");
-                    this.snail.setAltitude(this.snail.getAltitude()+1);
+                    this.snail.setAltitude(this.snail.getAltitude() + 1);
                     warnings.add(Warning.FALL_LEAF);
                 }
                 case NO_FALL_LEAF -> {
@@ -74,36 +74,39 @@ public class World {
 
             snail.rise();
             snail.drop();
-            if(this.snail.getAltitude()>=0){
+            if (this.snail.getAltitude() >= 0) {
                 throw new CameOut();
             }
-            System.out.print("Water depth ["+well.getWaterDepth() + "] / ");
-            System.out.println("Snail position ["+snail.getAltitude()+" ]");
+            System.out.print("Water depth [" + well.getWaterDepth() + "] / ");
+            System.out.println("Snail position [" + snail.getAltitude() + " ]");
             printWell(warnings);
             Day.nextDay();
-
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
 
         }
-        if (snail.getState()==State.ALIVE){
+        if (snail.getState() == State.ALIVE) {
             throw new Alive();
         } else {
             throw new Death();
         }
 
 
-
     }
 
     public void printWell(ArrayList<Warning> warnings) {
-        for (int i = 0; i >= -20; i=i-1) {
-            if(i==0 && warnings.indexOf(Warning.CAR_PASS)>=0){
+        for (int i = 0; i >= -20; i = i - 1) {
+            if (i == 0 && warnings.indexOf(Warning.CAR_PASS) >= 0) {
                 System.out.println("  []    O-=-O     []");
-            }else if (i == 0) {
+            } else if (i == 0) {
                 System.out.println("  []              []");
             } else if (i <= this.well.getWaterDepth()) {
                 System.out.println("  []~~~~~~~~~~~~~~[]" + i);
-            } else if (i == this.snail.getAltitude() && warnings.indexOf(Warning.FALL_LEAF)>=0) {
+            } else if (i == this.snail.getAltitude() && warnings.indexOf(Warning.FALL_LEAF) >= 0) {
                 System.out.println("  []    _@)_/’  * []" + i);
             } else if (i == this.snail.getAltitude()) {
                 System.out.println("  []    _@)_/’    []" + i);

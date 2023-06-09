@@ -1,10 +1,11 @@
 package Main;
 
-public class Death extends Events{
-    public Death(String message){
+public class Death extends Events {
+    public Death(String message) {
         super(message);
     }
-    public Death(){
+
+    public Death() {
         super("The snail is dead");
     }
 }

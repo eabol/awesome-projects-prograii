@@ -1,10 +1,11 @@
 package Main;
 
-public class Alive extends Events{
-    public Alive(String message){
+public class Alive extends Events {
+    public Alive(String message) {
         super(message);
     }
-    public Alive(){
+
+    public Alive() {
         super("The snail is alive");
     }
 }

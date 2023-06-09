@@ -1,5 +1,5 @@
 package Main;
 
 public enum State {
-    ALIVE,DEATH
+    ALIVE, DEATH
 }

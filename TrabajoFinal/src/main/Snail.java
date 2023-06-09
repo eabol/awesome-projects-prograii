@@ -1,17 +1,20 @@
 package Main;
 
-public class Snail {
+public class Snail implements InterfaceSnail {
 
-    private final String name="Paquillo";
-    private int altitude =0;
+    private int altitude = 0;
     private Fatigue fatigue;
     private State state;
 
+    @Override
+    public String Name() {
+        return "Paquillo";
+    }
 
 
     public Snail() {
-        fatigue=new Fatigue();
-        this.state=State.ALIVE;
+        fatigue = new Fatigue();
+        this.state = State.ALIVE;
         fallInHole();
 
     }
@@ -32,28 +35,30 @@ public class Snail {
         this.state = state;
     }
 
-    public void fallInHole(){
-       Tier tier=new Tier();
-        altitude =-tier.getValue(10,19);
-        System.out.print(name+" begin in the altitude "+altitude);
+    public void fallInHole() {
+        Tier tier = new Tier();
+        altitude = -tier.getValue(10, 19);
+        System.out.print(Name() + " begin in the altitude " + altitude);
     }
 
     public int getAltitude() {
         return altitude;
     }
 
-    public void rise(){
-        Tier tier=new Tier();
-        int up=tier.getValue(1,fatigue.getSeverity(Day.getDay()));
-        this.altitude +=up;
-        System.out.print(name+" rise [+"+up+ "] / ");
+    public void rise() {
+        Tier tier = new Tier();
+        int up = tier.getValue(1, fatigue.getSeverity(Day.getDay()));
+        this.altitude += up;
+        System.out.print(Name() + " rise [+ " + up + "] / ");
     }
-    public void drop(){
-        Tier tier=new Tier();
-        int down=tier.getValue(0,2);
-        this.altitude-=down;
-        System.out.print(name+" drop [-"+ down + "] / ");
+
+    public void drop() {
+        Tier tier = new Tier();
+        int down = tier.getValue(0, 2);
+        this.altitude -= down;
+        System.out.print(Name() + " drop [-" + down + "] / ");
 
     }
+
 
 }
