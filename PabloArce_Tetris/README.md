@@ -39,6 +39,7 @@ To run the Tetris Game, follow these steps:
 ## Authors
 - Pablo Arce de Aldecoa - Reviewer -@pablarce
 - Rubén Setien - Developer - @rubensetien
+- Dúo Sacapuntos
 
 ### Notes about the code
 - It would be better to make the classes that implement JPanel/JFrame extend from those Classes, but we chose not to because it made the game fail often.
