@@ -22,7 +22,7 @@ public class MemberDataBase {
     }
 
     public String getSaleDiscount(String code){
-        for (int i=0; i<sales.length; i++){
+        for (int i=0; i<sales.length-1; i++){
             if (sales[i][0].equals(code)){
                 return sales[i][1];
             }
