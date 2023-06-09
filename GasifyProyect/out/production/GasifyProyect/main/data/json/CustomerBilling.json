@@ -1,0 +1,112 @@
+[
+  {
+    "idReport": 1,
+    "idCustomer": "72171365X",
+    "idGasMeter": "GM-1",
+    "idPlc": "PLC-01",
+    "idDataSim": "SIM-001",
+    "firstDate": "01/02/2023",
+    "secondDate": "28/02/2023",
+    "firstValue": 50,
+    "secondValue": 90
+  },
+  {
+    "idReport": 2,
+    "idCustomer": "50394857E",
+    "idGasMeter": "GM-2",
+    "idPlc": "PLC-02",
+    "idDataSim": "SIM-002",
+    "firstDate": "01/01/2023",
+    "secondDate": "31/01/2023",
+    "firstValue": 800,
+    "secondValue": 875
+  },
+  {
+    "idReport": 3,
+    "idCustomer": "72171365X",
+    "idGasMeter": "GM-1",
+    "idPlc": "PLC-01",
+    "idDataSim": "SIM-001",
+    "firstDate": "01/03/2023",
+    "secondDate": "28/03/2023",
+    "firstValue": 90,
+    "secondValue": 120
+  },
+  {
+    "idReport": 4,
+    "idCustomer": "72171365X",
+    "idGasMeter": "GM-1",
+    "idPlc": "PLC-01",
+    "idDataSim": "SIM-001",
+    "firstDate": "01/04/2023",
+    "secondDate": "28/04/2023",
+    "firstValue": 120,
+    "secondValue": 140
+  },
+  {
+    "idReport": 5,
+    "idCustomer": "72171365X",
+    "idGasMeter": "GM-1",
+    "idPlc": "PLC-01",
+    "idDataSim": "SIM-001",
+    "firstDate": "01/05/2023",
+    "secondDate": "28/05/2023",
+    "firstValue": 140,
+    "secondValue": 153
+  },
+  {
+    "idReport": 8,
+    "idCustomer": "50394857E",
+    "idGasMeter": "GM-2",
+    "idPlc": "PLC-02",
+    "idDataSim": "SIM-002",
+    "firstDate": "01/02/2023",
+    "secondDate": "31/02/2023",
+    "firstValue": 875,
+    "secondValue": 930
+  },
+  {
+    "idReport": 9,
+    "idCustomer": "50394857E",
+    "idGasMeter": "GM-2",
+    "idPlc": "PLC-02",
+    "idDataSim": "SIM-002",
+    "firstDate": "01/03/2023",
+    "secondDate": "31/03/2023",
+    "firstValue": 930,
+    "secondValue": 1000
+  },
+  {
+    "idReport": 10,
+    "idCustomer": "50394857E",
+    "idGasMeter": "GM-2",
+    "idPlc": "PLC-02",
+    "idDataSim": "SIM-002",
+    "firstDate": "01/04/2023",
+    "secondDate": "31/04/2023",
+    "firstValue": 1000,
+    "secondValue": 1035
+  },
+  {
+    "idReport": 11,
+    "idCustomer": "50394857E",
+    "idGasMeter": "GM-2",
+    "idPlc": "PLC-02",
+    "idDataSim": "SIM-002",
+    "firstDate": "01/05/2023",
+    "secondDate": "31/05/2023",
+    "firstValue": 1035,
+    "secondValue": 1040
+  },
+  {
+    "idReport": 17,
+    "idCustomer": "72171365X",
+    "idGasMeter": "GM-1",
+    "idPlc": "PLC-01",
+    "idDataSim": "SIM-001",
+    "firstDate": "01/01/2023",
+    "secondDate": "28/01/2023",
+    "firstValue": 0,
+    "secondValue": 50
+  }
+]

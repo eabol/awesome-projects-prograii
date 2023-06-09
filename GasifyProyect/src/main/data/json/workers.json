@@ -1,0 +1,34 @@
+[
+  {
+    "idEmployee": "EMP-483274",
+    "email": "tecnico@gmail.com",
+    "nameCompany": "Naturgy",
+    "department": "Billing",
+    "name": "Pedro",
+    "password": "23"
+  },
+  {
+    "idEmployee": "EMP-234274",
+    "email": "tecnico1@gmail.com",
+    "nameCompany": "Naturgy",
+    "department": "Billing",
+    "name": "Carlos",
+    "password": "23"
+  },
+  {
+    "idEmployee": "EMP-234275",
+    "email": "prueba",
+    "nameCompany": "Naturgy",
+    "department": "IT",
+    "name": "prueba",
+    "password": "prueba"
+  },
+  {
+    "idEmployee": "EMP-234276",
+    "email": "prueba2",
+    "nameCompany": "Naturgy",
+    "department": "IT",
+    "name": "prueba2",
+    "password": "prueba2"
+  }
+]

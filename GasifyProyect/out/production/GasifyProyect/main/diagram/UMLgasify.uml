@@ -1,0 +1,106 @@
+
+// En este archivo pegaremos el código UML para el proyecto
+
+@startuml
+
+       abstract class User {
+
+       - nameUser: String
+       - email: String
+       - password : String
+
+       + void toStringUser : String
+       + abstract GetterySetter
+
+       }
+
+       class RegularUser {
+
+       + toStringRegularUser : String
+       + RegularUser(parametros)
+       + RegularUser()
+
+       }
+
+       class AdminUser {
+
+       -isAdmin:Boolean
+       + void isAdmin
+       + toStringAdminUser : String
+
+       + AdminUser(parametros)
+       + AdminUser()
+
+
+       }
+
+       User <|-- RegularUser
+       User <|-- AdminUser
+
+       class Customer {
+
+       - id_cliente :String
+       - numberPhone :String
+       - address : String
+       + GetterySetter : String
+       + toStringCustomer : String
+       + Customer (parametros)
+       + Customer ()
+
+       }
+
+       class Employee{
+
+       -id_employee:String
+       - nameCompany : String
+       - area: String
+       + toStringEmployee: String
+       + GetterySetter
+
+       + Employee(parametros)
+       + Employee ()
+       }
+
+       RegularUser <|-- Customer
+       AdminUser <|-- Employee
+
+       class GasMeter{
+
+       - idGasMeter :String
+       - nameModel : String
+       - readInstallationDay : int
+       - currentReading : int
+       + getterYSetter
+       + toStringGasMeter
+       + GasMeter(parametros)
+       + GasMeter()
+       }
+
+       class Plc {
+
+       - idPlc: String
+       - modelPlc :String
+
+       + getterYSetter
+       + toStringPlc
+       + Plc (param)
+       + Plc ()
+       }
+
+       class DataSim {
+
+       - idDataSim :String
+       - numberDataSim : String
+       - servicesCompany : String
+       }
+
+       class HttpRequest {
+
+       - ArrayList <> pricesMeter : String
+
+       + getHttpRequest
+
+       + toStringPriceMeter
+       }
+
+       @enduml
