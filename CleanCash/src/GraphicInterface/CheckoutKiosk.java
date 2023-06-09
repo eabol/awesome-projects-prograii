@@ -1,11 +1,14 @@
+package GraphicInterface;
+
+import DataClasses.Product;
 import SystemData.InventoryDataBase;
+import SystemManagement.CartManager;
 import SystemManagement.MemberManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class CheckoutKiosk extends JFrame {
     private InventoryDataBase productList;
@@ -14,7 +17,8 @@ public class CheckoutKiosk extends JFrame {
     private JList<String> cartJList;
     private JLabel totalPriceLabel;
     private JTextField discountCodeField;
-    private ArrayList<Product> selectedProducts;
+
+    public CartManager cartManager;
     private JLabel messageLabel;
     private DefaultListModel<String> cartModel;
     private JLabel cartTotalLabel;
@@ -22,11 +26,13 @@ public class CheckoutKiosk extends JFrame {
     private JLabel newTotalLabel;
     private JButton applyDiscountButton;
 
+
     public CheckoutKiosk() {
         productList = new InventoryDataBase();
         discountList = new MemberManager();
-        selectedProducts = new ArrayList<>();
+        cartManager = new CartManager();
         setupGUI();
+        updateInventoryUI();
     }
 
     private void setupGUI() {
@@ -71,10 +77,12 @@ public class CheckoutKiosk extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 for (String productInfo : productJList.getSelectedValuesList()) {
                     String productName = productInfo.split(":")[0].trim();
-                    Product product = productList.getItemByName(productName);
+                    Product product = productList.findProduct(productName);
                     if (product != null) {
-                        selectedProducts.add(product);
-                        cartModel.addElement(product.getName() + ": " + product.getPrice());
+                        cartManager.add(product);
+                        updateInventoryUI();
+                        //selectedProducts.add(product);
+                        cartModel.addElement(product.getEntityName() + ": " + product.getPrice());
                         updateCartTotal();
                     }
                 }
@@ -106,12 +114,11 @@ public class CheckoutKiosk extends JFrame {
         applyDiscountButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String discountCode = discountCodeField.getText();
-                Discount discount = discountList.getItem(discountCode);
-                if (discount != null) {
-                    for (Product product : selectedProducts) {
-                        product.applyDiscount(discount);
-                    }
-                    discountValueLabel.setText("Discount value: " + discount.getDiscountValue());
+                int discount = discountList.getDiscount(discountCode);
+                //Discount discount = discountList.getItem(discountCode);
+                if (discount>0) {
+                    cartManager.applyDiscount(discount);
+                    discountValueLabel.setText("Discount value: " + discount);
                     updateCartTotal();
                     applyDiscountButton.setEnabled(false);
                 }
@@ -170,26 +177,18 @@ public class CheckoutKiosk extends JFrame {
         setVisible(true);
     }
 
-    private void updateCartTotal() {
-        double total = 0;
-        for (Product product : selectedProducts) {
-            total += product.getPrice();
-        }
-        cartTotalLabel.setText("Cart total: " + total);
-        newTotalLabel.setText("New total: " + total);
-    }
 
-    public void addProduct(Product product) {
-        productList.addItem(product);
+    public void updateInventoryUI(){
         DefaultListModel<String> model = new DefaultListModel<>();
-        for (Product p : productList.itemList) {
-            model.addElement(p.getName() + ": " + p.getPrice());
+        for (Product product : productList.getProducts()) {
+            model.addElement(product.getEntityName() + ": " + product.getPrice());
         }
         productJList.setModel(model);
     }
 
-    public void addDiscount(Discount discount) {
-        discountList.addItem(discount);
+    private void updateCartTotal() {
+        cartTotalLabel.setText("Cart total: " + cartManager.getTotalCost());
+        newTotalLabel.setText("New total: " + cartManager.getTotalCost());
     }
 }
 
