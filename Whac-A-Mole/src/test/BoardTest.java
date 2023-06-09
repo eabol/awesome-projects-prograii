@@ -1,6 +1,7 @@
 import main.Board;
+import main.Hole;
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 public class BoardTest {
 
@@ -41,5 +42,9 @@ public class BoardTest {
 
         // Verificar que el agujero devuelto sea igual al agujero esperado
         Assertions.assertEquals(expectedHole, resultHole);
+    }
+
+    static class HoleTest {
+
     }
 }
