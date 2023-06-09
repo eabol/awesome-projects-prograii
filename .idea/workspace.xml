@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f7b3ee5-47aa-43cb-b953-98778fb87bf9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/character/PlayableGameCharacterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/character/PlayableGameCharacterHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
