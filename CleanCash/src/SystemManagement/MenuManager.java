@@ -1,6 +1,7 @@
 package SystemManagement;
 
 public class MenuManager {
+
     /* TODO:
     *
     * Implement Visuals Management here
