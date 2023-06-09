@@ -1,94 +1,159 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-class World {
-    - well: Well
-    - snail: Snail
-    - rain: Rain
-    - car: Car
-    - day: Day
-    + World()
+class Alive {
+    - message: String
+    + Alive(message: String)
+    + Alive()
 }
 
-class Well {
-- Snail snail
-- final int depth
-+ public int waterDepth
-+ Well()
-+ void survive()
 
+
+class Car {
+    + Car()
+    + succes(): Warning
+    + setDescription()
 }
 
-class Snail {
-- Final String name: Paquillo
--int altitude
--Fatigue fatigue
-+ int getAltitude()
-}
-
-class Rain {
-    - type: String
-    + Rain(type: String)
-    + success(): int
-}
-
-class Car{
-+ Car(String)
+abstract class Circumstances {
+    - description: String
+    + getDescription(): String
+    + setDescription(description: String)
 }
 
 class Day {
-    - int day
-    + Day()
-    + void nextDay()
-    + int getDay()
-
+    - day: int
+    + nextDay()
+    + getDay(): int
 }
+
+class Death {
+    - message: String
+    + Death(message: String)
+    + Death()
+}
+
+abstract class Events {
+    + Events(message: String)
+}
+
+class Fatigue {
+    + Fatigue()
+    + getSeverity(day: int): int
+}
+
+class Leaf {
+    + Leaf()
+    + succes(): Warning
+    + setDescription()
+}
+
+class Rain {
+    + Rain()
+    + succes(): Warning
+}
+
+class Snail {
+    - name: String
+    - altitude: int
+    - fatigue: Fatigue
+    - state: State
+    + Snail()
+    + setAltitude(altitude: int)
+    + getState(): State
+    + setState(state: State)
+    + fallInHole()
+    + getAltitude(): int
+    + rise()
+    + drop()
+}
+
+enum State {
+    ALIVE
+    DEATH
+}
+
+class Tier {
+    + Tier()
+    + getValue(min: int, max: int): int
+}
+
 enum Warning {
     HEAVY_RAIN
     WEAK_RAIN
     NO_RAIN
     CAR_PASS
-}
-class Alive{
-+ Alive(String)
-}
-class Death{
-+ Death(String)
-}
-class Fatigue{
-+ Fatigue(String)
-}
-class Movement{
-+ static void nextDay()
-- void rise()
-- void drop()
-}
-abstract class Problem{
-- String description
-+ Problem(String)
-+ String getDescription()
-+ void setDescription(String)
-}
-class Tier{
-+ Tier()
+    CAR_NOT_PASS
+    FALL_LEAF
+    NO_FALL_LEAF
 }
 
+class Well {
+    - snail: Snail
+    - depth: int
+    - waterDepth: int
+    + getWaterDepth(): int
+    + setWaterDepth(waterDepth: int)
+    + survive()
+}
 
-World  --  Well
-World  --  Snail
-Problem --  Rain
-Problem  --  Car
-Problem  --  Fatigue
-World  --  Day
+class World {
+    - well: Well
+    - snail: Snail
+    - rain: Rain
+    - car: Car
+    - leaf: Leaf
+    + World()
+    + check(): State
+    + simulate()
+    + printWell(warnings: ArrayList<Warning>)
 
-Well  --  Rain
 
+}
+
+    class Events {
+      +String eventDescription
+      +Events(String eventDescription)
+    }
+
+    class CameOut {
+      +CameOut()
+    }
+
+    interface InterfaceSnail {
+      +Name() : String
+    }
+
+    interface InterfaceWell {
+      +depth() : int
+    }
+
+
+
+
+Events --|> Alive
+Events--|> CameOut
+Alive -- World
+CameOut -- World
+Death -- World
+Circumstances --|> Car
+Day -- World
+Events --|> Death
+Circumstances --|> Leaf
+InterfaceSnail ..> Snail
+InterfaceWell ..> Well
 Snail -- Fatigue
-
-Snail  --  Death
-Snail  --  Alive
-Snail -- Movement
+Snail -- State
 Snail -- Tier
+Well -- Snail
+World -- Well
+World -- Snail
+World -- Rain
+World -- Car
+World -- Leaf
+Car-- Warning
+Rain -- Warning
+Leaf -- Warning
 
 
 
