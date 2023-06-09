@@ -1,8 +1,9 @@
 package test;
 
+import main.Mole;
+import main.SmackableCharacter;
 import org.junit.Assert;
 import org.junit.Test;
-import main.SmackableCharacter;
 import main.Hole;
 
 public class HoleTest {
@@ -25,16 +26,29 @@ public class HoleTest {
 
     @Test
     public void testShowMoleInside() {
+        // Se crea un objeto Hole
         Hole hole = new Hole();
-        String message = hole.showMoleInside();
-        Assert.assertEquals("Mole is inside the hole.", message);
+
+        // Se verifica inicialmente que no haya un personaje golpeable en el agujero
+        Assert.assertEquals("No mole inside", hole.showMoleInside());
+
+        // Se crea un personaje golpeable
+        SmackableCharacter character = new Mole("Mole");
+        character.setAvatar("Mole");
+
+        // Se establece el personaje golpeable en el agujero
+        hole.setSmackableCharacter(character);
+
+        // Se verifica que se muestre el nombre y avatar del personaje golpeable en el agujero
+        Assert.assertEquals("Mole inside: Mole", hole.showMoleInside());
     }
 
     @Test
     public void testIsMoleInside() {
         Hole hole = new Hole();
         boolean isMoleInside = hole.isMoleInside();
-        // Implement test logic based on your requirements
-        // and assert the expected result
+        if (isMoleInside == true) {
+            System.out.println("There is a mole inside");
+        }
     }
 }

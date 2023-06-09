@@ -1,6 +1,6 @@
 package main;
 
-abstract class SmackableCharacter {
+public abstract class SmackableCharacter {
     private String name;
     private String avatar;
     private boolean beaten;

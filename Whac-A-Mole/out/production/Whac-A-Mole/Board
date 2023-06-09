@@ -1,8 +1,5 @@
-package main;
-
 import java.util.ArrayList;
 import java.util.List;
-import main.Hole;
 
 public class Board {
     private List<List<Hole>> holes;
