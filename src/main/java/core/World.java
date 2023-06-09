@@ -9,16 +9,29 @@ import java.util.Random;
 
 public class World {
 
-    private ArrayList<ArrayList<GameCharacter>> NPCs;
+    private ArrayList<ArrayList<GameCharacters>> NPCs;
     private ArrayList<Maze> maps;
-    private GameCharacter player;
+    private GameCharacters player;
     private Time time;
     private int currentMaze;
+    private int[][][] mazesData = {
+            {
+                    { 0, 0, 0, 0, 1, 0, 1, 0, 2, 3, 1, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                    { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
+                    { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+                    { 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 7, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 },
+                    { 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 },
+                    { 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 },
+                    { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 },
+                    { 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7 },
+                    { 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8 }
+            }
+    };
 
-    public World(String[][][] mazesData) {
+    public World() {
         this.time = new Time(6, 0, 15);
         this.maps = generateLevels(mazesData);
-        this.player = new PlayableGameCharacter();
+        this.player = new Player();
         this.NPCs = generateCharacters();
         this.currentMaze = 0;
     }
@@ -29,14 +42,14 @@ public class World {
         time.advanceTime();
     }
 
-    private ArrayList<ArrayList<GameCharacter>> generateCharacters() {
-        ArrayList<ArrayList<GameCharacter>> arrayList = new ArrayList<>();
+    private ArrayList<ArrayList<GameCharacters>> generateCharacters() {
+        ArrayList<ArrayList<GameCharacters>> arrayList = new ArrayList<>();
         for (int index = 0; index < maps.size(); index++) {
-            ArrayList<GameCharacter> map = new ArrayList<>();
+            ArrayList<GameCharacters> map = new ArrayList<>();
             Random random = new Random();
 
             for (int num = random.nextInt((8 - 5) + 1) + 5; num > 0; num--) {
-                map.add(new NonPlayableGameCharacter(
+                map.add(new NPC(
                         maps.get(index).getRandomOccupableTerrain()));
             }
             arrayList.add(map);
@@ -44,9 +57,9 @@ public class World {
         return arrayList;
     }
 
-    public ArrayList<Maze> generateLevels(String[][][] data) {
+    public ArrayList<Maze> generateLevels(int[][][] mazesData) {
         ArrayList<Maze> arrayList = new ArrayList<>();
-        for (String[][] map : data) {
+        for (int[][] map : mazesData) {
             arrayList.add(new Maze(map));
         }
         return arrayList;

@@ -1,45 +1,40 @@
 package core;
 
 import enumerators.TerrainType;
+import view.SelectTerrain;
 
 public class Terrain {
 
     private Position position;
     private TerrainType terrainType;
+    private int positionValue;
 
-    public Terrain(Position position, String terrainType) {
-        this.position = position;
-        for (TerrainType terrainTypeConstant : TerrainType.values()) {
-            if (terrainTypeConstant.name().equalsIgnoreCase(terrainType)) {
-                this.terrainType = terrainTypeConstant;
-                return;
-            }
+    public Terrain(Position position, int terrainValue) {
+        try {
+            this.position = position;
+            SelectTerrain.terrainSelection(terrainValue);
+            this.positionValue = terrainValue;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid value for terrainType: " + terrainValue);
         }
-
-        throw new IllegalArgumentException("Invalid value for terrainType: " + terrainType);
     }
 
-    public TerrainType getType() {
-        return terrainType;
+    public int getType() {
+        return positionValue;
     }
 
     public boolean isWalkable() {
-        switch (getType()) {
-            case ROAD, MEDIUMGRASS, GRASS, TALLGRASS, WATER, TROUBLEDWATER, SAND -> {
-                return true;
-            }
-            case WALL, TREE -> {
-                return false;
-            }
+        if (positionValue <= 6) {
+            return true;
+        } else if (positionValue <= 8) {
+            return false;
+        } else {
+            throw new IllegalArgumentException("Invalid value for terrainType: " + getType());
         }
-        throw new IllegalArgumentException("Invalid value for terrainType: " + getType());
     }
 
     public Position getPosition() {
         return position;
     }
 
-    public String getPositionAsString() {
-        return (position.getX() + "," + position.getY());
-    }
 }

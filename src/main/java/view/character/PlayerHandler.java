@@ -6,24 +6,24 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Objects;
 
-public class PlayableGameCharacterHandler extends GameCharacterHandler {
-    WorldHandler gp;
-    KeyHandler keyH;
+public class PlayerHandler extends PlayerDrawer {
+    WorldHandler gameWindow;
+    KeyHandler keyHandler;
     public final int screenY;
     public final int screenX;
 
-    public PlayableGameCharacterHandler(WorldHandler gp, KeyHandler keyH) {
-        this.gp = gp;
-        this.keyH = keyH;
-        screenX = gp.screenWidth/2 - (gp.originalSize/2);
-        screenY = gp.screenHeight/2 - (gp.originalSize/2);
+    public PlayerHandler(WorldHandler gameWindow, KeyHandler keyHandler) {
+        this.gameWindow = gameWindow;
+        this.keyHandler = keyHandler;
+        screenX = gameWindow.screenWidth / 2 - (gameWindow.originalSize / 2);
+        screenY = gameWindow.screenHeight / 2 - (gameWindow.originalSize / 2);
         setDefaultValue();
         getPlayerImage();
     }
 
     public void setDefaultValue() {
-        worldX = gp.originalSize * 23;
-        worldY = gp.originalSize * 21;
+        worldX = gameWindow.originalSize * 23;
+        worldY = gameWindow.originalSize * 21;
         speed = 4;
         direction = "right1";
     }
@@ -57,33 +57,36 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
     }
 
     public void update() {
-        if (keyH.upPressed
-                || keyH.downPressed
-                || keyH.leftPressed
-                || keyH.rightPressed) {
-            if (keyH.upPressed) {
-                direction = "up";
-                worldY -= speed;
-            } else if (keyH.downPressed) {
-                direction = "down";
-                worldY += speed;
-            } else if (keyH.leftPressed) {
-                direction = "left";
-                worldX -= speed;
-            } else if (keyH.rightPressed) {
-                direction = "right";
-                worldX += speed;
-            }
-            spriteCounter++;
-            if (spriteCounter > 40) {
-                if (spriteNum == 1) {
-                    spriteNum = 2;
-                } else if (spriteNum == 2) {
-                    spriteNum = 3;
-                } else if (spriteNum == 3) {
-                    spriteNum = 1;
+        if (keyHandler.inputKeyEvent) {
+            try {
+                if (keyHandler.getKeyName() == "upPressed") {
+                    direction = "up";
+                    worldY -= speed;
                 }
-                spriteCounter = 0;
+                if (keyHandler.getKeyName() == "downPressed") {
+                    direction = "down";
+                    worldY += speed;
+                }
+                if (keyHandler.getKeyName() == "leftPressed") {
+                    direction = "left";
+                    worldX -= speed;
+                }
+                if (keyHandler.getKeyName() == "rightPressed") {
+                    direction = "right";
+                    worldX += speed;
+                }
+                spriteCounter++;
+            } finally {
+                if (spriteCounter > 40) {
+                    if (spriteNum == 1) {
+                        spriteNum = 2;
+                    } else if (spriteNum == 2) {
+                        spriteNum = 3;
+                    } else if (spriteNum == 3) {
+                        spriteNum = 1;
+                    }
+                    spriteCounter = 0;
+                }
             }
         }
     }
@@ -91,7 +94,7 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
     public void draw(Graphics2D g2d) {
         /*
          * g2d.setColor(Color.white);
-         * g2d.fillRect(x, y, gp.originalSize, gp.originalSize);
+         * g2d.fillRect(x, y, gameWindow.originalSize, gameWindow.originalSize);
          */
         BufferedImage image = right1;
         switch (direction) {
@@ -130,6 +133,6 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
                 }
             }
         }
-        g2d.drawImage(image, screenX, screenY, gp.originalSize, gp.originalSize, null);
+        g2d.drawImage(image, screenX, screenY, gameWindow.originalSize, gameWindow.originalSize, null);
     }
 }

@@ -6,15 +6,15 @@ import java.util.Random;
 public class Maze {
     private ArrayList<ArrayList<Terrain>> map;
 
-    public Maze(String[][] terrainData) {
-        this.map = generateTerrain(terrainData);
+    public Maze(int[][] maze) {
+        this.map = generateTerrain(maze);
     }
 
-    public ArrayList<ArrayList<Terrain>> generateTerrain(String[][] data) {
+    public ArrayList<ArrayList<Terrain>> generateTerrain(int[][] data) {
         ArrayList<ArrayList<Terrain>> arrayList = new ArrayList<>();
 
         for (int y = 0; y < data.length; y++) {
-            String[] row = data[y];
+            int[] row = data[y];
             ArrayList<Terrain> innerList = new ArrayList<>();
             for (int x = 0; x < row.length; x++) {
                 innerList.add(new Terrain(new Position(x, y), row[x]));

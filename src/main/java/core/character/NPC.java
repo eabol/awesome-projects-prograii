@@ -1,11 +1,10 @@
 package core.character;
 
 import core.Terrain;
-import core.character.GameCharacter;
 import java.util.Random;
 
-public class NonPlayableGameCharacter extends GameCharacter {
-    public NonPlayableGameCharacter(Terrain terrain) {
+public class NPC extends GameCharacters {
+    public NPC(Terrain terrain) {
         this.currentTerrain = terrain;
         setTransport(terrain);
     }

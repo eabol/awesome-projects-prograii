@@ -1,5 +1,5 @@
 package interfaces;
 
-public interface Movable {
+public interface Movement {
     public void tryMove();
 }
