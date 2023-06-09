@@ -1,6 +1,6 @@
-package main.java.core;
+package core;
 
-import main.java.enumerators.TerrainType;
+import enumerators.TerrainType;
 
 public class Terrain {
 

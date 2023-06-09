@@ -1,4 +1,4 @@
-package main.java.core.character;
+package core.character;
 
 public class PlayableGameCharacter extends GameCharacter {
 

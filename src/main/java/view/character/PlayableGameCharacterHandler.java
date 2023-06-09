@@ -1,6 +1,6 @@
-package main.java.view.character;
+package view.character;
 
-import main.java.view.WorldHandler;
+import view.WorldHandler;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,6 +16,12 @@ public class PlayableGameCharacterHandler extends GameCharacterHandler {
         this.keyH = keyH;
         this.screenX = gp.screenWidth/2 - (gp.originalSize/2);
         this.screenY = gp.screenHeight/2 - (gp.originalSize/2);
+
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+        solidArea.width = 12;
+        solidArea.height = 32;
         setDefaultValue();
         getPlayerImage();
     }

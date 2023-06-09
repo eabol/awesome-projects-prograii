@@ -1,4 +1,4 @@
-package main.java.core.transport;
+package core.transport;
 
 public class OnRug extends Transport{
 }

@@ -1,4 +1,4 @@
-package main.java.view.character;
+package view.character;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -10,6 +10,8 @@ public class GameCharacterHandler {
     public int spriteNum = 1;
     public int screenX;
     public int screenY;
+    public Rectangle solidArea;
+    public boolean collision = false;
 
     public void update() {
     }

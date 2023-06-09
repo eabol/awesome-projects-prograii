@@ -1,9 +1,9 @@
-package main.java.view;
-import main.java.core.Maze;
-import main.java.core.World;
-import main.java.core.Terrain;
-import main.java.enumerators.TerrainType;
-import main.java.view.character.*;
+package view;
+import core.Maze;
+import core.World;
+import core.Terrain;
+import enumerators.TerrainType;
+import view.character.*;
 
 import javax.swing.*;
 import java.awt.*;
