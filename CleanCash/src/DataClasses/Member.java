@@ -20,8 +20,9 @@ public class Member extends Entity {
         this.phoneNumber = phoneNumber;
     }
 
-    public Member(String entityName, String entityId) {
+    public Member(String entityName, String entityId, String phoneNumber) {
         super(entityName, entityId);
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
