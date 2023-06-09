@@ -68,7 +68,7 @@ public class CheckoutKiosk extends JFrame {
         cartModel = new DefaultListModel<>();
         cartJList = new JList<>(cartModel);
         cartJList.setPrototypeCellValue("Item Name --------------------");
-        JButton addToCartButton = new JButton("Add to cart");
+        JButton addToCartButton = new JButton("Add to cart / remove");
 
         cartTotalLabel = new JLabel("Cart total: ");
         JButton checkoutButton = new JButton("Checkout");

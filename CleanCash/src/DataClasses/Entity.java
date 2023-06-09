@@ -28,9 +28,5 @@ public abstract class Entity {
         else return false;
     }
 
-    //NOT DEFINED METHODS
-    public void onCreated(){}
-    public void updateName(){}
-
 
 }
