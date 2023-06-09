@@ -58,4 +58,5 @@ Características principales:
 - PlantUML (se han modificado clases y el código)
 - Test
 
-** Nombres de los participantes **   Raúl Pelayo, Oscar Santamaría y David García Costa
+**Nombres de los participantes**   
+Raúl Pelayo, Oscar Santamaría y David García Costa
