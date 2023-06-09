@@ -1,4 +1,5 @@
 package core;
+
 import core.Terrain;
 import core.character.*;
 
@@ -8,16 +9,16 @@ import java.util.Random;
 
 public class World {
 
-    private ArrayList<ArrayList<GameCharacter>> NPCs;
+    private ArrayList<ArrayList<GameCharacters>> NPCs;
     private ArrayList<Maze> maps;
-    private GameCharacter player;
+    private GameCharacters player;
     private Time time;
     private int currentMaze;
 
-    public World (String[][][] mazesData) {
-        this.time = new Time(6,0,15);
+    public World(String[][][] mazesData) {
+        this.time = new Time(6, 0, 15);
         this.maps = generateLevels(mazesData);
-        this.player = new PlayableGameCharacter();
+        this.player = new Player();
         this.NPCs = generateCharacters();
         this.currentMaze = 0;
     }
@@ -28,27 +29,26 @@ public class World {
         time.advanceTime();
     }
 
-    private ArrayList<ArrayList<GameCharacter>> generateCharacters() {
-        ArrayList<ArrayList<GameCharacter>> arrayList = new ArrayList<>();
-        for (int index = 0; index < maps.size(); index++){
-            ArrayList<GameCharacter> map = new ArrayList<>();
+    private ArrayList<ArrayList<GameCharacters>> generateCharacters() {
+        ArrayList<ArrayList<GameCharacters>> arrayList = new ArrayList<>();
+        for (int index = 0; index < maps.size(); index++) {
+            ArrayList<GameCharacters> map = new ArrayList<>();
             Random random = new Random();
 
             for (int num = random.nextInt((8 - 5) + 1) + 5; num > 0; num--) {
-                map.add(new NonPlayableGameCharacter(
-                        maps.get(index).getRandomOccupableTerrain())
-                );
+                map.add(new NPC(
+                        maps.get(index).getRandomOccupableTerrain()));
             }
             arrayList.add(map);
         }
         return arrayList;
     }
 
-    public ArrayList<Maze> generateLevels (String[][][] data) {
+    public ArrayList<Maze> generateLevels(String[][][] data) {
         System.out.println("Generating levels...");
 
         ArrayList<Maze> arrayList = new ArrayList<>();
-        for (String[][] map: data) {
+        for (String[][] map : data) {
             arrayList.add(new Maze(map));
         }
         return arrayList;

@@ -1,6 +1,6 @@
 package interfaces;
 
-public interface Showable {
+public interface Visible {
 
     public void show();
 }

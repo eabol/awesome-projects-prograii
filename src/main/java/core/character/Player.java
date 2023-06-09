@@ -1,6 +1,6 @@
 package core.character;
 
-public class PlayableGameCharacter extends GameCharacter {
+public class Player extends GameCharacters {
 
     @Override
     public void tryMove() {

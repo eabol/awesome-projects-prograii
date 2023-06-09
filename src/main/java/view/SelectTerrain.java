@@ -3,9 +3,9 @@ package view;
 import enumerators.TerrainType;
 import java.awt.*;
 
-public class TerrainResolver {
+public class SelectTerrain {
 
-    public static Color solveTerrainColor(TerrainType type) {
+    public static Color terrainSelection(TerrainType type) {
         switch (type) {
             case ROAD -> {
                 return Color.GRAY;

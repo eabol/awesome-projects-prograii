@@ -1,4 +1,5 @@
 package view;
+
 import core.Maze;
 import core.World;
 import core.Terrain;
@@ -25,19 +26,13 @@ public class WorldHandler extends JPanel implements Runnable {
     public CollisionChecker collisionChecker = new CollisionChecker(this);
     public long drawCount = 0;
 
-
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
     public final int worldWidth = maxWorldCol * originalSize;
     public final int worldHeight = maxWorldRow * originalSize;
 
-
     Thread gameThread;
-    GameCharacterHandler player = new PlayableGameCharacterHandler(this, keyHandler);
-
-    private static String[][][] mazesData = {
-
-    };
+    PlayerDrawer player = new PlayerHandler(this, keyHandler);
 
     public WorldHandler() {
         int[][] arrayToTransform = tileManager.mapTileNum;
@@ -48,7 +43,7 @@ public class WorldHandler extends JPanel implements Runnable {
                 arrayTransform[i][j] = String.valueOf(arrayToTransform[i][j]);
             }
         }
-        String [][][] worldData = {arrayTransform};
+        String[][][] worldData = { arrayTransform };
         this.world = new World(worldData);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
@@ -69,7 +64,7 @@ public class WorldHandler extends JPanel implements Runnable {
         long currentTime;
         double drawInterval = 1000000000 / FPS;
         long timer = 0;
-        //double nextDrawTime = System.nanoTime() + drawInterval;
+        // double nextDrawTime = System.nanoTime() + drawInterval;
 
         while (gameThread != null) {
             currentTime = System.nanoTime();
@@ -105,18 +100,16 @@ public class WorldHandler extends JPanel implements Runnable {
 
     }
 
-    private void drawMaze(Graphics g){
+    private void drawMaze(Graphics g) {
         int rows = world.getCurrentMaze().getMapYSize();
         int cols = world.getCurrentMaze().getMapXSize();
         int tileSize = Math.min(getWidth() / cols, getHeight() / rows);
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                g.setColor(TerrainResolver.solveTerrainColor(world.getCurrentMaze().getTerrainByPosition(col, row).getType()));
                 g.fillRect(col * tileSize, row * tileSize, tileSize, tileSize);
             }
         }
 
     }
 }
-

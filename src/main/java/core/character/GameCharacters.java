@@ -1,20 +1,21 @@
 package core.character;
 
-import core.Terrain   ;
+import core.Terrain;
 import core.transport.*;
-import interfaces.Movable;
+import interfaces.Movement;
 
 import static enumerators.TerrainType.*;
 
-public abstract class GameCharacter implements Movable {
+public abstract class GameCharacters implements Movement {
 
     Transport currentTransport;
     Terrain currentTerrain;
 
-    void setTransport(Terrain terrain){
+    void setTransport(Terrain terrain) {
         currentTransport = getTransportByTerrain(terrain);
     }
-    private Transport getTransportByTerrain(Terrain terrain){
+
+    private Transport getTransportByTerrain(Terrain terrain) {
         switch (terrain.getType()) {
             case ROAD, MEDIUMGRASS, GRASS -> {
                 return new OnFoot();
