@@ -1,13 +1,14 @@
 package controllers;
 
+import models.BillModel;
+
 import java.util.ArrayList;
 import java.util.List;
-import models.BillModel;
 
 public class BillController {
     public List<BillModel> createBillList(
-            int quantity1, int quantity2, int quantity3, int quantity4, int quantity5
-    ){
+        int quantity1, int quantity2, int quantity3, int quantity4, int quantity5
+    ) {
         final List<BillModel> bills = new ArrayList<BillModel>();
         bills.add(new BillModel(20, quantity1));
         bills.add(new BillModel(10, quantity2));

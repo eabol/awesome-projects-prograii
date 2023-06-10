@@ -8,7 +8,9 @@ public class MachineModel {
     private List<BillModel> bills;
     private List<ProductModel> products;
 
-    public MachineModel(String name, List<CoinModel> coins, List<BillModel> bills, List<ProductModel> products) {
+    public MachineModel(
+        String name, List<BillModel> bills, List<CoinModel> coins, List<ProductModel> products
+    ) {
         this.name = name;
         this.coins = coins;
         this.bills = bills;
