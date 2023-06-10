@@ -1,14 +1,11 @@
-public abstract class Cat extends RandomMovement {
+package vacuum;
 
-    public Cat(String id,int xCoordinate, int yCoordinate) {
-        super(id,xCoordinate,yCoordinate);
-    }
-    @Override
-    public void move(){
-       int movingdirection = randomDirection();
-         int [] newPosition = getnextPosition(getxCoordinate(),getyCoordinate(),movingdirection);
-         int newX = newPosition[0];
-         int newY = newPosition[1];
-         setPlace(newX,newY);
+public class Cat extends MovingEntity{
+    Boolean isPresent = true;
+
+    public Cat(int id, int xCoordinate, int yCoordinate, Boolean isPresent) {
+        super(id, xCoordinate, yCoordinate);
+        this.isPresent = isPresent;
+
     }
 }
