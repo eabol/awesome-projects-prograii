@@ -5,34 +5,34 @@ import java.awt.*;
 
 public class SelectTerrain {
 
-    public static Color terrainSelection(int number) {
-        switch (number) {
-            case 0 -> {
-                return Color.CYAN; // Road
+    public static Color terrainSelection(TerrainType type) {
+        switch (type) {
+            case ROAD -> {
+                return Color.GRAY;
             }
-            case 1 -> {
-                return Color.GREEN; // MediumGrass
+            case MEDIUMGRASS -> {
+                return Color.GREEN;
             }
-            case 2 -> {
-                return Color.LIGHT_GRAY; // Grass
+            case GRASS -> {
+                return Color.LIGHT_GRAY;
             }
-            case 3 -> {
-                return Color.DARK_GRAY; // TallGrass
+            case TALLGRASS -> {
+                return Color.DARK_GRAY;
             }
-            case 4 -> {
-                return Color.CYAN; // Water
+            case WATER -> {
+                return Color.CYAN;
             }
-            case 5 -> {
-                return Color.BLUE; // TroubledWater
+            case TROUBLEDWATER -> {
+                return Color.BLUE;
             }
-            case 6 -> {
-                return Color.YELLOW; // Sand
+            case SAND -> {
+                return Color.YELLOW;
             }
-            case 7 -> {
-                return Color.ORANGE; // Wall
+            case WALL -> {
+                return Color.ORANGE;
             }
-            case 8 -> {
-                return Color.MAGENTA; // Tree
+            case TREE -> {
+                return Color.MAGENTA;
             }
         }
         throw new IllegalArgumentException("Invalid Terrain");

@@ -1,6 +1,7 @@
 package core.character;
 
 import core.Terrain;
+import core.character.GameCharacters;
 import java.util.Random;
 
 public class NPC extends GameCharacters {

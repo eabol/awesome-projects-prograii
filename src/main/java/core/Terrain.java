@@ -1,7 +1,6 @@
 package core;
 
 import enumerators.TerrainType;
-import view.SelectTerrain;
 
 public class Terrain {
 
@@ -39,5 +38,4 @@ public class Terrain {
     public Position getPosition() {
         return position;
     }
-
 }

@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Maze {
+
     private ArrayList<ArrayList<Terrain>> map;
 
-    public Maze(String[][] maze) {
-        this.map = generateTerrain(maze);
+    public Maze(String[][] terrainData) {
+        this.map = generateTerrain(terrainData);
     }
 
     public ArrayList<ArrayList<Terrain>> generateTerrain(String[][] data) {

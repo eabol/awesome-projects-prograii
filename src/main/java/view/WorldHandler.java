@@ -2,10 +2,10 @@ package view;
 
 import core.Maze;
 import core.World;
-import core.character.Player;
 import core.Terrain;
 import enumerators.TerrainType;
 import view.character.*;
+import view.collision.CollisionChecker;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +22,8 @@ public class WorldHandler extends JPanel implements Runnable {
         KeyHandler keyHandler = new KeyHandler();
 
         int FPS = 60;
-        TileManager tileManager = new TileManager(this);
+        public TileManager tileManager = new TileManager(this);
+        public CollisionChecker collisionChecker = new CollisionChecker(this);
         public long drawCount = 0;
 
         public final int maxWorldCol = 50;
@@ -31,7 +32,7 @@ public class WorldHandler extends JPanel implements Runnable {
         public final int worldHeight = maxWorldRow * originalSize;
 
         Thread gameThread;
-        PlayerHandler player = new PlayerHandler(this, keyHandler);
+        PlayerDrawer player = new PlayerHandler(this, keyHandler);
 
         public WorldHandler() {
                 int[][] arrayToTransform = tileManager.mapTileNum;
@@ -93,8 +94,8 @@ public class WorldHandler extends JPanel implements Runnable {
                 Graphics2D g2d = (Graphics2D) g;
 
                 drawMaze(g);
+                tileManager.draw(g2d);
                 player.draw(g2d);
-
                 g2d.dispose();
 
         }
@@ -106,8 +107,6 @@ public class WorldHandler extends JPanel implements Runnable {
 
                 for (int row = 0; row < rows; row++) {
                         for (int col = 0; col < cols; col++) {
-                                // g.setColor(SelectTerrain.terrainSelection(
-                                // world.getCurrentMaze().getTerrainByPosition(col, row).getType()));
                                 g.fillRect(col * tileSize, row * tileSize, tileSize, tileSize);
                         }
                 }
