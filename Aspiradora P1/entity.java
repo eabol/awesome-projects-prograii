@@ -1,48 +1,16 @@
-public class entity {
+public interface entity {
 
     //attributes
-    int id;
-    int[] coordinates;
-    String skin;
-    //constructor vacio
-    public entity(){
+    int getxCoordinate();
+    int getyCoordinate();
+
+    void setxcordinate(int xCoordinate);
+    void setycordinate(int yCoordinate);
+
+    String id();
+
+        //constructor con atributos
+        public void setCoordinates(int getX, int getY);
+
 
     }
-
-
-    //constructor con atributos
-    public entity(int id, int[] coordinates, String skin){
-        this.id = id;
-        this.coordinates = coordinates;
-        this.skin = skin;
-
-    }
-
-
-    //getter (traeme, muestrame un attributo)
-    public int getId(){
-        return id;
-    }
-
-    //setter (poner o cambiar un attributo)
-    public void setId(int id){
-        this.id = id;
-    }
-
-    public int[] getCoordinates(){
-        return coordinates;
-    }
-
-    public void setCoordinates(int[] coordinates){
-        this.coordinates = coordinates;
-    }
-
-    public String getSkin(){
-        return skin;
-    }
-
-    public void setSkin(String skin){
-        this.skin = skin;
-    }
-
-}

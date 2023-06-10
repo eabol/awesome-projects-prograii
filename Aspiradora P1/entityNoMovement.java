@@ -1,9 +1,9 @@
-public class entityNoMovement extends entity{
+public abstract class entityNoMovement extends entity{
 
-    public entityNoMovement(int id, int[] coordinates, String skin){
+
+    public entityNoMovement(String id, int xCoordinate, int yCoordinate){
         this.id = id;
-        this.coordinates = coordinates;
-        this.skin = skin;
-
+        this.xCoordinate = xCoordinate;
+        this.yCoordinate = yCoordinate;
     }
 }
