@@ -1,7 +1,8 @@
 package models;
 
-public abstract class MoneyAbstract {
+public abstract class  MoneyAbstract {
     public double value;
+
     public int quantity;
 
     MoneyAbstract(double value, int quantity) {
@@ -17,5 +18,5 @@ public abstract class MoneyAbstract {
         this.quantity = quantity;
     }
 
-    public abstract void recieved(PurchaseModel purchaseModel);
+    public abstract void received(PurchaseModel purchaseModel);
 }
