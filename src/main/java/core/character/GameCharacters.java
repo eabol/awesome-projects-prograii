@@ -10,6 +10,7 @@ public abstract class GameCharacters implements Movement {
 
     Transport currentTransport;
     Terrain currentTerrain;
+
     WorldHandler gameWindow;
     KeyHandler keyHandler;
     void setTransport(Terrain terrain) {

@@ -4,46 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a5c4d4-514a-49a0-9a24-c1ac01bf52f6" name="Changes" comment="feature: added collision">
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/tile/TerrainMapper.java" afterDir="false" />
+    <list default="true" id="48a5c4d4-514a-49a0-9a24-c1ac01bf52f6" name="Changes" comment="fix: edit structure project">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/Maze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/Maze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/Position.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/Position.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/Terrain$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/Terrain$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/Terrain.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/Terrain.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/Thread.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/Thread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/Time.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/Time.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/World.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/transport/OnBoat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/transport/OnBoat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/transport/OnFoot.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/transport/OnFoot.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/transport/OnHorse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/transport/OnHorse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/transport/OnRug.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/transport/OnRug.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/transport/Transport.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/core/transport/Transport.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/docs/diagram.puml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/docs/diagram.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/enumerators/TerrainType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/enumerators/TerrainType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/view/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/view/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/view/TileManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/view/TileManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/view/WorldHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/awesome-projects-prograii/view/WorldHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/awesome-projects-prograii/view/tile/Tile.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Maze.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Thread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/World.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/core/character/GameCharacters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/character/GameCharacters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/character/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/character/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/transport/OnBoat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/transport/OnBoat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/transport/OnFoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/transport/OnFoot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/transport/OnHorse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/transport/OnHorse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/transport/OnRug.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/transport/OnRug.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/transport/Transport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/transport/Transport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enumerators/TerrainType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enumerators/TerrainType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SelectTerrain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/TileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/character/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/character/KeyHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/character/PlayerDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/character/PlayerDrawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/character/PlayerHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/collision/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/collision/CollisionChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/tile/Tile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,6 +122,14 @@
       <workItem from="1686343174078" duration="8000" />
       <workItem from="1686343185787" duration="1303000" />
     </task>
+    <task id="LOCAL-00001" summary="fix: edit structure project">
+      <created>1686504981425</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1686504981425</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,5 +145,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix: edit structure project" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: edit structure project" />
   </component>
 </project>
