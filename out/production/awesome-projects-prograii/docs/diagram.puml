@@ -36,7 +36,7 @@ package Characters {
 
     Player <-- KeyHandler : use
 
-    class Character implements Movement
+    abstract class Character implements Movement
     class KeyHandler implements KeyEventListener
 
 

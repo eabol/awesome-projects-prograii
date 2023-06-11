@@ -9,6 +9,5 @@ public enum TerrainType {
     MEDIUMGRASS,
     TALLGRASS,
     WALL,
-    TREE
-
+    TREE;
 }
