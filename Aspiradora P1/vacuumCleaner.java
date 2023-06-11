@@ -1,60 +1,27 @@
+package vacuum;
 
 
-public class vacuumCleaner extends entityInMovement {
+public class VacuumCleaner extends MovingEntity {
 
     int bag;
-    int battery;
 
-    int maxbattery;
+    int currentBattery;
 
-    int currentdirt;
+    int maxBattery;
 
-    public vacuumCleaner(String id, int Xcoordinate,int Ycoordinate, int maxbattery,int bag) {
-        super(id, Xcoordinate, Ycoordinate);
-        this.bag = 0;
-        this.maxbattery= maxbattery;
-        this.battery = maxbattery;
-        this.currentdirt = 0;
-    }
+    int vacuumedDirt;
 
-    public void move(){
-        if(battery <=0 ||currentdirt >= bag){
-            //stop();
-            return;
-        }
-    public void clean(){}//necesitamos un metodo que nos de la cantidad de suciedad en el cuadrado
 
-    int direction=getmovingdirection();
-
-    public void vacuumedDirty(int bag) {
-        bag = bag + 1;
+    public VacuumCleaner(int id, int xCoordinate, int yCoordinate,
+                         int bag, int currentBattery, int maxBattery, int vacuumedDirt) {
+        super(id,xCoordinate,yCoordinate);
+        this.bag = bag;
+        this.currentBattery = currentBattery;
+        this.maxBattery = maxBattery;
+        this.vacuumedDirt = vacuumedDirt;
     }
 
 
-    public boolean isbatterylow(){
-        if (battery < 20){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    public boolean isbatteryempty(){
-        if (battery == 0){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    public void isbagfull(int maximumbag){
-        if (bag == 10){
-            bag = 0;
-        }
-    }
 
-    public void restbattery(int battery){
-        battery = battery - 1;
-    }
 
 }

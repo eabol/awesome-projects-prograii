@@ -1,4 +1,4 @@
-package vacuum;
+
 
 public class Cat extends MovingEntity{
     Boolean isPresent = true;

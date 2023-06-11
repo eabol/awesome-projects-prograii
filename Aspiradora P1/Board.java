@@ -3,30 +3,30 @@ import java.util.ArrayList;
 
 
     public class Board {
-        private Tile[][] matrix;
+        private Tiles[][] matrix;
         private int rows;
         private int columns;
 
         public Board(int rows, int columns) {
             this.rows = rows;
             this.columns = columns;
-            this.matrix = new Tile[rows][columns];
-            initializeTiles();
+            matrix = new Tiles[rows][columns];
+            TileCleaned();
 
         }
 
-        private void initializeTiles() {
+        private void TileCleaned() {
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < columns; j++) {
-                    matrix[i][j] = new Tile(i, j);
+                    matrix[i][j] = new TileCleaned();
                 }
             }
         }
-        public  Tile getTile(int rows, int columns) {
-            return matrix[rows][columns];
+        public  Tiles getTile(int x, int y) {
+            return matrix[x][y];
         }
-        public void setTile(int rows, int columns, Tile tile) {
-            matrix[rows][columns] = tile;
+        public void setTile(int x, int y, Tiles tile) {
+            matrix[x][y] = tile;//duda, no se si ponerle a lo que esta adentro de la matriz x y y o rows y columns
         }
         public int getRows() {
             return rows;
@@ -34,23 +34,22 @@ import java.util.ArrayList;
         public int getColumns() {
             return columns;
         }
-        public ArrayList<Tile>getAllTiles(){
-            ArrayList<Tile> tiles = new ArrayList<>();
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < columns; j++) {
-                    tiles.add(matrix[i][j]);
-                }
-            }
-            return tiles;
-        }
+
         public void printBoard() {
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < columns; j++) {
-                    System.out.print(matrix[i][j].getTileType() + " ");
+                    Tiles tile = matrix[i][j];
+                    if(tile instanceof TileCleaned){
+                        System.out.print("0 ");
+                }else if(tile instanceof TileDirty){
+                        TileDirty tileDirty = (TileDirty) tile;
+                        System.out.print(tileDirty.getLevelofDirt()+ " ");
+                    }// hay que hacer un metodo de tile que nos de un tile de mueble
                 }
                 System.out.println();
             }
         }
+
     }
 
 

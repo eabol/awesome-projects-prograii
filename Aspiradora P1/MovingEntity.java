@@ -1,4 +1,4 @@
-package vacuum;
+
 
 public abstract class MovingEntity{
 
