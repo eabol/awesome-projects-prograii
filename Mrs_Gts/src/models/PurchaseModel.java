@@ -75,6 +75,8 @@ public class PurchaseModel {
         System.out.println("Ingrese el número del producto que desea comprar:");
 
         final int optionProduct = this.scanner.nextInt();
+        ProductModel selectedProduct = products.get(optionProduct - 1);
+        selectedProduct.updateQuantity(selectedProduct.getQuantity() - 1);
         return products.get(optionProduct - 1);
     }
 

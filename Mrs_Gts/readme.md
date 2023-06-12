@@ -1,5 +1,73 @@
 # Máquinas expendedoras
 
+Este proyecto realiza la simulación de un sistema de máquinas expendedoras. Permite realizar compras, seleccionar productos y recibir cambio en función del dinero depositado. De igual manera cuenta con la función de que se irá restando los productos comprados, y se rellena automáticamente cuando la cantidad de productos restantes es mínima
+
+# Instrucción de ejecución
+
+- Asegúrate de tener Java instalado en tu sistema.
+- Descarga o clona este repositorio en tu máquina local.
+- Navega hasta el directorio del proyecto "awesome-projects-prograii/Mrs_Gts/src".
+- Ejecuta el Main.java.
+
+# Estructura del projecto
+
+```
+├─ class-diagram/
+│ └─ class.plantuml
+│
+├─ collaboration-diagram
+│ └─ collaboration-diagram.plantuml
+│
+├─ domain-model/
+│ └─ domain.plantuml
+│
+├─ images/
+│ ├─ class-diagram.PNG
+│ ├─ diagrama-colaboracion.png
+│ ├─ domain-model.PNG
+│ ├─ menu.png
+│ └─ object-diagram.PNG
+│
+├─ object-diagram/
+│ └─ objectos.plantuml
+│
+├─ src/
+│ ├─ controllers/
+│ │ ├─ BillController.java
+│ │ ├─ CoinController.java
+│ │ ├─ MachineController.java
+│ │ ├─ ProductController.java
+│ │ └─ PurchaseController.java
+│ │
+│ ├─ models/
+│ │ ├─ BillModel.java
+│ │ ├─ CoinModel.java
+│ │ ├─ MachineModel.java
+│ │ ├─ MaintenanceModel.java
+│ │ ├─ MoneyAbstract.java
+│ │ ├─ ProductModel.java
+│ │ └─ PurchaseModel.java
+│ │
+│ ├─ utils/
+│ │ └─ Line.java
+│ │
+│ └─ views/
+│ ├─ MachineView.java
+│ ├─ ProductView.java
+│ └─ PurchaseView.java
+│
+├─ images/
+│ ├─ menu.png
+│ ├─ domain-model.PNG
+│ ├─ object-diagram.PNG
+│ ├─ class-diagram.PNG
+│ └─ diagrama-colaboracion.png
+│
+└─ README.md
+```
+
+# Diagramas
+
 ![Imagen](images/menu.png)
 
 > Modelo de dominio
