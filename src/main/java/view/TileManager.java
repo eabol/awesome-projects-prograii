@@ -18,7 +18,7 @@ public class TileManager {
         tile = new Tile[10];
         mapTileNum = new int[gameWindow.maxWorldCol][gameWindow.maxWorldRow];
         getTileImage();
-        mazeParser("./src/main/resources/mazes/level2.txt");
+        mazeParser("./src/main/resources/mazes/level3.txt");
     }
 
     public void mazeParser(String filePath) {

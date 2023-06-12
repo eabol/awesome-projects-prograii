@@ -26,8 +26,8 @@ public class PlayerHandler extends PlayerDrawer {
     }
 
     public void setDefaultValue() {
-        worldX = gameWindow.originalSize * 1;
-        worldY = gameWindow.originalSize * 1;
+        worldX = gameWindow.originalSize * 4;
+        worldY = gameWindow.originalSize * 4;
         speed = 4;
         direction = "right1";
     }
