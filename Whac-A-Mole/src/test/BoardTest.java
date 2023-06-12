@@ -2,8 +2,8 @@ package test;
 
 import main.Board;
 import main.Hole;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class BoardTest {
 
@@ -42,5 +42,16 @@ public class BoardTest {
 
     static class HoleTest {
 
+    }
+
+    static class LuckTest {
+
+        @Test
+        void getPositiveLuck() {
+        }
+
+        @Test
+        void getNegativeLuck() {
+        }
     }
 }
