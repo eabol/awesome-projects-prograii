@@ -1,14 +1,15 @@
 package core.character;
 
+import enumerators.Directions;
+import enumerators.TransportTypes;
 import view.WorldHandler;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Player extends PlayerDrawer {
     WorldHandler gameWindow;
     KeyHandler keyHandler;
+    private TransportTypes currentTransport;
 
     public Player(WorldHandler gameWindow, KeyHandler keyHandler) {
         super();
@@ -22,126 +23,77 @@ public class Player extends PlayerDrawer {
         solidArea.y = 16;
         solidArea.width = 12;
         solidArea.height = 32;
+        currentTransport = TransportTypes.FOOT;
         setDefaultValue();
-        getPlayerImage();
     }
 
     public void setDefaultValue() {
         worldX = gameWindow.getOriginalSize() * 1;
         worldY = gameWindow.getOriginalSize() * 1;
         speed = 4;
-        direction = "right1";
-    }
-
-    public void getPlayerImage() {
-        try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/PlayerImages/up1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/PlayerImages/up2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/PlayerImages/left1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/PlayerImages/left2.png"));
-            left3 = ImageIO.read(getClass().getResourceAsStream("/PlayerImages/left3.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/PlayerImages/right1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/PlayerImages/right2.png"));
-            right3 = ImageIO.read(getClass().getResourceAsStream("/PlayerImages/right3.png"));
-            upLeft = ImageIO.read(getClass().getResourceAsStream("/PlayerImages/upLeft.png"));
-            upRight = ImageIO.read(getClass().getResourceAsStream("/PlayerImages/upRight.png"));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        direction = Directions.RIGHT;
     }
 
     public void update() {
         if (keyHandler.inputKeyEvent) {
             if (keyHandler.getKeyName() == "upPressed") {
-                direction = "up";
+                direction = Directions.UP;
             }
             if (keyHandler.getKeyName() == "downPressed") {
-                direction = "down";
+                direction = Directions.DOWN;
             }
             if (keyHandler.getKeyName() == "leftPressed") {
-                direction = "left";
+                direction = Directions.LEFT;
             }
             if (keyHandler.getKeyName() == "rightPressed") {
-                direction = "right";
+                direction = Directions.RIGHT;
             }
 
             collision = false;
             gameWindow.getCollisionChecker().checkTile(this);
+            updatePlayerSpeed();
 
-            // if collition is false
             if (collision == false) {
                 switch (direction) {
-                    case "up":
+                    case UP:
                         worldY -= speed;
                         break;
-                    case "down":
+                    case DOWN:
                         worldY += speed;
                         break;
-                    case "left":
+                    case LEFT:
                         worldX -= speed;
                         break;
-                    case "right":
+                    case RIGHT:
                         worldX += speed;
                         break;
                 }
             }
-            spriteCounter++;
-            if (spriteCounter > 40) {
-                if (spriteNum == 1) {
-                    spriteNum = 2;
-                } else if (spriteNum == 2) {
-                    spriteNum = 3;
-                } else if (spriteNum == 3) {
-                    spriteNum = 1;
-                }
-                spriteCounter = 0;
-            }
         }
-/*        TerrainType currentTerrain = gameWindow.getCollisionChecker().getTerrainAtPosition(this.worldX, this.worldY);
-        if (currentTerrain.equals(TerrainType.WATER)) {
-            System.out.println("Estoy en agua");
-            // Cambiar el sprite del personaje para mostrar que se encuentra en agua
-            // ...
-        }*/
     }
 
-    public void draw(Graphics2D g2d) {
-        BufferedImage image = right1;
-        switch (direction) {
-            case "up" -> {
-                if (spriteNum == 1) {
-                    image = up1;
-                } else if (spriteNum == 2 || spriteNum == 3) {
-                    image = up2;
-                }
-            }
-            case "down" -> {
-                if (spriteNum == 1) {
-                    image = left1;
-                } else if (spriteNum == 2 || spriteNum == 3) {
-                    image = right1;
-                }
-            }
-            case "left" -> {
-                if (spriteNum == 1) {
-                    image = left1;
-                } else if (spriteNum == 2) {
-                    image = left2;
-                } else if (spriteNum == 3) {
-                    image = left3;
-                }
-            }
-            case "right" -> {
-                if (spriteNum == 1) {
-                    image = right1;
-                } else if (spriteNum == 2) {
-                    image = right2;
-                } else if (spriteNum == 3) {
-                    image = right3;
-                }
-            }
+    private void updatePlayerSpeed() {
+        switch (currentTransport) {
+            case FOOT -> this.speed = TransportTypes.FOOT.getSpeed();
+            case HORSE -> this.speed = TransportTypes.HORSE.getSpeed();
+            case BOAT -> this.speed = TransportTypes.BOAT.getSpeed();
+            case CARPET -> this.speed = TransportTypes.CARPET.getSpeed();
         }
-        g2d.drawImage(image, screenX, screenY, gameWindow.getCharacterWidth(), gameWindow.getCharacterHeight(), null);
+    }
+
+    public TransportTypes getCurrentTransport() {
+        return currentTransport;
+    }
+
+    public void setCurrentTransport(TransportTypes currentTransport) {
+        this.currentTransport = currentTransport;
+    }
+
+    public Point getPosition() {
+        return new Point(screenX, screenY);
+    }
+
+    public Directions getDirection() {
+        return direction;
     }
 }

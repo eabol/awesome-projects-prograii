@@ -5,6 +5,8 @@ import core.character.KeyHandler;
 import core.character.PlayerDrawer;
 import core.character.Player;
 import core.collision.CollisionChecker;
+import view.assets.ImageLoader;
+import view.assets.ImagePainter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,6 +34,8 @@ public class WorldHandler extends JPanel implements Runnable {
         Thread gameThread;
         KeyHandler keyHandler = new KeyHandler();
         PlayerDrawer player = new Player(this, keyHandler);
+        ImageLoader imageLoader = new ImageLoader();
+        ImagePainter imagePainter = new ImagePainter(imageLoader);
         public int getScreenWidth() {return screenWidth;}
         public int getScreenHeight() {return screenHeight;}
         public int getCharacterWidth() {return characterWidth;}
@@ -108,7 +112,7 @@ public class WorldHandler extends JPanel implements Runnable {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
                 tileManager.draw(g2d);
-                player.draw(g2d);
+                imagePainter.paintPlayer(g2d, (Player) player, characterWidth, characterHeight);
                 g2d.dispose();
         }
 }
