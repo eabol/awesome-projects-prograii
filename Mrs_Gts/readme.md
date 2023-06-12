@@ -48,22 +48,22 @@ Este proyecto realiza la simulación de un sistema de máquinas expendedoras. Pe
 │ │ ├─ ProductModel.java
 │ │ └─ PurchaseModel.java
 │ │
+│ ├─ test/
+│ │ ├─ Test_BillController.java
+│ │ ├─ Test_CoinController.java
+│ │ ├─ Test_MaintenanceController.java
+│ │ └─ Test_ProductController.java
+│ │
 │ ├─ utils/
 │ │ └─ Line.java
 │ │
 │ └─ views/
-│ ├─ MachineView.java
-│ ├─ ProductView.java
-│ └─ PurchaseView.java
+│   ├─ MachineView.java
+│   ├─ ProductView.java
+│   └─  PurchaseView.java
 │
-├─ images/
-│ ├─ menu.png
-│ ├─ domain-model.PNG
-│ ├─ object-diagram.PNG
-│ ├─ class-diagram.PNG
-│ └─ diagrama-colaboracion.png
 │
-└─ README.md
+└─ readme.md
 ```
 
 # Diagramas
