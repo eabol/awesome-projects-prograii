@@ -1,9 +1,11 @@
-public class Drinks extends Product{
+package Merchantable;
+
+public class Drinks extends Product {
     private boolean alcohol;
     private double milimeters;
 
-    public Drinks( String name, double price, int[] amount, boolean alcohol, double milimeters) {
-        super( name, price, amount);
+    public Drinks(String name, float price, int id, int units, boolean alcohol, double milimeters) {
+        super(name, price, id, units);
         this.alcohol = alcohol;
         this.milimeters = milimeters;
     }
