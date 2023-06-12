@@ -1,4 +1,6 @@
-public abstract class DirectMovement extends entityInMovement{
+package WorkinProgress;
+
+public abstract class DirectMovement extends entityInMovement {
 
     protected int movingdirection;
 

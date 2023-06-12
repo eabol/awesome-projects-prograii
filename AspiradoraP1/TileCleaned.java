@@ -1,5 +1,4 @@
-import java.util.Random;
-public class TileCleaned implements Tiles{
+public class TileCleaned implements Tile {
 
     private int levelofDirt;
 

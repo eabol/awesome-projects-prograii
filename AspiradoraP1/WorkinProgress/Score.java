@@ -1,3 +1,5 @@
+package WorkinProgress;
+
 public class Score {
     private int totalSteps;
     private int totalDirt;

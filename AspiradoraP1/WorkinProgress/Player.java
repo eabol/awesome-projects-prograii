@@ -1,3 +1,5 @@
+package WorkinProgress;
+
 public class Player {
 	private int direction;
 	private int x;

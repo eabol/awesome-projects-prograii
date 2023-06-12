@@ -1,3 +1,7 @@
+package WorkinProgress;
+
+import WorkinProgress.entityInMovement;
+
 import java.util.Random;
 public abstract class RandomMovement extends entityInMovement {
     private Random randomnumber;

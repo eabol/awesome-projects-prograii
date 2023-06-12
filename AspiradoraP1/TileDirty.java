@@ -1,4 +1,4 @@
-public class TileDirty implements Tiles{
+public class TileDirty implements Tile {
     private int levelofDirt;
 
     public TileDirty(int levelofDirt){

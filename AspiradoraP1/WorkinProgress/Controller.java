@@ -1,7 +1,11 @@
+package WorkinProgress;
+
+import WorkinProgress.Board;
+
 public class Controller {
 
-    private board board;
-    private vacuumCleaner vacuumCleaner;
+    private Board board;
+    private VacuumCleaner vacuumCleaner;
 
     private RandomMovement randomMovement;
 
@@ -18,7 +22,7 @@ public class Controller {
 		boolean checkmovementboolean;
 
         public void detectnobattery(){
-            battery = 100;
+            maxBattery = 100;
 
 
     }
