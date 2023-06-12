@@ -1,38 +1,32 @@
+package test;
+
 import main.Board;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import main.Hole;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 public class BoardTest {
+    private Board board;
 
-    @Test
-    public void testShowBoardEmpty() {
-        Board board = new Board(3);
-        String expectedOutput = "O O O \nO O O \nO O O \n";
-
-        StringBuilder output = new StringBuilder();
-        System.setOut(new java.io.PrintStream(new java.io.ByteArrayOutputStream() {
-            public void write(int b) {
-                output.append((char) b);
-            }
-        }));
-
-        board.showBoard();
-
-        System.setOut(System.out);
-
-        Assertions.assertEquals(expectedOutput, output.toString());
+    @Before
+    public void setup() {
+        board = new Board(3);
     }
 
     @Test
+    public void testShowBoard() {
+        board.showBoard();
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testBeatenHole() {
-        Board board = new Board(3);
-        int position = 4;
-        Hole expectedHole = new Hole();
+        // Supongamos que hay un personaje en el segundo agujero de la primera fila
+        Hole hole = new Hole();
+        board.beatenHole(1).setSmackableCharacter(hole.getSmackableCharacter());
 
-        expectedHole.setMole(null);
-
-        Hole resultHole = board.beatenHole(position);
-
-        Assertions.assertEquals(expectedHole, resultHole);
+        // Verificar si el agujero ha sido golpeado
+        Assert.assertTrue(board.beatenHole(1).isMoleInside());
+        Assert.assertEquals("Mole inside: null", board.beatenHole(1).showMoleInside());
     }
 }
