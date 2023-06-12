@@ -21,8 +21,8 @@ public class LightHandler {
         Graphics2D graphics2d = (Graphics2D) darknessFilter.getGraphics();
 
         Area screenArea = new Area(new Rectangle2D.Double(0, 0, gameWindow.screenWidth, gameWindow.screenHeight));
-        int screenCenterX = gameWindow.screenWidth / 2;
-        int screenCenterY = gameWindow.screenHeight / 2;
+        int screenCenterX = (gameWindow.screenWidth / 2) - 15;
+        int screenCenterY = (gameWindow.screenHeight / 2) - 10;
 
         double circleX = screenCenterX - (circleSize / 2);
         double circleY = screenCenterY - (circleSize / 2);
@@ -33,11 +33,17 @@ public class LightHandler {
 
         screenArea.subtract(lightArea);
 
-        graphics2d.setColor(new Color(0, 0, 0, 0));
+        graphics2d.setColor(new Color(0, 0, 0, 0.95f));
 
         graphics2d.fill(screenArea);
 
         graphics2d.dispose();
+
+    }
+
+    public void draw(Graphics2D graphics2d) {
+        graphics2d.drawImage(darknessFilter, 0, 0, null);
+
     }
 
 }
