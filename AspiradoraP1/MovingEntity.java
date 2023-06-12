@@ -1,4 +1,4 @@
-
+package vacuum;
 
 public abstract class MovingEntity{
 
@@ -6,13 +6,16 @@ public abstract class MovingEntity{
     int xCoordinate;
     int yCoordinate;
 
+    boolean automated;
+
     public MovingEntity(){
 
     }
-    public MovingEntity(int id, int xCoordinate, int yCoordinate) {
+    public MovingEntity(int id, int xCoordinate, int yCoordinate, boolean automated) {
         this.id = id;
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;
+        this.automated = automated;
     }
 
     protected void RMovement(){
@@ -23,6 +26,20 @@ public abstract class MovingEntity{
         this.xCoordinate = this.xCoordinate + X[direction];
         this.yCoordinate = this.yCoordinate + Y[direction];
 
+
+    }
+
+
+    protected void DMovement(){
+
+        System.out.println("Elija direccion");
+        int[] X={0, 1, 1, 1, 0, -1, -1, -1};
+        int[] Y = {-1, -1, 0, 1, 1, 1, 0, -1};
+        int input = Controller.takePlayerInput();
+        int direction = Character.getNumericValue(input);
+
+        setXCoordinate(this.xCoordinate + X[direction]);
+        setYCoordinate(this.yCoordinate + Y[direction]);
 
     }
 
@@ -50,5 +67,13 @@ public abstract class MovingEntity{
         this.yCoordinate = yCoordinate;
     }
 
-    //aun abierta a cambios, pero completamente implementada a WorkinProgress.Cat y Vacuum cleaner
+    public boolean getAutomated() {
+        return automated;
+    }
+
+    public void setAutomated(boolean automated) {
+        this.automated = automated;
+    }
+
+    //aun abierta a cambios, pero completamente implementada a Cat y Vacuum cleaner
 }
