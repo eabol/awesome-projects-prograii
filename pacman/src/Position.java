@@ -37,4 +37,8 @@ public class Position {
         return x == 0 ? 0 : x * offset;
     }
 
+    public static boolean  isEqual(Position position1, Position position2){
+        return (position1.getX() == position2.getX() && position1.getY() == position2.getY());
+    }
+
 }

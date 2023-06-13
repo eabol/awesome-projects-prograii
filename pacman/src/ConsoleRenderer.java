@@ -115,8 +115,10 @@ public class ConsoleRenderer implements Renderer {
     }
     
     private void printCharacter(Ghost ghost, Position previousPosition) throws IOException {
+        if(game.isRunning()){
         printCell(previousPosition);
         printCharacter(ghost);
+        }
     }
 
     private void printCell(Position position) throws IOException {
@@ -144,7 +146,13 @@ public class ConsoleRenderer implements Renderer {
         TextGraphics textGraphics = this.screen.newTextGraphics();
         textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
         textGraphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
+        
+        // Print score
         textGraphics.putString(0, game.getMaze().getHeight(), "Score: " + game.getScore(), SGR.BOLD);
+        
+        // Print lives
+        
+        textGraphics.putString(game.getMaze().getWidth() * offset - 10, game.getMaze().getHeight(), "Lives: " + game.getLives(), SGR.BOLD);
     }
 
     private void printStartScreen() throws IOException {
@@ -160,6 +168,7 @@ public class ConsoleRenderer implements Renderer {
     public void printWinScreen() throws Exception {
         game.stop();
         screen.clear();
+        refresh();
         TextGraphics textGraphics = screen.newTextGraphics();
         textGraphics.setBackgroundColor(TextColor.ANSI.YELLOW_BRIGHT);
         textGraphics.setForegroundColor(TextColor.ANSI.BLACK_BRIGHT);
