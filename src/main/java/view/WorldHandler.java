@@ -5,6 +5,7 @@ import core.character.KeyHandler;
 import core.character.PlayerDrawer;
 import core.character.Player;
 import core.collision.CollisionChecker;
+import enumerators.GameState;
 import view.assets.ImageLoader;
 import view.assets.ImagePainter;
 import view.enviroment.LightHandler;
@@ -17,6 +18,7 @@ public class WorldHandler extends JPanel implements Runnable {
         private Time time;
         final int maxScreenRow = 10;
         final int maxScreenCol = 20;
+        public static GameState gameState = GameState.RUNNING;
         public final int screenWidth = maxScreenCol * originalSize;
         public final int screenHeight = maxScreenRow * originalSize;
         public final int characterWidth = 48;
@@ -82,8 +84,6 @@ public class WorldHandler extends JPanel implements Runnable {
                                 arrayTransform[i][j] = String.valueOf(arrayToTransform[i][j]);
                         }
                 }
-                // String[][][] worldData = { arrayTransform };
-                /* this.world = new World(worldData); */
                 this.setPreferredSize(new Dimension(screenWidth, screenHeight));
                 this.setBackground(Color.black);
                 this.setDoubleBuffered(true);
@@ -132,18 +132,34 @@ public class WorldHandler extends JPanel implements Runnable {
                 g2d.drawString(time.getTime(), padding, padding);
         }
 
+        private void drawFinalGame(Graphics2D g2d) {
+                int padding = 300;
+                g2d.setColor(Color.yellow);
+                g2d.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+                g2d.drawString("Fin Del Juego!", padding, padding);
+        }
+
         public void update() {
-                player.update();
-                time.advanceTime();
+                if (gameState == GameState.RUNNING) {
+                        player.update();
+                        time.advanceTime();
+                        this.lightHandler = new LightHandler(this, time);
+                }
         }
 
         public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2d = (Graphics2D) g;
-                tileManager.draw(g2d);
-                lightHandler.draw(g2d);
-                drawTime(g2d);
-                imagePainter.paintPlayer(g2d, (Player) player, characterWidth, characterHeight);
+                if (gameState == GameState.GAME_OVER) {
+                        drawFinalGame(g2d);
+                        return;
+                } else {
+                        tileManager.draw(g2d);
+                        lightHandler.draw(g2d);
+                        drawTime(g2d);
+                        imagePainter.paintPlayer(g2d, (Player) player, characterWidth, characterHeight);
+                }
+
                 g2d.dispose();
         }
 }
