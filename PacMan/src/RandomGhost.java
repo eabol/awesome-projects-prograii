@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class RandomGhost extends Ghost {
+public class RandomGhost extends Ghost implements Droweable{
     private Random random;
 
     public RandomGhost(int x, int y) {
@@ -8,7 +8,7 @@ public class RandomGhost extends Ghost {
         random = new Random();
     }
     @Override
-    public void movement(PacMan pacman,Map map) {
+    public void move(PacMan pacman, Map map) {
         int direction = random.nextInt(4);
 
         if (direction == 0) {
@@ -27,7 +27,12 @@ public class RandomGhost extends Ghost {
     }
 
     @Override
-    public void movement(String movimiento,Map map) {
+    public void move(String movimiento, Map map) {
+
+    }
+
+    @Override
+    public void Draw() {
 
     }
 }
