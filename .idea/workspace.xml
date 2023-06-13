@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a5c4d4-514a-49a0-9a24-c1ac01bf52f6" name="Changes" comment="fix: edit structure project">
+    <list default="true" id="48a5c4d4-514a-49a0-9a24-c1ac01bf52f6" name="Changes" comment="feature: portal terrain">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Time.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Time.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/tile/TerrainMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/tile/TerrainMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enumerators/TerrainType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enumerators/TerrainType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/TileManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,6 +110,7 @@
         <item itemvalue="Application.main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -145,7 +144,21 @@
       <option name="project" value="LOCAL" />
       <updated>1686505242193</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feature: world clock display">
+      <created>1686668380275</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1686668380275</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feature: portal terrain">
+      <created>1686682950693</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686682950693</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +177,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix: edit structure project" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: edit structure project" />
+    <MESSAGE value="feature: world clock display" />
+    <MESSAGE value="feature: portal terrain" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: portal terrain" />
   </component>
 </project>

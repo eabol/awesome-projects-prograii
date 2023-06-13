@@ -22,7 +22,7 @@ public class TileManager {
 
     public TileManager(WorldHandler gameWindow) {
         this.gameWindow = gameWindow;
-        this.tiles = new Tile[10];
+        this.tiles = new Tile[11];
         this.mapTileNum = new int[gameWindow.getMaxWorldCol()][gameWindow.getMaxWorldRow()];
         loadTileImages();
         parseMaze("./src/main/resources/mazes/level2.txt");
@@ -75,7 +75,10 @@ public class TileManager {
                     TerrainType.WALL);
             tiles[8] = new Tile(ImageIO.read(getClass().getResourceAsStream("/TileImages/tree.png")), true,
                     TerrainType.TREE);
-
+            tiles[9] = new Tile(ImageIO.read(getClass().getResourceAsStream("/TileImages/water.png")), false,
+                    TerrainType.PORTALEND);
+            tiles[10] = new Tile(ImageIO.read(getClass().getResourceAsStream("/TileImages/sand.png")), false,
+                    TerrainType.PORTALTRANSPORT);
         } catch (IOException e) {
             e.printStackTrace();
         }

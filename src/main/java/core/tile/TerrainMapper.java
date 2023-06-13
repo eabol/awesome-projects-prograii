@@ -19,7 +19,8 @@ public class TerrainMapper {
         terrainMap.put(7, TerrainType.TALLGRASS);
         terrainMap.put(8, TerrainType.WALL);
         terrainMap.put(9, TerrainType.TREE);
-        terrainMap.put(10, TerrainType.PORTAL);
+        terrainMap.put(10, TerrainType.PORTALEND);
+        terrainMap.put(11, TerrainType.PORTALTRANSPORT);
     }
 
     public TerrainType mapTerrainType(int number) {

@@ -10,5 +10,6 @@ public enum TerrainType {
     TALLGRASS,
     WALL,
     TREE,
-    PORTAL;
+    PORTALEND,
+    PORTALTRANSPORT;
 }
