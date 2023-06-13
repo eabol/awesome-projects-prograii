@@ -7,7 +7,7 @@ public class Hole extends Space {
     private SmackableCharacter character;
 
     public Hole() {
-        this.aspect = "O";
+        this.aspect = "0";
         this.character = null;
     }
 
@@ -17,7 +17,7 @@ public class Hole extends Space {
     }
 
     public String getAspect() {
-        return aspect;
+        return character == null ? aspect : character.getAvatar();
     }
 
     public void setAspect(String aspect) {

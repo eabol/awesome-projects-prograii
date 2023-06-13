@@ -6,10 +6,10 @@ import java.util.List;
 public class Board {
     private List<List<Hole>> holes;
 
-    public Board(int rows, int columns) {
+    public Board(int rows, int columns, boolean normal) {
         holes = new ArrayList<>();
         for (int i = 0; i < rows; i++) {
-            addRowOfHoles(columns);
+            addRowOfHoles(columns, normal);
         }
     }
 
@@ -45,10 +45,22 @@ public class Board {
         return 0;
     }
 
-    private void addRowOfHoles(int columns) {
+    private void addRowOfHoles(int columns, boolean normal) {
         List<Hole> row = new ArrayList<>();
+        Luck luck = new Luck();
         for (int i = 0; i < columns; i++) {
-            row.add(new Hole());
+            if (!normal)
+            {
+                if (luck.getPositiveLuck()) {
+                    row.add(new Hole(new Mole()));
+                } else {
+                    row.add(new Hole());
+                }
+            }
+            else {
+                row.add(new Hole());
+            }
+
         }
         holes.add(row);
     }

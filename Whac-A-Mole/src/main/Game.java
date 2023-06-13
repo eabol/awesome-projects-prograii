@@ -19,7 +19,7 @@ public class Game implements View {
     }
 
     public Game() {
-        this(new Board(10, 10), null);
+        this(new Board(10, 10, false), null);
         turn = new Turn();
     }
 
@@ -68,7 +68,7 @@ public class Game implements View {
     }
 
     public static void main(String[] args) {
-        Board board = new Board(3, 4);
+        Board board = new Board(3, 4, false);
         Game game = new Game(board);
         game.showMenu();
         game.startToPlay();

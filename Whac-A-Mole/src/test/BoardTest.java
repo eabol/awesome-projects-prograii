@@ -2,18 +2,15 @@ package test;
 
 import main.Board;
 import main.Hole;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 public class BoardTest {
     private Board board;
 
     @org.junit.jupiter.api.Test
     public void testGetHole() {
-        Board board = new Board(3, 4);
+        Board board = new Board(3, 4, false);
 
         // Verificar que se obtenga el agujero correcto en diferentes posiciones
         Hole hole1 = board.getHole(0, 0);
@@ -33,7 +30,7 @@ public class BoardTest {
 
     @org.junit.jupiter.api.Test
     public void testIsValidPosition() {
-        Board board = new Board(3, 4);
+        Board board = new Board(3, 4, false);
 
         // Verificar que las posiciones dentro de los límites sean consideradas válidas
         Assertions.assertTrue(board.isValidPosition(0, 0));
@@ -47,24 +44,13 @@ public class BoardTest {
 
     @org.junit.jupiter.api.Test
     public void testGetRowCount() {
-        Board board = new Board(3, 4);
+        Board board = new Board(3, 4, false);
         Assertions.assertEquals(3, board.getRowCount());
     }
 
     @org.junit.jupiter.api.Test
     public void testGetColumnCount() {
-        Board board = new Board(3, 4);
+        Board board = new Board(3, 4, false);
         Assertions.assertEquals(4, board.getColumnCount());
-    }
-
-    static class LuckTest {
-
-        @Test
-        void getPositiveLuck() {
-        }
-
-        @Test
-        void getNegativeLuck() {
-        }
     }
 }

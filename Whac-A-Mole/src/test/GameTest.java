@@ -25,14 +25,14 @@ public class GameTest {
         System.setOut(printStream);
 
         // Crear instancia de Game y ejecutar el juego simulado
-        Board board = new Board(3, 4);
+        Board board = new Board(3, 4, true);
         Game game = new Game(board, new Scanner(System.in));
         game.startToPlay();
 
         // Verificar la salida esperada
-        String expectedOutput = "0 0 0 0" + System.lineSeparator() +
-                "0 0 0 0" + System.lineSeparator() +
-                "0 0 0 0" + System.lineSeparator() +
+        String expectedOutput = "0 0 0 0 " + System.lineSeparator() +
+                "0 0 0 0 " + System.lineSeparator() +
+                "0 0 0 0 " + System.lineSeparator() +
                 "Select a hole to hit:" + System.lineSeparator() +
                 "Hit at position 0" + System.lineSeparator() +
                 "Do you want to continue playing? (Y/N)" + System.lineSeparator() +
