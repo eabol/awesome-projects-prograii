@@ -1,4 +1,4 @@
-package game;
+package main.game;
 public enum Direction {
     UP,
     DOWN,

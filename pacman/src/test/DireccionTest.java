@@ -1,4 +1,4 @@
-package pacman.test;
+package pacman.src.test;
 
 import org.junit.Assert;
 import org.junit.Test;
