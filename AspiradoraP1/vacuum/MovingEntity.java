@@ -26,8 +26,13 @@ public abstract class MovingEntity implements Entity{
 
     }
 
-
-    protected void DMovement(VacuumCleaner P1){
+    public boolean checkCollision(  int map[][]){
+        if (map[this.xCoordinate][this.yCoordinate]>=7){
+            System.out.println("There is an object, you cant clean over there!");
+        }
+        return true;
+    }
+     public void DMovement(VacuumCleaner P1,Board map1){
         System.out.println("-------------Choose a direction to take!-------------");
         System.out.println("--   (0) Stay       (1) Up         (2) Down        --");
         System.out.println("--   (3) Left       (4) Right      (5) Up-left     --");
@@ -38,11 +43,18 @@ public abstract class MovingEntity implements Entity{
         int input = PlayerInput.takePlayerInput();
         int direction = Character.getNumericValue(input);
 
-        setXCoordinate(this.xCoordinate + X[direction]);
-        setYCoordinate(this.yCoordinate + Y[direction]);
-        P1.setSteps(P1.getSteps()+1);
-        P1.setCurrentBattery(P1.getCurrentBattery()-1);
-    }
+
+
+            if (checkCollision( map1.map)){
+                setXCoordinate(this.xCoordinate + X[direction]);
+                setYCoordinate(this.yCoordinate + Y[direction]);
+                P1.setSteps(P1.getSteps() + 1);
+                P1.setCurrentBattery(P1.getCurrentBattery() - 1);
+            }
+        }
+
+
+
 
     public int getXCoordinate() {
         return xCoordinate;

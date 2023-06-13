@@ -5,12 +5,12 @@ public class Controller {
 
 
 
-    public static void gameKeys(VacuumCleaner P1) {
+    public static void gameKeys(VacuumCleaner P1, Board map1) {
         switch (PlayerInput.takePlayerInput()) {
             case 'r', 'R' -> P1.setAutomated(!P1.getAutomated());
             case 'f', 'F' -> System.out.println("el juego terminara");
             case 'e', 'E' -> P1.emptyBag();
-            case 'm', 'M' -> P1.DMovement(P1);
+            case 'm', 'M' -> P1.DMovement(P1,map1);
             default -> {
                 if (P1.getAutomated()) {
                     P1.RMovement();
