@@ -2,7 +2,6 @@ package view;
 
 import core.tile.Tile;
 import enumerators.TerrainType;
-import view.enviroment.LightHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -12,7 +11,6 @@ import java.io.IOException;
 
 public class TileManager {
     private WorldHandler gameWindow;
-    private LightHandler lightHandler;
 
     public Tile[] getTiles() {
         TerrainType terrainType;
@@ -26,7 +24,6 @@ public class TileManager {
         this.gameWindow = gameWindow;
         this.tiles = new Tile[11];
         this.mapTileNum = new int[gameWindow.getMaxWorldCol()][gameWindow.getMaxWorldRow()];
-        this.lightHandler = new LightHandler(gameWindow, 350);
         loadTileImages();
         parseMaze("./src/main/resources/mazes/level2.txt");
     }
