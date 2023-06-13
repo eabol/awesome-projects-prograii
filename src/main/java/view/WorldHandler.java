@@ -147,6 +147,7 @@ public class WorldHandler extends JPanel implements Runnable {
         public void update() {
                 player.update();
                 time.advanceTime();
+                this.lightHandler = new LightHandler(this, time);
         }
 
         public void paintComponent(Graphics g) {
