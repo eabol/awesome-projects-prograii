@@ -1,3 +1,7 @@
+package WorkinProgress;
+
+import WorkinProgress.Tile;
+
 public class TileCleaned implements Tile {
 
     private int levelofDirt;

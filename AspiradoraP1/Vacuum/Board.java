@@ -1,4 +1,6 @@
-package vacuum;
+package Vacuum;
+
+import java.util.Random;
 class Board {
     private final int[][] map;
     private final int width;
@@ -55,6 +57,27 @@ class Board {
             System.out.println();
         }
     }
+    public void addFurnitures(){
+        Random random = new Random();
+
+        //Sofa
+        int sofaX = random.nextInt(height);
+        int sofaY = random.nextInt(width-2);
+        map[sofaX][sofaY] = 7;
+        map[sofaX][sofaY+1] = 8;
+
+        //Table
+        int tableX = random.nextInt(height-3);
+        int tableY = random.nextInt(width-3);
+        map[tableX][tableY] = 9;
+        map[tableX][tableY+1] = 10;
+        map[tableX][tableY+2] = 11;
+        map[tableX+1][tableY] = 12;
+        map[tableX+1][tableY+1] = 13;
+
+
+
+    }
 
     public String getTileSkin(int x, int y) {
         return switch (map[x][y]) {
@@ -63,8 +86,8 @@ class Board {
             case 2 -> "***";    //Dirt2
             case 3 -> "OOO";    //Dirt3
             case 4 -> "000";    //Dirt4
-            case 5 -> "(O)";    //VacuumCleaner
-            case 6 -> "\"^\"";  //Cat
+            case 5 -> "(O)";    //Vacuum.VacuumCleaner
+            case 6 -> "\"^\"";  //Vacuum.Cat
             case 7 -> "[##";    //Sofa.left
             case 8 -> "##]";    //Sofa.right
             case 9 -> "+--";    //Table.leftCorner
@@ -88,7 +111,7 @@ class Board {
 
     public int getTileDirtyLevel(int x, int y){
         if(!isValidToMove(x, y)){
-            throw new IllegalArgumentException("Invalid Tile Coordinates");
+            throw new IllegalArgumentException("Invalid WorkinProgress.Tile Coordinates");
 
         }
         return map[x][y];

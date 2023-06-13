@@ -1,4 +1,7 @@
-package vacuum;
+package Vacuum;
+
+import Vacuum.Board;
+import Vacuum.Cat;
 
 import java.util.Scanner;
 public class Controller {
@@ -10,6 +13,7 @@ public class Controller {
 
         Board map = new Board(10,25);
         map.generateMap();
+
 
         for (int i=0;i<=25;i++){
 
