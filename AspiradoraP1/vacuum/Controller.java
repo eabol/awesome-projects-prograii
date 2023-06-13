@@ -3,7 +3,7 @@ package vacuum;
 import java.util.Scanner;
 public class Controller {
 
-    public static char takePlayerInput(){
+    public static char takePlayerInput(){//en revision 
         Scanner input = new Scanner(System.in);
         return input.nextLine().charAt(0);
     }
