@@ -76,9 +76,9 @@ public class TileManager implements TilesDistribution {
                     TerrainType.WALL);
             tiles[8] = new Tile(ImageIO.read(getClass().getResourceAsStream("/TileImages/tree.png")), true,
                     TerrainType.TREE);
-            tiles[9] = new Tile(ImageIO.read(getClass().getResourceAsStream("/TileImages/water.png")), false,
+            tiles[9] = new Tile(ImageIO.read(getClass().getResourceAsStream("/TileImages/endportal.png")), false,
                     TerrainType.PORTALEND);
-            tiles[10] = new Tile(ImageIO.read(getClass().getResourceAsStream("/TileImages/sand.png")), false,
+            tiles[10] = new Tile(ImageIO.read(getClass().getResourceAsStream("/TileImages/portal.png")), false,
                     TerrainType.PORTALTRANSPORT);
         } catch (IOException e) {
             e.printStackTrace();
