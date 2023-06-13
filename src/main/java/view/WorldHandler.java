@@ -82,8 +82,6 @@ public class WorldHandler extends JPanel implements Runnable {
                                 arrayTransform[i][j] = String.valueOf(arrayToTransform[i][j]);
                         }
                 }
-                // String[][][] worldData = { arrayTransform };
-                /* this.world = new World(worldData); */
                 this.setPreferredSize(new Dimension(screenWidth, screenHeight));
                 this.setBackground(Color.black);
                 this.setDoubleBuffered(true);
