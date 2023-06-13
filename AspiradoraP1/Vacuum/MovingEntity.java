@@ -1,8 +1,6 @@
-package Vacuum;
+package vacuum;
 
-
-
-public abstract class MovingEntity  {
+public abstract class MovingEntity implements Entity{
 
     int id;
     int xCoordinate;
@@ -19,7 +17,7 @@ public abstract class MovingEntity  {
 
     protected void RMovement(){
         int[] X={0, 0, -1, 1, -1, 1, -1, -1};
-        int[] Y = {1, -1, 0, 0, 1, 1, -1, -1};
+        int[] Y = {-1, 1, 0, 0, -1, -1, 1, 1};
         int direction = (int)(Math.random()*8);
 
         this.xCoordinate = this.xCoordinate + X[direction];
@@ -36,7 +34,7 @@ public abstract class MovingEntity  {
         System.out.println("--   (6) Up-right   (7) Down-left  (8) Down-right  --");
         System.out.println("-------------Choose a direction to take!-------------");
         int[] X={0, 0, 0, -1, 1, -1, 1, -1, -1};
-        int[] Y = {0, 1, -1, 0, 0, 1, 1, -1, -1};
+        int[] Y = {0, -1, 1, 0, 0, -1, -1, 1, 1};
         int input = Controller.takePlayerInput();
         int direction = Character.getNumericValue(input);
 
@@ -44,14 +42,6 @@ public abstract class MovingEntity  {
         setYCoordinate(this.yCoordinate + Y[direction]);
         P1.setSteps(P1.getSteps()+1);
         P1.setCurrentBattery(P1.getCurrentBattery()-1);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getXCoordinate() {
@@ -78,5 +68,5 @@ public abstract class MovingEntity  {
         this.automated = automated;
     }
 
-    //aun abierta a cambios, pero completamente implementada a Vacuum.Cat y Vacuum cleaner
+    //aun abierta a cambios, pero completamente implementada a Cat y Vacuum cleaner
 }

@@ -1,6 +1,6 @@
-package Vacuum;
+package vacuum;
 
-public class Cat extends MovingEntity {
+public class Cat extends MovingEntity implements Entity{
     Boolean isPresent;
 
     public Cat(int id, int xCoordinate, int yCoordinate, boolean automated, Boolean isPresent) {
@@ -17,4 +17,18 @@ public class Cat extends MovingEntity {
         }
     }
 
+    public void checkCat(Cat C1){
+        if (C1.isPresent) {
+            System.out.println("the cat's current coordinates: "
+                    + C1.getXCoordinate() + "," + C1.getYCoordinate());
+        }
+    }
+
+    public Boolean getPresent() {
+        return isPresent;
+    }
+
+    public void setPresent(Boolean present) {
+        isPresent = present;
+    }
 }
