@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48a5c4d4-514a-49a0-9a24-c1ac01bf52f6" name="Changes" comment="fix: edit structure project">
-      <change afterPath="$PROJECT_DIR$/src/main/java/enumerators/Directions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enumerators/TransportTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/assets/ImageLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/assets/ImagePainter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/character/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/character/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Time.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Time.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/tile/TerrainMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/tile/TerrainMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enumerators/TerrainType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enumerators/TerrainType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="veronika" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -111,6 +108,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.main" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.main" />
       </list>

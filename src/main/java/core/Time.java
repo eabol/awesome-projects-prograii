@@ -4,6 +4,8 @@ public class Time {
     private int hours;
     private int minutes;
     private int tick;
+    private int timeCooldown = 0;
+    private final int timeCooldownMax = 60;
 
     public Time(int hours, int minutes, int tick) {
         setTick(tick);
@@ -31,14 +33,20 @@ public class Time {
     }
 
     public void advanceTime() {
-        minutes += tick;
-        while (minutes >= 60) {
-            minutes -= 60;
-            hours = (hours + 1) % 24;
+        if (timeCooldown < timeCooldownMax) {
+            timeCooldown ++;
+        } else {
+            timeCooldown = 0;
+            minutes += tick;
+            while (minutes >= 60) {
+                minutes -= 60;
+                hours = (hours + 1) % 24;
+            }
         }
     }
 
     public boolean isNight() {
+        //System.out.println("hora: " +hours+ " minuto: " +minutes);
         return (hours > 20 || hours < 6);
     }
 

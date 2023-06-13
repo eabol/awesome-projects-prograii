@@ -123,7 +123,12 @@ public class WorldHandler extends JPanel implements Runnable {
                         }
                 }
         }
-
+        private void drawTime(Graphics2D g2d) {
+                int padding = 50;
+                g2d.setColor(Color.yellow);
+                g2d.setFont(new Font("TimesRoman", Font.PLAIN, 20));
+                g2d.drawString(time.getTime(), padding, padding);
+        }
         public void update() {
                 player.update();
                 time.advanceTime();
@@ -134,6 +139,7 @@ public class WorldHandler extends JPanel implements Runnable {
                 Graphics2D g2d = (Graphics2D) g;
                 tileManager.draw(g2d);
                 lightHandler.draw(g2d);
+                drawTime(g2d);
                 imagePainter.paintPlayer(g2d, (Player) player, characterWidth, characterHeight);
                 g2d.dispose();
         }
