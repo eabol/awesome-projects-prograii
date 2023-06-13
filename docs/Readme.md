@@ -6,7 +6,22 @@ El proyecto es una réplica del famoso juego "Whac-A-Mole", que consiste en golp
 --------------------
 Funcionalidades
 --------------------
-
+- **Mostrar el tablero:**
+Se muestra el tablero de juego.
+- **Mostrar el agujero golpeado:**
+Se muestra si el agujero golpeado contenía o no un topo adentro.
+- **Mostrar un menu:**
+Se muestra el menu principal del juego.
+- **Empezar el juego:**
+El juego se ejecuta.
+- **Mostrar si hay un topo dentro del agujero:**
+Se verifica si hay o no un topo dentro del agujero antes de ser golpeado.
+- **Crear y cambiar el nombre a un topo:**
+Se congifura el topo.
+- **Contar los fallos:**
+Se cuentan cuantas veces se falla el golpe y se golpea un agujero vacío
+- **Contar los aciertos:**
+Contar a cuantos topos se han golpeado.
 --------------------
 Diagrama de clases
 --------------------
@@ -14,11 +29,19 @@ Diagrama de clases
 --------------------
 Capturas de pantalla
 --------------------
-
+![showBoard](showBoard.png)
+![showBeatenHole](showBeatenHole.png)
+![showMenu](showMenu.png)
+![startGame](startGame.png)
+![showMoleInside](showMoleInside.png)
+![createMole](createMole.png)
+![countFails](countFails.png)
+![countSuccess](countSuccess.png)
 --------------------
 Instrucciones de uso
 --------------------
-
+- **En InteliJ IDEA:** Ejecutar el main del proyecto
+- **Desde consola:** Desde consola, irse  ala ruta en la que está alojada el proyecto y ejecutar los comandos "javac [nombre del archivo]" y luego "java [nombre del archivo]"
 --------------------
 Autores
 --------------------
