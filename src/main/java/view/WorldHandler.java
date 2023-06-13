@@ -95,6 +95,7 @@ public class WorldHandler extends JPanel implements Runnable {
                 gameThread = new Thread(this);
                 gameThread.start();
                 this.time = new Time(5, 0, 10);
+                lightHandler = new LightHandler(this, time);
         }
 
         @Override
@@ -134,7 +135,6 @@ public class WorldHandler extends JPanel implements Runnable {
         public void update() {
                 player.update();
                 time.advanceTime();
-                lightHandler = new LightHandler(this, time);
         }
 
         public void paintComponent(Graphics g) {
