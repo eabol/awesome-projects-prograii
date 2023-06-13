@@ -1,4 +1,4 @@
-# IMPORTANT
+# DISCLAIMER
 **Check this repository (https://github.com/Xm3Ga/progra2-22-23/tree/proyectoFinalProgra) to see all changes made to this project! We originally didn't fork the correct repository and now we are adding the whole project to this new fork. WE DEEPLY APOLOGISE FOR THE CONFUSION/INCONVENIENCE**
 
 
