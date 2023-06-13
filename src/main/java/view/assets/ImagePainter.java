@@ -20,7 +20,7 @@ public class ImagePainter {
     }
 
     public void paintPlayer(Graphics2D g2, Player player, int characterWidth, int characterHeight) {
-        String[] directions = {"up1", "up2", "down1", "down2", "left1", "left2", "right1", "right2"};
+        String[] directions = { "up1", "up2", "down1", "down2", "left1", "left2", "right1", "right2" };
         String imagePath;
 
         switch (player.getCurrentTransport()) {
@@ -31,16 +31,24 @@ public class ImagePainter {
             default -> throw new IllegalStateException("Unexpected value: " + player.getCurrentTransport());
         }
 
-        for(String direction : directions) {
+        for (String direction : directions) {
             String fullPath = imagePath + direction + ".png";
             imageMap.computeIfAbsent(fullPath, k -> imageLoader.loadImage(fullPath));
         }
 
         BufferedImage image = switch (player.getDirection()) {
-            case UP -> (player.getPosition().y % ANIMATION_CYCLE_LENGTH < ANIMATION_FRAME_THRESHOLD) ? imageMap.get(imagePath + "up1.png") : imageMap.get(imagePath + "up2.png");
-            case DOWN -> (player.getPosition().y % ANIMATION_CYCLE_LENGTH < ANIMATION_FRAME_THRESHOLD) ? imageMap.get(imagePath + "down1.png") : imageMap.get(imagePath + "down2.png");
-            case LEFT -> (player.getPosition().x % ANIMATION_CYCLE_LENGTH < ANIMATION_FRAME_THRESHOLD) ? imageMap.get(imagePath + "left1.png") : imageMap.get(imagePath + "left2.png");
-            case RIGHT -> (player.getPosition().x % ANIMATION_CYCLE_LENGTH < ANIMATION_FRAME_THRESHOLD) ? imageMap.get(imagePath + "right1.png") : imageMap.get(imagePath + "right2.png");
+            case UP -> (player.getPosition().y % ANIMATION_CYCLE_LENGTH < ANIMATION_FRAME_THRESHOLD)
+                    ? imageMap.get(imagePath + "up1.png")
+                    : imageMap.get(imagePath + "up2.png");
+            case DOWN -> (player.getPosition().y % ANIMATION_CYCLE_LENGTH < ANIMATION_FRAME_THRESHOLD)
+                    ? imageMap.get(imagePath + "down1.png")
+                    : imageMap.get(imagePath + "down2.png");
+            case LEFT -> (player.getPosition().x % ANIMATION_CYCLE_LENGTH < ANIMATION_FRAME_THRESHOLD)
+                    ? imageMap.get(imagePath + "left1.png")
+                    : imageMap.get(imagePath + "left2.png");
+            case RIGHT -> (player.getPosition().x % ANIMATION_CYCLE_LENGTH < ANIMATION_FRAME_THRESHOLD)
+                    ? imageMap.get(imagePath + "right1.png")
+                    : imageMap.get(imagePath + "right2.png");
         };
 
         g2.drawImage(image, player.getPosition().x, player.getPosition().y, characterWidth, characterHeight, null);

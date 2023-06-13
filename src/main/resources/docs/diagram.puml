@@ -1,145 +1,339 @@
 @startuml "Trifuerza class diagram"
 
-package Characters {
+package main {
+    package java{
+        class Main{}
+        package core{
+            package character{
+                interface KeyListener{}
+                class KeyHandler{
+                    + inputKeyEvent: boolean
+                    - keyName: String
 
-    class Player {
-        + super()
-        + keyHandler: KeyHandler
+                    + getKeyName(): String
+                    - setKeyName(String keyName): void
+                    + keyTyped(KeyEvent e): void
+                    + keyPressed(KeyEvent e): void
+                    + keyReleased(KeyEvent e): void
+                }
+                class Player{
+                    + gameWindow: WorldHandler
+                    + keyHandler: keyHandler
+                    - currentTransport: TransportTypes
+
+                    + setDefaultValue(): void
+                    + update(): void
+                    + updatePlayerSpeed(): void
+                    + getCurrentTransport(): TransportTypes
+                    + setCurrentTransport(TransportTypes currentTransport): void
+                    + getPosition(): Point
+                    + getDirection(): Directions
+                }
+                abstract class PlayerDrawer{
+                    + worldX: int
+                    + worldY: int
+                    + speed: int
+                    + upLeft, upRIght, left1, right1, left2, left3, right2, right3, up1, up2: BufferedImage
+                    + spriteCounter: int
+                    + spriteNum: int
+                    + screenX: int
+                    + screenY: int
+                    + solidArea: Rectangle
+                    + collision: boolean
+
+                    + getScreenX(): int
+                    + getScreenY(): int
+                    + getWorldY(): int
+                    + getWorldX(): int
+                    + getSolidArea(): Rectangle
+                    + update(): void
+                    + draw(Graphics2D g2d): void
+                    
+                }
+
+                PlayerDrawer <|-- Player
+                KeyListener <-- KeyHandler : implements
+            }
+            package collision{
+                class CollisionChecker{
+                    {static} gameWindow: WorldHandler
+                    - endGameMessage: String
+
+                    + checkTile(Player player): void
+                    ~ checkCollision(Player player, int playerRightCol, int playerTopRow, int playerBottomRow): void
+                    + getPlayerTransportType(Player player, int playerRIghtCol, int playerTopRow): void
+                    + {static} getFinalGame(TerrainType currentTerrain): void
+                    + getTerrainAtPosition(int col, int row): TerrainType
+                }
+                abstract class WorldCollisions{
+                    + gameWindow: WorldHandler
+                    + playerLeftWorldX: int
+                    + playerRightWorldX: int
+                    + playerTopWorldY: int
+                    + playerBottomWorldX: int
+                    + playerLeftCol: int
+                    + playerRightCol: int
+                    + playerTopRow: int
+                    + playerBottomRow: int
+                    + tileNum1, tileNum2: int
+                    + tileNum: int
+                    
+                    + checkTile(Player player): void
+                    ~ checkCollision(Player player, int playerRIghtCol, int playerTopRow, int playerBottomRow): void
+                    + getPlayerTransportType(Player player, int playerRightCol, int playerTopRow): void
+                    + getTerraintAtPosition(int col, int row): TerrainType
+                }
+                WorldCollisions <|-- CollisionChecker
+            }
+            package tile{
+                class TerrainMapper{
+                    - terrainMap: Map<Integer, TerrainType>
+                    - type: int
+                    
+                    + mapTerrainType(int number): TerrainType
+                    + Terrain(int type): void
+                    + getType(): int
+                    
+                }
+                class Tile{
+                    + terrainType: TerrainType
+                    - image: BufferedImage
+                    + collision: boolean
+
+                    + getImage(): BufferedImage
+                    + hasCollision(): boolean
+                }
+            }
+            class Time{
+                - hours: int
+                - minutes: int
+                - tick: int
+                - timeCooldown: int
+                - timeCooldownMax: int
+
+                - setTime(): void
+                + setTick(): void
+                - isValidTime(): boolean
+                + advanceTime(): void
+                + getMomentOfDay(): String
+                + getTime(): String
+                + getHours(): int
+                + getMinutes(): int
+                - setHours(): void
+                - setMinutes(): void
+            }
+        }
+        package enumerators{
+            enum Directions{
+                UP, DOWN, LEFT, RIGHT
+            }
+            enum GameState{
+                RUNNING, GAME_OVER
+            }
+            enum TerrainType{
+                ROAD, SAND, TROUBLEDWATER, WATER, GRASS, MEDIUMGRASS, TALLGRASS, WALL, TREE,PORTALEND,PORTALTRANSPORT
+            }
+            enum TransportTypes{
+                BOAT(6), FOOT(4), HORSE(7), CARPET(5);
+                - speed: int
+                + getSpeed():int
+                + TransportTypes(int speed): void
+            }
+        }
+        package interface{
+            interface PlayerMovement{
+                + setDefaultValue(): void
+                + updatePlayerSpeed(): void
+                + getDirection(): Directions
+            }
+            interface TilesDistribution{
+                + parseMaze(String filePath): void
+                + loadTileImages(): void
+                + draw(Graphics2D g2d): void
+                + getMapTileNum(): int[][]
+            }
+        }
+        package view{
+            package assets{
+                class ImageLoader{
+                    + loadImage(String imagePath): BufferedImage
+                }
+                class ImagePainter{
+                    - imageMap: Map<String, BufferedImage>
+                    - ANIMATION_FRAME_THRESHOLD: int
+                    - ANIMATION_CYCLE_LENGTH: int
+                    - imageLoader: ImageLoader
+
+                    + paintPlayer(Graphics2D g2, Player player, int characterWidth, int characterHeight): void
+                }
+            }
+            package enviroment{
+                class LightHandler{
+                    + gameWindow: WorldHandler
+                    + darknessFilter: BufferedImage
+                    + screenArea: Area
+                    + lightArea: Area
+
+                    + draw(Graphics2D graphics2d): void
+                    + calculateAreas(WorldHandler gameWindow, int circleSize): void
+                    - createLightning(Area screenArea, Area lightArea, Graphics2D graphics2d): void
+                }
+            }
+            class TileManager{
+                - gameWindow: WorldHandler
+                + tiles: Tile[]
+                + mapTileNum: int[][]
+
+                + parseMaze(String filePath): void
+                + loadTileImages(): void
+                + draw(Graphics2D g2d): void
+                + getMapTileNum(): int[][]
+            }
+            class WorldHandler{}
+        }
     }
-
-    class NPC {
-        + super()
-    }
-
-    class KeyHandler {
-        + onKeyPressed(e:KeyListener) : void
-    }
-
-    interface Movement {
-        + moveUp() : void
-        + moveDown() : void
-        + moveLeft() : void
-        + moveRight() : void
-    }
-
-    abstract class Character {
-        + transport: Transport
-        + actualTerrain: Terrain
-        + move() : void
-        - ableToWalkBy(terrain:Terrain) : boolean
-    }
-
-    interface KeyEventListener
-
-    Character <|-- Player
-    Character <|-- NPC
-
-    Player <-- KeyHandler : use
-
-    abstract class Character implements Movement
-    class KeyHandler implements KeyEventListener
-
-
 }
 
-package Terrains {
-    class Terrain {
-        + position: Position
-        + terrainType: TerrainTypes
-        + Terrain(position:Position, terrainType:String)
-    }
+' package Characters {
 
-    enum TerrainTypes {
-        Path
-        Sand
-        HeavyWater
-        TallGrass
-        Grass
-        Water
-        Wall
-        Tree
-    }
+'     class Player {
+'         + super()
+'         + keyHandler: KeyHandler
+'     }
 
-    class Position {
-        + Xaxis: int
-        + Yaxis: int
-        + getPosition() : int[]
-        + setPosition(Xaxis:int, Yaxis:int) : void
-    }
+'     class NPC {
+'         + super()
+'     }
 
-    interface Visible {
-        + show() : void
-    }
+'     class KeyHandler {
+'         + onKeyPressed(e:KeyListener) : void
+'     }
 
-    Terrain *-- TerrainTypes
-    Terrain *-- Position
+'     interface Movement {
+'         + moveUp() : void
+'         + moveDown() : void
+'         + moveLeft() : void
+'         + moveRight() : void
+'     }
 
-    Terrain <-Left- Character : use
+'     abstract class Character {
+'         + transport: Transport
+'         + actualTerrain: Terrain
+'         + move() : void
+'         - ableToWalkBy(terrain:Terrain) : boolean
+'     }
 
-    class Terrain implements Visible
+'     interface KeyEventListener
 
-}
+'     Character <|-- Player  extends
+'     Character <|-- NPC
 
-package Transports {
-    abstract class Transport {
-        + speed: int
-        + name: String
-        + Transport(name:String,speed:int)
-        + getSpeed() : int
-        + getName() : String
-    }
-    class Boat {
-        + super()
-    }
-    class Horse {
-        + super()
-    }
-    class OnFoot {
-        + super()
-    }
-    class Carpet {
-        + super()
-    }
+'     Player <-- KeyHandler : use  implements
 
-    Transport <|-- Boat
-    Transport <|-- Horse
-    Transport <|-- OnFoot
-    Transport <|-- Carpet
+'     abstract class Character implements Movement
+'     class KeyHandler implements KeyEventListener
 
-    Character <-- Transport : has
-}
 
-package Main{
-    class World {
-        + characters : Arraylist<Character>
-        + levels : Arraylist<Maze>
-        + player : Character
-        + time : Time
-        + World(player:Character, levels:Arraylist<Maze>, characters:Arraylist<Character>, time:Time)
-        + updateWorld() : void
-    }
+' }
 
-    class Time {
-        + hours: int
-        + minutes: int
-        + tick: int
-        + Time(hours:int, minutes:int, tick:int)
-        - setTime(hours:int, minutes:int) : void
-        - getTime() : String
-        - verifyTime(hours:int,minutes:int) : void
-        - setTick(tick:int) : void
-        + advanceTime() : void
-        + isNight() : boolean
-    }
+' package Terrains {
+'     class Terrain {
+'         + position: Position
+'         + terrainType: TerrainTypes
+'         + Terrain(position:Position, terrainType:String)
+'     }
 
-    class Maze {
-        + level: Arraylist<Arraylist<Terrain>>
-        + Maze()
-    }
+'     enum TerrainTypes {
+'         Path
+'         Sand
+'         HeavyWater
+'         TallGrass
+'         Grass
+'         Water
+'         Wall
+'         Tree
+'     }
 
-    World *-- Character
-    World *-- Maze
-    World *-- Time
-    Maze *-- Terrain
-}
+'     class Position {
+'         + Xaxis: int
+'         + Yaxis: int
+'         + getPosition() : int[]
+'         + setPosition(Xaxis:int, Yaxis:int) : void
+'     }
+
+'     interface Visible {
+'         + show() : void
+'     }
+
+'     Terrain *-- TerrainTypes
+'     Terrain *-- Position
+
+'     Terrain <-Left- Character : use
+
+'     class Terrain implements Visible
+
+' }
+
+' package Transports {
+'     abstract class Transport {
+'         + speed: int
+'         + name: String
+'         + Transport(name:String,speed:int)
+'         + getSpeed() : int
+'         + getName() : String
+'     }
+'     class Boat {
+'         + super()
+'     }
+'     class Horse {
+'         + super()
+'     }
+'     class OnFoot {
+'         + super()
+'     }
+'     class Carpet {
+'         + super()
+'     }
+
+'     Transport <|-- Boat
+'     Transport <|-- Horse
+'     Transport <|-- OnFoot
+'     Transport <|-- Carpet
+
+'     Character <-- Transport : has
+' }
+
+' package Main{
+'     class World {
+'         + characters : Arraylist<Character>
+'         + levels : Arraylist<Maze>
+'         + player : Character
+'         + time : Time
+'         + World(player:Character, levels:Arraylist<Maze>, characters:Arraylist<Character>, time:Time)
+'         + updateWorld() : void
+'     }
+
+'     class Time {
+'         + hours: int
+'         + minutes: int
+'         + tick: int
+'         + Time(hours:int, minutes:int, tick:int)
+'         - setTime(hours:int, minutes:int) : void
+'         - getTime() : String
+'         - verifyTime(hours:int,minutes:int) : void
+'         - setTick(tick:int) : void
+'         + advanceTime() : void
+'         + isNight() : boolean
+'     }
+
+'     class Maze {
+'         + level: Arraylist<Arraylist<Terrain>>
+'         + Maze()
+'     }
+
+'     World *-- Character
+'     World *-- Maze
+'     World *-- Time
+'     Maze *-- Terrain
+' }
 @enduml

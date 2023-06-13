@@ -1,7 +1,6 @@
 package core.character;
 
 import enumerators.Directions;
-import interfaces.PlayerMovement;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -38,5 +37,7 @@ public abstract class PlayerDrawer {
     public boolean collision = false;
 
     public void update() {
-    }
+    
+
+    public void draw(Graphics2D g2d) {
 }

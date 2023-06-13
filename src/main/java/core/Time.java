@@ -64,27 +64,6 @@ public class Time {
         return dayMoment;
     }
 
-    public boolean isNight() {
-        if (hours > 21 || hours < 6) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isMorning() {
-        if (hours >= 6 && hours <= 12) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean isSunset() {
-        if (hours >= 18 && hours <= 21) {
-            return true;
-        }
-        return false;
-    }
-
     public String getTime() {
         String formattedHours = String.format("%02d", hours);
         String formattedMinutes = String.format("%02d", minutes);
