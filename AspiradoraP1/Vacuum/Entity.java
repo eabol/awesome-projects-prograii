@@ -1,4 +1,4 @@
-package Vacuum;
+package vacuum;
 
 public interface Entity {
 

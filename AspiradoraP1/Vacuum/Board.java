@@ -1,6 +1,6 @@
-package Vacuum;
-
+package vacuum;
 import java.util.Random;
+
 class Board {
     private final int[][] map;
     private final int width;
@@ -29,17 +29,8 @@ class Board {
                 } else if ((column == 0 || column == width -1)){
                     // horizontal walls
                     map[row][column] = 14;
-                //} else if (i == 1 && j == 1) {
-                    // Aspiradora
-                    //map[i][j] = 8;
-               // } else if (i == 4 && j == 6) {
-                    // Sofá
-                   // map[i][j] = 7;
-                //} else if (i == 8 && j == 11) {
-                    // Mesa
-                    //map[i][j] = 10;
                 } else {
-                    // Zona sucia aleatoria
+                    // generating dirt patches
                     if (((int)(Math.random()*100) + 1 > 75)){
                         map[row][column] = (int)(Math.random()*4 +1);
                         totalDirt += map[row][column];
@@ -49,34 +40,61 @@ class Board {
         }
     }
 
-    public void printMap() {
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                System.out.print(getTileSkin(i, j));
+    public void addFurniture() {
+        Random random = new Random();
+        int p = 0;
+        //Tables
+        do {
+            int tableX = random.nextInt(height - 5) + 1;
+            int tableY = random.nextInt(width - 5) + 1;
+            for (int j = 0; j < 3; j++){
+                for (int k = 0; k < 3; k++){
+                    if ((map[tableX+k][tableY+j]<=6)&&!((tableX+k == 5)&&((tableY+j == 12)))){
+                        p++;
+
+                    }
+                }
+            }
+            if (p%9==0){
+                map[tableX][tableY] = 9;
+                map[tableX][tableY + 1] = 15;
+                map[tableX][tableY + 2] = 10;
+                map[tableX + 1][tableY] = 11;
+                map[tableX + 1][tableY + 1] = 12;
+                map[tableX + 1][tableY + 2] = 13;
+                map[tableX + 2][tableY] = 9;
+                map[tableX + 2][tableY + 1] = 15;
+                map[tableX + 2][tableY + 2] = 10;
+            }
+        } while ((random.nextBoolean()));
+
+
+        //Sofas
+        do {
+            int sofaX = random.nextInt(height - 2) + 1;
+            int sofaY = random.nextInt(width - 3) + 1;
+            if (((map[sofaX][sofaY+1]<=6)&&(map[sofaX][sofaY]<7))&&!((sofaX == 5)&&((sofaY == 12)||(sofaY+1 == 12)))){
+                map[sofaX][sofaY] = 7;
+                map[sofaX][sofaY + 1] = 8;
+            }
+        } while (random.nextBoolean()||random.nextBoolean());
+    }
+
+
+
+    public void printMap(VacuumCleaner P1, Cat C1) {
+        for (int row = 0; row < height; row++) {
+            for (int column = 0; column < width; column++) {
+                if ((column == C1.getXCoordinate())&&(row == C1.getYCoordinate()) && (C1.isPresent)){
+                    System.out.print("\"^\"");
+                } else if ((column == P1.getXCoordinate())&&(row == P1.getYCoordinate())){
+                    System.out.print("(O)");
+                } else {
+                    System.out.print(getTileSkin(row, column));
+                }
             }
             System.out.println();
         }
-    }
-    public void addFurnitures(){
-        Random random = new Random();
-
-        //Sofa
-        int sofaX = random.nextInt(height);
-        int sofaY = random.nextInt(width-2);
-        map[sofaX][sofaY] = 7;
-        map[sofaX][sofaY+1] = 8;
-
-        //Table
-        int tableX = random.nextInt(height-3);
-        int tableY = random.nextInt(width-3);
-        map[tableX][tableY] = 9;
-        map[tableX][tableY+1] = 10;
-        map[tableX][tableY+2] = 11;
-        map[tableX+1][tableY] = 12;
-        map[tableX+1][tableY+1] = 13;
-
-
-
     }
 
     public String getTileSkin(int x, int y) {
@@ -86,8 +104,8 @@ class Board {
             case 2 -> "***";    //Dirt2
             case 3 -> "OOO";    //Dirt3
             case 4 -> "000";    //Dirt4
-            case 5 -> "(O)";    //Vacuum.VacuumCleaner
-            case 6 -> "\"^\"";  //Vacuum.Cat
+            case 5 -> "(O)";    //VacuumCleaner
+            case 6 -> "\"^\"";  //Cat
             case 7 -> "[##";    //Sofa.left
             case 8 -> "##]";    //Sofa.right
             case 9 -> "+--";    //Table.leftCorner
@@ -102,13 +120,13 @@ class Board {
         };
     }
 
-    public void cleanTile(int x, int y, VacuumCleaner P1) {
+    public void cleanTile(int x, int y, VacuumCleaner P1,Cat C1) {
         if (map[x][y] > 0) {
             map[x][y]--;
             totalDirt--;
             if (totalDirt == 0) {
                 System.out.println("¡NICE! ¡You cleaned all the house!");
-                printMap();
+                printMap(P1,C1);
                 System.out.println("Total steps made:" +P1.getSteps());
                 System.out.println("You Won!");
                 System.exit(0);
@@ -116,23 +134,6 @@ class Board {
         }
     }
 
-    public int getTileDirtyLevel(int x, int y){
-        if(!isValidToMove(x, y)){
-            throw new IllegalArgumentException("Invalid WorkinProgress.Tile Coordinates");
-
-        }
-        return map[x][y];
-    }
-
-    private void checkBattery(VacuumCleaner P1){
-        if (P1.getCurrentBattery() <= 0){
-            System.out.println("¡You ran out of battery!");
-            printMap();
-            System.out.println("Total steps made:" +P1.getSteps());
-            System.out.println("You Lost!");
-            System.exit(0);
-        }
-    }
     public int getTotalDirt() {
         return totalDirt;
     }
