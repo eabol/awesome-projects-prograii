@@ -36,10 +36,10 @@ public class WorldHandler extends JPanel implements Runnable {
         public final int worldHeight = maxWorldRow * originalSize;
         Thread gameThread;
         KeyHandler keyHandler = new KeyHandler();
+        LightHandler lightHandler;
         PlayerDrawer player = new Player(this, keyHandler);
         ImageLoader imageLoader = new ImageLoader();
         ImagePainter imagePainter = new ImagePainter(imageLoader);
-        LightHandler lightHandler = new LightHandler(this, 200);
 
         public int getScreenWidth() {
                 return screenWidth;
@@ -94,7 +94,7 @@ public class WorldHandler extends JPanel implements Runnable {
         public void startGameThread() {
                 gameThread = new Thread(this);
                 gameThread.start();
-                this.time = new Time(6, 0, 15);
+                this.time = new Time(5, 0, 10);
         }
 
         @Override
@@ -123,15 +123,18 @@ public class WorldHandler extends JPanel implements Runnable {
                         }
                 }
         }
+
         private void drawTime(Graphics2D g2d) {
                 int padding = 50;
                 g2d.setColor(Color.yellow);
                 g2d.setFont(new Font("TimesRoman", Font.PLAIN, 20));
                 g2d.drawString(time.getTime(), padding, padding);
         }
+
         public void update() {
                 player.update();
                 time.advanceTime();
+                lightHandler = new LightHandler(this, time);
         }
 
         public void paintComponent(Graphics g) {

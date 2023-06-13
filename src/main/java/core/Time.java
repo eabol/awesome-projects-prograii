@@ -34,25 +34,76 @@ public class Time {
 
     public void advanceTime() {
         if (timeCooldown < timeCooldownMax) {
-            timeCooldown ++;
+            timeCooldown++;
         } else {
             timeCooldown = 0;
             minutes += tick;
             while (minutes >= 60) {
                 minutes -= 60;
+                setMinutes(minutes);
                 hours = (hours + 1) % 24;
+                setHours(hours);
             }
         }
     }
 
+    public String getMomentOfDay() {
+        String dayMoment = "day";
+
+        if (hours > 21 || hours < 6) {
+            dayMoment = "isNight";
+        }
+
+        if (hours >= 6 && hours <= 12) {
+            dayMoment = "isMorning";
+        }
+
+        if (hours >= 18 && hours <= 21) {
+            dayMoment = "isSunset";
+        }
+        return dayMoment;
+    }
+
     public boolean isNight() {
-        //System.out.println("hora: " +hours+ " minuto: " +minutes);
-        return (hours > 20 || hours < 6);
+        if (hours > 21 || hours < 6) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isMorning() {
+        if (hours >= 6 && hours <= 12) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isSunset() {
+        if (hours >= 18 && hours <= 21) {
+            return true;
+        }
+        return false;
     }
 
     public String getTime() {
         String formattedHours = String.format("%02d", hours);
         String formattedMinutes = String.format("%02d", minutes);
         return formattedHours + ":" + formattedMinutes;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    private void setHours(int hours) {
+        this.hours = hours;
+    }
+
+    private void setMinutes(int minutes) {
+        this.minutes = minutes;
     }
 }
