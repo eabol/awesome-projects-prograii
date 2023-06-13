@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a5c4d4-514a-49a0-9a24-c1ac01bf52f6" name="Changes" comment="feature: world clock display">
-      <change afterPath="$PROJECT_DIR$/src/main/java/enumerators/GameState.java" afterDir="false" />
+    <list default="true" id="48a5c4d4-514a-49a0-9a24-c1ac01bf52f6" name="Changes" comment="feature: portal terrain">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Position.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/Terrain.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/collision/CollisionChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/collision/CollisionChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/tile/TerrainMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/tile/TerrainMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enumerators/TerrainType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enumerators/TerrainType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/TileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/TileManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mazes/level2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mazes/level2.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686668380275</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feature: portal terrain">
+      <created>1686682950693</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686682950693</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +177,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix: edit structure project" />
     <MESSAGE value="feature: world clock display" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature: world clock display" />
+    <MESSAGE value="feature: portal terrain" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature: portal terrain" />
   </component>
 </project>
