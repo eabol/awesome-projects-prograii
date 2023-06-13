@@ -1,5 +1,5 @@
 @startuml
-package pacman {
+package game {
   class Game {
     - maze: Maze
     - pacman: Pacman
@@ -9,6 +9,15 @@ package pacman {
     - foodCount: int
     - pacmanTimer: Timer
     - ghostTimer: Timer
+    - lives: int
+    - stopPacmanMovement(): void
+    - stopGhostMovement(): void
+    - stopGhostMovement(): void
+    - checkCollision(): void
+    - loseLife(): void
+    - createMaze(): void
+    + Game()
+    + getLive: int
     + getGhosts(): List<Ghost>
     + start(): void
     + stop(): void
@@ -16,28 +25,33 @@ package pacman {
     + handleKeyPress(): void
     + startAutomaticMovement(): void
     + startGhostMovement(): void
-    + stopGhostMovement(): void
     + update(): void
     + getMaze(): Maze
     + getPacman(): Pacman
     + isRunning(): boolean
     + getScore(): int
     + setScore(): void
-    + createMaze(): void
+  }
+  class PacmanGame {
+  - game(): Game
+  - renderer(): Renderer
+  + PacmanGame()
+  + main(): void
   }
   class Maze {
     - width: int
     - height: int
     - cells: Cell[][]
+    + Maze():
     + getWidth(): int
     + getHeight(): int
     + getCell(): Cell
     + updateCell(): void
     + getFoodCount(): int
   }
-  abstract class Cell implements GameElement{
-    - x: int
-    - y: int
+  abstract class Cell implements GameElement {
+    - position: Position
+    - type: CellType
     + getX(): int
     + getY(): int
     + Cell(): CellType
@@ -47,19 +61,30 @@ package pacman {
     + isPower(): boolean
     + isEmpty(): boolean
   }
-
   abstract class GameCharacter implements GameElement {
-    - x: int
-    - y: int
     - position: Position
     - direction: Direction
+    + GameCharacter()
     + getX(): int
     + getY(): int
     + getPosition(): Position
+    + setPosition(): void
     + getDirection(): Direction
-    + setDirection(): Direction
+    + setDirection(): void
     + move(): Position
     + die(): void
+  }
+  class Position {
+  - y: int
+  - x: int
+  + get(): int[]
+  + set(): void
+  + getX(): int
+  + setX(): void
+  + getY(): int
+  + setY(): void
+  + getXWithOffset(): int
+  + isEqual(): boolean
   }
   class Pacman {
     + eatDot(): void
@@ -68,29 +93,26 @@ package pacman {
     + getNextPosition(): Position
   }
   class Ghost {
+    - isWallOrGhostInDirection(): boolean
+    - getNextPosition(): Position
+    - isWall(): boolean
+    - isGhost(): boolean
+    - getAlternativeDirections(): List<Direction>
+    + Ghost()
     + chasePacman(): Position
-    + isWallOrGhostInDirection(): boolean
-    + getNextPosition(): Position
-    + isWall(): boolean
-    + isGhost(): boolean
-    + getAlternativeDirections(): List<Direction>
     + die(): void
-  }
-  class InputPoller{
-    - character: Character
-    - keyListener: KeyListener
-    + keyTyped(): void
-    + keyPressed(): void
-    + keyReleased(): void
-    + InputPoller(): Terminal
-    + get(): Character
-
   }
   enum Direction {
     UP
     DOWN
     LEFT
     RIGHT
+  }
+    enum CellType {
+    EMPTY
+    FOOD
+    WALL
+    POWER
   }
   interface GameElement {
     + getX(): int
@@ -100,47 +122,49 @@ package pacman {
   GameCharacter <|-- Ghost
   Game --> Maze
   Game --> Pacman
-  Game o-- Ghost
-  Cell <|-- Food
-  Cell <|-- Wall
-  Cell <|-- PowerCell
+  Game o--> Ghost
+  PacmanGame --> Game
+  Cell --> Position
+  GameCharacter --> Position
+  Ghost --> Position
+  Pacman --> Position
+
 }
+package renderer {
 interface Renderer {
-  + renderGame(game: Game): void
+  + renderGame(): void
   + close(): void
   + movePacman(): void
   + moveGhost(): void
   + printWinScreen(): void
-}
-class SwingRenderer{
-  + renderGame(game: Game): void
 }
 class ConsoleRenderer{
   - terminal: Terminal
   - screen: Screen
   - keyStroke: KeyStroke
   - game: Game
+  - offset: int
+  - readUserInput(terminal: Terminal): void
+  - printCharacter(pacman: Pacman): void
+  - printCharacter(pacman: Pacman, previousPosition: Position): void
+  - printCharacter(ghost: Ghost): void
+  - printCharacter(ghost: Ghost, previousPosition: Position): void
+  - printCell(position: Position): void
+  - printFood(position: Position): void
+  - printWall(position: Position): void
+  - printScore(): void
+  - printStartScreen(): void
+  - refresh(): void
+  - startGame(): void
   + renderGame(game: Game): void
   + printMaze(maze: Maze): void
-  + readUserInput(terminal: Terminal): void
   + movePacman(previousPosition: Position): void
   + moveGhost(ghost: Ghost, previousPosition: Position): void
-  + printCharacter(pacman: Pacman): void
-  + printCharacter(pacman: Pacman, previousPosition: Position): void
-  + printCharacter(ghost: Ghost): void
-  + printCharacter(ghost: Ghost, previousPosition: Position): void
-  + printCell(position: Position): void
-  + printFood(position: Position): void
-  + printWall(position: Position): void
-  + printScore(): void
-  + printStartScreen(): void
   + printWinScreen(): void
-  + startGame(): void
   + close(): void
   + makeWindowVisible(terminal: Terminal): void
-  + refresh(): void
 
 }
-Renderer <|.. SwingRenderer
 Renderer <|.. ConsoleRenderer
+PacmanGame --> Renderer
 @enduml
