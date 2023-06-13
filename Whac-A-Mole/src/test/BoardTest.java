@@ -2,56 +2,55 @@ package test;
 
 import main.Board;
 import main.Hole;
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 public class BoardTest {
+    private Board board;
 
-    @Test
-    public void testShowBoardEmpty() {
-        int boardSize = 3;
-        Board board = new Board(boardSize);
-        String expectedOutput = "O O O \nO O O \nO O O \n";
+    @org.junit.jupiter.api.Test
+    public void testGetHole() {
+        Board board = new Board(3, 4, false);
 
-        StringBuilder output = new StringBuilder();
-        System.setOut(new java.io.PrintStream(new java.io.ByteArrayOutputStream() {
-            public void write(int b) {
-                output.append((char) b);
-            }
-        }));
+        // Verificar que se obtenga el agujero correcto en diferentes posiciones
+        Hole hole1 = board.getHole(0, 0);
+        Assertions.assertNotNull(hole1);
 
-        board.showBoard();
+        Hole hole2 = board.getHole(1, 2);
+        Assertions.assertNotNull(hole2);
 
-        System.setOut(System.out);
+        Hole hole3 = board.getHole(2, 3);
+        Assertions.assertNotNull(hole3);
 
-        Assertions.assertEquals(expectedOutput, output.toString());
+        // Verificar que se obtenga una excepción al intentar obtener un agujero fuera de los límites
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> board.getHole(3, 2));
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> board.getHole(1, 4));
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> board.getHole(-1, 0));
     }
 
-    @Test
-    public void testBeatenHole() {
-        Board board = new Board(3);
-        int position = 4;
-        Hole expectedHole = new Hole();
+    @org.junit.jupiter.api.Test
+    public void testIsValidPosition() {
+        Board board = new Board(3, 4, false);
 
-        expectedHole.setMole(null);
+        // Verificar que las posiciones dentro de los límites sean consideradas válidas
+        Assertions.assertTrue(board.isValidPosition(0, 0));
+        Assertions.assertTrue(board.isValidPosition(2, 3));
 
-        Hole resultHole = board.beatenHole(position);
-
-        Assertions.assertEquals(expectedHole, resultHole);
+        // Verificar que las posiciones fuera de los límites sean consideradas inválidas
+        Assertions.assertFalse(board.isValidPosition(3, 2));
+        Assertions.assertFalse(board.isValidPosition(1, 4));
+        Assertions.assertFalse(board.isValidPosition(-1, 0));
     }
 
-    static class HoleTest {
-
+    @org.junit.jupiter.api.Test
+    public void testGetRowCount() {
+        Board board = new Board(3, 4, false);
+        Assertions.assertEquals(3, board.getRowCount());
     }
 
-    static class LuckTest {
-
-        @Test
-        void getPositiveLuck() {
-        }
-
-        @Test
-        void getNegativeLuck() {
-        }
+    @org.junit.jupiter.api.Test
+    public void testGetColumnCount() {
+        Board board = new Board(3, 4, false);
+        Assertions.assertEquals(4, board.getColumnCount());
     }
 }
