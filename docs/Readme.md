@@ -22,6 +22,13 @@ Se congifura el topo.
 Se cuentan cuantas veces se falla el golpe y se golpea un agujero vacío
 - **Contar los aciertos:**
 Contar a cuantos topos se han golpeado.
+- **Contar las columnas:**
+Se cuentan las columnas del tablero.
+- **Contar filas:**
+Se cuentan las filas del tablero.
+- **Verificar posición inválida:**
+Se verifica que la posición que se tiene sea válida.
+
 --------------------
 Diagrama de clases
 --------------------
@@ -36,7 +43,10 @@ Capturas de pantalla
 ![showMoleInside](showMoleInside.jpg)
 ![createMole](createMole.jpg)
 ![countFails](countFails.jpg)
-![countSuccess](countSuccess.jpg)
+![countSuccess](countSucces.jpg)
+![invalidPosition](invalidPosition.jpg)
+![getRowCount](getRowCount.jpg)
+![columnCount](columnCount.jpg)
 --------------------
 Instrucciones de uso
 --------------------
