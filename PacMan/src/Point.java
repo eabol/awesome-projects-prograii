@@ -31,4 +31,8 @@ public abstract class Point {
     public void setEaten(boolean eaten) {
         this.eaten = eaten;
     }
+
+    public void Draw(Map map) {
+
+    }
 }

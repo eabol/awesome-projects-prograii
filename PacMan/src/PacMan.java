@@ -5,9 +5,23 @@ public class PacMan implements Droweable, Movable {
 
     private int score;
 
+    public boolean alive;
+    public int time_invencible=0;
+
+    public boolean isInvencible() {
+        return invencible;
+    }
+
+    public void setInvencible(boolean invencible) {
+        this.invencible = invencible;
+    }
+
+    public boolean invencible;
+
     public PacMan(){
         this.x=14;
         this.y=22;
+        this.alive=true;
     }
 
     public void eat(Food food){
@@ -33,8 +47,12 @@ public class PacMan implements Droweable, Movable {
         this.y = y;
     }
 
+    public boolean isAlive(){
+        return alive;
+    }
+
     @Override
-    public void movement(String movimiento,Map map) {
+    public void move(String movimiento, Map map) {
         if(movimiento.equalsIgnoreCase("w")||movimiento.equals("8")){
             if (!map.isWall(this.x, this.y - 1))
                 this.y--;
@@ -52,14 +70,19 @@ public class PacMan implements Droweable, Movable {
     }
 
     @Override
-    public void movement(PacMan pacman,Map map) {
+    public void move(PacMan pacman, Map map) {
 
     }
 
 
     @Override
+    public void Draw(Map map) {
+        map.grid[this.x][this.y]= 6;
+    }
+
+    @Override
     public void Draw() {
-        System.out.print("(º)");
+
     }
 
 }

@@ -3,8 +3,9 @@ public abstract class Ghost extends Enemy implements Droweable, Movable {
         super(x, y);
     }
 
+
     @Override
-    public void movement(PacMan pacman,Map map) {
+    public void move(PacMan pacman, Map map) {
         int pacmanX = pacman.getX();
         int pacmanY = pacman.getY();
 
@@ -33,8 +34,8 @@ public abstract class Ghost extends Enemy implements Droweable, Movable {
     }
 
     @Override
-    public void Draw() {
-        System.out.print("G");
+    public void Draw(Map map) {
+        map.grid[this.x][this.y]= 4;
     }
 
 }

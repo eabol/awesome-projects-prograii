@@ -4,7 +4,7 @@ public abstract class Enemy implements Movable,Droweable {
     int y;
 
     @Override
-    public void movement(PacMan pacman,Map map) {
+    public void move(PacMan pacman, Map map) {
 
     }
 
