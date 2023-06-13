@@ -1,3 +1,4 @@
+package game;
 public class Position {
     private int x;
     private int y;
@@ -35,6 +36,10 @@ public class Position {
 
     public int getXWithOffset(int offset){
         return x == 0 ? 0 : x * offset;
+    }
+
+    public static boolean  isEqual(Position position1, Position position2){
+        return (position1.getX() == position2.getX() && position1.getY() == position2.getY());
     }
 
 }

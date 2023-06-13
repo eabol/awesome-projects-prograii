@@ -1,3 +1,4 @@
+package game;
 public abstract class GameCharacter implements GameElement {
     private Position position;
     private Direction direction;
@@ -16,6 +17,10 @@ public abstract class GameCharacter implements GameElement {
 
     public Position getPosition() {
         return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
     
     public Direction getDirection() {

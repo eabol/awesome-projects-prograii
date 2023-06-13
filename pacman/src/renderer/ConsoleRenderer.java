@@ -1,3 +1,4 @@
+package renderer;
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -6,6 +7,13 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+
+import game.Cell;
+import game.Game;
+import game.Ghost;
+import game.Maze;
+import game.Pacman;
+import game.Position;
 
 import java.io.IOException;
 
@@ -82,6 +90,11 @@ public class ConsoleRenderer implements Renderer {
         refresh();
     }
 
+    public void moveGhost(Ghost ghost, Position previousPosition) throws IOException {
+        printCharacter(ghost, previousPosition);
+        refresh();
+    }
+
     private void printCharacter(Pacman pacman) throws IOException {
         TextGraphics textGraphics = this.screen.newTextGraphics();
 
@@ -96,6 +109,24 @@ public class ConsoleRenderer implements Renderer {
     private void printCharacter(Pacman pacman, Position previousPosition) throws IOException {
         printCell(previousPosition);
         printCharacter(pacman);
+    }
+
+    private void printCharacter(Ghost ghost) throws IOException {
+        TextGraphics textGraphics = this.screen.newTextGraphics();
+    
+        textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
+        textGraphics.setForegroundColor(TextColor.ANSI.RED);
+        textGraphics.putString(ghost.getPosition().getXWithOffset(offset), ghost.getPosition().getY(),
+                " " + Symbols.SOLID_SQUARE + " ", SGR.BOLD);
+    
+        refresh();
+    }
+    
+    private void printCharacter(Ghost ghost, Position previousPosition) throws IOException {
+        if(game.isRunning()){
+        printCell(previousPosition);
+        printCharacter(ghost);
+        }
     }
 
     private void printCell(Position position) throws IOException {
@@ -123,7 +154,13 @@ public class ConsoleRenderer implements Renderer {
         TextGraphics textGraphics = this.screen.newTextGraphics();
         textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
         textGraphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
+        
+        // Print score
         textGraphics.putString(0, game.getMaze().getHeight(), "Score: " + game.getScore(), SGR.BOLD);
+        
+        // Print lives
+        
+        textGraphics.putString(game.getMaze().getWidth() * offset - 10, game.getMaze().getHeight(), "Lives: " + game.getLives(), SGR.BOLD);
     }
 
     private void printStartScreen() throws IOException {
@@ -139,6 +176,7 @@ public class ConsoleRenderer implements Renderer {
     public void printWinScreen() throws Exception {
         game.stop();
         screen.clear();
+        refresh();
         TextGraphics textGraphics = screen.newTextGraphics();
         textGraphics.setBackgroundColor(TextColor.ANSI.YELLOW_BRIGHT);
         textGraphics.setForegroundColor(TextColor.ANSI.BLACK_BRIGHT);
@@ -162,6 +200,10 @@ public class ConsoleRenderer implements Renderer {
         game.start();
         printMaze(game.getMaze());
         printCharacter(game.getPacman());
+        for (Ghost ghost : game.getGhosts()) {
+            printCharacter(ghost);
+        }
+        game.startGhostMovement(this);
         while (game.isRunning()) {
             readUserInput(terminal);
         }
