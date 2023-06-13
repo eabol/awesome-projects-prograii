@@ -42,6 +42,7 @@ public class Game {
         this.pacman = new Pacman(22, 13);
         this.ghosts = List.of(new Ghost(10, 13), new Ghost(12, 13), new Ghost(15, 13), new Ghost(16, 13));
         this.score = 0;
+        this.lives = 3;
     }
 
     public void handleKeyPress(Character character, Renderer renderer) {
@@ -75,10 +76,7 @@ public class Game {
 
     public void startAutomaticMovement(Direction direction, Renderer renderer) {
 
-        if (this.pacmanTimer != null) {
-            this.pacmanTimer.cancel();
-            this.pacmanTimer = null;
-        }
+        stopPacmanMovement();
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -100,6 +98,8 @@ public class Game {
                 try {
                     renderer.movePacman(pacman.move(direction));
                     if (score == foodCount) {
+                        stopPacmanMovement();
+                        stopGhostMovement();
                         renderer.printWinScreen();
                     }
                 } catch (Exception e) {
@@ -111,6 +111,13 @@ public class Game {
         this.pacmanTimer.schedule(timerTask, 0, 300);
     }
 
+    private void stopPacmanMovement() {
+        if (this.pacmanTimer != null) {
+            this.pacmanTimer.cancel();
+            this.pacmanTimer = null;
+        }
+    }
+
     public void startGhostMovement(Renderer renderer) {
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -118,6 +125,7 @@ public class Game {
                 try {
                     for (Ghost ghost : ghosts) {
                         renderer.moveGhost(ghost, ghost.chasePacman(pacman, maze, ghosts));
+                        checkCollision(renderer);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -135,21 +143,27 @@ public class Game {
         }
     }
 
-    private void checkCollision() {
+    private void checkCollision(Renderer renderer) {
         for (Ghost ghost : ghosts) {
-            if (pacman.getPosition().equals(ghost.getPosition())) {
-                loseLife();
+            if (Position.isEqual(pacman.getPosition(), ghost.getPosition())) {
+                loseLife(renderer);
                 break;
             }
         }
     }
 
-    private void loseLife() {
-        lives--;
-
-        if (lives == 0) {
-            stop();
-            return;
+    private void loseLife(Renderer renderer) {
+        try {
+            lives--;
+            pacman.setPosition(new Position(22, 13));
+            renderer.movePacman(pacman.getPosition());
+            if (lives <= 0) {
+                stopPacmanMovement();
+                stopGhostMovement();
+                renderer.printWinScreen();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 

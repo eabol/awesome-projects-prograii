@@ -17,10 +17,6 @@ public class ConsoleRenderer implements Renderer {
     Game game;
     final int offset = 3;
 
-    private static final String HEART_ICON = "❤️";
-    private static final String EMPTY_ICON = "   ";
-
-    
     public void renderGame(Game game) {
         this.game = game;
         DefaultTerminalFactory defaultTerminalFactory = new DefaultTerminalFactory();
@@ -119,8 +115,10 @@ public class ConsoleRenderer implements Renderer {
     }
     
     private void printCharacter(Ghost ghost, Position previousPosition) throws IOException {
+        if(game.isRunning()){
         printCell(previousPosition);
         printCharacter(ghost);
+        }
     }
 
     private void printCell(Position position) throws IOException {
@@ -170,6 +168,7 @@ public class ConsoleRenderer implements Renderer {
     public void printWinScreen() throws Exception {
         game.stop();
         screen.clear();
+        refresh();
         TextGraphics textGraphics = screen.newTextGraphics();
         textGraphics.setBackgroundColor(TextColor.ANSI.YELLOW_BRIGHT);
         textGraphics.setForegroundColor(TextColor.ANSI.BLACK_BRIGHT);
