@@ -1,5 +1,5 @@
 package vacuum;
-import org.testng.annotations.Test;
+import org.testing.annotations.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
