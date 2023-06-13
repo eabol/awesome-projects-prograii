@@ -1,145 +1,211 @@
 @startuml "Trifuerza class diagram"
 
-package Characters {
+package main {
+    package java{
+        class Main{}
+        package core{
+            package character{
+                class KeyHandler{
+                    + inputKeyEvent: boolean
+                    - keyName: String
 
-    class Player {
-        + super()
-        + keyHandler: KeyHandler
+                    + getKeyName(): String
+                    - setKeyName(String keyName): void
+                    + keyTyped(KeyEvent e): void
+                    + keyPressed(KeyEvent e): void
+                    + keyReleased(KeyEvent e): void
+                }
+                class Player{
+                    + gameWindow: WorldHandler
+                    + keyHandler: keyHandler
+                    - currentTransport: TransportTypes
+
+                    + setDefaultValue(): void
+                    + update(): void
+                    + updatePlayerSpeed(): void
+                    + getCurrentTransport(): TransportTypes
+                    + setCurrentTransport(TransportTypes currentTransport): void
+                    + getPosition(): Point
+                    + getDirection(): Directions
+                }
+                class PlayerDrawer{}
+
+                PlayerDrawer <|-- Player
+            }
+            package collision{
+                class CollisionChecker{}
+                class WorldCollisions{}
+            }
+            package tile{
+                class TerrainMapper{}
+                class Tile{}
+            }
+            class Time{}
+        }
+        package enumerators{
+            enum Directions{}
+            enum GameState{}
+            enum TerrainType{}
+            enum TransportTypes{}
+        }
+        package interface{
+            interface PlayerMovement{}
+            interface TilesDistribution{}
+        }
+        package view{
+            package assets{
+                class ImageLoader{}
+                class ImagePainter{}
+            }
+            package enviroment{
+                class LightHandler{}
+            }
+            class TileManager{}
+            class WorldHandler{}
+        }
     }
-
-    class NPC {
-        + super()
-    }
-
-    class KeyHandler {
-        + onKeyPressed(e:KeyListener) : void
-    }
-
-    interface Movement {
-        + moveUp() : void
-        + moveDown() : void
-        + moveLeft() : void
-        + moveRight() : void
-    }
-
-    abstract class Character {
-        + transport: Transport
-        + actualTerrain: Terrain
-        + move() : void
-        - ableToWalkBy(terrain:Terrain) : boolean
-    }
-
-    interface KeyEventListener
-
-    Character <|-- Player
-    Character <|-- NPC
-
-    Player <-- KeyHandler : use
-
-    abstract class Character implements Movement
-    class KeyHandler implements KeyEventListener
-
-
 }
 
-package Terrains {
-    class Terrain {
-        + position: Position
-        + terrainType: TerrainTypes
-        + Terrain(position:Position, terrainType:String)
-    }
+' package Characters {
 
-    enum TerrainTypes {
-        Path
-        Sand
-        HeavyWater
-        TallGrass
-        Grass
-        Water
-        Wall
-        Tree
-    }
+'     class Player {
+'         + super()
+'         + keyHandler: KeyHandler
+'     }
 
-    class Position {
-        + Xaxis: int
-        + Yaxis: int
-        + getPosition() : int[]
-        + setPosition(Xaxis:int, Yaxis:int) : void
-    }
+'     class NPC {
+'         + super()
+'     }
 
-    interface Visible {
-        + show() : void
-    }
+'     class KeyHandler {
+'         + onKeyPressed(e:KeyListener) : void
+'     }
 
-    Terrain *-- TerrainTypes
-    Terrain *-- Position
+'     interface Movement {
+'         + moveUp() : void
+'         + moveDown() : void
+'         + moveLeft() : void
+'         + moveRight() : void
+'     }
 
-    Terrain <-Left- Character : use
+'     abstract class Character {
+'         + transport: Transport
+'         + actualTerrain: Terrain
+'         + move() : void
+'         - ableToWalkBy(terrain:Terrain) : boolean
+'     }
 
-    class Terrain implements Visible
+'     interface KeyEventListener
 
-}
+'     Character <|-- Player  extends
+'     Character <|-- NPC
 
-package Transports {
-    abstract class Transport {
-        + speed: int
-        + name: String
-        + Transport(name:String,speed:int)
-        + getSpeed() : int
-        + getName() : String
-    }
-    class Boat {
-        + super()
-    }
-    class Horse {
-        + super()
-    }
-    class OnFoot {
-        + super()
-    }
-    class Carpet {
-        + super()
-    }
+'     Player <-- KeyHandler : use  implements
 
-    Transport <|-- Boat
-    Transport <|-- Horse
-    Transport <|-- OnFoot
-    Transport <|-- Carpet
+'     abstract class Character implements Movement
+'     class KeyHandler implements KeyEventListener
 
-    Character <-- Transport : has
-}
 
-package Main{
-    class World {
-        + characters : Arraylist<Character>
-        + levels : Arraylist<Maze>
-        + player : Character
-        + time : Time
-        + World(player:Character, levels:Arraylist<Maze>, characters:Arraylist<Character>, time:Time)
-        + updateWorld() : void
-    }
+' }
 
-    class Time {
-        + hours: int
-        + minutes: int
-        + tick: int
-        + Time(hours:int, minutes:int, tick:int)
-        - setTime(hours:int, minutes:int) : void
-        - getTime() : String
-        - verifyTime(hours:int,minutes:int) : void
-        - setTick(tick:int) : void
-        + advanceTime() : void
-        + isNight() : boolean
-    }
+' package Terrains {
+'     class Terrain {
+'         + position: Position
+'         + terrainType: TerrainTypes
+'         + Terrain(position:Position, terrainType:String)
+'     }
 
-    class Maze {
-        + level: Arraylist<Arraylist<Terrain>>
-        + Maze()
-    }
+'     enum TerrainTypes {
+'         Path
+'         Sand
+'         HeavyWater
+'         TallGrass
+'         Grass
+'         Water
+'         Wall
+'         Tree
+'     }
 
-    World *-- Character
-    World *-- Maze
-    World *-- Time
-    Maze *-- Terrain
-}
+'     class Position {
+'         + Xaxis: int
+'         + Yaxis: int
+'         + getPosition() : int[]
+'         + setPosition(Xaxis:int, Yaxis:int) : void
+'     }
+
+'     interface Visible {
+'         + show() : void
+'     }
+
+'     Terrain *-- TerrainTypes
+'     Terrain *-- Position
+
+'     Terrain <-Left- Character : use
+
+'     class Terrain implements Visible
+
+' }
+
+' package Transports {
+'     abstract class Transport {
+'         + speed: int
+'         + name: String
+'         + Transport(name:String,speed:int)
+'         + getSpeed() : int
+'         + getName() : String
+'     }
+'     class Boat {
+'         + super()
+'     }
+'     class Horse {
+'         + super()
+'     }
+'     class OnFoot {
+'         + super()
+'     }
+'     class Carpet {
+'         + super()
+'     }
+
+'     Transport <|-- Boat
+'     Transport <|-- Horse
+'     Transport <|-- OnFoot
+'     Transport <|-- Carpet
+
+'     Character <-- Transport : has
+' }
+
+' package Main{
+'     class World {
+'         + characters : Arraylist<Character>
+'         + levels : Arraylist<Maze>
+'         + player : Character
+'         + time : Time
+'         + World(player:Character, levels:Arraylist<Maze>, characters:Arraylist<Character>, time:Time)
+'         + updateWorld() : void
+'     }
+
+'     class Time {
+'         + hours: int
+'         + minutes: int
+'         + tick: int
+'         + Time(hours:int, minutes:int, tick:int)
+'         - setTime(hours:int, minutes:int) : void
+'         - getTime() : String
+'         - verifyTime(hours:int,minutes:int) : void
+'         - setTick(tick:int) : void
+'         + advanceTime() : void
+'         + isNight() : boolean
+'     }
+
+'     class Maze {
+'         + level: Arraylist<Arraylist<Terrain>>
+'         + Maze()
+'     }
+
+'     World *-- Character
+'     World *-- Maze
+'     World *-- Time
+'     Maze *-- Terrain
+' }
 @enduml
