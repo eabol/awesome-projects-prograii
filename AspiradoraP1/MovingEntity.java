@@ -8,9 +8,6 @@ public abstract class MovingEntity{
 
     boolean automated;
 
-    public MovingEntity(){
-
-    }
     public MovingEntity(int id, int xCoordinate, int yCoordinate, boolean automated) {
         this.id = id;
         this.xCoordinate = xCoordinate;
@@ -19,8 +16,8 @@ public abstract class MovingEntity{
     }
 
     protected void RMovement(){
-        int[] X={0, 1, 1, 1, 0, -1, -1, -1};
-        int[] Y = {-1, -1, 0, 1, 1, 1, 0, -1};
+        int[] X={0, 0, -1, 1, -1, 1, -1, -1};
+        int[] Y = {1, -1, 0, 0, 1, 1, -1, -1};
         int direction = (int)(Math.random()*8);
 
         this.xCoordinate = this.xCoordinate + X[direction];
@@ -30,17 +27,21 @@ public abstract class MovingEntity{
     }
 
 
-    protected void DMovement(){
-
-        System.out.println("Elija direccion");
-        int[] X={0, 1, 1, 1, 0, -1, -1, -1};
-        int[] Y = {-1, -1, 0, 1, 1, 1, 0, -1};
+    protected void DMovement(VacuumCleaner P1){
+        System.out.println("-------------Choose a direction to take!-------------");
+        System.out.println("--   (0) Stay       (1) Up         (2) Down        --");
+        System.out.println("--   (3) Left       (4) Right      (5) Up-left     --");
+        System.out.println("--   (6) Up-right   (7) Down-left  (8) Down-right  --");
+        System.out.println("-------------Choose a direction to take!-------------");
+        int[] X={0, 0, 0, -1, 1, -1, 1, -1, -1};
+        int[] Y = {0, 1, -1, 0, 0, 1, 1, -1, -1};
         int input = Controller.takePlayerInput();
         int direction = Character.getNumericValue(input);
 
         setXCoordinate(this.xCoordinate + X[direction]);
         setYCoordinate(this.yCoordinate + Y[direction]);
-
+        P1.setSteps(P1.getSteps()+1);
+        P1.setCurrentBattery(P1.getCurrentBattery()-1);
     }
 
     public int getId() {

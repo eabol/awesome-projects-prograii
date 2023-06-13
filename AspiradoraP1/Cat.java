@@ -10,9 +10,9 @@ public class Cat extends MovingEntity{
     }
 
     public void mightSpawnOrDeSpawn(){
-        if (!isPresent&&((int)(Math.random()*100)>=85)){
+        if (!isPresent&&((int)(Math.random()*100+1)>=85)){
             isPresent = true;
-        } else if (isPresent&&((int)(Math.random()*100)>=80)){
+        } else if (isPresent&&((int)(Math.random()*100+1)>=80)){
             isPresent = false;
         }
     }
