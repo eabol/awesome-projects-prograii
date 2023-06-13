@@ -1,12 +1,16 @@
 package core.collision;
 
 import core.character.Player;
+import enumerators.GameState;
 import enumerators.TerrainType;
 import enumerators.TransportTypes;
 import view.WorldHandler;
 
+import static enumerators.TerrainType.PORTALTRANSPORT;
+
 public class CollisionChecker {
-    WorldHandler gameWindow;
+    static WorldHandler gameWindow;
+    private String endGameMessage = "";
 
     public CollisionChecker(WorldHandler gameWindow) {
         this.gameWindow = gameWindow;
@@ -69,7 +73,16 @@ public class CollisionChecker {
             case WATER, TROUBLEDWATER -> player.setCurrentTransport(TransportTypes.BOAT);
             case TALLGRASS -> player.setCurrentTransport(TransportTypes.HORSE);
             case SAND -> player.setCurrentTransport(TransportTypes.CARPET);
+            case PORTALTRANSPORT, PORTALEND -> getFinalGame(currentTerrain);
             default -> player.setCurrentTransport(TransportTypes.FOOT);
+        }
+    }
+    public static void getFinalGame(TerrainType currentTerrain) {
+        if (currentTerrain == PORTALTRANSPORT){
+            gameWindow.tileManager.parseMaze("./src/main/resources/mazes/level3.txt");
+            System.out.println("You have reached the end of the game!");
+        } else {
+            WorldHandler.gameState = GameState.GAME_OVER;
         }
     }
 
@@ -77,4 +90,5 @@ public class CollisionChecker {
         int tileNum = gameWindow.tileManager.getMapTileNum()[col][row];
         return gameWindow.tileManager.getTiles()[tileNum].terrainType;
     }
+
 }
