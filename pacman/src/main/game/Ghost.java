@@ -1,4 +1,4 @@
-package game;
+package main.game;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,8 +120,6 @@ public class Ghost extends GameCharacter {
     
         return alternativeDirections;
     }
-
-
 
     public void die(){
     }

@@ -1,4 +1,4 @@
-package game;
+package main.game;
 public class Cell implements GameElement {
     private Position position;
     private CellType type;

@@ -1,7 +1,7 @@
-package game;
+package main.game;
 
-import renderer.ConsoleRenderer;
-import renderer.Renderer;
+import main.renderer.ConsoleRenderer;
+import main.renderer.Renderer;
 public class PacmanGame {
     private Game game;
     private Renderer renderer;

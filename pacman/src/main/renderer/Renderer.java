@@ -1,7 +1,7 @@
-package renderer;
-import game.Game;
-import game.Ghost;
-import game.Position;
+package main.renderer;
+import main.game.Game;
+import main.game.Ghost;
+import main.game.Position;
 
 public interface Renderer {
     void renderGame(Game game);
