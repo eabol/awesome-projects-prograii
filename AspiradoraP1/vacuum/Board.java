@@ -2,7 +2,7 @@ package vacuum;
 import java.util.Random;
 
 class Board {
-      int[][] map;
+     final int[][] map;
     private final int width;
     private final int height;
     private int totalDirt;

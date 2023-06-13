@@ -80,5 +80,5 @@ public abstract class MovingEntity implements Entity{
         this.automated = automated;
     }
 
-    //aun abierta a cambios, pero completamente implementada a Cat y Vacuum cleaner
+
 }
