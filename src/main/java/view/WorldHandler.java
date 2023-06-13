@@ -124,6 +124,7 @@ public class WorldHandler extends JPanel implements Runnable {
                         }
                 }
         }
+
         private void drawTime(Graphics2D g2d) {
                 int padding = 50;
                 g2d.setColor(Color.yellow);
