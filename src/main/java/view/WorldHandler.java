@@ -143,6 +143,7 @@ public class WorldHandler extends JPanel implements Runnable {
                 if (gameState == GameState.RUNNING) {
                         player.update();
                         time.advanceTime();
+                        this.lightHandler = new LightHandler(this, time);
                 }
         }
 
