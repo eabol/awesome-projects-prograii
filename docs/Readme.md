@@ -29,14 +29,14 @@ Diagrama de clases
 --------------------
 Capturas de pantalla
 --------------------
-![showBoard](showBoard.png)
-![showBeatenHole](showBeatenHole.png)
-![showMenu](showMenu.png)
-![startGame](startGame.png)
-![showMoleInside](showMoleInside.png)
-![createMole](createMole.png)
-![countFails](countFails.png)
-![countSuccess](countSuccess.png)
+![showBoard](showBoard.jpg)
+![showBeatenHole](showBeatenHole.jpg)
+![showMenu](showMenu.jpg)
+![startGame](startGame.jpg)
+![showMoleInside](showMoleInside.jpg)
+![createMole](createMole.jpg)
+![countFails](countFails.jpg)
+![countSuccess](countSuccess.jpg)
 --------------------
 Instrucciones de uso
 --------------------
