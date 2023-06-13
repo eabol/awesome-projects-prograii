@@ -12,4 +12,7 @@ public class Map implements Droweable {
     @Override
     public void Draw() {
     }
+
+    public boolean isWall(int x, int i) {
+    }
 }

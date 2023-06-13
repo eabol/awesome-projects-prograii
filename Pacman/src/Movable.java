@@ -1,4 +1,4 @@
 public interface Movable {
     void movement(String movimiento);
-    void movement();
+    void movement(PacMan pacMan, Map map);
 }

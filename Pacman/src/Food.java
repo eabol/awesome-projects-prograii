@@ -5,6 +5,10 @@ public class Food extends Point implements Droweable {
         super(x, y, value);
     }
 
+    public Food(int x, int y) {
+        super();
+    }
+
     @Override
     public void Draw() {
 

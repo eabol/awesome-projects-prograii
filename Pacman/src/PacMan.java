@@ -28,7 +28,7 @@ public class PacMan implements Droweable, Movable {
     }
 
     @Override
-    public void movement() {
+    public void movement(PacMan pacMan, Map map) {
 
     }
 }

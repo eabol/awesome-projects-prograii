@@ -11,7 +11,7 @@ public class PowerUpTest {
 
     @BeforeEach
     public void setUp() {
-        powerUp = new PowerUp(2, 3, 10, 5);
+        powerUp = new PowerUp(2, 3);
     }
 
     @Test
