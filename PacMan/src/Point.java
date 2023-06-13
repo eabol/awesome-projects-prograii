@@ -2,7 +2,7 @@ public abstract class Point {
 
     protected int x;
     protected int y;
-    protected int value;
+    public int value;
     protected boolean eaten;
 
     public Point(int x, int y, int value) {

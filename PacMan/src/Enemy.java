@@ -3,6 +3,11 @@ public abstract class Enemy implements Movable,Droweable {
     int x;
     int y;
 
+    @Override
+    public void movement(PacMan pacman,Map map) {
+
+    }
+
     boolean alive;
 
     public Enemy(int x,int y){
@@ -34,4 +39,6 @@ public abstract class Enemy implements Movable,Droweable {
     public void setAlive(boolean alive) {
         this.alive = alive;
     }
+
+
 }
