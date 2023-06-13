@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class BoardTest {
     private Board board;
@@ -54,5 +55,16 @@ public class BoardTest {
     public void testGetColumnCount() {
         Board board = new Board(3, 4);
         Assertions.assertEquals(4, board.getColumnCount());
+    }
+
+    static class LuckTest {
+
+        @Test
+        void getPositiveLuck() {
+        }
+
+        @Test
+        void getNegativeLuck() {
+        }
     }
 }
