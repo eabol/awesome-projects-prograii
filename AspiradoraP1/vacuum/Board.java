@@ -122,6 +122,10 @@ class Board {
 
     public void cleanTile(int x, int y, VacuumCleaner P1,Cat C1) {
         if (map[x][y] > 0) {
+            Cleanable cleanable= getCleanableObject(x,y);
+            if (cleanable != null){
+                cleanable.clean();
+            }
             map[x][y]--;
             totalDirt--;
             if (totalDirt == 0) {
@@ -132,6 +136,17 @@ class Board {
                 System.exit(0);
             }
         }
+    }
+    private Cleanable getCleanableObject(int x, int y){
+        if (map[x][y] >0){
+            return new Cleanable() {
+                @Override
+                public void clean() {
+
+                }
+            };
+
+        }return null;
     }
 
     public int getTotalDirt() {

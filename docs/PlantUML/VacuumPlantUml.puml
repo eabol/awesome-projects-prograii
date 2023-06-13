@@ -15,7 +15,7 @@ interface Entity{
        +randomMovement-void()
        +collision-void()
 }
-class VacuumCleaner extends RandomMovement{
+class VacuumCleaner extends MovingEntity {
 		-x:int
 		-y:int
 		-skin-String
@@ -29,7 +29,7 @@ class VacuumCleaner extends RandomMovement{
 		+checkBag-int
 		+emptyBag-void()
 }
-class Cat extends RandomMovement{
+class Cat extends MovingEntity{
 		-x:int
 		-y:int
 		-skin - String
@@ -39,19 +39,7 @@ class Cat extends RandomMovement{
 		+collision-void()
         +makeDirt-void()
 }
-abstract class Table extends NoMovement{
-		-x:int
-		-y:int
-		-skin- string
-		+collision-void()
-}
-abstract class Sofa extends NoMovement{
-		-x:int
-		-y:int
-		-skin- string
-		+collision-void()
-}
-class Controller {
+class Controller  {
 		-moveUp-int
         -moveDown-int
         -moveLeft-int
@@ -67,27 +55,18 @@ class Controller {
         +getDirection-void()
 		+changemovement-void()
 }
-class DirectedMovement extends InMovement{
+class MovingEntity extends Entity{
 	    -getPickedMovement
 	    -setPickedMovement
 }
-class RandomMovement extends InMovement{
-	    -Math.random-int
-}
-class Player {
-		-direction-int
-		-x:int
-		-y:int
-		+getDirection-void()
-		+set direction-void()
-}
+
 class Board{
 	    -Tiles[] matrix
         +board-void()
         +get ArrayList<Tiles>
         +print Arraylist<Tiles>
 }
-interface Tiles extends Board{
+interface Cleanable extends Board{
 		-vacuum-Boolean
 		-cat-Boolean
 		-wall-Boolean
@@ -95,32 +74,9 @@ interface Tiles extends Board{
 		-furniture-Boolean
 }
 
-class Score {
-		-totalSteps - int
-		-totalDirt - int
-		-dirtynessLevel-int
-		-BatteryLevel-int
-		+getSteps int()
-		+getdirty int()
-		+getdirtyLevel int()
-		+getBatteryLevel int()
-}
-abstract class NoMovement extends Entity{
-		-x:int
-		-y:int
-		-skin-string
-		+collision-void()
-}
-abstract class InMovement extends Entity{
-		-x:int
-		-y:int
-		-skin-string
-		+collision-void()
-		-movement-string
-}
-class VacuumCleaner extends DirectedMovement{
-}
+
+
+
 Controller -- Main
-Player-- Main
-Score -- Main
+
 @enduml
