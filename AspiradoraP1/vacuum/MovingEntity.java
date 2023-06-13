@@ -35,7 +35,7 @@ public abstract class MovingEntity implements Entity{
         System.out.println("-------------Choose a direction to take!-------------");
         int[] X={0, 0, 0, -1, 1, -1, 1, -1, -1};
         int[] Y = {0, -1, 1, 0, 0, -1, -1, 1, 1};
-        int input = Controller.takePlayerInput();
+        int input = PlayerInput.takePlayerInput();
         int direction = Character.getNumericValue(input);
 
         setXCoordinate(this.xCoordinate + X[direction]);

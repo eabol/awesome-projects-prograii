@@ -55,6 +55,13 @@ public class VacuumCleaner extends MovingEntity implements Entity{
         }
     }
 
+    public void clean(int map[][]){
+        if ((map[this.xCoordinate][this.yCoordinate]>=0)&&(map[this.xCoordinate][this.yCoordinate]>=4)){
+            map[this.xCoordinate][this.yCoordinate] = map[this.xCoordinate][this.yCoordinate] - 1;
+            this.bag = this.bag + 1;
+        }
+    }
+
     public int getBag() {
         return bag;
     }

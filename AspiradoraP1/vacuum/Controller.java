@@ -1,15 +1,12 @@
 package vacuum;
 
-import java.util.Scanner;
+
 public class Controller {
 
-    public static char takePlayerInput(){//en revision 
-        Scanner input = new Scanner(System.in);
-        return input.nextLine().charAt(0);
-    }
+
 
     public static void gameKeys(VacuumCleaner P1) {
-        switch (takePlayerInput()) {
+        switch (PlayerInput.takePlayerInput()) {
             case 'r', 'R' -> P1.setAutomated(!P1.getAutomated());
             case 'f', 'F' -> System.out.println("el juego terminara");
             case 'e', 'E' -> P1.emptyBag();
