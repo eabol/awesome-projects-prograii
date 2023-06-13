@@ -2,6 +2,7 @@ package view;
 
 import core.tile.Tile;
 import enumerators.TerrainType;
+import interfaces.TilesDistribution;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class TileManager {
+public class TileManager implements TilesDistribution {
     private WorldHandler gameWindow;
 
     public Tile[] getTiles() {
