@@ -6,6 +6,8 @@ public abstract class MovingEntity implements Entity{
     int xCoordinate;
     int yCoordinate;
 
+    int direction;
+
     boolean automated;
 
     public MovingEntity(int id, int xCoordinate, int yCoordinate, boolean automated) {
@@ -15,37 +17,36 @@ public abstract class MovingEntity implements Entity{
         this.automated = automated;
     }
 
-    protected void RMovement(){
-        int[] X={0, 0, -1, 1, -1, 1, -1, -1};
-        int[] Y = {-1, 1, 0, 0, -1, -1, 1, 1};
-        int direction = (int)(Math.random()*8);
+    protected void RMovement(Board map1){
+        int[] X= {0, 0, 0, -1, 1, -1, 1, -1, 1};
+        int[] Y= {0, -1, 1, 0, 0, -1, -1, 1, 1};
+        int direction = (int)(Math.random()*8+1);
 
-        this.xCoordinate = this.xCoordinate + X[direction];
-        this.yCoordinate = this.yCoordinate + Y[direction];
-
-
-    }
-
-    public boolean checkCollision(  int map[][]){
-        if (map[this.xCoordinate][this.yCoordinate]>=7){
-            System.out.println("There is an object, you cant clean over there!");
+        if (!checkCollision(map1.map)){
+            setXCoordinate(this.xCoordinate + X[direction]);
+            setYCoordinate(this.yCoordinate + Y[direction]);
         }
-        return true;
+
     }
-     public void DMovement(VacuumCleaner P1,Board map1){
+
+    public boolean checkCollision(int[][] map){
+        int[] X= {0, 0, 0, -1, 1, -1, 1, -1, 1};
+        int[] Y= {0, -1, 1, 0, 0, -1, -1, 1, 1};
+        return map[this.yCoordinate + Y[direction]][this.xCoordinate + X[direction]] >= 7;
+    }
+    protected void DMovement(VacuumCleaner P1, Board map1){
         System.out.println("-------------Choose a direction to take!-------------");
         System.out.println("--   (0) Stay       (1) Up         (2) Down        --");
         System.out.println("--   (3) Left       (4) Right      (5) Up-left     --");
         System.out.println("--   (6) Up-right   (7) Down-left  (8) Down-right  --");
         System.out.println("-------------Choose a direction to take!-------------");
-        int[] X={0, 0, 0, -1, 1, -1, 1, -1, -1};
-        int[] Y = {0, -1, 1, 0, 0, -1, -1, 1, 1};
+        int[] X= {0, 0, 0, -1, 1, -1, 1, -1, 1};
+        int[] Y= {0, -1, 1, 0, 0, -1, -1, 1, 1};
         int input = PlayerInput.takePlayerInput();
-        int direction = Character.getNumericValue(input);
+        direction = Character.getNumericValue(input);
 
-
-
-            if (checkCollision( map1.map)){
+        if (P1.bag<P1.bagCapacity){
+            if (!checkCollision( map1.map)){
                 setXCoordinate(this.xCoordinate + X[direction]);
                 setYCoordinate(this.yCoordinate + Y[direction]);
                 P1.setSteps(P1.getSteps() + 1);
@@ -53,8 +54,7 @@ public abstract class MovingEntity implements Entity{
             }
         }
 
-
-
+    }
 
     public int getXCoordinate() {
         return xCoordinate;
@@ -80,5 +80,5 @@ public abstract class MovingEntity implements Entity{
         this.automated = automated;
     }
 
-
+    //aun abierta a cambios, pero completamente implementada a Cat y Vacuum cleaner
 }

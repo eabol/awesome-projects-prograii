@@ -35,12 +35,7 @@ public class VacuumCleaner extends MovingEntity implements Entity{
 
     public void checkBattery(VacuumCleaner P1){
         System.out.println("Battery left: " + P1.getCurrentBattery() + "/" + P1.getMaxBattery() );
-        if (P1.getCurrentBattery() <= 0){
-            System.out.println("¡You ran out of battery!");
-            System.out.println("Total steps made:" +P1.getSteps());
-            System.out.println("You Lost!");
-            System.exit(0);
-        }
+
     }
 
     public void checkCoordinates(VacuumCleaner P1){
@@ -50,15 +45,16 @@ public class VacuumCleaner extends MovingEntity implements Entity{
 
     public void checkBag(VacuumCleaner P1){
         System.out.println("Bag status: " + P1.getBag() + "/" + P1.getBagCapacity() );
-        if (P1.getBag()== P1.getBagCapacity()){
+        if (P1.getBag()>= P1.getBagCapacity()){
             System.out.println("(E) The bag is full! Please empty the bag");
         }
     }
 
-    public void clean(int map[][]){
-        if ((map[this.xCoordinate][this.yCoordinate]>=0)&&(map[this.xCoordinate][this.yCoordinate]>=4)){
-            map[this.xCoordinate][this.yCoordinate] = map[this.xCoordinate][this.yCoordinate] - 1;
+    public void clean(Board map1, int[][] map){
+        if ((map[this.yCoordinate][this.xCoordinate]>0)&&(map[this.yCoordinate][this.xCoordinate]<=4)){
+            map[this.yCoordinate][this.xCoordinate]= map[this.yCoordinate][this.xCoordinate] -1;
             this.bag = this.bag + 1;
+            map1.totalDirt= map1.getTotalDirt()-1;
         }
     }
 

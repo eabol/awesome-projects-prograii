@@ -2,19 +2,16 @@ package vacuum;
 import java.util.Random;
 
 class Board {
-     final int[][] map;
+    public final int[][] map;
     private final int width;
     private final int height;
-    private int totalDirt;
+    public int totalDirt;
 
     public Board(int height, int width) {
         this.width = width;
         this.height = height;
         this.map = new int[height][width];
         this.totalDirt = 0;
-    }
-    public boolean isValidToMove(int x,int y){
-        return x > 0 && x < height - 1 && y > 0 && y < width - 1;
     }
 
     public void generateMap() {
@@ -33,7 +30,6 @@ class Board {
                     // generating dirt patches
                     if (((int)(Math.random()*100) + 1 > 75)){
                         map[row][column] = (int)(Math.random()*4 +1);
-                        totalDirt += map[row][column];
                     }
                 }
             }
@@ -116,16 +112,12 @@ class Board {
             case 14 -> "|";     //Wall.vertical
             case 15 -> "---";   //Wall.horizontal
             case 16 -> "+";     //Wall.corner
-            default -> "    ";  //Empty
+            default -> "   ";  //Empty
         };
     }
 
     public void cleanTile(int x, int y, VacuumCleaner P1,Cat C1) {
         if (map[x][y] > 0) {
-            Cleanable cleanable= getCleanableObject(x,y);
-            if (cleanable != null){
-                cleanable.clean();
-            }
             map[x][y]--;
             totalDirt--;
             if (totalDirt == 0) {
@@ -137,19 +129,18 @@ class Board {
             }
         }
     }
-    private Cleanable getCleanableObject(int x, int y){
-        if (map[x][y] >0){
-            return new Cleanable() {
-                @Override
-                public void clean() {
 
+    public void setTotalDirt(){
+        for (int row = 0; row < height; row++) {
+            for (int column = 0; column < width; column++) {
+                if (map[row][column]<=4){
+                    totalDirt=totalDirt + map[row][column];
                 }
-            };
-
-        }return null;
+            }
+        }
     }
-
     public int getTotalDirt() {
+
         return totalDirt;
     }
 }

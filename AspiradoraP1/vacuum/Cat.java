@@ -10,7 +10,7 @@ public class Cat extends MovingEntity implements Entity{
     }
 
     public void mightSpawnOrDeSpawn(){
-        if (!isPresent&&((int)(Math.random()*100+1)>=85)){
+        if (!isPresent&&((int)(Math.random()*100+1)>=80)){
             isPresent = true;
         } else if (isPresent&&((int)(Math.random()*100+1)>=80)){
             isPresent = false;
@@ -24,11 +24,12 @@ public class Cat extends MovingEntity implements Entity{
         }
     }
 
-    public Boolean getPresent() {
-        return isPresent;
+    public void dirty(Board map1, int[][] map){
+        if ((map[this.yCoordinate][this.xCoordinate]>=0)&&(map[this.yCoordinate][this.xCoordinate]<4)){
+            map[this.yCoordinate][this.xCoordinate]= map[this.yCoordinate][this.xCoordinate] +1;
+            map1.totalDirt= map1.getTotalDirt()+1;
+        }
     }
 
-    public void setPresent(Boolean present) {
-        isPresent = present;
-    }
+
 }
