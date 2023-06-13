@@ -102,10 +102,17 @@ class Board {
         };
     }
 
-    public void cleanTile(int x, int y) {
+    public void cleanTile(int x, int y, VacuumCleaner P1) {
         if (map[x][y] > 0) {
             map[x][y]--;
             totalDirt--;
+            if (totalDirt == 0) {
+                System.out.println("¡NICE! ¡You cleaned all the house!");
+                printMap();
+                System.out.println("Total steps made:" +P1.getSteps());
+                System.out.println("You Won!");
+                System.exit(0);
+            }
         }
     }
 
@@ -117,6 +124,15 @@ class Board {
         return map[x][y];
     }
 
+    private void checkBattery(VacuumCleaner P1){
+        if (P1.getCurrentBattery() <= 0){
+            System.out.println("¡You ran out of battery!");
+            printMap();
+            System.out.println("Total steps made:" +P1.getSteps());
+            System.out.println("You Lost!");
+            System.exit(0);
+        }
+    }
     public int getTotalDirt() {
         return totalDirt;
     }

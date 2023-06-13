@@ -1,8 +1,8 @@
 package Vacuum;
 
-import Vacuum.Controller;
 
-public abstract class MovingEntity{
+
+public abstract class MovingEntity  {
 
     int id;
     int xCoordinate;

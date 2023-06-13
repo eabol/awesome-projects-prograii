@@ -3,7 +3,7 @@ package Exception;
 public class collisionsException {
 
 	public class Main {
-		public class Main {
+		public class AspiradoraMain {
 			public static void evaluateVacuumPosition(int vacuumPosition) throws CollisionException {
 				int sofaPosition = 7; // Posición del sofá
 				int tablePosition = 10; // Posición de la mesa
@@ -22,7 +22,5 @@ public class collisionsException {
 		}
 
 
-
-
-
+	}
 }
