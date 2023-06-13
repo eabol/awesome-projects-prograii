@@ -1,6 +1,9 @@
+package game;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import renderer.Renderer;
 
 public class Game {
     private Maze maze;

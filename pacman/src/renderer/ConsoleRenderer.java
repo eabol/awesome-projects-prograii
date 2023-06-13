@@ -1,3 +1,4 @@
+package renderer;
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
@@ -6,6 +7,13 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+
+import game.Cell;
+import game.Game;
+import game.Ghost;
+import game.Maze;
+import game.Pacman;
+import game.Position;
 
 import java.io.IOException;
 

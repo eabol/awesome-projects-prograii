@@ -1,3 +1,8 @@
+package renderer;
+import game.Game;
+import game.Ghost;
+import game.Position;
+
 public interface Renderer {
     void renderGame(Game game);
     void close() throws Exception;

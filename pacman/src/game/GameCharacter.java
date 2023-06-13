@@ -1,3 +1,4 @@
+package game;
 public abstract class GameCharacter implements GameElement {
     private Position position;
     private Direction direction;
