@@ -1,6 +1,7 @@
+package game;
 public class Cell implements GameElement {
-    Position position;
-    CellType type;
+    private Position position;
+    private CellType type;
 
     public Cell(Position position, int value) {
         this.position = position;

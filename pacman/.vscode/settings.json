@@ -1,6 +1,7 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "pacman/src/lib/lanterna-3.2.0-alpha1.jar"
+        "src/**/*.jar",
+        "src/lib/lanterna-3.2.0-alpha1.jar"
     ]
 }

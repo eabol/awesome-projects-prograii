@@ -1,3 +1,4 @@
+package game;
 public class Pacman extends GameCharacter {
 
     public Pacman(int x, int y) {

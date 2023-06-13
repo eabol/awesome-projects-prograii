@@ -1,3 +1,4 @@
+package game;
 public class Maze {
     private int width;
     private int height;
