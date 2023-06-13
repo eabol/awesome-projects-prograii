@@ -120,8 +120,6 @@ public class Ghost extends GameCharacter {
         return alternativeDirections;
     }
 
-
-
     public void die(){
     }
     

@@ -5,10 +5,13 @@
 
 <h2>Funcionalidades</h2>
 
-- Mapeado y presentación del mundo
-- Implementación de pacman y movimento
-- Detallamiento del camino y muro en el mundo
-- Agregación de fantasmas y movimiento
+- Mapeado y presentación del mundo.
+- Implementación de pacman y movimento.
+- Implementación de fantasmas y movimiento.
+- Detallamiento del camino y muro en el mundo.
+- Puntaje.
+- Inicio y final del juego.
+
 
 <h2>Diagrama de Clases</h2>
 
@@ -24,23 +27,13 @@ A continuación se presenta el diagrama creado para la jerarquización de las cl
 
 <h2>¿Cómo se usa?</h2>
 
-<img align="right" width=200px height=200px alt="side_sticker" src="https://media.tenor.com/G1VOo6fVsn4AAAAC/keyboard-type.gif" />
+<img width=200px height=200px alt="side_sticker" src="https://media.tenor.com/G1VOo6fVsn4AAAAC/keyboard-type.gif" />
 
 Para el movimiento del pacman se utlizan las teclas **A,W,S,D**
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 <h2>Autores</h2>
 <ul>
-    <li>⚡ Eduardo David Estrada Rivera</li>
-    <li>⚡ Sergio Alejandro Mayén Ruano</li>
-    <li>⚡ Edgar de Leon Du Solier</li>
+    <li>⚡ Eduardo David Estrada Rivera 💻 Dev</li>
+    <li>⚡ Sergio Alejandro Mayén Ruano 💻 Tester/Documentation</li>
+    <li>⚡ Edgar de Leon Du Solier 💻 Dev</li>
 </ul>
