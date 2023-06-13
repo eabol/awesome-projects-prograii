@@ -2,14 +2,19 @@ package core.character;
 
 import enumerators.Directions;
 import enumerators.TransportTypes;
+import interfaces.PlayerMovement;
 import view.WorldHandler;
 
 import java.awt.*;
 
-public class Player extends PlayerDrawer {
+public class Player extends PlayerDrawer implements PlayerMovement {
     WorldHandler gameWindow;
     KeyHandler keyHandler;
     private TransportTypes currentTransport;
+
+    public KeyHandler getKeyHandler() {
+        return keyHandler;
+    }
 
     public Player(WorldHandler gameWindow, KeyHandler keyHandler) {
         super();
@@ -72,7 +77,7 @@ public class Player extends PlayerDrawer {
         }
     }
 
-    private void updatePlayerSpeed() {
+    public void updatePlayerSpeed() {
         switch (currentTransport) {
             case FOOT -> this.speed = TransportTypes.FOOT.getSpeed();
             case HORSE -> this.speed = TransportTypes.HORSE.getSpeed();
@@ -96,4 +101,6 @@ public class Player extends PlayerDrawer {
     public Directions getDirection() {
         return direction;
     }
+
+
 }
