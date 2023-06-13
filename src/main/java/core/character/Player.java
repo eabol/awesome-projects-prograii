@@ -12,10 +12,6 @@ public class Player extends PlayerDrawer implements PlayerMovement {
     KeyHandler keyHandler;
     private TransportTypes currentTransport;
 
-    public KeyHandler getKeyHandler() {
-        return keyHandler;
-    }
-
     public Player(WorldHandler gameWindow, KeyHandler keyHandler) {
         super();
         this.gameWindow = gameWindow;

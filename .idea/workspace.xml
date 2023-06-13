@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="RunManager" selected="JUnit.WorldHandlerTest">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="48a5c4d4-514a-49a0-9a24-c1ac01bf52f6" name="Changes" comment="Merge pull request #11 from VeronikaEspa/jorgeQuinonez&#10;&#10;feature: added test in project">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Time.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Time.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/character/KeyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/character/KeyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/character/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/character/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/character/PlayerDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/character/PlayerDrawer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/collision/WorldCollisions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/collision/WorldCollisions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/tile/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/tile/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/WorldHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/enviroment/LightHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/enviroment/LightHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mazes/level2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mazes/level2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mazes/level3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mazes/level3.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="awesome-projects-prograii" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ImageLoaderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="awesome-projects-prograii" />
       <extension name="coverage">
@@ -63,11 +98,27 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.WorldHandlerTest" />
         <item itemvalue="JUnit.TimeTest" />
         <item itemvalue="JUnit.TileManagerTest" />
         <item itemvalue="JUnit.ImageLoaderTest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Merge pull request #11 from VeronikaEspa/jorgeQuinonez&#10;&#10;feature: added test in project">
+      <created>1686691712853</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1686691712853</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Merge pull request #11 from VeronikaEspa/jorgeQuinonez&#10;&#10;feature: added test in project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge pull request #11 from VeronikaEspa/jorgeQuinonez&#10;&#10;feature: added test in project" />
   </component>
 </project>

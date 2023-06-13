@@ -34,15 +34,8 @@ public class WorldHandler extends JPanel implements Runnable {
         public long drawCount = 0;
         public final int maxWorldCol = 50;
         public final int maxWorldRow = 50;
-        public final int worldWidth = maxWorldCol * originalSize;
-        public final int worldHeight = maxWorldRow * originalSize;
         public Thread gameThread;
-        KeyHandler keyHandler = new KeyHandler() {
-                @Override
-                public boolean isInputKeyEvent() {
-                        return false;
-                }
-        };
+        KeyHandler keyHandler = new KeyHandler();
         LightHandler lightHandler;
         PlayerDrawer player = new Player(this, keyHandler);
         ImageLoader imageLoader = new ImageLoader();
@@ -54,14 +47,6 @@ public class WorldHandler extends JPanel implements Runnable {
 
         public int getScreenHeight() {
                 return screenHeight;
-        }
-
-        public int getCharacterWidth() {
-                return characterWidth;
-        }
-
-        public int getCharacterHeight() {
-                return characterHeight;
         }
 
         public int getOriginalSize() {
@@ -110,7 +95,6 @@ public class WorldHandler extends JPanel implements Runnable {
                 long currentTime;
                 double drawInterval = 1000000000 / FPS;
                 long timer = 0;
-                // double nextDrawTime = System.nanoTime() + drawInterval;
 
                 while (gameThread != null) {
                         currentTime = System.nanoTime();
@@ -138,15 +122,16 @@ public class WorldHandler extends JPanel implements Runnable {
         }
 
         private void drawFinalGame(Graphics2D g2d) {
-                int padding = 300;
+                int padding = 400;
                 g2d.setColor(Color.yellow);
                 g2d.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-                g2d.drawString("Fin Del Juego!", padding, padding);
+                g2d.drawString("Llegaste a la meta! Fin del juego", padding, padding);
         }
 
         public void update() {
                 player.update();
                 time.advanceTime();
+                lightHandler = new LightHandler(this, time);
         }
 
         public void paintComponent(Graphics g) {
