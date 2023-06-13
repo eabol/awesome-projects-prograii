@@ -26,7 +26,4 @@ public abstract class WorldCollisions {
     public void getPlayerTransportType(Player player, int playerRightCol, int playerTopRow) {
     }
 
-    public TerrainType getTerraintAtPosition(int col, int row) {
-        return gameWindow.tileManager.getTiles()[tileNum].terrainType;
-    }
 }

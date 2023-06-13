@@ -11,8 +11,6 @@ import core.Time;
 import view.WorldHandler;
 
 public class LightHandler {
-
-    WorldHandler gameWindow;
     BufferedImage darknessFilter;
     Area screenArea;
     Area lightArea;

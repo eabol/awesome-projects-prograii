@@ -3,12 +3,10 @@ package core.character;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
-public abstract class KeyHandler implements KeyListener {
+public class KeyHandler implements KeyListener {
 
     public boolean inputKeyEvent;
     private String keyName;
-
-    public abstract boolean isInputKeyEvent();
 
     public String getKeyName() {
         return keyName;
@@ -55,8 +53,5 @@ public abstract class KeyHandler implements KeyListener {
         if ((code == KeyEvent.VK_RIGHT || code == KeyEvent.VK_D) && getKeyName() == "rightPressed") {
             inputKeyEvent = false;
         }
-    }
-
-    public void setInputKeyEvent(boolean b) {
     }
 }

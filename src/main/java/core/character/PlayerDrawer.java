@@ -7,13 +7,9 @@ import java.awt.image.BufferedImage;
 
 public abstract class PlayerDrawer {
     public int worldX;
-
     public int worldY;
     public int speed;
-    public BufferedImage upLeft, upRight, left1, right1, left2, left3, right2, right3, up1, up2;
     public Directions direction;
-    public int spriteCounter = 0;
-    public int spriteNum = 1;
     public int screenX;
     public int screenY;
 
@@ -41,8 +37,7 @@ public abstract class PlayerDrawer {
     public boolean collision = false;
 
     public void update() {
-    }
+    
 
     public void draw(Graphics2D g2d) {
-    }
 }
