@@ -1,21 +1,15 @@
 package main;
 
-import main.Hole;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
     private List<List<Hole>> holes;
 
-    public Board() {
+    public Board(int rows, int columns) {
         holes = new ArrayList<>();
-    }
-
-    public Board(int holes) {
-        this();
-        for (int i = 0; i < holes; i++) {
-            addRowOfHoles();
+        for (int i = 0; i < rows; i++) {
+            addRowOfHoles(columns);
         }
     }
 
@@ -28,33 +22,34 @@ public class Board {
         }
     }
 
-    public Hole beatenHole(int position) {
-        if (position >= 0 && position < getTotalHoles()) {
-            int row = position / getColumns();
-            int col = position % getColumns();
-            return holes.get(row).get(col);
+    public Hole getHole(int row, int column) {
+        if (isValidPosition(row, column)) {
+            return holes.get(row).get(column);
         } else {
             throw new IndexOutOfBoundsException("Invalid hole position");
         }
     }
 
-    public int getTotalHoles() {
-        int total = 0;
-        for (List<Hole> row : holes) {
-            total += row.size();
-        }
-        return total;
+    public boolean isValidPosition(int row, int column) {
+        return row >= 0 && row < getRowCount() && column >= 0 && column < getColumnCount();
     }
 
-    private int getColumns() {
+    public int getRowCount() {
+        return holes.size();
+    }
+
+    public int getColumnCount() {
         if (!holes.isEmpty()) {
             return holes.get(0).size();
         }
         return 0;
     }
 
-    private void addRowOfHoles() {
+    private void addRowOfHoles(int columns) {
         List<Hole> row = new ArrayList<>();
+        for (int i = 0; i < columns; i++) {
+            row.add(new Hole());
+        }
         holes.add(row);
     }
 }
