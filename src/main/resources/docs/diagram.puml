@@ -5,6 +5,7 @@ package main {
         class Main{}
         package core{
             package character{
+                interface KeyListener{}
                 class KeyHandler{
                     + inputKeyEvent: boolean
                     - keyName: String
@@ -28,39 +29,166 @@ package main {
                     + getPosition(): Point
                     + getDirection(): Directions
                 }
-                class PlayerDrawer{}
+                abstract class PlayerDrawer{
+                    + worldX: int
+                    + worldY: int
+                    + speed: int
+                    + upLeft, upRIght, left1, right1, left2, left3, right2, right3, up1, up2: BufferedImage
+                    + spriteCounter: int
+                    + spriteNum: int
+                    + screenX: int
+                    + screenY: int
+                    + solidArea: Rectangle
+                    + collision: boolean
+
+                    + getScreenX(): int
+                    + getScreenY(): int
+                    + getWorldY(): int
+                    + getWorldX(): int
+                    + getSolidArea(): Rectangle
+                    + update(): void
+                    + draw(Graphics2D g2d): void
+                    
+                }
 
                 PlayerDrawer <|-- Player
+                KeyListener <-- KeyHandler : implements
             }
             package collision{
-                class CollisionChecker{}
-                class WorldCollisions{}
+                class CollisionChecker{
+                    {static} gameWindow: WorldHandler
+                    - endGameMessage: String
+
+                    + checkTile(Player player): void
+                    ~ checkCollision(Player player, int playerRightCol, int playerTopRow, int playerBottomRow): void
+                    + getPlayerTransportType(Player player, int playerRIghtCol, int playerTopRow): void
+                    + {static} getFinalGame(TerrainType currentTerrain): void
+                    + getTerrainAtPosition(int col, int row): TerrainType
+                }
+                abstract class WorldCollisions{
+                    + gameWindow: WorldHandler
+                    + playerLeftWorldX: int
+                    + playerRightWorldX: int
+                    + playerTopWorldY: int
+                    + playerBottomWorldX: int
+                    + playerLeftCol: int
+                    + playerRightCol: int
+                    + playerTopRow: int
+                    + playerBottomRow: int
+                    + tileNum1, tileNum2: int
+                    + tileNum: int
+                    
+                    + checkTile(Player player): void
+                    ~ checkCollision(Player player, int playerRIghtCol, int playerTopRow, int playerBottomRow): void
+                    + getPlayerTransportType(Player player, int playerRightCol, int playerTopRow): void
+                    + getTerraintAtPosition(int col, int row): TerrainType
+                }
+                WorldCollisions <|-- CollisionChecker
             }
             package tile{
-                class TerrainMapper{}
-                class Tile{}
+                class TerrainMapper{
+                    - terrainMap: Map<Integer, TerrainType>
+                    - type: int
+                    
+                    + mapTerrainType(int number): TerrainType
+                    + Terrain(int type): void
+                    + getType(): int
+                    
+                }
+                class Tile{
+                    + terrainType: TerrainType
+                    - image: BufferedImage
+                    + collision: boolean
+
+                    + getImage(): BufferedImage
+                    + hasCollision(): boolean
+                }
             }
-            class Time{}
+            class Time{
+                - hours: int
+                - minutes: int
+                - tick: int
+                - timeCooldown: int
+                - timeCooldownMax: int
+
+                - setTime(): void
+                + setTick(): void
+                - isValidTime(): boolean
+                + advanceTime(): void
+                + getMomentOfDay(): String
+                + getTime(): String
+                + getHours(): int
+                + getMinutes(): int
+                - setHours(): void
+                - setMinutes(): void
+            }
         }
         package enumerators{
-            enum Directions{}
-            enum GameState{}
-            enum TerrainType{}
-            enum TransportTypes{}
+            enum Directions{
+                UP, DOWN, LEFT, RIGHT
+            }
+            enum GameState{
+                RUNNING, GAME_OVER
+            }
+            enum TerrainType{
+                ROAD, SAND, TROUBLEDWATER, WATER, GRASS, MEDIUMGRASS, TALLGRASS, WALL, TREE,PORTALEND,PORTALTRANSPORT
+            }
+            enum TransportTypes{
+                BOAT(6), FOOT(4), HORSE(7), CARPET(5);
+                - speed: int
+                + getSpeed():int
+                + TransportTypes(int speed): void
+            }
         }
         package interface{
-            interface PlayerMovement{}
-            interface TilesDistribution{}
+            interface PlayerMovement{
+                + setDefaultValue(): void
+                + updatePlayerSpeed(): void
+                + getDirection(): Directions
+            }
+            interface TilesDistribution{
+                + parseMaze(String filePath): void
+                + loadTileImages(): void
+                + draw(Graphics2D g2d): void
+                + getMapTileNum(): int[][]
+            }
         }
         package view{
             package assets{
-                class ImageLoader{}
-                class ImagePainter{}
+                class ImageLoader{
+                    + loadImage(String imagePath): BufferedImage
+                }
+                class ImagePainter{
+                    - imageMap: Map<String, BufferedImage>
+                    - ANIMATION_FRAME_THRESHOLD: int
+                    - ANIMATION_CYCLE_LENGTH: int
+                    - imageLoader: ImageLoader
+
+                    + paintPlayer(Graphics2D g2, Player player, int characterWidth, int characterHeight): void
+                }
             }
             package enviroment{
-                class LightHandler{}
+                class LightHandler{
+                    + gameWindow: WorldHandler
+                    + darknessFilter: BufferedImage
+                    + screenArea: Area
+                    + lightArea: Area
+
+                    + draw(Graphics2D graphics2d): void
+                    + calculateAreas(WorldHandler gameWindow, int circleSize): void
+                    - createLightning(Area screenArea, Area lightArea, Graphics2D graphics2d): void
+                }
             }
-            class TileManager{}
+            class TileManager{
+                - gameWindow: WorldHandler
+                + tiles: Tile[]
+                + mapTileNum: int[][]
+
+                + parseMaze(String filePath): void
+                + loadTileImages(): void
+                + draw(Graphics2D g2d): void
+                + getMapTileNum(): int[][]
+            }
             class WorldHandler{}
         }
     }
