@@ -11,11 +11,17 @@ public class Game {
     private int foodCount = 0;
     private Timer pacmanTimer;
     private Timer ghostTimer;
+    private int lives;
 
     public Game() {
         createMaze();
         this.pacman = new Pacman(22, 13);
         this.ghosts = List.of(new Ghost(11, 13), new Ghost(12, 13), new Ghost(15, 13), new Ghost(16, 13));
+        this.lives = 3; // Número de vidas inicial
+    }
+
+    public int getLives() {
+        return lives;
     }
 
     public List<Ghost> getGhosts() {
@@ -126,6 +132,24 @@ public class Game {
         if (this.ghostTimer != null) {
             this.ghostTimer.cancel();
             this.ghostTimer = null;
+        }
+    }
+
+    private void checkCollision() {
+        for (Ghost ghost : ghosts) {
+            if (pacman.getPosition().equals(ghost.getPosition())) {
+                loseLife();
+                break;
+            }
+        }
+    }
+
+    private void loseLife() {
+        lives--;
+
+        if (lives == 0) {
+            stop();
+            return;
         }
     }
 

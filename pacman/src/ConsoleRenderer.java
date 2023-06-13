@@ -17,6 +17,10 @@ public class ConsoleRenderer implements Renderer {
     Game game;
     final int offset = 3;
 
+    private static final String HEART_ICON = "❤️";
+    private static final String EMPTY_ICON = "   ";
+
+    
     public void renderGame(Game game) {
         this.game = game;
         DefaultTerminalFactory defaultTerminalFactory = new DefaultTerminalFactory();
@@ -144,7 +148,13 @@ public class ConsoleRenderer implements Renderer {
         TextGraphics textGraphics = this.screen.newTextGraphics();
         textGraphics.setBackgroundColor(TextColor.ANSI.BLACK);
         textGraphics.setForegroundColor(TextColor.ANSI.WHITE_BRIGHT);
+        
+        // Print score
         textGraphics.putString(0, game.getMaze().getHeight(), "Score: " + game.getScore(), SGR.BOLD);
+        
+        // Print lives
+        
+        textGraphics.putString(game.getMaze().getWidth() * offset - 10, game.getMaze().getHeight(), "Lives: " + game.getLives(), SGR.BOLD);
     }
 
     private void printStartScreen() throws IOException {
