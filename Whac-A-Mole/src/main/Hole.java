@@ -12,7 +12,7 @@ public class Hole extends Space {
     }
 
     public Hole(SmackableCharacter character) {
-        this.aspect = aspect;
+        this.aspect = "0";
         this.character = character;
     }
 

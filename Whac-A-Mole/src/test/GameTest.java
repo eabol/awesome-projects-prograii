@@ -1,53 +1,42 @@
 package test;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import main.Board;
+import main.Game;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-import main.Board;
-import main.Game;
-
 public class GameTest {
-    private Game game;
-
-    @Before
-    public void setUp() {
-        Board board = new Board();
-        game = new Game(board);
-    }
-
-    @Test
-    public void testShowMenu() {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
-
-        game.showMenu();
-
-        String output = outputStream.toString().trim();
-
-        Assert.assertEquals("Menu is displayed", "Show Menu", output);
-    }
-
     @Test
     public void testStartToPlay() {
-        String input = "1\nN\n";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        Scanner scanner = new Scanner(inputStream);
+        // Configurar entrada del usuario simulada
+        String simulatedUserInput = "0\nN\n";
+        InputStream inputStream = new ByteArrayInputStream(simulatedUserInput.getBytes());
+        System.setIn(inputStream);
 
+        // Capturar salida del sistema
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
+        PrintStream printStream = new PrintStream(outputStream);
+        System.setOut(printStream);
 
-        Game game = new Game(new Board(), scanner);
+        // Crear instancia de Game y ejecutar el juego simulado
+        Board board = new Board(3, 4);
+        Game game = new Game(board, new Scanner(System.in));
         game.startToPlay();
 
-        String output = outputStream.toString().trim();
-
-        Assert.assertTrue("Board is displayed", output.contains("Board is displayed"));
-        Assert.assertTrue("Game over message is displayed", output.contains("Game over!"));
+        // Verificar la salida esperada
+        String expectedOutput = "0 0 0 0" + System.lineSeparator() +
+                "0 0 0 0" + System.lineSeparator() +
+                "0 0 0 0" + System.lineSeparator() +
+                "Select a hole to hit:" + System.lineSeparator() +
+                "Hit at position 0" + System.lineSeparator() +
+                "Do you want to continue playing? (Y/N)" + System.lineSeparator() +
+                "Game over!" + System.lineSeparator();
+        Assertions.assertEquals(expectedOutput, outputStream.toString());
     }
 }

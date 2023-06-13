@@ -2,7 +2,7 @@ package main;
 
 import java.util.Scanner;
 
-public class Game implements View{
+public class Game implements View {
     private Board board;
     private Turn turn;
     private Scanner scanner;
@@ -19,12 +19,12 @@ public class Game implements View{
     }
 
     public Game() {
-        this(new Board(), null);
+        this(new Board(10, 10), null);
         turn = new Turn();
     }
 
     public void showMenu() {
-        View.showMenu();
+        System.out.println("WELCOME TO WHACK-A-MOLE");
     }
 
     public void startToPlay() {
@@ -37,8 +37,14 @@ public class Game implements View{
             System.out.println("Select a hole to hit:");
             int position = scanner.nextInt();
 
-            if (position >= 0 && position < board.getTotalHoles()) {
-                Hole hole = board.beatenHole(position);
+            int rows = board.getRowCount();
+            int columns = board.getColumnCount();
+
+            if (position >= 0 && position < rows * columns) {
+                int row = position / columns;
+                int column = position % columns;
+
+                Hole hole = board.getHole(row, column);
                 hole.setAspect("Hit");
 
                 System.out.println("Hit at position " + position);
@@ -62,9 +68,9 @@ public class Game implements View{
     }
 
     public static void main(String[] args) {
-        Game game = new Game();
+        Board board = new Board(3, 4);
+        Game game = new Game(board);
         game.showMenu();
         game.startToPlay();
     }
-
 }
