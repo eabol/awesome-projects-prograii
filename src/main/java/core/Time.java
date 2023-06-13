@@ -99,11 +99,15 @@ public class Time {
         return minutes;
     }
 
-    private void setHours(int hours) {
+    void setHours(int hours) {
         this.hours = hours;
     }
 
     private void setMinutes(int minutes) {
         this.minutes = minutes;
+    }
+
+    public int getSeconds() {
+        return tick;
     }
 }

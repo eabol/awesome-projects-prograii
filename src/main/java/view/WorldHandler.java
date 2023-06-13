@@ -36,7 +36,7 @@ public class WorldHandler extends JPanel implements Runnable {
         public final int maxWorldRow = 50;
         public final int worldWidth = maxWorldCol * originalSize;
         public final int worldHeight = maxWorldRow * originalSize;
-        Thread gameThread;
+        public Thread gameThread;
         KeyHandler keyHandler = new KeyHandler() {
                 @Override
                 public boolean isInputKeyEvent() {

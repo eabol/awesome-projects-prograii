@@ -29,4 +29,8 @@ public abstract class WorldCollisions {
     public TerrainType getTerraintAtPosition(int col, int row) {
         return gameWindow.tileManager.getTiles()[tileNum].terrainType;
     }
+
+    public WorldHandler getWorldHandler() {
+        return gameWindow;
+    }
 }
