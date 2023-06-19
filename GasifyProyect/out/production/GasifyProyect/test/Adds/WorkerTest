@@ -1,0 +1,27 @@
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class WorkerTest {
+
+    @Test
+    public void testGetIdEmployee() {
+
+        Worker worker = new Worker();
+
+        worker.setIdEmployee("12345");
+
+        String result = worker.getIdEmployee();
+        assertEquals("12345", result);
+    }
+
+    @Test
+    public void testSetIdEmployee() {
+
+        Worker worker = new Worker();
+
+        worker.setIdEmployee("54321");
+        assertEquals("54321", worker.getIdEmployee());
+    }
+
+}
