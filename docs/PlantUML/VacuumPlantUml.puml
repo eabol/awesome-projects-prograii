@@ -1,0 +1,95 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title Vacuum Cleaner
+class VacuumMain{
+		+Board map 1=new Board(10,25)
+		+map1.generateMap()
+		+map1.addFurniture()
+		+VacuumCleaner P1=new VacuumCleaner(5,12,5,0,30,900,900,0,true)
+		+Cat C1=new Cat(6,6,6,true,false)
+		+Controller.printHeader(P1,C1,map1)
+		+map1.printMap(P1,C1)
+		+Controller.gameKeys(P1,map1)
+}
+interface Entity{
+       +boolean getAutomated();
+       +void setAutomated(boolean automated);
+}
+class VacuumCleaner extends MovingEntity {
+		+int bag
+		+int bagCapacity
+		+int currentBattery
+		+int maxBattery
+		+int steps
+		+public VacuumCleaner(int id, int xCoordinate, int yCoordinate, int bag, int bagCapacity, int currentBattery, int maxBattery, int steps, boolean automated)
+        +super(id,xCoordinate,yCoordinate, automated);
+        +public void emptybag()
+        +public void checkBattery(VacuumCleaner P1)
+        +public void checkBag(VacuumCleaner P1)
+        +public void checkCoordinates(VacuumCleaner P1)
+        +public void clean(int map[][])
+        +public int getBag()
+        +public int getBagCapacity()
+        +public int getCurrentBattery()
+        +public int getMaxBattery()
+        +public int getSteps()
+        +public void setSteps(int steps)
+        +public void setCurrentBattery(int bag)
+}
+class Cat extends MovingEntity{
+		+Boolean isPresent
+		+public Cat(int id, int xCoordinate,int yCoordinate, boolean isPresent, boolean automated)
+        +super(id,xCoordinate,yCoordinate, automated);
+        +public void mightSpawnOrDeSpawn()
+        +public void checkCat(Cat C1)
+        +public Boolean getPresent()
+        +public void setPresent(Boolean Present)
+}
+class Controller  {
+		+public static void gameKeys(VacuumCleaner P1, Board map1)
+		+public static void printHeader(VacuumCleaner P1, Cat C1, Board map)
+
+}
+class MovingEntity extends Entity{
+	    +int id
+        +int xCoordinate
+        +int yCoordinate
+        +boolean automated
+        +public MovingEntity(int id, int xCoordinate, int yCoordinate, boolean automated)
+        +protected void RMovement()
+        +public boolean checkCollision(int map[][])
+        +public void DMovement(VacuumCleaner P1,Board map1)
+        +public int getXCoordinate()
+        +public int getYCoordinate()
+        +public void setXCoordinate(int xCoordinate)
+        +public void setYCoordinate(int yCoordinate)
+        +public boolean getAutomated()
+        +public void setAutomated(boolean automated)
+
+}
+
+class Board{
+	    +public final int[][] map
+	    +public final int width
+        +public final int height
+        +public int totalDirt
+        +public Board(int height, int width)
+        +public void generateMap()
+        +public void addFurniture()
+        +public void printMap(VacuumCleaner P1, Cat C1)
+        +public boolean isValidToMove(int x, int y)
+        +public String getTileSkin(int x, int y)
+        +public void cleanTile(int x, int y,VacuumCleaner P1, Cat C1)
+        +private Cleanable getCleanableObject(int x, int y)
+        +public int getTotalDirt()
+}
+interface Cleanable{
+		+Void clean()
+}
+
+
+
+Cleanable -- Board
+Controller -- VacuumMain
+
+@enduml
