@@ -1,0 +1,56 @@
+@startuml objects
+
+object "Machine: Maquina001" as maq1{
+name = "Maquina001"
+bills = [10, 5]
+coins = [2, 0.5]
+products = [Cookies]
+}
+
+object "Maintenance: Mantenimiento001" as man1{
+}
+
+object "Money" as dinero{
+value
+quantity
+}
+
+object "Bill: €10" as b10{
+value = 10
+quantity = 12
+}
+
+object "Bill: €5" as b5{
+value = 5
+quantity = 5
+}
+
+object "Coin: €2" as m2{
+value = 2
+quantity = 8
+}
+
+object "Coin: €0.5" as m05{
+value = 0.5
+quantity = 4
+}
+
+object "Product: Cookies" as pro1{
+value = 1.4
+quantity = 12
+}
+
+maq1 --r man1 
+maq1 -l- pro1
+
+dinero <|--- b10
+dinero <|--- b5
+dinero <|--- m2
+dinero <|--- m05
+
+maq1 --- b10
+maq1 --- b5
+maq1 --- m2
+maq1 --- m05
+
+@enduml

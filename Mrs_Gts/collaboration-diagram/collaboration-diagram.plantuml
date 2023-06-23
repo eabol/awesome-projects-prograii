@@ -1,0 +1,18 @@
+@startuml coll
+state Program{
+  
+Gestor -> Maquina
+
+Maquina ---> Billete
+Maquina ---> Moneda
+Maquina --> Producto
+
+Dinero --> Billete
+Dinero --> Billete
+Dinero --> Moneda
+Dinero --> Moneda
+
+Producto -> Dinero
+
+}
+@enduml
