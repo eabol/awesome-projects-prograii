@@ -1,0 +1,19 @@
+[
+  {
+    "idPlc": "PLC-01",
+    "maker": "Siemens",
+    "model": "S7-1200",
+    "idDataSim": "SIM-001"
+  },
+  {
+  "idPlc": "PLC-02",
+  "maker": "Siemens",
+  "model": "S7-1200",
+    "idDataSim": "SIM-002"
+  },
+  {
+  "idPlc": "PLC-03",
+  "maker": "Siemens",
+  "model": "S7-1200",
+    "idDataSim": "SIM-003"
+}]

@@ -1,0 +1,94 @@
+@startuml
+
+interface LuckDirection{
+  + getPositiveLuck() : boolean
+  + getNegativeLuck() : boolean
+}
+
+interface View{
+    + showMenu() : void
+}
+
+abstract class SmackableCharacter{
+    - String name
+    - String avatar
+    - boolean beaten
+    + SmackableCharacter();
+    + SmackableCharacter(String name);
+    + getName() : String
+    + setName(String name) : void
+    + getAvatar() : String
+    + setAvatar(String appearance) : void
+    + isBeaten() : boolean
+    + setBeaten(boolean beaten) : void
+}
+
+abstract class Space {
+
+}
+
+class Luck implements LuckDirection{
+    - float certainty
+    + Luck()
+    + Luck(float certainty)
+    + getPositiveLuck() : boolean
+    + getNegativeLuck() : boolean
+}
+
+class Mole extends SmackableCharacter{
+ + Mole()
+ + Mole(String name)
+}
+
+class Board {
+  - List<List<Hole>> holes
+  + Board()
+  + Board(int holes)
+  + showBoard() : void
+  + beatenHole(int position) : Hole
+}
+class Hole extends Space {
+  - String aspect
+  - SmackableCharacter character
+  + Hole()
+  + Hole(SmackableCharacter character)
+  + getAspect() : String
+  + setAspect(String aspect) : void
+  + getSmackableCharacter() : SmackableCharacter
+  + setSmackableCharacter(SmackableCharacter character) : void
+  - showMoleInside() : String
+  - isMoleInside() : boolean
+}
+class Game implements View {
+  - Board board
+  - Turn turn
+  + Game()
+  + Game(Board board)
+  + showMenu() : void
+  + startToPlay() : void
+  - endPlaying() : void
+}
+
+class Turn {
+    - int total
+    - int successes
+    - int failures
+    + Turn()
+    + getTotal() : int
+    + getSuccesses() : int
+    + getFailures() : int
+    + playDone(boolean success) : void
+
+}
+
+class Main{
+  + main()
+}
+
+Hole o-- SmackableCharacter
+Board *-- Hole
+Luck -- Board
+Game *-- Board
+Game *-- Turn
+Main o-- Game
+@enduml
