@@ -1,0 +1,96 @@
+@startuml
+class Coin{
+- double value
+- int quantity
++ Coin(double value, int quantity)
++ double getValue()
++ int getQuantity()
++ void setQuantity(int quantity)
+}
+class Management{
++ Management()
++ int askNumber()
++ int selectMachine()
+}
+class UnhealthyFood extends Product{
++ UnhealthyFood(double price, String name, int id, int units)
+}
+class UnhealthyWallet extends Wallet{
++ UnhealthyWallet()
++ void addCoins()
+}
+class Drinks extends Product{
++ Drinks(double price, String name, int id, int units)
+}
+class DrinksWallet extends Wallet{
++ DrinksWallet()
++ void addCoins()
+}
+abstract Wallet{
+- ArrayList<Coin> coins
++ Wallet()
++ void addCoins()
++ int total()
++ void checkCoins(double change)
++ void checkToAddCoins(double price)
++ printWallet()
+}
+abstract class Product implements Food{
+# double price
+# String name
+# int id
+# int units
++ Product(double price, String name, int id, int units)
++ double getPrice()
++ String getName()
++ int getProductId()
++ int getUnits()
++ void setUnits(int units)
+}
+class HealthyFood extends Product{
++ HealthyFood(double price, String name, int id, int units)
+}
+class HealthyWallet extends Wallet{
++ HealthyWallet()
++ void addCoins()
+}
+interface PreMachine{
++ boolean refillProduct(int id)
++ void showRefilling(boolean refillProduct)
++ void buyProduct(int id, Wallet wallet)
+}
+class Machine implements PreMachine{
+- int id
+- ArrayList<Product> products
+- Wallet money
++ Machine(int id, Wallet money)
++ ArrayList<Product> getProducts()
++ void setProducts(ArrayList<Product> products)
++ int getId()
++ double askMoney()
++ boolean refillProducts(int id)
++ void showRefilling(boolean productRefilled)
++ Wallet getMoney()
++ void buyProduct(int id, Wallet wallet)
+}
+interface Food{
++ double getPrice()
++ String getName()
++ int getProductId()
++ int getUnits()
+}
+class Options{
+- String items[]
+- int capacity
+- int size
+- int defaultSelection
++ Options()
++ Options(int capacity)
++ void add(String item)
++ void print()
++ int askOption()
+}
+class NoProductException extends Exception{
++ NoProductException()
+}
+@enduml

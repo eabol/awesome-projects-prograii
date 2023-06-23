@@ -1,0 +1,27 @@
+[{
+    "idCustomer": "72171365X",
+    "nameCustomer": "Daniel Perez Gonzales",
+    "email": "regular@gmail.com",
+    "password": "1234",
+    "numberPhone": "687220274",
+    "address": "Calle Camarreal 1",
+    "gasMaterID": "GM-3"
+  },
+    {
+      "idCustomer": "50394857E",
+      "nameCustomer": "Sara Gomez Gonzalez",
+      "email": "regular1@gmail.com",
+      "password": "123",
+      "numberPhone": "664351012",
+      "address": "Calle Peña Herbosa 23",
+      "gasMaterID": "GM-1"
+    },
+    {
+      "idCustomer": "72438457X",
+      "nameCustomer": "Javier Roldán Rábago",
+      "email": "regular2@gmail.com",
+      "password": "124",
+      "numberPhone": "666778833",
+      "address": "Plaza Ayuntamiento 2",
+      "gasMaterID": "GM-2"
+    }]

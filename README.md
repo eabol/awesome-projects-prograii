@@ -1,7 +1,7 @@
 # Proyecto final de Programación II
-Repositorio para proyectos de la asignatura **Programación II** del [Grado de Ingeniería Informática](https://www.uneatlantico.es/escuela-politecnica-superior/estudios-grado-oficial-en-ingenieria-informatica) la [Universidad Europea del Atlántico](https://www.uneatlantico.es). 
+Repositorio para proyectos de la asignatura **Programación II** del [Grado de Ingeniería Informática](https://www.uneatlantico.es/escuela-politecnica-superior/estudios-grado-oficial-en-ingenieria-informatica) la [Universidad Europea del Atlántico](https://www.uneatlantico.es).
 
-El objetivo del proyecto final es aplicar todos los conocimientos adquiridos a lo largo de la asignatura. El entregable final 
+El objetivo del proyecto final es aplicar todos los conocimientos adquiridos a lo largo de la asignatura. El entregable final
 consta del código fuente del proyecto y la documentación requerida.
 
 ## Generalidades
@@ -15,7 +15,7 @@ El proyecto debe cumplir con algunos requisitos mínimos basándonos en el check
 * [ ] 2 tests unitarios por cada clase
 * [ ] Diagrama UML (PlantUML)
 * [ ] 3 PR por cada repositorio
-* [ ] Uso de paquetes para organizar el proyecto 
+* [ ] Uso de paquetes para organizar el proyecto
 * [ ] Manejo de excepciones.
 * [ ] Documento README.md con las instrucciones para ejecutar el proyecto y con la estructura descrita abajo.
 
@@ -70,3 +70,5 @@ solicitar un Pull Request. De esta manera, se podrá mantener un registro claro 
 * [Como hacer commit](https://github.com/eabol/progra2-22-23/blob/main/docs/commits.md)
 * [Commits Convencionales](https://www.conventionalcommits.org/en/v1.0.0/)
 * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+
+test
