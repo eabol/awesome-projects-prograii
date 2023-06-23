@@ -1,0 +1,78 @@
+@startuml domain-model
+
+class Machine {
+    + name
+    + List<Bill> bills
+    + List<Coin> coins
+    + List<Product> products
+
+    + Machine(String name, List<Bill> bills, List<Coin> coins, List<Product> products)
+    + addBills(BillModel bill)
+    + addCoins(CoinModel coin)
+    + addProducts(ProductModel product)
+    + showName()
+    + listOfBills()
+    + listOfCoins()
+    + listOfProducts()
+}
+
+class Bill {
+    + value
+    + quantity
+
+    + Bill(double value, int quantity)
+}
+
+class Coin {
+    + value
+    + quantity
+
+    + Coin(double value, int quantity)
+}
+
+class Product {
+    + name
+    + price
+    + quantity
+
+    + Product(String name, double price, int quantity)
+    + updatePrice(double price)
+    + updateName(String name)
+    + updateQuantity(int quantity)
+}
+
+class Money {
+    + value
+    + quantity
+
+    + Money(double value, int quantity)
+    + updatePrice(double value)
+    + updateQuantity(int quantity)
+}
+
+class Maintenance {
+    + name
+    + type
+
+    + Maintenance()
+}
+
+class Purchase {
+    + scanner
+
+    + purchase(MachineModel machine)
+    + calculateChange(double amountReceived, double amountProduct, MachineModel machine)
+    - showProductSelection(List<ProductModel> products)
+    - selectProduct(List<ProductModel> products)
+    - depositMoney()
+}
+
+Machine *--r Maintenance
+Machine o--- Product
+Machine o--- Bill
+Machine o--- Coin
+
+Money <|--- Bill
+Money <|--- Coin
+
+@enduml
