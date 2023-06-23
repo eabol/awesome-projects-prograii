@@ -1,0 +1,137 @@
+@startuml
+class Bite extends Weapons
+class Claw extends Weapons
+class Dagger extends Equipment
+class DaggThrow extends Weapons
+class SoulSyphon extends Weapons
+class Flail extends Weapons
+class Handaxe extends Weapons
+class Intimidate extends Weapons
+class SmokeBomb extends Equipment
+class Sword extends Weapons
+class Vampire extends Characters
+class VampireAttack extends Weapons
+class Warrior extends Characters
+class WarriorActions extends Warrior
+
+class Main {
+    +main(args: String[]): void
+}
+abstract class Equipment {
+    #name: String
+    #cuantity: int
+    +Equipment(name: String, cuantity: int)
+}
+abstract class Characters {
+    #name: String
+    #heatlh: double
+    +Characters(name: String, health: double)
+    }
+abstract class Weapons {
+    -damage: double
+    -accuracy: double
+    +weapons(name: String, damage: double, accuracy: double)
+    +getDamage(): double
+    +getAccuracy(): double
+    +setDamage(damage: double): void
+    +setAccuracy(accuracy: double): void
+  }
+class Flail{
+    +Flail(damage: double, accuracy: double)
+    +FlailAttack(damage: double, accuracy: double): void
+    +hit(): void
+}
+class Sword{
+    +Sword(damage: double, accuracy: double)
+    +swordAttack(damage: double, accuracy: double): void
+    +hit(): void
+}
+class Handaxe{
+    +handaxe(damage: double, accuracy: double)
+    +handaxeAttack(damage: double, accuracy: double): void
+    +hit(): void
+}
+
+class Vampire{
+    +vampire(name: String, health: double, attack: double, accuracy: double)
+    +setName(name: String): void
+    +setHealth(health: double): void
+    +getHealth(): double
+    +getName(): String
+}
+class VampireAttack{
+    +vampireAttack(damage: double, accuracy: double)
+    +vampireAttacks(): void
+}
+class Warrior{
+    +warrior(name: String, health: double, attack: double, accuracy: double)
+    +setName(name: String): void
+    +setHealth(health: double): void
+    +getHealth(): double
+    +getName(): String
+
+class Bite{
+    +bite(damage: double, accuracy: double)
+    +biteAttack(): void
+}
+class Claw{
+    +claw(damage: double, accuracy: double)
+    +clawAttack(): void
+}
+class GeneralManager{
+    +Warrior: warrior
+    +Vampire: vampire
+    +Random random
+    +min: int
+    +max: int
+    +vampireAttack: VampireAttack
+    +Dagger: Dagger
+    +EquipmentArrayList: Arraylist<Equipment>
+    +SmokeBomb: SmokeBomb
+    Intimidate: Intimidate
+    +playerTurn: boolean
+    +iniciate(): void
+    +combat(): void
+}
+class SoulSyphon{
+    +SoulSyphon(damage: double, accuracy: double)
+    +soulAttack(): void
+}
+class WarriorActions{
+    +attackFlail: Flail
+    +attackSword: Sword
+    +attackHandaxe: Handaxe
+    +attackDagger: Dagger
+    +Warrior: Warrior
+    +SmokeBomb: SmokeBomb
+    +Intimidate: Intimidate
+    +WarriorActions(name: String, health: double)
+    +attackFlail(): void
+    +attackSword(): void
+    +attackHandaxe(): void
+    +attackDagger(): void
+    +Nigerundayo(): void
+    +Spooky(): void
+}
+class Dagger{
++Dagger(name: String,cuantity: int)
+}
+class DaggThrow{
+    +Vampire: vampire
+    +DaggThrow(damage: double, accuracy: double)
+    +daggThrow(damage: double, accuracy: double): void
+    +DaggThrowAttack(accuracy: double,damage: double): void
+    +hit(): void
+}
+class Intimidate{
+    +Vampire: vampire
+    +Intimidate(damage: double, accuracy: double): void
+    +SpookyAttack(damage: double, accuracy: double): void
+    +hit(): void
+}
+class SmokeBomb{
+    +Vampire: vampire
+    +SmokeBomb(damage: double, accuracy: double): void
+    +hit(): void
+}
+@enduml
