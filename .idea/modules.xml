@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Maquina_Expendedora/Maquina_Expendedora.iml" filepath="$PROJECT_DIR$/Maquina_Expendedora/Maquina_Expendedora.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/awesome-projects-prograii.iml" filepath="$PROJECT_DIR$/.idea/awesome-projects-prograii.iml" />
     </modules>
   </component>

@@ -1,0 +1,16 @@
+@startuml modelo-de-dominio
+class Machine
+class Bill
+class Coin
+class Product
+class Money
+class Maintenance
+
+Machine *--r Maintenance
+Machine o--l Money
+Machine o--- Product
+
+Money *--- Bill
+Money *--- Coin
+
+@enduml

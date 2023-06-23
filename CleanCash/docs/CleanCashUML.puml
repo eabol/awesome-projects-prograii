@@ -1,0 +1,76 @@
+@startuml
+abstract Entity {
++String entityId
++String entityName
+}
+
+class Product {
++float price
+}
+Product --|> Entity
+
+class InventoryDataBase {
++findProduct(String): Product
++getProducts(): List<Product>
+}
+
+class DiscountsDataBase {
++getSaleDiscount(String): String
+}
+
+class ShoppingCart {
++List<Product> productsCart
++float totalCost
++float discountsTotal
++float finalCost
++addProduct(Product): void
++applyDiscount(float): void
++removeProduct(Product): void
++findProduct(Product): Product
++findProduct(String): Product
++getProductsCart(): List<Product>
++getTotalCost(): float
++setTotalCost(float): void
++getDiscountsTotal(): float
++setDiscountsTotal(float): void
++getFinalCost(): float
++setFinalCost(float): void
+}
+ShoppingCart "1" o-- "many" Product
+
+interface DataManager {
++add(Entity): void
++remove(Entity): void
++identify(Entity): void
+}
+
+class CartManager {
++ShoppingCart shoppingCart
++getShoppingCart(): ShoppingCart
++getTotalCost(): float
++getTotalDiscount(): float
++getFinalCost(): float
++applyDiscount(float): void
+}
+CartManager o-- ShoppingCart
+CartManager ..|> DataManager
+
+class DiscountsManager {
++DiscountsDataBase discountsDataBase
++getDiscount(String): int
+}
+DiscountsManager o-- DiscountsDataBase
+DiscountsManager ..|> DataManager
+
+class CheckoutKiosk {
++InventoryDataBase productList
++DiscountsManager discountList
++CartManager cartManager
++setupGUI(): void
++updateInventoryUI(): void
++updateCartTotal(): void
+}
+CheckoutKiosk o-- InventoryDataBase
+CheckoutKiosk o-- DiscountsManager
+CheckoutKiosk o-- CartManager
+@enduml
